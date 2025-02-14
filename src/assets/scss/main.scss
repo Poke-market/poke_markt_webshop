@@ -1,0 +1,18 @@
+@import 'https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css';
+
+$font-family-sans-serif: 'Roboto', sans-serif;
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 2rem;
+  line-height: 1.6;
+  font-family: $font-family-sans-serif;
+  color: red;
+}
