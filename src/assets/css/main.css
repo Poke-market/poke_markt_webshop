@@ -21,6 +21,7 @@ body .filter-sort-bar {
   width: 100vw;
   padding: 2rem 8.5rem;
   font-size: 1.6rem;
+  max-height: 10rem;
 }
 body .filter-sort-bar span {
   display: flex;
