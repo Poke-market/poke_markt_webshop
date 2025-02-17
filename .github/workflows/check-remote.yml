@@ -20,7 +20,7 @@ jobs:
           COMMIT_URL="${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}"
           curl -H "Content-Type: application/json" -X POST -d '{
             "embeds": [{
-              "title": "Testing automated Discord notifications with GitHub Actions for push events",
+              "title": "@everyone :github: Repository Updated :github: ",
               "description": "The repository **${{ github.repository }}** has been updated on branch **${{ github.ref_name }}** by **${{ github.actor }}**! 🚀",
               "color": 5814783,
               "fields": [
