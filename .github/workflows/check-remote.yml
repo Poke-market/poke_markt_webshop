@@ -1,7 +1,9 @@
 on:
   push:
     branches:
-      - ___-setup # Trigger on updates to the main branch
+      - ___-setup # Trigger on updates to setup branch
+      - development # Trigger on updates to develop branch
+      - main # Trigger on updates to main branch
 
 name: Discord Notification on Update
 
@@ -20,7 +22,7 @@ jobs:
           COMMIT_URL="${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}"
           curl -H "Content-Type: application/json" -X POST -d '{
             "embeds": [{
-              "title": "Repository Updated 🚀🚀",
+              "title": "Repository Updated!!",
               "description": "The repository **${{ github.repository }}** has been updated on branch **${{ github.ref_name }}** by **${{ github.actor }}**! 🚀",
               "color": 5814783,
               "fields": [
