@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - main # Trigger on updates to the main branch
+      - ___-setup # Trigger on updates to the main branch
 
 name: Discord Notification on Update
 
