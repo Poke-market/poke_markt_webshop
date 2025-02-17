@@ -1,7 +1,8 @@
+import FilterSortBar from "./components/FilterSortBar.tsx";
 const App = () => {
   return (
     <div>
-      <h1>PokeMarket</h1>
+      <FilterSortBar />
     </div>
   );
 };
