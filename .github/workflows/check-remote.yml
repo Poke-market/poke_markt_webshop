@@ -1,11 +1,11 @@
+name: Discord Notification on Update
+
 on:
   push:
     branches:
       - ___-setup # Trigger on updates to setup branch
       - development # Trigger on updates to develop branch
       - main # Trigger on updates to main branch
-
-name: Discord Notification on Update
 
 jobs:
   discordNotification:
