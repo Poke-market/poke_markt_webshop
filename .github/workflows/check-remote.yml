@@ -3,9 +3,14 @@ name: Discord Notification on Update
 on:
   push:
     branches:
-      - ___-setup # Trigger on updates to setup branch
-      - development # Trigger on updates to develop branch
-      - main # Trigger on updates to main branch
+      - ___-setup
+      - development
+      - main
+
+    pull_request:
+      branches:
+        - main
+        - development
 
 jobs:
   discordNotification:
@@ -20,11 +25,12 @@ jobs:
           DISCORD_WEBHOOK_URL="https://discord.com/api/webhooks/1340895215338393743/D4ihOhzdWlZD03ovNYy2-YWXNn0y9GC1hgdIXz29ugkCpKG9eK90Hy6NmsK1qhPnbS_d"
           COMMIT_MESSAGE=$(git log -1 --pretty=%B)
           COMMIT_URL="${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}"
+          COLOR=${{ github.event_name == 'pull_request' && 16711680 || 9055202 }}
           curl -H "Content-Type: application/json" -X POST -d '{
             "embeds": [{
               "title": "Repository Updated!!",
               "description": "The repository **${{ github.repository }}** has been updated on branch **${{ github.ref_name }}** by **${{ github.actor }}**! 🚀",
-              "color": 5814783,
+              "color": '"$COLOR"',
               "fields": [
                 {
                   "name": "Commit Message",
