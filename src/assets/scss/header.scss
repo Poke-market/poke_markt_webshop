@@ -1,0 +1,70 @@
+@import 'partials/variables';
+@import 'partials/mixins';
+@import 'typography';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+* .header {
+  font-family: $font-family;
+}
+
+.header {
+  padding: 1.38rem 3.38rem;
+  display: flex;
+  background-color: #ffffff;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.25rem;
+
+  .header-logo {
+    height: 3.13rem;
+    width: 11.5rem;
+    object-fit: contain;
+  }
+
+  .nav-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4.63rem;
+    list-style: none;
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+  }
+
+  .icon-container {
+    margin-right: 2.88rem;
+    width: 18%;
+    display: flex;
+    justify-content: space-between;
+    gap: 1.25rem;
+
+    .icon {
+      height: 1.75rem;
+    }
+  }
+
+  @include responsive(md) {
+    flex-direction: column;
+    padding: 1.25rem;
+
+    .nav-list {
+      gap: 1.25rem;
+    }
+
+    .icon-container {
+      margin-right: 2rem;
+      width: 100%;
+    }
+  }
+
+  @include responsive(sm) {
+    padding: 1.25rem;
+  }
+}
