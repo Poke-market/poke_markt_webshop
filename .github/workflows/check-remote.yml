@@ -22,7 +22,7 @@ jobs:
 
       - name: Send Discord Notification
         run: |
-          DISCORD_WEBHOOK_URL="https://discord.com/api/webhooks/1340895215338393743/D4ihOhzdWlZD03ovNYy2-YWXNn0y9GC1hgdIXz29ugkCpKG9eK90Hy6NmsK1qhPnbS_d"
+          DISCORD_WEBHOOK_URL="${{ secrets.DISCORD_WEBHOOK_URL }}"
           COMMIT_MESSAGE=$(git log -1 --pretty=%B)
                   COMMIT_URL="${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}"
                   TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
