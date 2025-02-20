@@ -109,12 +109,30 @@
 }
 
 .linkItem {
+  font-size: 1rem;
+  font-weight: 500;
 }
 
 .helpSection {
+  width: 45%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 1.25rem;
 }
 
 .helpLinks {
+  width: 28%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3.38rem;
+  align-self: center;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    gap: 1.7rem;
+  }
 }
 
 .newsletterSection {
