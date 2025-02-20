@@ -10,8 +10,8 @@
     "build": "npm-run-all sass-prod build-ts vite-build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "sass-dev": "sass --watch --update --style=compressed --no-source-map src/assets/scss/styles.scss:src/assets/scss/styles.css",
-    "sass-prod": "sass --no-source-map --style=compressed src/assets/scss/styles.scss:src/assets/scss/styles.css",
+    "sass-dev": "sass --watch --update --style=compressed --no-source-map src/assets/scss:src/assets/scss",
+    "sass-prod": "sass --no-source-map --style=compressed src/assets/scss:src/assets/scss",
     "vite": "vite",
     "lint:fix": "eslint . --fix"
   },
