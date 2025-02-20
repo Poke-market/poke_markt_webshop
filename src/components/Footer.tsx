@@ -1,12 +1,12 @@
 import { Heading } from './Header.tsx';
 import PokeLogo from '../assets/poke.png';
 import styles from '../assets/scss/Footer.module.scss';
+import Input from './Input.tsx';
 
 interface Props {
   className?: string;
 }
 
-// Footer component: used Props interface to define the type of props and passed it as a parameter to the Footer function
 export default function Footer({ className = '', ...props }: Props) {
   return (
     <footer {...props} className={`${styles.footer} ${className}`}>
@@ -52,10 +52,54 @@ export default function Footer({ className = '', ...props }: Props) {
                 </li>
               </ul>
             </div>
-            <Heading className={styles.copyright}>
-              2025 Poke Market. All rights reserved
-            </Heading>
+
+            <div className={styles.helpSection}>
+              <div className={styles.helpLinks}>
+                <Heading className={styles.footerHeading}>Help</Heading>
+                <ul className={styles.linksList}>
+                  <li>
+                    <a href="#">
+                      <Heading>Payment Options</Heading>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" target="_blank" rel="noreferrer">
+                      <Heading>Returns</Heading>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <Heading>Privacy Policies</Heading>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              <div className={styles.newsletterSection}>
+                <Heading className={styles.footerHeading}>Newsletter</Heading>
+                <div className={styles.newsletterInput}>
+                  <Input
+                    variant="underline"
+                    name="email"
+                    placeholder="Enter Your Email Address"
+                  />
+                  <div className={styles.subscribeButton}>
+                    <a href="#">
+                      <Heading>SUBSCRIBE</Heading>
+                      <div className={styles.divider} />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+          <div
+            className={styles.divider}
+            style={{ backgroundColor: 'rgba(0, 0, 0, 0.17)' }}
+          />
+          <Heading className={styles.copyright}>
+            2025 Poke Market. All rights reserved
+          </Heading>
         </div>
       </div>
     </footer>
