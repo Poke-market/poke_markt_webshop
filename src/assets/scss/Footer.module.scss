@@ -129,16 +129,28 @@
   gap: 3.38rem;
   align-self: center;
 
-  @media (max-width: 768px) {
+  @media (max-width: 640px) {
     width: 100%;
     gap: 1.7rem;
   }
 }
 
 .newsletterSection {
+  width: 56%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3.25rem;
+
+  @media (max-width: 640px) {
+    width: 100%;
+    gap: 1.63rem;
+  }
 }
 
 .newsletterInput {
+  display: flex;
+  gap: 0.63rem;
 }
 
 .subscribeButton {
