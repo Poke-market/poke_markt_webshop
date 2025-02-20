@@ -1,6 +1,6 @@
-@import 'partials/variables';
-@import 'partials/mixins';
-@import 'typography';
+@import '../partials/variables';
+@import '../partials/mixins';
+@import '../abstracts/typography';
 
 * {
   margin: 0;
@@ -9,7 +9,6 @@
 }
 
 * .header {
-  font-family: $font-family;
   font-weight: $font-weight-medium;
 }
 

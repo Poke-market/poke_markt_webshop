@@ -1,23 +1,10 @@
-import '../scss/Header.scss';
-import Icons from '../assets/Icons';
-import { sizes } from '../utils/sizes';
-import { HeadingProps, HeaderProps } from '../types/types';
+import '../scss/components/header.scss';
+import Heading from './Headingtxt.tsx';
+import Icons from '../utils/Icons.tsx';
+import { HeaderProps } from '../types/types';
 import PokeLogo from '../assets/poke.png';
 
 // I'm using Heading to be able to use it again in the Footer component
-const Heading: React.FunctionComponent<HeadingProps> = ({
-  children,
-  className = 'text',
-  size = 'textlg',
-  as: Component = 'p',
-  ...restProps
-}) => {
-  return (
-    <Component className={`${sizes[size]} ${className}`} {...restProps}>
-      {children}
-    </Component>
-  );
-};
 
 export default function Header({ className = '', ...props }: HeaderProps) {
   return (

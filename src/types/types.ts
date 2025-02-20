@@ -1,10 +1,10 @@
-import { sizes } from '../utils/sizes.ts';
+import { typographySizes } from '../utils/typographySizes.ts';
 
 export interface HeadingProps {
   children: React.ReactNode;
   className?: string;
   as?: React.ElementType;
-  size?: keyof typeof sizes;
+  size?: keyof typeof typographySizes;
 }
 
 export interface HeaderProps {
