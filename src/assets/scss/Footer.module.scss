@@ -1,25 +1,21 @@
 @import 'typography';
 
-:root {
-  font-size: 62.5%;
-}
-
 .footer {
-  padding: 3.81rem 16rem;
+  padding: 2.38rem 10rem;
   border-top: 1px solid rgba(0, 0, 0, 0.17);
 
   @media (max-width: 640px) {
-    padding: 1.6rem 0;
+    padding: 1.25rem 0;
   }
 }
 
 .container {
-  margin-top: 1rem;
+  margin-top: 0.63rem;
   display: flex;
   justify-content: center;
 
   @media (max-width: 768px) {
-    padding: 0 2rem;
+    padding: 0 1.25rem;
   }
 }
 
@@ -28,7 +24,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 4rem;
+  gap: 2.5rem;
 }
 
 .row {
@@ -36,7 +32,7 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 2rem;
+  gap: 1.25rem;
 
   @media (max-width: 768px) {
     width: 100%;
@@ -70,15 +66,46 @@
 }
 
 .address {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  color: #9f9f9f;
+  font-weight: 400;
 }
 
 .linksSection {
+  width: 6%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3.38rem;
+  align-self: center;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+
+  @media (max-width: 640px) {
+    gap: 1.69rem;
+  }
 }
 
 .linksHeading {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #9f9f9f;
 }
 
 .linksList {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2.75rem;
+  list-style: none;
+
+  a {
+    text-decoration: none;
+    text-wrap: nowrap;
+  }
 }
 
 .linkItem {
