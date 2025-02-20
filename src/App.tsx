@@ -1,9 +1,7 @@
+import UspBanner from "./components/UspBanner";
+
 const App = () => {
-  return (
-    <div>
-      <h1>PokeMarket</h1>
-    </div>
-  );
+  return <UspBanner />;
 };
 
 export default App;
