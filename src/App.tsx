@@ -1,9 +1,7 @@
+import Pagination from "./components/Pagination";
+
 const App = () => {
-  return (
-    <div>
-      <h1>PokeMarket</h1>
-    </div>
-  );
+  return <Pagination />;
 };
 
 export default App;

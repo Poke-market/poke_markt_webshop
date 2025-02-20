@@ -1,18 +1,174 @@
 @import 'https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css';
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import 'partials/_footer', 'partials/_header';
 
 :root {
   font-size: 62.5%;
 }
+$text-color: #000000;
+$basic-blue: #3A76CF;
+$grey: #ccc;
 * {
   box-sizing: border-box;
 }
 
-$font-family-sans-serif: 'Roboto', sans-serif;
+$font-family-sans-serif: 'Poppins', sans-serif;
 
 // testing the scss
 body {
   font-size: 2rem;
   font-family: $font-family-sans-serif;
-  color: red;
+  color: $text-color;
+  .banner-shop {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 31.6rem;
+    position: relative;
+    .banner-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.5;
+    }
+    h1 {
+      font-size: 4.8rem;
+      color: $text-color;
+      position: relative;
+      z-index: 1;
+      font-weight: 500;
+    }
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+      line-height: 6.4rem;
+      span:nth-child(-n+2) {
+        font-weight: 500;
+      }
+      span:last-child {
+        font-weight: 300;
+      }
+      span {
+        font-size: 1.6rem;
+        color: $text-color;
+      }
+    }
+  }
+  .filter-sort-bar {
+    background-color: $basic-blue;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100vw;
+    padding: 2rem 8.5rem;
+    font-size: 1.6rem;
+    max-height: 10rem;
+  
+    span {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  
+    .filter, .grid-view, .list-view {
+      background: none;
+      border: none;
+      font-size: 3rem;
+      color: $grey;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+  
+      &:hover {
+        transform: scale(1.1);
+      }
+  
+      i {
+        font-size: 2rem;
+      }
+    }
+  
+    .separator {
+      display: inline-block;
+      width: 1px;
+      height: 3.7rem;
+      background-color: $grey;
+      margin: 0 2rem;
+    }
+  
+    p {
+      font-size: 1.4rem;
+      color: $text-color;
+      margin: 0;
+    }
+  
+    span > fieldset {
+      border: none;
+      margin: 0 2rem;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+  
+    fieldset label {
+      font-size: 1.4rem;
+      color: $text-color;
+      padding-right: 1.7rem;      
+    }
+  
+    fieldset input, fieldset select{
+      font-size: 1.6rem;
+      padding: 0.5rem;
+      border: none;
+      outline: none;
+      color: $grey;
+    }
+    #productsPerPage {
+      width: 5.5rem;
+    }
+  
+    #sort {
+    width: 18.8rem;
+    }
+    fieldset input:focus, fieldset select:focus {
+      border-color: $basic-blue;
+    }
+  }
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 300;
+    gap: 3.8rem;
+    a {
+      display: inline-block;
+      width: 6rem;
+      height: 6rem;
+      line-height: 6rem;
+      text-decoration: none;
+      color: #000000;
+      border-radius: 1rem;
+      text-align: center;
+      transition: background-color 0.3s ease;
+      background-color: #E7EEF9;
+      &.active {
+        background-color: $basic-blue;
+        color: #fff;
+      }
+      &:hover {
+        background-color: $basic-blue;
+        color: #fff;
+      }
+      &.next {
+        width: 9.3rem;
+      }
+    }
+  }
 }
