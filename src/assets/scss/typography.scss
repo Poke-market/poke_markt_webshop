@@ -2,8 +2,10 @@
 @import 'partials/mixins';
 @import 'partials/variables';
 
-.text {
+*.text {
   font-family: 'Poppins', sans-serif;
+}
+.text {
   color: #000000;
 
   &-xs {
