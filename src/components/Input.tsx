@@ -1,5 +1,5 @@
 import { forwardRef } from 'react';
-import styles from '../assets/scss/Input.module.scss';
+import styles from '../scss/Input.module.scss';
 import type { InputProps } from '../types/types';
 
 const Input = forwardRef<HTMLInputElement, InputProps>(

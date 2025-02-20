@@ -1,4 +1,4 @@
-import '../assets/scss/Header.scss';
+import '../scss/Header.scss';
 import Icons from '../assets/Icons';
 import { sizes } from '../utils/sizes';
 import { HeadingProps, HeaderProps } from '../types/types';

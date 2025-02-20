@@ -1,6 +1,6 @@
 import { Heading } from './Header.tsx';
 import PokeLogo from '../assets/poke.png';
-import styles from '../assets/scss/Footer.module.scss';
+import styles from '../scss/Footer.module.scss';
 import Input from './Input.tsx';
 
 interface Props {
