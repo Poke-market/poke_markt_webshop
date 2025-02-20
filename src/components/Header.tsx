@@ -1,8 +1,10 @@
 import '../assets/scss/Header.scss';
 import Icons from '../assets/Icons';
-import { sizes, HeadingProps, HeaderProps } from '../types/types';
-import ReactLogo from '../assets/react.png';
+import { sizes } from '../utils/sizes';
+import { HeadingProps, HeaderProps } from '../types/types';
+import PokeLogo from '../assets/poke.png';
 
+// I'm using Heading to be able to use it again in the Footer component
 const Heading: React.FunctionComponent<HeadingProps> = ({
   children,
   className = 'text',
@@ -20,7 +22,7 @@ const Heading: React.FunctionComponent<HeadingProps> = ({
 export default function Header({ className = '', ...props }: HeaderProps) {
   return (
     <header className={`header ${className}`} {...props}>
-      <img src={ReactLogo} alt="Headerlogo" className="header-logo" />
+      <img src={PokeLogo} alt="Headerlogo" className="header-logo" />
       <ul className="nav-list">
         <li>
           <a href="#">
@@ -60,3 +62,5 @@ export default function Header({ className = '', ...props }: HeaderProps) {
     </header>
   );
 }
+
+export { Heading };
