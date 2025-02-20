@@ -157,7 +157,7 @@ body .pagination a {
   border-radius: 1rem;
   text-align: center;
   transition: background-color 0.3s ease;
-  background-color: #E7EEF9;
+  background-color: #9DBBE7;
 }
 body .pagination a.active {
   background-color: #3A76CF;
@@ -209,7 +209,7 @@ body .usp-banner .usp div:nth-child(2) p {
 body .usp-banner .usp div:nth-child(2) span {
   font-size: 2rem;
   font-weight: 300;
-  color: #E7EEF9;
+  color: #9DBBE7;
 }
 
 /*# sourceMappingURL=main.css.map */
