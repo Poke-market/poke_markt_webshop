@@ -1,10 +1,11 @@
 @import 'typography';
+@import 'partials/variables';
 
 .footer {
   padding: 2.38rem 10rem;
   border-top: 1px solid rgba(0, 0, 0, 0.17);
 
-  @media (max-width: 640px) {
+  @media (max-width: $breakpoint-sm) {
     padding: 1.25rem 0;
   }
 }
@@ -14,7 +15,7 @@
   display: flex;
   justify-content: center;
 
-  @media (max-width: 768px) {
+  @media (max-width: $breakpoint-md) {
     padding: 0 1.25rem;
   }
 }
@@ -34,7 +35,7 @@
   justify-content: space-between;
   gap: 1.25rem;
 
-  @media (max-width: 768px) {
+  @media (max-width: $breakpoint-md) {
     width: 100%;
     flex-direction: column;
   }
@@ -46,16 +47,16 @@
   flex-direction: column;
   gap: 3.13rem;
 
-  @media (max-width: 768px) {
+  @media (max-width: $breakpoint-md) {
     width: 100%;
   }
 }
 
 .footerHeading {
   color: #9f9f9f;
-  font-family: 'Poppins', sans-serif;
+  font-family: $font-family;
+  font-weight: $font-weight-medium;
   font-size: 1rem;
-  font-weight: 500;
 }
 
 .footerLogo {
@@ -70,6 +71,7 @@
   line-height: 1.5rem;
   color: #9f9f9f;
   font-weight: 400;
+  font-family: $font-family;
 }
 
 .linksSection {
@@ -80,11 +82,11 @@
   gap: 3.38rem;
   align-self: center;
 
-  @media (max-width: 768px) {
+  @media (max-width: $breakpoint-md) {
     width: 100%;
   }
 
-  @media (max-width: 640px) {
+  @media (max-width: $breakpoint-sm) {
     gap: 1.69rem;
   }
 }
@@ -120,7 +122,7 @@
   justify-content: space-between;
   gap: 1.25rem;
 
-  @media (max-width: 768px) {
+  @media (max-width: $breakpoint-md) {
     width: 100%;
     flex-direction: column;
   }
@@ -134,7 +136,7 @@
   gap: 3.38rem;
   align-self: center;
 
-  @media (max-width: 640px) {
+  @media (max-width: $breakpoint-sm) {
     width: 100%;
     gap: 1.69rem;
   }
@@ -147,7 +149,7 @@
   align-items: flex-start;
   gap: 3.25rem;
 
-  @media (max-width: 640px) {
+  @media (max-width: $breakpoint-sm) {
     width: 100%;
     gap: 1.63rem;
   }
