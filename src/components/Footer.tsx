@@ -1,11 +1,12 @@
 import { Heading } from './Header.tsx';
 import PokeLogo from '../assets/poke.png';
-import styles from '../assets/scss/Footer.module.scss'; // Import the SCSS module
+import styles from '../assets/scss/Footer.module.scss';
 
 interface Props {
   className?: string;
 }
 
+// Footer component: used Props interface to define the type of props and passed it as a parameter to the Footer function
 export default function Footer({ className = '', ...props }: Props) {
   return (
     <footer {...props} className={`${styles.footer} ${className}`}>
@@ -30,22 +31,22 @@ export default function Footer({ className = '', ...props }: Props) {
               <Heading className={styles.footerHeading}>Links</Heading>
               <ul className={styles.linksList}>
                 <li>
-                  <a href="Home" target="_blank" rel="noreferrer">
+                  <a href="#" target="_blank" rel="noreferrer">
                     <Heading>Home</Heading>
                   </a>
                 </li>
                 <li>
-                  <a href="shop" target="_blank" rel="noreferrer">
+                  <a href="#" target="_blank" rel="noreferrer">
                     <Heading>Shop</Heading>
                   </a>
                 </li>
                 <li>
-                  <a href="About" target="_blank" rel="noreferrer">
+                  <a href="#" target="_blank" rel="noreferrer">
                     <Heading>About</Heading>
                   </a>
                 </li>
                 <li>
-                  <a href="Contact" target="_blank" rel="noreferrer">
+                  <a href="#" target="_blank" rel="noreferrer">
                     <Heading>Contact</Heading>
                   </a>
                 </li>
