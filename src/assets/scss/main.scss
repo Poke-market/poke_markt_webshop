@@ -7,7 +7,9 @@
 }
 $text-color: #000000;
 $basic-blue: #3A76CF;
+$light-blue: #E7EEF9;
 $grey: #ccc;
+$white: #fff;
 * {
   box-sizing: border-box;
 }
@@ -153,18 +155,18 @@ body {
       height: 6rem;
       line-height: 6rem;
       text-decoration: none;
-      color: #000000;
+      color: $text-color;
       border-radius: 1rem;
       text-align: center;
       transition: background-color 0.3s ease;
-      background-color: #E7EEF9;
+      background-color: $light-blue;
       &.active {
         background-color: $basic-blue;
-        color: #fff;
+        color: $white;
       }
       &:hover {
         background-color: $basic-blue;
-        color: #fff;
+        color: $white;
       }
       &.next {
         width: 9.3rem;
