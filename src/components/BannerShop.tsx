@@ -2,7 +2,7 @@ const BannerShop = () => {
   return (
     <div className="banner-shop">
       <img
-        src="./public/pokemart.jpeg"
+        src="/pokemart.jpeg"
         alt="Shop Banner"
         className="banner-image"
       ></img>
