@@ -151,15 +151,27 @@
 .newsletterInput {
   display: flex;
   gap: 0.63rem;
+  width: 100%;
 }
 
 .subscribeButton {
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+  a {
+    text-decoration: none;
+  }
 }
 
 .subscribeText {
 }
 
 .divider {
+  height: 0.06rem;
+  width: 100%;
+  background-color: black;
 }
 
 .copyright {
