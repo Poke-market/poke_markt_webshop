@@ -1,9 +1,26 @@
 @import 'typography';
 
+:root {
+  font-size: 62.5%;
+}
+
 .footer {
+  padding: 3.81rem 16rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.17);
+
+  @media (max-width: 640px) {
+    padding: 1.6rem 0;
+  }
 }
 
 .container {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+
+  @media (max-width: 768px) {
+    padding: 0 2rem;
+  }
 }
 
 .content {
