@@ -8,9 +8,11 @@ export default function ProductDisplay({
   name = "Product Name",
   description = "Product Description",
   image = "default-image.png",
-  currentPrice = "$0.00",
-  originalPrice = "$0.00",
-  discountText = "-0%",
+  price = {
+    current: "$0.00",
+    original: "$0.00",
+    discount: "-0%",
+  },
   className = "",
   ...restProps
 }: ProductProps) {
@@ -22,10 +24,14 @@ export default function ProductDisplay({
     >
       <div className={styles.imageWrapper}>
         <Img src={image} alt={name} className={styles.productImage} />
-        <DiscountBadge discountText={discountText} />
+        <div className={styles.absoluteCenter}>
+          <Heading as="p" className={styles.discountBadge}>
+            {price.discount}
+          </Heading>
+        </div>
       </div>
       <div className={styles.detailsContainer}>
-        <div className={styles.textContainer}>
+        <div className="flex flex-col items-start">
           <Heading as="h4" size="headingmd" className={styles.productName}>
             {name}
           </Heading>
@@ -35,23 +41,13 @@ export default function ProductDisplay({
         </div>
         <div className={styles.priceContainer}>
           <Heading as="h5" size="headings" className={styles.currentPrice}>
-            {currentPrice}
+            {price.current}
           </Heading>
           <Heading as="p" className={styles.originalPrice}>
-            {originalPrice}
+            {price.original}
           </Heading>
         </div>
       </div>
-    </div>
-  );
-}
-
-function DiscountBadge({ discountText }: { discountText: string }) {
-  return (
-    <div className={styles.absoluteCenter}>
-      <Heading as="p" className={styles.discountBadge}>
-        {discountText}
-      </Heading>
     </div>
   );
 }

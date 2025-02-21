@@ -21,13 +21,18 @@ export type InputProps = React.ComponentProps<"input"> & {
 
 export type ProductProps = {
   id: number;
-  name: string;
-  description: string;
-  image: string;
-  currentPrice: string;
-  originalPrice: string;
-  discountText?: string;
+  name?: string;
+  description?: string;
+  image?: string;
+  price?: {
+    current: string;
+    original: string;
+    discount: string;
+  };
   className?: string;
+  currentPrice?: string;
+  originalPrice?: string;
+  discountText?: string;
   productName?: React.ReactNode;
   productDescription?: React.ReactNode;
 };
