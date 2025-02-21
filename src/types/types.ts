@@ -23,6 +23,7 @@ export type ProductProps = {
   className?: string;
   discountText?: string;
   productName?: React.ReactNode;
+  productDescription?: React.ReactNode;
   description?: React.ReactNode;
   currentPrice?: React.ReactNode;
   originalPrice?: React.ReactNode;

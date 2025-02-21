@@ -1,0 +1,93 @@
+/* ProductCard.module.scss */
+@import "../partials/_variables.scss";
+
+.productContainer {
+  display: flex;
+  flex-direction: column;
+  font-family: $font-family;
+}
+
+.imageWrapper {
+  position: relative;
+  height: 18.75rem;
+  align-self: stretch;
+}
+
+.productImage {
+  height: 18.75rem;
+  width: 100%;
+  flex: 1;
+  object-fit: cover;
+}
+
+.absoluteCenter {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  margin: auto;
+  height: 18.75rem;
+  flex: 1;
+}
+
+.discountBadge {
+  position: absolute;
+  right: 1.44rem;
+  top: 1.5rem;
+  margin: auto;
+  height: 3rem;
+  width: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 24px;
+  background-color: #e97171;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.detailsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-self: stretch;
+  background-color: #f4f5f7;
+  padding: 0.75rem;
+}
+
+.productName {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #3a3a3a;
+}
+
+.productDescription {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #898989;
+}
+
+.priceContainer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.currentPrice {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #3a3a3a;
+}
+
+.originalPrice {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #b0b0b0;
+  text-decoration: line-through;
+}
