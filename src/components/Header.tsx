@@ -1,12 +1,12 @@
-import '../scss/components/header.scss';
-import Heading from './Headingtxt.tsx';
-import Icons from '../utils/Icons.tsx';
-import { HeaderProps } from '../types/types';
-import PokeLogo from '../assets/poke.png';
+import "../scss/components/header.scss";
+import Heading from "./Headingtxt.tsx";
+import Icons from "../utils/Icons.tsx";
+import { HeaderProps } from "../types/types";
+import PokeLogo from "../assets/poke.png";
 
 // I'm using Heading to be able to use it again in the Footer component
 
-export default function Header({ className = '', ...props }: HeaderProps) {
+export default function Header({ className = "", ...props }: HeaderProps) {
   return (
     <header className={`header ${className}`} {...props}>
       <img src={PokeLogo} alt="Headerlogo" className="header-logo" />
@@ -49,5 +49,3 @@ export default function Header({ className = '', ...props }: HeaderProps) {
     </header>
   );
 }
-
-export { Heading };

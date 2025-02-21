@@ -1,6 +1,6 @@
-@import '../partials/variables';
-@import '../partials/mixins';
-@import '../abstracts/typography';
+@import "../partials/variables";
+@import "../partials/mixins";
+@import "../abstracts/typography";
 
 * {
   margin: 0;
@@ -60,7 +60,7 @@
     }
 
     .icon-container {
-      margin-right: 2rem;
+      margin-right: 0;
       width: 100%;
     }
   }

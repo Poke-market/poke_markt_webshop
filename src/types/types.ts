@@ -1,15 +1,15 @@
 import { typographySizes } from "../utils/typographySizes.ts";
 
-export interface HeadingProps {
+export type HeadingProps = {
   children: React.ReactNode;
   className?: string;
   as?: React.ElementType;
   size?: keyof typeof typographySizes;
-}
+};
 
-export interface HeaderProps {
+export type HeaderProps = {
   className?: string;
-}
+};
 
 export type InputProps = React.ComponentProps<"input"> & {
   className?: string;
@@ -19,11 +19,11 @@ export type InputProps = React.ComponentProps<"input"> & {
   color?: string;
 };
 
-export interface ProductProps {
+export type ProductProps = {
   className?: string;
   discountText?: string;
   productName?: React.ReactNode;
   description?: React.ReactNode;
   currentPrice?: React.ReactNode;
   originalPrice?: React.ReactNode;
-}
+};
