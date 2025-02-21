@@ -1,21 +1,8 @@
-import '../assets/scss/Header.scss';
+import '../scss/components/header.scss';
 import Icons from '../assets/Icons';
-import { sizes, HeadingProps, HeaderProps } from '../types/types';
+import { HeaderProps } from '../types/types';
 import ReactLogo from '../assets/react.png';
-
-const Heading: React.FunctionComponent<HeadingProps> = ({
-  children,
-  className = 'text',
-  size = 'textlg',
-  as: Component = 'p',
-  ...restProps
-}) => {
-  return (
-    <Component className={`${sizes[size]} ${className}`} {...restProps}>
-      {children}
-    </Component>
-  );
-};
+import Heading from './Headingtxt';
 
 export default function Header({ className = '', ...props }: HeaderProps) {
   return (

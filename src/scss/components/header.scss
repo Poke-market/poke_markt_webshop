@@ -1,6 +1,6 @@
-@import 'partials/variables';
-@import 'partials/mixins';
-@import 'typography';
+@import '../partials/variables';
+@import '../abstracts/mixins';
+@import '../abstracts/typography';
 
 * {
   margin: 0;
