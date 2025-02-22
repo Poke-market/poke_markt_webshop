@@ -3,9 +3,9 @@ import PokeLogo from "../assets/poke.png";
 import styles from "../scss/components/Footer.module.scss";
 import Input from "./Input.tsx";
 
-interface Props {
+type Props = {
   className?: string;
-}
+};
 
 export default function Footer({ className = "", ...props }: Props) {
   return (

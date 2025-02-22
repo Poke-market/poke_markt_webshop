@@ -4,6 +4,8 @@ import { HeaderProps } from "../types/types";
 import ReactLogo from "../assets/react.png";
 import Heading from "./Headingtxt";
 
+// I'm using Heading to be able to use it again in the Footer component
+
 export default function Header({ className = "", ...props }: HeaderProps) {
   return (
     <header className={`${styles.header} ${className}`} {...props}>
