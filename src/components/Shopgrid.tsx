@@ -3,6 +3,8 @@ import styles from "../scss/components/shopGrid.module.scss";
 import ProductCard from "./ProductCard";
 import { ProductProps } from "../types/types.ts";
 import Button from "./Button";
+import LoadingSkeleton from "./LoadingSkeleton";
+import { transformData } from "../utils/transformData";
 
 interface ShopGrid {
   data?: ProductProps[];
@@ -22,34 +24,24 @@ const ShopGrid = ({ data: initialData = [] }: ShopGrid) => {
       try {
         const response = await fetch("https://fakestoreapi.com/products");
         if (!response.ok) throw new Error("Failed to fetch data");
-        const result: ProductProps[] = await response.json();
-
-        // here i'm transforming the data to match the ProductProps type
-        const transformedData = result.map((product) => ({
-          id: product.id,
-          name: product.title,
-          title: product.title,
-          description: product.description,
-          image: product.image,
-          currentPrice: `€${product.price}`,
-          originalPrice: `€${product.price + 10}`,
-          discountText: "-10%",
-          price: product.price,
-        }));
-
+        const result = await response.json();
+        const transformedData = transformData(result);
         setData(transformedData);
       } catch (err) {
-        if (err instanceof Error) {
-          setError(err.message);
-        } else {
-          setError("An unknown error occurred");
-        }
+        setError(
+          err instanceof Error ? err.message : "An unknown error occurred",
+        );
       } finally {
         setLoading(false);
       }
     };
     fetchData();
   }, [initialData]);
+
+  // Scroll up when my page changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [currentPage]);
 
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
@@ -60,8 +52,14 @@ const ShopGrid = ({ data: initialData = [] }: ShopGrid) => {
     setCurrentPage(pageNumber);
   };
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div className={styles.errorMessage}>Error: {error}</div>;
+  if (loading) return <LoadingSkeleton />;
+  if (error)
+    return (
+      <div className={styles.errorMessage}>
+        Error: {error}
+        <Button onClick={() => window.location.reload()}>Retry</Button>
+      </div>
+    );
 
   return (
     <div className={styles.shopContainer}>
@@ -70,7 +68,7 @@ const ShopGrid = ({ data: initialData = [] }: ShopGrid) => {
         <div className={styles.container}>
           <div className={styles.contentWrapper}>
             <div className={styles.gridContainer}>
-              <Suspense fallback={<div>Loading feed...</div>}>
+              <Suspense fallback={<LoadingSkeleton />}>
                 {currentProducts.map((product) => (
                   <ProductCard
                     key={product.id}
