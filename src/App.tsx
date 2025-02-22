@@ -5,7 +5,8 @@ function App() {
   return (
     <Router>
       <Header />
-      <ProductCard id={0} />
+      <ProductCard />
+      <Shopgrid />
       <Footer />
     </Router>
   );
