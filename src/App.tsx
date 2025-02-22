@@ -1,12 +1,10 @@
 import { BrowserRouter as Router } from "react-router-dom";
-import { Header, Footer, Shopgrid } from "./components";
+import Homepage from "./pages/Homepage.tsx";
 
 function App() {
   return (
     <Router>
-      <Header />
-      <Shopgrid />
-      <Footer />
+      <Homepage />
     </Router>
   );
 }
