@@ -101,12 +101,9 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 2.75rem;
-  list-style: none;
 
   a {
-    text-decoration: none;
     text-wrap: nowrap;
-    color: black;
   }
 }
 
@@ -158,7 +155,6 @@
 .newsletterInput {
   display: flex;
   gap: 0.63rem;
-  width: 100%;
 }
 
 .subscribeButton {
@@ -167,9 +163,6 @@
   flex-direction: column;
   align-items: center;
   gap: 3rem;
-  a {
-    text-decoration: none;
-  }
 }
 
 .subscribeText {

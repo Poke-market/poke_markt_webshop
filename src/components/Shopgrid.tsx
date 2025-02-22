@@ -4,11 +4,11 @@ import ProductCard from "./ProductCard";
 import { ProductProps } from "../types/types.ts";
 import Button from "./Button";
 
-interface ShopColumnOneProps {
+interface ShopGrid {
   data?: ProductProps[];
 }
 
-const ShopColumnOne = ({ data: initialData = [] }: ShopColumnOneProps) => {
+const ShopGrid = ({ data: initialData = [] }: ShopGrid) => {
   const [data, setData] = useState<ProductProps[]>(initialData);
   const [loading, setLoading] = useState(!initialData.length);
   const [error, setError] = useState<string | null>(null);
@@ -123,4 +123,4 @@ const ShopColumnOne = ({ data: initialData = [] }: ShopColumnOneProps) => {
   );
 };
 
-export default ShopColumnOne;
+export default ShopGrid;
