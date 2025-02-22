@@ -1,18 +1,11 @@
-type ImgProps = React.DetailedHTMLProps<
-  React.ImgHTMLAttributes<HTMLImageElement>,
-  HTMLImageElement
-> & {
-  className?: string;
-  src?: string;
-  alt?: string;
-};
+import { ImgProps } from "../types/types.ts";
 
 const Img = ({
   className = "",
   src = "defaultNoData.png",
   alt = "testImg",
   ...restProps
-}: React.PropsWithChildren<ImgProps>) => {
+}: ImgProps) => {
   return (
     <img
       className={className}

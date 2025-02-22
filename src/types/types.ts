@@ -32,3 +32,9 @@ export type ProductProps = {
   productDescription?: React.ReactNode;
   onClick?: () => void;
 };
+
+export type ImgProps = {
+  className?: string;
+  src?: string;
+  alt?: string;
+} & React.ImgHTMLAttributes<HTMLImageElement>;
