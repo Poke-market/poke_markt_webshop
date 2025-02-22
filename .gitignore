@@ -38,3 +38,6 @@ pnpmfile.json
 pnpmfile.yaml
 pnpmfile.yml
 pnpmfile.cson
+
+# generated css files
+src/scss/**/*.css
