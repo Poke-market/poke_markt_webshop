@@ -1,13 +1,13 @@
-import { Heading } from './Header.tsx';
-import PokeLogo from '../assets/poke.png';
-import styles from '../scss/components/Footer.module.scss';
-import Input from './Input.tsx';
+import Heading from "./Headingtxt.tsx";
+import PokeLogo from "../assets/poke.png";
+import styles from "../scss/components/Footer.module.scss";
+import Input from "./Input.tsx";
 
 interface Props {
   className?: string;
 }
 
-export default function Footer({ className = '', ...props }: Props) {
+export default function Footer({ className = "", ...props }: Props) {
   return (
     <footer {...props} className={`${styles.footer} ${className}`}>
       <div className={styles.container}>
@@ -95,7 +95,7 @@ export default function Footer({ className = '', ...props }: Props) {
           </div>
           <div
             className={styles.divider}
-            style={{ backgroundColor: 'rgba(0, 0, 0, 0.17)' }}
+            style={{ backgroundColor: "rgba(0, 0, 0, 0.17)" }}
           />
           <Heading className={styles.copyright}>
             2025 Poke Market. All rights reserved

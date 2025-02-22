@@ -1,14 +1,14 @@
-import styles from '../scss/components/header.module.scss'; // Importing styles as a module
-import Icons from '../assets/Icons';
-import { HeaderProps } from '../types/types';
-import ReactLogo from '../assets/react.png';
-import Heading from './Headingtxt';
+import styles from "../scss/components/header.module.scss"; // Importing styles as a module
+import Icons from "../utils/Icons.tsx";
+import { HeaderProps } from "../types/types";
+import ReactLogo from "../assets/react.png";
+import Heading from "./Headingtxt";
 
-export default function Header({ className = '', ...props }: HeaderProps) {
+export default function Header({ className = "", ...props }: HeaderProps) {
   return (
     <header className={`${styles.header} ${className}`} {...props}>
-      <img src={ReactLogo} alt="Headerlogo" className={styles['header-logo']} />
-      <ul className={styles['nav-list']}>
+      <img src={ReactLogo} alt="Headerlogo" className={styles["header-logo"]} />
+      <ul className={styles["nav-list"]}>
         <li>
           <a href="#">
             <Heading>Home</Heading>
@@ -30,7 +30,7 @@ export default function Header({ className = '', ...props }: HeaderProps) {
           </a>
         </li>
       </ul>
-      <div className={styles['icon-container']}>
+      <div className={styles["icon-container"]}>
         <a href="#" aria-label="Profile">
           {Icons.mdiAccountAlertOutline}
         </a>

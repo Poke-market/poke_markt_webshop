@@ -1,9 +1,0 @@
-@import '../partials/variables';
-
-@mixin responsive($breakpoint) {
-  @if $breakpoint == md {
-    @media (max-width: $breakpoint-md) {
-      @content;
-    }
-  }
-}

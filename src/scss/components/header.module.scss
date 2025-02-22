@@ -1,10 +1,6 @@
-@import '../partials/variables';
-<<<<<<<< HEAD:src/scss/components/header.module.scss
-@import '../abstracts/mixins';
-========
-@import '../partials/mixins';
->>>>>>>> feature/007_footer_component:src/scss/components/header.scss
-@import '../abstracts/typography';
+@import "../partials/mixins";
+@import "../partials/variables";
+@import "../abstracts/typography";
 
 * {
   margin: 0;
