@@ -1,23 +1,24 @@
-type ImgProps = React.DetailedHTMLProps<
-  React.ImgHTMLAttributes<HTMLImageElement>,
-  HTMLImageElement
-> & {
-  className?: string;
-  src?: string;
-  alt?: string;
-};
+import { ImgProps } from "../types/types.ts";
 
 const Img = ({
+  src = "placeholder-image.png",
+  alt = "Product Image",
   className = "",
-  src = "defaultNoData.png",
-  alt = "testImg",
+  fallbackSrc = "",
   ...restProps
-}: React.PropsWithChildren<ImgProps>) => {
+}: ImgProps) => {
+  const handleImageError = (
+    e: React.SyntheticEvent<HTMLImageElement, Event>,
+  ) => {
+    e.currentTarget.src = fallbackSrc;
+  };
+
   return (
     <img
-      className={className}
       src={src}
       alt={alt}
+      className={className}
+      onError={handleImageError}
       {...restProps}
       loading="lazy"
     />

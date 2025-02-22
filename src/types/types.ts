@@ -36,3 +36,10 @@ export type ProductProps = {
   productName?: React.ReactNode;
   productDescription?: React.ReactNode;
 };
+
+export type ImgProps = {
+  src?: string;
+  alt?: string;
+  className?: string;
+  fallbackSrc?: string;
+};
