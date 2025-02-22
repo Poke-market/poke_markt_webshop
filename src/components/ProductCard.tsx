@@ -1,5 +1,4 @@
-import Img from "./Img";
-import Heading from "./Headingtxt.tsx";
+import { Img, Heading } from "./index";
 import styles from "../scss/components/ProductCard.module.scss";
 import { ProductProps } from "../types/types.ts";
 
