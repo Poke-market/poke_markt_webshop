@@ -7,9 +7,9 @@ export default function ProductDisplay({
   name = "Product Name",
   description = "Product Description",
   image = "",
-  currentPrice = "$0.00",
-  originalPrice = "$0.00",
-  discountText = "-20%",
+  currentPrice = "",
+  originalPrice = "",
+  discountText = "",
   className = "",
   ...restProps
 }: ProductProps) {
