@@ -4,6 +4,7 @@
 .footer {
   padding: 2.38rem 10rem;
   border-top: 1px solid rgba(0, 0, 0, 0.17);
+  font-family: $font-family;
 
   @media (max-width: $breakpoint-sm) {
     padding: 1.25rem 0;
@@ -54,7 +55,6 @@
 
 .footerHeading {
   color: #9f9f9f;
-  font-family: $font-family;
   font-weight: $font-weight-medium;
   font-size: 1rem;
 }
@@ -71,7 +71,6 @@
   line-height: 1.5rem;
   color: #9f9f9f;
   font-weight: $font-weight-regular;
-  font-family: $font-family;
 }
 
 .linksSection {
@@ -186,5 +185,4 @@
 .copyright {
   font-size: 16px;
   font-weight: 400;
-  font-family: "Poppins", sans-serif;
 }
