@@ -1,9 +1,30 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
 
+// colors
 $text-color: #000000;
+$discount-color-30: #e97171;
+$background-color: #f4f5f7;
+
+// breakpoints/responsiveness
 $breakpoint: 1024px;
 $breakpoint-md: 768px;
 $breakpoint-sm: 640px;
-$font-family: 'Poppins', sans-serif;
+
+// fonts
+$font-family: "Poppins", sans-serif;
 $font-weight-medium: 500;
 $font-weight-regular: 400;
+
+// productCard
+$product-image-height: 18.75rem;
+$discount-badge-size: 3rem;
+$discount-badge-font-size: 1rem;
+$details-container-bg-color: #f4f5f7;
+$product-name-font-size: 1.5rem;
+$product-name-color: #3a3a3a;
+$product-description-font-size: 1rem;
+$product-description-color: #898989;
+$current-price-font-size: 1.25rem;
+$current-price-color: #3a3a3a;
+$original-price-font-size: 1rem;
+$original-price-color: #b0b0b0;
