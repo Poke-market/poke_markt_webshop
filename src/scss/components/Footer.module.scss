@@ -106,6 +106,7 @@
   a {
     text-decoration: none;
     text-wrap: nowrap;
+    color: black;
   }
 }
 
@@ -184,5 +185,5 @@
 
 .copyright {
   font-size: 16px;
-  font-weight: 400;
+  font-weight: $font-weight-regular;
 }
