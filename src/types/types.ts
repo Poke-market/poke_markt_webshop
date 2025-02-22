@@ -43,3 +43,11 @@ export type ImgProps = {
   className?: string;
   fallbackSrc?: string;
 };
+
+export type ButtonProps = {
+  color?: string;
+  size?: string;
+  variant?: string;
+  className?: string;
+  children: React.ReactNode;
+};
