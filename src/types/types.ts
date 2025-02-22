@@ -20,10 +20,12 @@ export type InputProps = React.ComponentProps<"input"> & {
 };
 
 export type ProductProps = {
+  title: string;
   id: number;
   name: string;
   description: string;
   image: string;
+  price: number;
   currentPrice: string;
   originalPrice: string;
   discountText?: string;
@@ -31,4 +33,14 @@ export type ProductProps = {
   productName?: React.ReactNode;
   productDescription?: React.ReactNode;
   onClick?: () => void;
+};
+
+export type ButtonProps = {
+  color?: string;
+  size?: string;
+  variant?: string;
+  className?: string;
+  children: React.ReactNode;
+  onClick?: () => void;
+  disabled?: boolean;
 };
