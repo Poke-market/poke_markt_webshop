@@ -44,3 +44,10 @@ export type ButtonProps = {
   onClick?: () => void;
   disabled?: boolean;
 };
+
+export type ImgProps = {
+  className?: string;
+  src?: string;
+  alt?: string;
+  loading?: "lazy";
+};
