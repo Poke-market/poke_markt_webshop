@@ -32,3 +32,11 @@ export type ProductProps = {
   productDescription?: React.ReactNode;
   onClick?: () => void;
 };
+
+export type ButtonProps = {
+  color?: string;
+  size?: string;
+  variant?: string;
+  className?: string;
+  children: React.ReactNode;
+};
