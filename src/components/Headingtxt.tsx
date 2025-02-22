@@ -1,5 +1,7 @@
-import { HeadingProps, sizes } from '../types/types.ts';
+import { HeadingProps } from '../types/types.ts';
+import { typographySizes } from '../utils/typographySizes.ts';
 
+// I'm using Heading to be able to use it again in the Footer component
 const Heading: React.FunctionComponent<HeadingProps> = ({
   children,
   className = 'text',
@@ -8,7 +10,10 @@ const Heading: React.FunctionComponent<HeadingProps> = ({
   ...restProps
 }) => {
   return (
-    <Component className={`${sizes[size]} ${className}`} {...restProps}>
+    <Component
+      className={`${typographySizes[size]} ${className}`}
+      {...restProps}
+    >
       {children}
     </Component>
   );

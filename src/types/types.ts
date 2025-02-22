@@ -1,29 +1,20 @@
-export const sizes = {
-  textxs: 'text-xs',
-  textmd: 'text-md',
-  textlg: 'text-lg',
-  textxl: 'text-xl',
-  text2xl: 'text-2xl',
-  text3xl: 'text-3xl',
-  text5xl: 'text-5xl',
-  headingxs: 'heading-xs',
-  headings: 'heading-s',
-  headingmd: 'heading-md',
-  headinglg: 'heading-lg',
-  headingxl: 'heading-xl',
-  heading2xl: 'heading-2xl',
-  heading3xl: 'heading-3xl',
-  heading4xl: 'heading-4xl',
-  heading5xl: 'heading-5xl',
-};
+import { typographySizes } from '../utils/typographySizes.ts';
 
 export interface HeadingProps {
   children: React.ReactNode;
   className?: string;
   as?: React.ElementType;
-  size?: keyof typeof sizes;
+  size?: keyof typeof typographySizes;
 }
 
 export interface HeaderProps {
   className?: string;
 }
+
+export type InputProps = React.ComponentProps<'input'> & {
+  className?: string;
+  variant?: 'underline' | 'fill';
+  size?: 'sm' | 'md' | 'xs';
+  shape?: 'square' | 'round';
+  color?: string;
+};

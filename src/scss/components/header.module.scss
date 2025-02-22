@@ -1,5 +1,9 @@
 @import '../partials/variables';
+<<<<<<<< HEAD:src/scss/components/header.module.scss
 @import '../abstracts/mixins';
+========
+@import '../partials/mixins';
+>>>>>>>> feature/007_footer_component:src/scss/components/header.scss
 @import '../abstracts/typography';
 
 * {
@@ -9,7 +13,7 @@
 }
 
 * .header {
-  font-family: $font-family;
+  font-weight: $font-weight-medium;
 }
 
 .header {
@@ -23,7 +27,8 @@
   .header-logo {
     height: 3.13rem;
     width: 11.5rem;
-    object-fit: contain;
+    object-fit: cover;
+    object-position: center;
   }
 
   .nav-list {

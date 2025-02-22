@@ -1,0 +1,190 @@
+@import '../abstracts/typography';
+@import '../partials/variables';
+
+.footer {
+  padding: 2.38rem 10rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.17);
+
+  @media (max-width: $breakpoint-sm) {
+    padding: 1.25rem 0;
+  }
+}
+
+.container {
+  margin-top: 0.63rem;
+  display: flex;
+  justify-content: center;
+
+  @media (max-width: $breakpoint-md) {
+    padding: 0 1.25rem;
+  }
+}
+
+.content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2.5rem;
+}
+
+.row {
+  width: 90%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.25rem;
+
+  @media (max-width: $breakpoint-md) {
+    width: 100%;
+    flex-direction: column;
+  }
+}
+
+.logoSection {
+  width: 24%;
+  display: flex;
+  flex-direction: column;
+  gap: 3.13rem;
+
+  @media (max-width: $breakpoint-md) {
+    width: 100%;
+  }
+}
+
+.footerHeading {
+  color: #9f9f9f;
+  font-family: $font-family;
+  font-weight: $font-weight-medium;
+  font-size: 1rem;
+}
+
+.footerLogo {
+  height: 2.25rem;
+  width: 5.25rem;
+  object-fit: cover;
+  object-position: center;
+}
+
+.address {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  color: #9f9f9f;
+  font-weight: $font-weight-regular;
+  font-family: $font-family;
+}
+
+.linksSection {
+  width: 6%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3.38rem;
+  align-self: center;
+
+  @media (max-width: $breakpoint-md) {
+    width: 100%;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    gap: 1.69rem;
+  }
+}
+
+.linksHeading {
+  font-size: 1rem;
+  font-weight: $font-weight-medium;
+  color: #9f9f9f;
+}
+
+.linksList {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2.75rem;
+  list-style: none;
+
+  a {
+    text-decoration: none;
+    text-wrap: nowrap;
+  }
+}
+
+.linkItem {
+  font-size: 1rem;
+  font-weight: $font-weight-medium;
+}
+
+.helpSection {
+  width: 44%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.25rem;
+
+  @media (max-width: $breakpoint-md) {
+    width: 100%;
+    flex-direction: column;
+  }
+}
+
+.helpLinks {
+  width: 28%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3.38rem;
+  align-self: center;
+
+  @media (max-width: $breakpoint-sm) {
+    width: 100%;
+    gap: 1.69rem;
+  }
+}
+
+.newsletterSection {
+  width: 56%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3.25rem;
+
+  @media (max-width: $breakpoint-sm) {
+    width: 100%;
+    gap: 1.63rem;
+  }
+}
+
+.newsletterInput {
+  display: flex;
+  gap: 0.63rem;
+  width: 100%;
+}
+
+.subscribeButton {
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+  a {
+    text-decoration: none;
+  }
+}
+
+.subscribeText {
+  font-size: 0.88rem;
+  font-weight: $font-weight-medium;
+}
+
+.divider {
+  height: 0.06rem;
+  width: 100%;
+  background-color: black;
+}
+
+.copyright {
+  font-size: 16px;
+  font-weight: 400;
+  font-family: 'Poppins', sans-serif;
+}
