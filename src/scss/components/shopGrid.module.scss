@@ -22,5 +22,36 @@
         padding-right: 1.25rem;
       }
     }
+
+    .contentWrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4.38rem;
+
+      @media (max-width: 768px) {
+        gap: 3.25rem;
+      }
+
+      @media (max-width: 640px) {
+        gap: 2.19rem;
+      }
+
+      .gridContainer {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+        justify-content: center;
+        align-self: stretch;
+
+        @media (max-width: 768px) {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (max-width: 640px) {
+          grid-template-columns: repeat(1, 1fr);
+        }
+      }
+    }
   }
 }
