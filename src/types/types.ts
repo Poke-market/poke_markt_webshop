@@ -20,28 +20,19 @@ export type InputProps = React.ComponentProps<"input"> & {
 };
 
 export type ProductProps = {
+  title: string;
   id: number;
-  name?: string;
-  description?: string;
-  image?: string;
-  price?: {
-    current: string;
-    original: string;
-    discount: string;
-  };
-  className?: string;
-  currentPrice?: string;
-  originalPrice?: string;
+  name: string;
+  description: string;
+  image: string;
+  price: number;
+  currentPrice: string;
+  originalPrice: string;
   discountText?: string;
+  className?: string;
   productName?: React.ReactNode;
   productDescription?: React.ReactNode;
-};
-
-export type ImgProps = {
-  src?: string;
-  alt?: string;
-  className?: string;
-  fallbackSrc?: string;
+  onClick?: () => void;
 };
 
 export type ButtonProps = {
@@ -50,4 +41,6 @@ export type ButtonProps = {
   variant?: string;
   className?: string;
   children: React.ReactNode;
+  onClick?: () => void;
+  disabled?: boolean;
 };
