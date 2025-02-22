@@ -1,84 +1,36 @@
-import Img from "./Img"; // Import the Img component
+import Img from "./Img";
 import Heading from "./Headingtxt.tsx";
-import PokeImage from "../assets/poke.png";
-import { ProductProps } from "../types/types.ts";
 import styles from "../scss/components/ProductCard.module.scss";
+import { ProductProps } from "../types/types.ts";
 
 export default function ProductDisplay({
-  discountText = "-30%",
-  productName = "Syltherine",
-  productDescription = "Stylish cafe chair",
-  currentPrice = "Rp 2.500.000",
-  originalPrice = "Rp 3.500.000",
-  ...Productprops
+  id,
+  name = "Product Name",
+  description = "Product Description",
+  image = "default-image.png",
+  currentPrice = "$0.00",
+  originalPrice = "$0.00",
+  discountText = "-0%",
+  className = "",
+  ...restProps
 }: ProductProps) {
   return (
     <div
-      {...Productprops}
-      className={`${Productprops.className} ${styles.productContainer}`}
+      id={id.toString()}
+      className={`${className} ${styles.productContainer}`}
+      {...restProps}
     >
       <div className={styles.imageWrapper}>
-        <Img src={PokeImage} alt="Syltherine" className={styles.productImage} />
-        <div className={styles.absoluteCenter}>
-          <Img
-            src={PokeImage}
-            alt="Syltherine"
-            className={styles.productImage}
-          />
-          <div className={styles.absoluteCenter}>
-            <Img
-              src={PokeImage}
-              alt="Syltherine"
-              className={styles.productImage}
-            />
-            <div className={styles.absoluteCenter}>
-              <Img
-                src={PokeImage}
-                alt="Syltherine"
-                className={styles.productImage}
-              />
-              <div className={styles.absoluteCenter}>
-                <Img
-                  src={PokeImage}
-                  alt="Syltherine"
-                  className={styles.productImage}
-                />
-                <div className={styles.absoluteCenter}>
-                  <Img
-                    src={PokeImage}
-                    alt="Syltherine"
-                    className={styles.productImage}
-                  />
-                  <div className={styles.absoluteCenter}>
-                    <Img
-                      src={PokeImage}
-                      alt="Syltherine"
-                      className={styles.productImage}
-                    />
-                    <div className={styles.absoluteCenter}>
-                      <Img
-                        src={PokeImage}
-                        alt="Image"
-                        className={styles.productImage}
-                      />
-                      <Heading as="p" className={styles.discountBadge}>
-                        {discountText}
-                      </Heading>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <Img src={image} alt={name} className={styles.productImage} />
+        <DiscountBadge discountText={discountText} />
       </div>
       <div className={styles.detailsContainer}>
-        <div className="flex flex-col items-start">
+        <div className={styles.textContainer}>
           <Heading as="h4" size="headingmd" className={styles.productName}>
-            {productName}
+            {name}
           </Heading>
           <Heading as="p" className={styles.productDescription}>
-            {productDescription}
+            {description}
           </Heading>
         </div>
         <div className={styles.priceContainer}>
@@ -90,6 +42,16 @@ export default function ProductDisplay({
           </Heading>
         </div>
       </div>
+    </div>
+  );
+}
+
+function DiscountBadge({ discountText }: { discountText: string }) {
+  return (
+    <div className={styles.absoluteCenter}>
+      <Heading as="p" className={styles.discountBadge}>
+        {discountText}
+      </Heading>
     </div>
   );
 }
