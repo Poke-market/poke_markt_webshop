@@ -1,1 +1,9 @@
-// abstracts is where reusable functions and other utilities go.
+@import '../partials/variables';
+
+@mixin responsive($breakpoint) {
+  @if $breakpoint == md {
+    @media (max-width: $breakpoint-md) {
+      @content;
+    }
+  }
+}
