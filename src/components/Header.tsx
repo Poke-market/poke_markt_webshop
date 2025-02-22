@@ -1,16 +1,16 @@
-import styles from "../scss/components/header.module.scss"; // Importing styles as a module
+import "../scss/components/header.scss";
+import Heading from "./Headingtxt.tsx";
 import Icons from "../utils/Icons.tsx";
 import { HeaderProps } from "../types/types";
-import ReactLogo from "../assets/react.png";
-import Heading from "./Headingtxt";
+import PokeLogo from "../assets/poke.png";
 
 // I'm using Heading to be able to use it again in the Footer component
 
 export default function Header({ className = "", ...props }: HeaderProps) {
   return (
-    <header className={`${styles.header} ${className}`} {...props}>
-      <img src={ReactLogo} alt="Headerlogo" className={styles["header-logo"]} />
-      <ul className={styles["nav-list"]}>
+    <header className={`header ${className}`} {...props}>
+      <img src={PokeLogo} alt="Headerlogo" className="header-logo" />
+      <ul className="nav-list">
         <li>
           <a href="#">
             <Heading>Home</Heading>
@@ -32,7 +32,7 @@ export default function Header({ className = "", ...props }: HeaderProps) {
           </a>
         </li>
       </ul>
-      <div className={styles["icon-container"]}>
+      <div className="icon-container">
         <a href="#" aria-label="Profile">
           {Icons.mdiAccountAlertOutline}
         </a>
@@ -49,3 +49,5 @@ export default function Header({ className = "", ...props }: HeaderProps) {
     </header>
   );
 }
+
+export { Heading };
