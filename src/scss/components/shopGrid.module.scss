@@ -1,0 +1,26 @@
+/* ShopColumnOne.module.scss */
+.shopContainer {
+  margin-top: 2.88rem;
+
+  .flexContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .backgroundBox {
+      height: 48.5rem;
+      align-self: stretch;
+      background-color: #ffffff;
+    }
+
+    .container {
+      position: relative;
+      margin-top: -47.5rem;
+
+      @media (max-width: 768px) {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+      }
+    }
+  }
+}
