@@ -1,11 +1,10 @@
 @use "./partials/reset";
 @use "./partials/pallet";
-
-$font-family-sans-serif: "Roboto", sans-serif;
+@use "./partials/typography" as *;
 
 // testing the scss
 body {
   font-size: 2rem;
   font-family: $font-family-sans-serif;
-  color: red;
+  color: var(--c-grey);
 }
