@@ -1,0 +1,49 @@
+$text-color: #000000;
+$text-color-2: #242424;
+$basic-blue: #3a76cf;
+$light-blue: #9dbbe7;
+$grey: #ccc;
+$white: #fff;
+$red: #ff5a50;
+
+.uspBanner {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  height: 27.1rem;
+  padding: 2rem 8.5rem;
+  background-color: $basic-blue;
+  .usp {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    > div {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      i {
+        height: 5.5rem;
+        width: 6rem; // Added width for visible rectangle
+        background-color: $red; // Changed from color to background-color for visibility
+      }
+    }
+    div:nth-child(2) {
+      flex-direction: column;
+      align-items: flex-start; // Align text and span to the left
+      p {
+        font-size: 2.5rem;
+        font-weight: 500;
+        color: $text-color-2;
+        margin-bottom: 1rem;
+      }
+      span {
+        font-size: 2rem;
+        font-weight: 300;
+        color: $light-blue;
+      }
+    }
+  }
+}

@@ -1,7 +1,13 @@
+import Pagination from "./components/Pagination";
 import BannerShop from "./components/BannerShop";
 
 const App = () => {
-  return <BannerShop />;
+  return (
+    <div>
+      <BannerShop />
+      <Pagination />
+    </div>
+  );
 };
 
 export default App;
