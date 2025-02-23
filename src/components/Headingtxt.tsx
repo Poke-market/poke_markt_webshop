@@ -1,8 +1,8 @@
-import { HeadingProps } from "../types/types.ts";
+import { HeadFootProps } from "../types/types.ts";
 import { typographySizes } from "../utils/typographySizes.ts";
 import styles from "../scss/abstracts/typography.module.scss";
 
-const Heading: React.FunctionComponent<HeadingProps> = ({
+const Heading: React.FunctionComponent<HeadFootProps> = ({
   children,
   className = "text",
   size = "textlg",
