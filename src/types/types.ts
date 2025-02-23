@@ -1,14 +1,11 @@
 import { typographySizes } from "../utils/typographySizes.ts";
 
-export type HeadingProps = {
+export type HeadFootProps = {
+  // shared by Header and Footer
   children: React.ReactNode;
   className?: string;
   as?: React.ElementType;
   size?: keyof typeof typographySizes;
-};
-
-export type HeaderProps = {
-  className?: string;
 };
 
 export type InputProps = React.ComponentProps<"input"> & {

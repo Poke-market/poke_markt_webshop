@@ -1,6 +1,4 @@
-import Footer from "../components/Footer";
-import Header from "../components/Header";
-import ShopGrid from "../components/Shopgrid";
+import { Header, Footer, ShopGrid } from "../utils/index.ts";
 
 export default function Homepage() {
   return (

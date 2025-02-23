@@ -1,13 +1,9 @@
-import Heading from "./Headingtxt.tsx";
+import { Heading, Input } from "../utils";
 import PokeLogo from "../assets/poke.png";
 import styles from "../scss/components/Footer.module.scss";
-import Input from "./Input.tsx";
+import { HeadFootProps } from "../types/types.ts";
 
-type Props = {
-  className?: string;
-};
-
-export default function Footer({ className = "", ...props }: Props) {
+export default function Footer({ className = "", ...props }: HeadFootProps) {
   return (
     <footer {...props} className={`${styles.footer} ${className}`}>
       <div className={styles.container}>

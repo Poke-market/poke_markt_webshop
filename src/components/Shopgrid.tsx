@@ -1,10 +1,8 @@
-import { Suspense, useState, useEffect } from "react";
 import styles from "../scss/components/shopGrid.module.scss";
-import ProductCard from "./ProductCard";
-import { ProductProps } from "../types/types.ts";
-import Button from "./Button";
-import LoadingSkeleton from "./LoadingSkeleton";
+import { Suspense, useState, useEffect } from "react";
+import { Button, LoadingSkeleton, ProductCard } from "../utils";
 import { transformData } from "../utils/transformData";
+import { ProductProps } from "../types/types.ts";
 
 interface ShopGrid {
   data?: ProductProps[];
