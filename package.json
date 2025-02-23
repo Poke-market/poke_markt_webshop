@@ -12,12 +12,15 @@
     "build-ts": "tsc -b",
     "build-vite": "vite build",
     "preview": "vite preview",
+    "type-check": "tsc --noEmit",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "fix": "npm-run-all lint:fix format"
   },
   "dependencies": {
+    "eslint-config-prettier": "^10.0.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
