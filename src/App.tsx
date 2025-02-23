@@ -1,7 +1,13 @@
-import UspBanner from "./components/UspBanner";
+import Pagination from "./components/Pagination";
+import BannerShop from "./components/BannerShop";
 
 const App = () => {
-  return <UspBanner />;
+  return (
+    <div>
+      <BannerShop />
+      <Pagination />
+    </div>
+  );
 };
 
 export default App;
