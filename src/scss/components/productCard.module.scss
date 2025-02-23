@@ -39,7 +39,7 @@
       align-items: center;
       justify-content: center;
       border-radius: 24px;
-      background: $discount-color-30;
+      background-color: $discount-color-30;
       color: #ffffff;
       font-size: $discount-badge-font-size;
       font-weight: 500;
@@ -52,7 +52,7 @@
     flex-direction: column;
     gap: 0.5rem;
     align-self: stretch;
-    background-color: $details-container-bg-color;
+    background-color: black;
     padding: 0.75rem;
 
     .productName {

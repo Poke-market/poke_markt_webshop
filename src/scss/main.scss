@@ -15,9 +15,11 @@ body {
 a {
   text-decoration: none;
   display: block;
+  transition: color 0.3s ease;
   p {
     &:hover {
       color: #ff0000;
+      transition: color 0.3s ease;
     }
   }
 }

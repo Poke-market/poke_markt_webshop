@@ -5,5 +5,9 @@
     @media (max-width: $breakpoint-md) {
       @content;
     }
+  } @else if $breakpoint == sm {
+    @media (max-width: $breakpoint-sm) {
+      @content;
+    }
   }
 }

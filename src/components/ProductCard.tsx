@@ -2,6 +2,13 @@ import { Img, Heading } from "../utils";
 import styles from "../scss/components/ProductCard.module.scss";
 import { ProductProps } from "../types/types.ts";
 
+function truncateText(text: string, maxLength: number): string {
+  if (text.length <= maxLength) {
+    return text;
+  }
+  return text.substring(0, maxLength) + "...";
+}
+
 export default function ProductDisplay({
   id,
   name = "Product Name",
@@ -13,6 +20,8 @@ export default function ProductDisplay({
   className = "",
   ...restProps
 }: ProductProps) {
+  const truncatedDescription = truncateText(description, 20);
+  const truncatedName = truncateText(name, 10);
   return (
     <div
       id={id.toString()}
@@ -26,10 +35,10 @@ export default function ProductDisplay({
       <div className={styles.detailsContainer}>
         <div className={styles.textContainer}>
           <Heading as="h4" size="headingmd" className={styles.productName}>
-            {name}
+            {truncatedName}
           </Heading>
           <Heading as="p" className={styles.productDescription}>
-            {description}
+            {truncatedDescription}
           </Heading>
         </div>
         <div className={styles.priceContainer}>
