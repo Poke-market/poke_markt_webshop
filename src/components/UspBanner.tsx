@@ -1,7 +1,9 @@
+import styles from "../scss/components/UspBanner.module.css";
+
 const UspBanner = () => {
   return (
-    <div className="usp-banner">
-      <div className="usp">
+    <div className={styles.uspBanner}>
+      <div className={styles.usp}>
         <div>
           <i></i>
         </div>
@@ -10,7 +12,7 @@ const UspBanner = () => {
           <span>Crafted from top materials</span>
         </div>
       </div>
-      <div className="usp">
+      <div className={styles.usp}>
         <div>
           <i></i>
         </div>
@@ -19,7 +21,7 @@ const UspBanner = () => {
           <span>Over 2 years</span>
         </div>
       </div>
-      <div className="usp">
+      <div className={styles.usp}>
         <div>
           <i></i>
         </div>
@@ -28,7 +30,7 @@ const UspBanner = () => {
           <span>Order over $150</span>
         </div>
       </div>
-      <div className="usp">
+      <div className={styles.usp}>
         <div>
           <i></i>
         </div>
