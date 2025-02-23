@@ -1,18 +1,20 @@
+import styles from "../scss/components/FilterSortBar.module.css";
+
 const FilterSortBar = () => {
   return (
-    <div className="filter-sort-bar">
+    <div className={styles.filterSortBar}>
       <span>
-        <button className="filter">
+        <button className={styles.filter}>
           <i>⪋</i>
         </button>
         <p>Filter</p>
-        <button className="grid-view">
+        <button className={styles.gridView}>
           <i>⌗</i>
         </button>
-        <button className="list-view">
+        <button className={styles.listView}>
           <i>📋</i>
         </button>
-        <span className="separator"></span>
+        <span className={styles.separator}></span>
         <p>Showing 1-16 of 32 results</p>
       </span>
       <span>
