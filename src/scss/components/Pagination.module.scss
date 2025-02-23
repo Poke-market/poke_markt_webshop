@@ -1,0 +1,36 @@
+$text-color: #000000;
+$basic-blue: #3a76cf;
+$light-blue: #e7eef9;
+$grey: #ccc;
+$white: #fff;
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 300;
+  gap: 3.8rem;
+  a {
+    display: inline-block;
+    width: 6rem;
+    height: 6rem;
+    line-height: 6rem;
+    text-decoration: none;
+    color: $text-color;
+    border-radius: 1rem;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    background-color: $light-blue;
+    &.active {
+      background-color: $basic-blue;
+      color: $white;
+    }
+    &:hover {
+      background-color: $basic-blue;
+      color: $white;
+    }
+    &.next {
+      width: 9.3rem;
+    }
+  }
+}
