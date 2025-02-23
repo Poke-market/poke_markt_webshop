@@ -12,7 +12,7 @@ interface ProductData {
 // product data from the API has to include a discount value to be able to give a discount for the product
 export const transformData = (data: ProductData[]): ProductProps[] => {
   return data.map((product) => {
-    const discount = product.discount ?? 30;
+    const discount = product.discount ?? 20;
     const originalPrice = product.price + (product.price * discount) / 100;
     return {
       id: product.id,

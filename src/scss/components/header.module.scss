@@ -1,6 +1,6 @@
 @import "../partials/variables";
 @import "../partials/mixins";
-@import "../abstracts/typography";
+@import "../abstracts/typography.module";
 
 * {
   margin: 0;
@@ -8,11 +8,8 @@
   box-sizing: border-box;
 }
 
-* .header {
-  font-weight: $font-weight-medium;
-}
-
 .header {
+  font-weight: $font-weight-medium;
   padding: 1.38rem 3.38rem;
   display: flex;
   background-color: #ffffff;
@@ -20,14 +17,14 @@
   align-items: center;
   gap: 1.25rem;
 
-  .header-logo {
+  .headerLogo {
     height: 3.13rem;
     width: 11.5rem;
     object-fit: cover;
     object-position: center;
   }
 
-  .nav-list {
+  .navList {
     display: flex;
     flex-wrap: wrap;
     gap: 4.63rem;
@@ -39,7 +36,7 @@
     }
   }
 
-  .icon-container {
+  .iconContainer {
     margin-right: 2.88rem;
     width: 18%;
     display: flex;
@@ -55,11 +52,11 @@
     flex-direction: column;
     padding: 1.25rem;
 
-    .nav-list {
+    .navList {
       gap: 1.25rem;
     }
 
-    .icon-container {
+    .iconContainer {
       margin-right: 0;
       width: 100%;
     }

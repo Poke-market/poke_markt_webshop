@@ -1,16 +1,14 @@
-import "../scss/components/header.scss";
 import Heading from "./Headingtxt.tsx";
 import Icons from "../utils/Icons.tsx";
 import { HeaderProps } from "../types/types";
 import PokeLogo from "../assets/poke.png";
-
-// I'm using Heading to be able to use it again in the Footer component
+import styles from "../scss/components/Header.module.scss";
 
 export default function Header({ className = "", ...props }: HeaderProps) {
   return (
-    <header className={`header ${className}`} {...props}>
-      <img src={PokeLogo} alt="Headerlogo" className="header-logo" />
-      <ul className="nav-list">
+    <header className={`${styles.header} ${className}`} {...props}>
+      <img src={PokeLogo} alt="Headerlogo" className={styles.headerLogo} />
+      <ul className={styles.navList}>
         <li>
           <a href="#">
             <Heading>Home</Heading>
@@ -32,7 +30,7 @@ export default function Header({ className = "", ...props }: HeaderProps) {
           </a>
         </li>
       </ul>
-      <div className="icon-container">
+      <div className={styles.iconContainer}>
         <a href="#" aria-label="Profile">
           {Icons.mdiAccountAlertOutline}
         </a>

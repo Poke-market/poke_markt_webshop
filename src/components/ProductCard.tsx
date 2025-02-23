@@ -1,4 +1,4 @@
-import { Img, Heading } from "./index";
+import { Img, Heading } from "../utils";
 import styles from "../scss/components/ProductCard.module.scss";
 import { ProductProps } from "../types/types.ts";
 
