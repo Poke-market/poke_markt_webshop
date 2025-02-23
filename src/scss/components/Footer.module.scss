@@ -102,10 +102,6 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 2.75rem;
-
-  a {
-    text-wrap: nowrap;
-  }
 }
 
 .linkItem {
@@ -127,21 +123,21 @@
 }
 
 .helpLinks {
-  width: 28%;
+  width: 27%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 3.38rem;
   align-self: center;
 
-  @media (max-width: $breakpoint-sm) {
+  @media (max-width: 1050px), (max-width: $breakpoint-sm) {
     width: 100%;
     gap: 1.69rem;
   }
 }
 
 .newsletterSection {
-  width: 55%;
+  width: 50%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -155,11 +151,11 @@
 
 .newsletterInput {
   display: flex;
-  gap: 0.63rem;
+  gap: 2rem;
 }
 
 .subscribeButton {
-  width: 35%;
+  width: 20%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -174,6 +170,7 @@
   height: 0.05rem;
   width: 100%;
   background-color: black;
+  margin-top: 0.16rem;
 }
 
 .copyright {

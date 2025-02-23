@@ -1,11 +1,10 @@
 @import "../partials/mixins";
 @import "../partials/variables";
 
-*.text {
+.text {
   font-family: $font-family;
   color: $text-color;
-}
-.text {
+
   &-xs {
     font-size: 0.88rem;
   }

@@ -15,6 +15,11 @@ body {
 a {
   text-decoration: none;
   display: block;
+  p {
+    &:hover {
+      color: #ff0000;
+    }
+  }
 }
 
 input {

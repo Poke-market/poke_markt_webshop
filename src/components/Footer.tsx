@@ -80,7 +80,7 @@ export default function Footer({ className = "", ...props }: HeadFootProps) {
                     placeholder="Enter Your Email Address"
                   />
                   <div className={styles.subscribeButton}>
-                    <a href="#">
+                    <a href="#" className={styles.subscribeLink}>
                       <Heading>SUBSCRIBE</Heading>
                       <div className={styles.divider} />
                     </a>
