@@ -1,9 +1,7 @@
+import BannerShop from "./components/BannerShop";
+
 const App = () => {
-  return (
-    <div>
-      <h1>PokeMarket</h1>
-    </div>
-  );
+  return <BannerShop />;
 };
 
 export default App;
