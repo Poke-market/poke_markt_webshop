@@ -1,10 +1,14 @@
-@use "./partials/reset";
-@use "./partials/pallet";
-@use "./partials/typography" as *;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+@import "partials/_reset.scss";
 
-// testing the scss
-body {
-  font-size: 2rem;
-  font-family: $font-family-sans-serif;
-  color: var(--c-grey);
+a {
+  text-decoration: none;
+  display: block;
+  transition: color 0.3s ease;
+  p {
+    &:hover {
+      color: #ff0000;
+      transition: color 0.3s ease;
+    }
+  }
 }
