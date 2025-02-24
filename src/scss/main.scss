@@ -1,10 +1,24 @@
-@use "./partials/reset";
-@use "./partials/pallet";
-@use "./partials/typography" as *;
-
-// testing the scss
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+@import "partials/_reset.scss";
+@import "partials/_variables.scss";
 body {
-  font-size: 2rem;
-  font-family: $font-family-sans-serif;
-  color: var(--c-grey);
+  background-color: rgba(128, 128, 128, 0.16);
+}
+
+a {
+  text-decoration: none;
+  display: block;
+  transition: color 0.3s ease;
+  p {
+    &:hover {
+      color: #ff0000;
+      transition: color 0.3s ease;
+    }
+  }
+}
+
+main {
+  margin-top: 5rem;
+  padding-bottom: 5rem;
+  background-color: $background-color;
 }

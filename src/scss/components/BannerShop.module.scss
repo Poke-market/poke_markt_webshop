@@ -1,6 +1,4 @@
-$text-color: #000000;
-$basic-blue: #3a76cf;
-$grey: #ccc;
+@import "../partials/_variables.scss";
 
 .bannerShop {
   display: flex;
@@ -10,6 +8,7 @@ $grey: #ccc;
   width: 100vw;
   height: 31.6rem;
   position: relative;
+  font-family: $font-family;
   .bannerImage {
     position: absolute;
     top: 0;
@@ -19,7 +18,7 @@ $grey: #ccc;
     object-fit: cover;
     opacity: 0.5;
   }
-  h1 {
+  .heading {
     font-size: 4.8rem;
     color: $text-color;
     position: relative;

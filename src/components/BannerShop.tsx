@@ -1,4 +1,5 @@
 import styles from "../scss/components/BannerShop.module.css";
+import Headingtxt from "./Headingtxt.tsx";
 
 const BannerShop = () => {
   return (
@@ -8,7 +9,7 @@ const BannerShop = () => {
         alt="Shop Banner"
         className={styles.bannerImage}
       ></img>
-      <h1>Shop</h1>
+      <Headingtxt className={styles.heading}>Shop</Headingtxt>
       <div className={styles.breadcrumb}>
         <span>Home</span>
         <span> ﹥ </span>

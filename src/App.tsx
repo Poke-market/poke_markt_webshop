@@ -1,15 +1,12 @@
-import FilterSortBar from "./components/FilterSortBar.tsx";
-import Pagination from "./components/Pagination";
-import BannerShop from "./components/BannerShop";
+import { BrowserRouter as Router } from "react-router-dom";
+import Homepage from "./pages/Homepage.tsx";
 
-const App = () => {
+function App() {
   return (
-    <div>
-      <FilterSortBar />
-      <BannerShop />
-      <Pagination />
-    </div>
+    <Router>
+      <Homepage />
+    </Router>
   );
-};
+}
 
 export default App;

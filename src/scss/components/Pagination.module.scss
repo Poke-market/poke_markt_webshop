@@ -1,36 +1,48 @@
-$text-color: #000000;
-$basic-blue: #3a76cf;
-$light-blue: #e7eef9;
-$grey: #ccc;
-$white: #fff;
+@import "../partials/variables";
 
-.pagination {
+.buttonContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-weight: 300;
   gap: 3.8rem;
-  a {
-    display: inline-block;
+
+  @media (max-width: $breakpoint-md) {
+    width: 100%;
+    gap: 2rem;
+  }
+
+  .button {
     width: 6rem;
     height: 6rem;
-    line-height: 6rem;
-    text-decoration: none;
     color: $text-color;
     border-radius: 1rem;
-    text-align: center;
     transition: 0.3s ease;
     background-color: $light-blue;
+    border: none;
+    font-weight: $font-weight-medium;
+    cursor: pointer;
+
+    @media (max-width: $breakpoint-sm) {
+      width: 4rem;
+      height: 4rem;
+    }
+
     &.active {
       background-color: $basic-blue;
       color: $white;
     }
+
     &:hover {
       background-color: $basic-blue;
       color: $white;
     }
+
     &.next {
       width: 9.3rem;
+
+      @media (max-width: $breakpoint-sm) {
+        padding: 0.5rem 0.75rem;
+      }
     }
   }
 }
