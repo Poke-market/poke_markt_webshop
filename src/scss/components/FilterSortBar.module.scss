@@ -1,0 +1,87 @@
+$text-color: #000000;
+$basic-blue: #3a76cf;
+$grey: #ccc;
+
+.filterSortBar {
+  background-color: $basic-blue;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100vw;
+  padding: 2rem 8.5rem;
+  font-size: 1.6rem;
+  max-height: 10rem;
+
+  span {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .filter,
+  .gridView,
+  .listView {
+    background: none;
+    border: none;
+    font-size: 3rem;
+    color: $grey;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    i {
+      font-size: 2rem;
+    }
+  }
+
+  .separator {
+    display: inline-block;
+    width: 1px;
+    height: 3.7rem;
+    background-color: $grey;
+    margin: 0 2rem;
+  }
+
+  p {
+    font-size: 1.4rem;
+    color: $text-color;
+    margin: 0;
+  }
+
+  span > fieldset {
+    border: none;
+    margin: 0 2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  fieldset label {
+    font-size: 1.4rem;
+    color: $text-color;
+    padding-right: 1.7rem;
+  }
+
+  fieldset input,
+  fieldset select {
+    font-size: 1.6rem;
+    padding: 0.5rem;
+    border: none;
+    outline: none;
+    color: $grey;
+  }
+  #productsPerPage {
+    width: 5.5rem;
+  }
+
+  #sort {
+    width: 18.8rem;
+  }
+  fieldset input:focus,
+  fieldset select:focus {
+    border-color: $basic-blue;
+  }
+}
