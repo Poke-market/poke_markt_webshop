@@ -1,15 +1,9 @@
 import { ButtonProps } from "../types/types.ts";
+import styles from "../scss/components/Pagination.module.scss";
 
-const Button = ({
-  color = "",
-  size = "",
-  variant = "",
-  className = "",
-  children,
-  ...props
-}: ButtonProps) => {
+const Button = ({ className = "", children, ...props }: ButtonProps) => {
   return (
-    <button className={`${className} ${color} ${size} ${variant}`} {...props}>
+    <button className={`${styles.button} ${className}`} {...props}>
       {children}
     </button>
   );

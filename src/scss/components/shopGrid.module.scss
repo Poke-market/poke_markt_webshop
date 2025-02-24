@@ -1,8 +1,8 @@
 @import "../partials/variables";
 @import "../partials/_reset";
+@import "Pagination.module.scss";
 
 .shopContainer {
-  //margin-top: 2.88rem;
   .flexContainer {
     display: flex;
     flex-direction: column;
@@ -15,7 +15,6 @@
     .container {
       position: relative;
       margin-top: -760px;
-
       @media (max-width: $breakpoint-md) {
         padding-left: 2rem;
         padding-right: 2rem;
@@ -47,48 +46,12 @@
           grid-template-columns: repeat(3, 1fr);
         }
 
-        @media (max-width: $breakpoint-md) {
+        @media (max-width: $breakpoint_md) {
           grid-template-columns: repeat(2, 1fr);
         }
 
         @media (max-width: $breakpoint-sm) {
           grid-template-columns: repeat(1, 1fr);
-        }
-      }
-
-      .buttonContainer {
-        display: flex;
-        width: 32%;
-        justify-content: space-between;
-        gap: 2rem;
-
-        @media (max-width: $breakpoint-md) {
-          width: 100%;
-        }
-
-        .button {
-          min-width: 5.92rem;
-          border-radius: 5px;
-          padding-left: 2.56rem;
-          padding-right: 2.56rem;
-
-          @media (max-width: $breakpoint-sm) {
-            padding-left: 2rem;
-            padding-right: 2rem;
-          }
-        }
-
-        .nextButton {
-          min-width: 5rem;
-          border-radius: 10px;
-          padding-left: 2.56rem;
-          padding-right: 2.56rem;
-          font-weight: $font-weight-regular;
-
-          @media (max-width: $breakpoint-sm) {
-            padding-left: 1.92rem;
-            padding-right: 1.92rem;
-          }
         }
       }
     }

@@ -40,6 +40,8 @@ export type ButtonProps = {
   children: React.ReactNode;
   onClick?: () => void;
   disabled?: boolean;
+  width?: string;
+  height?: string;
 };
 
 export type ImgProps = {

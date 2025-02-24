@@ -7,3 +7,6 @@ export { default as Input } from "../components/Input.tsx";
 export { default as ShopGrid } from "../components/Shopgrid.tsx";
 export { default as Button } from "../components/Button.tsx";
 export { default as LoadingSkeleton } from "../components/LoadingSkeleton.tsx";
+export { default as UsBanner } from "../components/UspBanner.tsx";
+export { default as BannerShop } from "../components/BannerShop.tsx";
+export { default as Pagination } from "../components/Pagination.tsx";
