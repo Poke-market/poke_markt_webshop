@@ -5,9 +5,7 @@ export default function Homepage() {
     <>
       <Header />
       <ShopGrid />
-      <div>
-        <Footer />
-      </div>
+      <Footer />
     </>
   );
 }

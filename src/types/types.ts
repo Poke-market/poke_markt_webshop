@@ -2,7 +2,7 @@ import { typographySizes } from "../utils/typographySizes.ts";
 
 export type HeadFootProps = {
   // shared by Header and Footer
-  children: React.ReactNode;
+  children?: React.ReactNode;
   className?: string;
   as?: React.ElementType;
   size?: keyof typeof typographySizes;

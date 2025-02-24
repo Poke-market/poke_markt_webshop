@@ -3,7 +3,10 @@ import PokeLogo from "../assets/poke.png";
 import styles from "../scss/components/Footer.module.scss";
 import { HeadFootProps } from "../types/types.ts";
 
-export default function Footer({ className = "", ...props }: HeadFootProps) {
+export default function Footer({
+  className = "footer",
+  ...props
+}: HeadFootProps) {
   return (
     <footer {...props} className={`${styles.footer} ${className}`}>
       <div className={styles.container}>
@@ -76,8 +79,8 @@ export default function Footer({ className = "", ...props }: HeadFootProps) {
                 <div className={styles.newsletterInput}>
                   <Input
                     variant="underline"
-                    name="email"
                     placeholder="Enter Your Email Address"
+                    type="email"
                   />
                   <div className={styles.subscribeButton}>
                     <a href="#" className={styles.subscribeLink}>

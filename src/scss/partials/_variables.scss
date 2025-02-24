@@ -14,12 +14,14 @@ $breakpoint-sm: 640px;
 $font-family: "Poppins", sans-serif;
 $font-weight-medium: 500;
 $font-weight-regular: 400;
+$font-weight-semi-bold: 600;
+$font-weight-light: 300;
 
 // productCard
-$product-image-height: 18.75rem;
+$product-image-height: 18.81rem;
 $discount-badge-size: 3rem;
 $discount-badge-font-size: 1rem;
-$details-container-bg-color: #f4f5f7;
+$details-container-bg-color: rgba(241, 241, 246, 0.74);
 $product-name-font-size: 1.5rem;
 $product-name-color: #3a3a3a;
 $product-description-font-size: 1rem;

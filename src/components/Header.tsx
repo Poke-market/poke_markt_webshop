@@ -4,7 +4,10 @@ import { HeadFootProps } from "../types/types";
 import PokeLogo from "../assets/poke.png";
 import styles from "../scss/components/Header.module.scss";
 
-export default function Header({ className = "", ...props }: HeadFootProps) {
+export default function Header({
+  className = "header",
+  ...props
+}: HeadFootProps) {
   return (
     <header className={`${styles.header} ${className}`} {...props}>
       <img src={PokeLogo} alt="Headerlogo" className={styles.headerLogo} />
@@ -47,5 +50,3 @@ export default function Header({ className = "", ...props }: HeadFootProps) {
     </header>
   );
 }
-
-export { Heading };
