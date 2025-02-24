@@ -1,12 +1,7 @@
-@import "../partials/variables";
-@import "../partials/mixins";
+@import "../partials/_variables";
+@import "../partials/_mixins";
 @import "../abstracts/typography.module";
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+@import "../partials/_reset";
 
 .header {
   font-weight: $font-weight-medium;

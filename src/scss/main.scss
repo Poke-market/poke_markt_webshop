@@ -1,16 +1,5 @@
-@import "https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css";
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
-
-* {
-  box-sizing: border-box;
-  line-height: normal;
-  font-family: "Poppins", sans-serif;
-  margin: inherit;
-}
-body {
-  margin: 0;
-  padding: 0;
-}
+@import "partials/_reset.scss";
 
 a {
   text-decoration: none;
@@ -22,20 +11,4 @@ a {
       transition: color 0.3s ease;
     }
   }
-}
-
-input {
-  background-color: transparent;
-  width: 100%;
-}
-
-input:focus {
-  outline: none;
-}
-
-ul {
-  margin: 0;
-  margin-inline: unset !important;
-  padding: 0;
-  list-style: none;
 }
