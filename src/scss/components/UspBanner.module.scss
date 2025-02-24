@@ -1,10 +1,4 @@
-$text-color: #000000;
-$text-color-2: #242424;
-$basic-blue: #3a76cf;
-$light-blue: #9dbbe7;
-$grey: #ccc;
-$white: #fff;
-$red: #ff5a50;
+@import "../partials/_variables.scss";
 
 .uspBanner {
   display: flex;
@@ -15,6 +9,7 @@ $red: #ff5a50;
   height: 27.1rem;
   padding: 2rem 8.5rem;
   background-color: $basic-blue;
+  font-family: $font-family;
   .usp {
     display: flex;
     flex-direction: row;

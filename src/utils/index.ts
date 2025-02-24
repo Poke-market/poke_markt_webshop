@@ -9,4 +9,4 @@ export { default as Button } from "../components/Button.tsx";
 export { default as LoadingSkeleton } from "../components/LoadingSkeleton.tsx";
 export { default as UsBanner } from "../components/UspBanner.tsx";
 export { default as BannerShop } from "../components/BannerShop.tsx";
-export { default as Pagination } from "../components/Pagination.tsx";
+export { default as FilterSortBar } from "../components/FilterSortBar.tsx";

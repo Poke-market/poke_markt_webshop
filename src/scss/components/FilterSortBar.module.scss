@@ -1,6 +1,4 @@
-$text-color: #000000;
-$basic-blue: #3a76cf;
-$grey: #ccc;
+@import "../partials/_variables.scss";
 
 .filterSortBar {
   background-color: $basic-blue;
@@ -11,11 +9,13 @@ $grey: #ccc;
   padding: 2rem 8.5rem;
   font-size: 1.6rem;
   max-height: 10rem;
+  font-family: $font-family;
 
   span {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 1rem;
   }
 
   .filter,

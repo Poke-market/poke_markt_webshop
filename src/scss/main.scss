@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 @import "partials/_reset.scss";
+@import "partials/_variables.scss";
+body {
+  background-color: rgba(128, 128, 128, 0.16);
+}
 
 a {
   text-decoration: none;
@@ -11,4 +15,10 @@ a {
       transition: color 0.3s ease;
     }
   }
+}
+
+main {
+  margin-top: 5rem;
+  padding-bottom: 5rem;
+  background-color: $background-color;
 }

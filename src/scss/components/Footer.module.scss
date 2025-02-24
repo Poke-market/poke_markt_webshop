@@ -6,7 +6,7 @@
   border-top: 1px solid rgba(0, 0, 0, 0.17);
   font-family: $font-family;
   font-weight: $font-weight-medium;
-  margin-top: 4rem;
+  background-color: $background-color;
 
   @media (max-width: $breakpoint-sm) {
     padding: 2rem 0;
