@@ -13,7 +13,7 @@ export default function Header({
       <img src={PokeLogo} alt="Headerlogo" className={styles.headerLogo} />
       <ul className={styles.navList}>
         <li>
-          <a href="#">
+          <a href="#" target={"_blank"}>
             <Heading>Home</Heading>
           </a>
         </li>
