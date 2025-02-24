@@ -1,25 +1,26 @@
 @import "../partials/mixins";
 @import "../partials/variables";
+@import "../partials/_reset";
 
 .text {
   font-family: $font-family;
   color: $text-color;
 
   &-xs {
-    font-size: 0.88rem;
+    font-size: 1.4rem;
   }
 
   &-lg {
     color: #000000;
-    font-size: 1rem; // 16px as in figma
+    font-size: 1.6rem;
   }
 
   &-md {
-    font-size: 2rem;
+    font-size: 3.2rem;
   }
 
   &-xl {
-    font-size: 1.25rem;
+    font-size: 2rem;
   }
 
   &-2xl {

@@ -9,16 +9,16 @@
     align-items: center;
 
     .backgroundBox {
-      height: 48.5rem;
+      height: 776px;
     }
 
     .container {
       position: relative;
-      margin-top: -47.5rem;
+      margin-top: -760px;
 
       @media (max-width: $breakpoint-md) {
-        padding-left: 1.25rem;
-        padding-right: 1.25rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
       }
     }
 
@@ -26,22 +26,26 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 4.38rem;
+      gap: 7rem;
 
       @media (max-width: $breakpoint-md) {
-        gap: 3.25rem;
+        gap: 5.2rem;
       }
 
       @media (max-width: $breakpoint-sm) {
-        gap: 2.19rem;
+        gap: 3.5rem;
       }
 
       .gridContainer {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: 2rem;
+        gap: 3.2rem;
         justify-content: center;
         align-self: stretch;
+
+        @media (max-width: $breakpoint) {
+          grid-template-columns: repeat(3, 1fr);
+        }
 
         @media (max-width: $breakpoint-md) {
           grid-template-columns: repeat(2, 1fr);
@@ -56,34 +60,34 @@
         display: flex;
         width: 32%;
         justify-content: space-between;
-        gap: 1.25rem;
+        gap: 2rem;
 
         @media (max-width: $breakpoint-md) {
           width: 100%;
         }
 
         .button {
-          min-width: 3.7rem;
+          min-width: 5.92rem;
           border-radius: 5px;
-          padding-left: 1.6rem;
-          padding-right: 1.6rem;
+          padding-left: 2.56rem;
+          padding-right: 2.56rem;
 
           @media (max-width: $breakpoint-sm) {
-            padding-left: 1.25rem;
-            padding-right: 1.25rem;
+            padding-left: 2rem;
+            padding-right: 2rem;
           }
         }
 
         .nextButton {
           min-width: 5rem;
           border-radius: 10px;
-          padding-left: 1.6rem;
-          padding-right: 1.6rem;
+          padding-left: 2.56rem;
+          padding-right: 2.56rem;
           font-weight: $font-weight-regular;
 
           @media (max-width: $breakpoint-sm) {
-            padding-left: 1.2rem;
-            padding-right: 1.2rem;
+            padding-left: 1.92rem;
+            padding-right: 1.92rem;
           }
         }
       }

@@ -5,19 +5,19 @@
 
 .header {
   font-weight: $font-weight-medium;
-  padding: 1.38rem 3.38rem;
+  padding: 2rem 6rem;
   display: flex;
   background-color: #ffffff;
   justify-content: space-between;
   align-items: center;
-  gap: 1.25rem;
+  gap: 2rem;
 
   @media (max-width: $breakpoint) {
-    padding: 1.25rem;
+    padding: 2rem;
   }
 
   .headerLogo {
-    height: 3.13rem;
+    height: 5rem;
     width: 11.5rem;
     object-fit: cover;
     object-position: center;
@@ -26,7 +26,7 @@
   .navList {
     display: flex;
     flex-wrap: wrap;
-    gap: 4.63rem;
+    gap: 7.4rem;
     list-style: none;
 
     a {
@@ -41,10 +41,10 @@
 
   .iconContainer {
     margin-right: 2.88rem;
-    width: 18%;
+    width: 15%;
     display: flex;
     justify-content: space-between;
-    gap: 1.25rem;
+    gap: 2rem;
 
     .icon {
       height: 1.75rem;
@@ -53,10 +53,10 @@
 
   @include responsive(md) {
     flex-direction: column;
-    padding: 1.25rem;
+    padding: 2rem;
 
     .navList {
-      gap: 1.25rem;
+      gap: 2rem;
     }
 
     .iconContainer {
@@ -66,6 +66,6 @@
   }
 
   @include responsive(sm) {
-    padding: 1.25rem;
+    padding: 2rem;
   }
 }

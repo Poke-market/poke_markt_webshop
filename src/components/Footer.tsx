@@ -97,7 +97,7 @@ export default function Footer({
             style={{ backgroundColor: "rgba(0, 0, 0, 0.17)" }}
           />
           <Heading className={styles.copyright}>
-            2025 Poke Market. All rights reserved
+            <span>&copy; 2025 Poke Market. All rights reserved</span>
           </Heading>
         </div>
       </div>

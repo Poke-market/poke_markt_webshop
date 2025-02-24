@@ -1,14 +1,14 @@
-import { Icon as IconifyIcon } from '@iconify/react';
-import { BsViewList, BsBagX, BsArrowRight } from 'react-icons/bs';
-import { CiHeart } from 'react-icons/ci';
-import { IoShareSocial } from 'react-icons/io5';
-import { HiMiniXCircle } from 'react-icons/hi2';
-import { FaStar, FaStarHalf, FaCalendar, FaTag } from 'react-icons/fa';
+import { Icon as IconifyIcon } from "@iconify/react";
+import { BsViewList, BsBagX, BsArrowRight } from "react-icons/bs";
+import { CiHeart } from "react-icons/ci";
+import { IoShareSocial } from "react-icons/io5";
+import { HiMiniXCircle } from "react-icons/hi2";
+import { FaStar, FaStarHalf, FaCalendar, FaTag } from "react-icons/fa";
 import {
   MdOutlineKeyboardArrowRight,
   MdKeyboardArrowDown,
   MdKeyboardArrowUp,
-} from 'react-icons/md';
+} from "react-icons/md";
 import {
   Search,
   Heart,
@@ -18,12 +18,12 @@ import {
   XFill,
   LinkedinBoxFill,
   ShoppingBag,
-} from 'akar-icons';
-import Icon from '@mdi/react';
-import { mdiAccountAlertOutline } from '@mdi/js';
+} from "akar-icons";
+import Icon from "@mdi/react";
+import { mdiAccountAlertOutline } from "@mdi/js";
 
-const iconSize = 24;
-const iconStyle = { color: 'black' };
+const iconSize = 35;
+const iconStyle = { color: "black" };
 
 const iconComponents = {
   BsViewList,
@@ -65,7 +65,7 @@ Icons.IconifyIcon = (
   />
 );
 Icons.mdiAccountAlertOutline = (
-  <Icon path={mdiAccountAlertOutline} size={iconSize / 24} style={iconStyle} />
+  <Icon path={mdiAccountAlertOutline} size={iconSize / 22} style={iconStyle} />
 );
 
 export default Icons;
