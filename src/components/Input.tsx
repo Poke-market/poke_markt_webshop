@@ -1,15 +1,15 @@
-import { forwardRef } from 'react';
-import styles from '../scss/components/Input.module.scss';
-import type { InputProps } from '../types/types';
+import { forwardRef } from "react";
+import styles from "../scss/components/Input.module.scss";
+import type { InputProps } from "../types/types";
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
   (
     {
-      className = '',
-      variant = 'fill',
-      size = 'xs',
-      shape = 'square',
-      color = '',
+      className = "",
+      variant = "fill",
+      size = "xs",
+      shape = "square",
+      color = "",
       ...props
     },
     ref,
