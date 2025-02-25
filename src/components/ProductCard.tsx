@@ -28,10 +28,14 @@ export default function ProductDisplay({
       className={`${className} ${styles.productContainer}`}
       {...restProps}
     >
+      <div className={styles.overlay}>
+        <a href="#">Add to cart</a>
+      </div>
       <div className={styles.imageWrapper}>
         <Img src={image} alt={name} className={styles.productImage} />
         <DiscountBadge discountText={discountText} />
       </div>
+
       <div className={styles.detailsContainer}>
         <div className={styles.textContainer}>
           <Heading as="h4" size="headingmd" className={styles.productName}>
