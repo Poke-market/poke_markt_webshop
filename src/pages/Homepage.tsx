@@ -2,7 +2,7 @@ import {
   Header,
   Footer,
   ShopGrid,
-  UspBanner,
+  UsBanner,
   BannerShop,
   FilterSortBar,
 } from "../utils/index.ts";
@@ -16,7 +16,7 @@ export default function Homepage() {
       <main>
         <ShopGrid />
       </main>
-      <UspBanner />
+      <UsBanner />
       <Footer />
     </>
   );
