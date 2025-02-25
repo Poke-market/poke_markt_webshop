@@ -30,6 +30,11 @@ export default function ProductDisplay({
     >
       <div className={styles.overlay}>
         <a href="#">Add to cart</a>
+        <div>
+          <a href="#">Share</a>
+          <a href="#">Compare</a>
+          <a href="#">Like</a>
+        </div>
       </div>
       <div className={styles.imageWrapper}>
         <Img src={image} alt={name} className={styles.productImage} />
