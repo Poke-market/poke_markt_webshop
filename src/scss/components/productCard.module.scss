@@ -7,7 +7,7 @@
   display: flex;
   flex-direction: column;
   font-family: $font-family;
-  max-width: 285px;
+  max-width: 28.5rem;
   position: relative;
 
   @include responsive(md) {
@@ -36,7 +36,7 @@
     }
     > a {
       background: white;
-      color: rgb(62, 62, 236);
+      color: $basic-blue;
       padding: 1rem 4rem;
       &:hover {
         background: rgba(255, 255, 255, 0.641);
