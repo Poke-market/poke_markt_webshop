@@ -1,4 +1,5 @@
 @import "../partials/_variables.scss";
+@import "../partials/_mixins.scss"; // Zorg ervoor dat je mixins worden ingeladen
 
 .filterSortBar {
   background-color: $basic-blue;
@@ -73,6 +74,7 @@
     outline: none;
     color: $grey;
   }
+
   #productsPerPage {
     width: 5.5rem;
   }
@@ -80,8 +82,21 @@
   #sort {
     width: 18.8rem;
   }
+
   fieldset input:focus,
   fieldset select:focus {
     border-color: $basic-blue;
   }
-}
+
+// RESPONSIVE
+@include responsive(md) {
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem; // Zorgt voor ruimte tussen de spans
+  padding: 1.5rem 4rem;
+
+  span {
+    width: 100%;
+    justify-content: center; // Centreer de content
+  }
+}}
