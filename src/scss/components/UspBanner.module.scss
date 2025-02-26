@@ -1,4 +1,5 @@
 @import "../partials/_variables.scss";
+@import "../partials/_mixins.scss"; // Zorg ervoor dat je mixins worden ingeladen
 
 .uspBanner {
   display: flex;
@@ -10,34 +11,83 @@
   padding: 2rem 8.5rem;
   background-color: $basic-blue;
   font-family: $font-family;
+
   .usp {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 1rem;
+
     > div {
       display: flex;
       align-items: center;
       gap: 0.5rem;
+
       i {
         height: 5.5rem;
-        width: 6rem; // Added width for visible rectangle
-        background-color: $red; // Changed from color to background-color for visibility
+        width: 6rem;
+        background-color: $red;
       }
     }
+
     div:nth-child(2) {
       flex-direction: column;
-      align-items: flex-start; // Align text and span to the left
+      align-items: flex-start;
+
       p {
-        font-size: 2.5rem;
+        font-size: 2rem; // Oorspronkelijk 2.5rem, nu 0.5rem kleiner
         font-weight: 500;
         color: $text-color-2;
         margin-bottom: 1rem;
       }
+
       span {
-        font-size: 2rem;
+        font-size: 1.5rem; // Oorspronkelijk 2rem, nu 0.5rem kleiner
         font-weight: 300;
         color: $light-blue;
+      }
+    }
+  }
+
+  /*** 📌 RESPONSIVE STYLES ***/
+  @include responsive(md) {
+    flex-direction: column;
+    height: auto;
+    padding: 2rem 4rem;
+    text-align: center;
+
+    .usp {
+      flex-direction: column;
+      text-align: center;
+      align-items: center;
+      gap: 2rem;
+
+      > div {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      div:nth-child(2) {
+        align-items: center;
+      }
+    }
+  }
+
+  @include responsive(sm) {
+    padding: 1.5rem;
+    
+    .usp {
+      gap: 1.5rem;
+    }
+    
+    div:nth-child(2) {
+      p {
+        font-size: 1.8rem;
+      }
+
+      span {
+        font-size: 1.4rem;
       }
     }
   }
