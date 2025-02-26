@@ -41,6 +41,7 @@
         gap: 3.2rem;
         justify-content: center;
         align-self: stretch;
+        padding: 0 3rem;
 
         @media (max-width: $breakpoint) {
           grid-template-columns: repeat(3, 1fr);

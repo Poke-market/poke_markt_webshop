@@ -34,7 +34,7 @@ export default function Header({
         </li>
       </ul>
       <div className={styles.iconContainer}>
-        <a href="#" aria-label="Profile">
+        <a href="#" aria-label="Profile" className="icont">
           {Icons.mdiAccountAlertOutline}
         </a>
         <a href="#" aria-label="Search">

@@ -48,6 +48,14 @@
 
     .icon {
       height: 1.75rem;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    .icont {
+      color: red;
     }
   }
 

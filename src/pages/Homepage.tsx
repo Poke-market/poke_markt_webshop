@@ -1,6 +1,5 @@
+import Layout from "../components/Layout.tsx";
 import {
-  Header,
-  Footer,
   ShopGrid,
   UsBanner,
   BannerShop,
@@ -9,15 +8,11 @@ import {
 
 export default function Homepage() {
   return (
-    <>
-      <Header />
+    <Layout>
       <BannerShop />
       <FilterSortBar />
-      <main>
-        <ShopGrid />
-      </main>
+      <ShopGrid />
       <UsBanner />
-      <Footer />
-    </>
+    </Layout>
   );
 }
