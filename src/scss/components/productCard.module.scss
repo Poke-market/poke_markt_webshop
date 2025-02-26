@@ -38,8 +38,10 @@
       background: white;
       color: $basic-blue;
       padding: 1rem 4rem;
+      transition: all 0.2s ease-in-out;
       &:hover {
-        background: rgba(255, 255, 255, 0.641);
+        background-color: $basic-blue;
+        color: $text-color;
       }
     }
     div {
@@ -50,9 +52,8 @@
         font-size: 1rem;
         color: white;
         text-decoration: none;
-        transition: opacity 0.2s ease-in-out;
         &:hover {
-          opacity: 0.7;
+          color: $red;
         }
       }
     }
