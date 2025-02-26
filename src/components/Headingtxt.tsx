@@ -1,16 +1,16 @@
+import React from "react";
 import { typographySizes } from "../utils/typographySizes.ts";
 import styles from "../scss/abstracts/typography.module.scss";
 
 type Props = {
-  children?: React.ReactNode;
   className?: string;
   as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span" | "a";
   size?: keyof typeof typographySizes;
   title?: string;
+  children?: React.ReactNode;
 };
 
 const Heading = ({
-  children,
   className = "text",
   size = "textlg",
   as: Component = "p",
@@ -20,9 +20,7 @@ const Heading = ({
     <Component
       className={`${styles.text} ${styles[typographySizes[size]]} ${className}`}
       {...restProps}
-    >
-      {children}
-    </Component>
+    ></Component>
   );
 };
 

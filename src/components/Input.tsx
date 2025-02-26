@@ -1,11 +1,13 @@
 import { forwardRef } from "react";
 import styles from "../scss/components/Input.module.scss";
 
-type Props = React.ComponentProps<"input"> & {
+type Props = {
   className?: string;
+  placeholder?: string;
   variant?: "underline" | "fill";
   size?: "sm" | "md" | "xs";
   shape?: "square" | "round";
+  type?: "text" | "email" | "password";
 };
 
 const Input = forwardRef<HTMLInputElement, Props>(
