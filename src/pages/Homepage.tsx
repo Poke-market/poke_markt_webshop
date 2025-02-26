@@ -1,4 +1,3 @@
-import Layout from "../components/Layout.tsx";
 import {
   ShopGrid,
   UsBanner,
@@ -6,13 +5,15 @@ import {
   FilterSortBar,
 } from "../utils/index.ts";
 
-export default function Homepage() {
+const Homepage = () => {
   return (
-    <Layout>
+    <>
       <BannerShop />
       <FilterSortBar />
       <ShopGrid />
       <UsBanner />
-    </Layout>
+    </>
   );
-}
+};
+
+export default Homepage;

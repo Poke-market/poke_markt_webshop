@@ -1,15 +1,12 @@
 import { Header, Footer } from "../utils/index.ts";
 
-interface LayoutProps {
+type Props = {
   children: React.ReactNode;
-}
-
-const Layout = ({ children }: LayoutProps) => {
+};
+const Layout = ({ children }: Props) => {
   return (
     <>
-      <nav>
-        <Header />
-      </nav>
+      <Header />
       <main>{children}</main>
       <Footer />
     </>

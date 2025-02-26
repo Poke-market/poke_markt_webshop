@@ -1,17 +1,15 @@
 @import "../partials/mixins";
 @import "../partials/variables";
-@import "../partials/_reset";
 
 .text {
   font-family: $font-family;
-  color: $text-color;
+  color: var(--text-color);
 
   &-xs {
     font-size: 1.4rem;
   }
 
   &-lg {
-    color: #000000;
     font-size: 1.6rem;
   }
 

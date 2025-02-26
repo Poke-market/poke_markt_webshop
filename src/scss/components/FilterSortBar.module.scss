@@ -1,7 +1,7 @@
 @import "../partials/_variables.scss";
 
 .filterSortBar {
-  background-color: $basic-blue;
+  background-color: var(--basic-blue);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -24,7 +24,7 @@
     background: none;
     border: none;
     font-size: 3rem;
-    color: $grey;
+    color: var(--grey);
     cursor: pointer;
     transition: transform 0.2s ease;
 
@@ -41,13 +41,13 @@
     display: inline-block;
     width: 1px;
     height: 3.7rem;
-    background-color: $grey;
+    background-color: var(--grey);
     margin: 0 2rem;
   }
 
   p {
     font-size: 1.4rem;
-    color: $text-color;
+    color: var(--text-color);
     margin: 0;
   }
 
@@ -61,7 +61,7 @@
 
   fieldset label {
     font-size: 1.4rem;
-    color: $text-color;
+    color: var(--text-color);
     padding-right: 1.7rem;
   }
 
@@ -71,7 +71,7 @@
     padding: 0.5rem;
     border: none;
     outline: none;
-    color: $grey;
+    color: var(--grey);
   }
   #productsPerPage {
     width: 5.5rem;
@@ -82,6 +82,6 @@
   }
   fieldset input:focus,
   fieldset select:focus {
-    border-color: $basic-blue;
+    border-color: var(--basic-blue);
   }
 }
