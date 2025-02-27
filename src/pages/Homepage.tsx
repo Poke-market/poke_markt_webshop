@@ -11,7 +11,7 @@ const Homepage = () => {
       <BannerShop />
       <FilterSortBar />
       <ShopGrid />
-      <UsBanner />
+      <UspBanner />
     </>
   );
 };
