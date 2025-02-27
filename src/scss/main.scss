@@ -1,5 +1,6 @@
-@import "partials/_reset.scss";
-@import "partials/_variables.scss";
+@use "partials/reset.scss";
+@use "partials/variables.scss" as *;
+
 body {
   background-color: var(--background-color);
 }

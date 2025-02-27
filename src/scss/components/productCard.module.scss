@@ -1,6 +1,5 @@
-@import "../partials/_variables.scss";
-@import "../partials/_reset";
-@import "../partials/_mixins";
+@use "../partials/variables.scss" as *;
+@use "../partials/mixins" as *;
 
 .productContainer {
   display: flex;

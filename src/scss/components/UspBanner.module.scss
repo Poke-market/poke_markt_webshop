@@ -1,4 +1,4 @@
-@import "../partials/_variables.scss";
+@use "../partials/variables.scss" as *;
 
 .uspBanner {
   display: flex;
