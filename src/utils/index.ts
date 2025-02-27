@@ -10,10 +10,11 @@ export { default as Input } from "../components/Input.tsx";
 export { default as ShopGrid } from "../components/Shopgrid.tsx";
 export { default as Button } from "../components/Button.tsx";
 export { default as LoadingSkeleton } from "../components/LoadingSkeleton.tsx";
-export { default as UsBanner } from "../components/UspBanner.tsx";
+export { default as UspBanner } from "../components/UspBanner.tsx";
 export { default as BannerShop } from "../components/BannerShop.tsx";
 export { default as FilterSortBar } from "../components/FilterSortBar.tsx";
 export { default as Pagination } from "../components/Pagination.tsx";
+export { default as Icons } from "./Icons";
 
 // I think putting the links here is a good idea, it makes it easier to manage and update as needed
 // Header links
