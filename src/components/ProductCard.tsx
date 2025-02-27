@@ -53,11 +53,11 @@ export default function ProductCard({
       {...restProps}
     >
       <div className={styles.overlay}>
-        <a href="#">Add to cart</a>
-        <div>
-          <a href="#">Share</a>
-          <a href="#">Compare</a>
-          <a href="#">Like</a>
+        <button>Add to cart</button>
+        <div className={styles.overlayButtons}>
+          <button>Share</button>
+          <button>Compare</button>
+          <button>Like</button>
         </div>
       </div>
       <div className={styles.imageWrapper}>
