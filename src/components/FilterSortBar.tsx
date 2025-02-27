@@ -1,12 +1,11 @@
 import styles from "../scss/components/FilterSortBar.module.css";
+import Icons from "../utils/Icons";
 
 const FilterSortBar = () => {
   return (
     <div className={styles.filterSortBar}>
       <span>
-        <button className={styles.filter}>
-          <i>⪋</i>
-        </button>
+        <i className={styles.filterIcon}>{Icons.RxMixerHorizontal}</i>
         <p>Filter</p>
         <button className={styles.gridView}>
           <i>⌗</i>
