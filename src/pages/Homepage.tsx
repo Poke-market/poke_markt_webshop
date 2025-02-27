@@ -1,6 +1,6 @@
 import {
   ShopGrid,
-  UsBanner,
+  UspBanner,
   BannerShop,
   FilterSortBar,
 } from "../utils/index.ts";
@@ -11,7 +11,7 @@ const Homepage = () => {
       <BannerShop />
       <FilterSortBar />
       <ShopGrid />
-      <UsBanner />
+      <UspBanner />
     </>
   );
 };

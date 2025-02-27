@@ -1,4 +1,4 @@
-import { Img, Heading } from "../utils";
+import { Img, Heading, Icons } from "../utils";
 import styles from "../scss/components/ProductCard.module.scss";
 
 export type Props = {
@@ -52,6 +52,20 @@ export default function ProductCard({
       aria-label={`Product: ${name}`}
       {...restProps}
     >
+      <div className={styles.overlay}>
+        <button>Add to cart</button>
+        <div className={styles.overlayButtons}>
+          <button>
+            <span className={styles.icon}>{Icons.IoShareSocial}</span>Share
+          </button>
+          <button>
+            <span className={styles.icon}>{Icons.ArrowRightLeft}</span>Compare
+          </button>
+          <button>
+            <span className={styles.icon}>{Icons.ciHeart}</span>Like
+          </button>
+        </div>
+      </div>
       <div className={styles.imageWrapper}>
         <Img src={image} alt={name} className={styles.productImage} />
         <DiscountBadge discountText={discountText} />

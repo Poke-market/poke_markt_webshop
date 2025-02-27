@@ -24,6 +24,7 @@ import { mdiAccountAlertOutline } from "@mdi/js";
 
 const iconSize = 35;
 const iconStyle = { color: "black" };
+const iconStyleWhite = { color: "white" };
 
 const iconComponents = {
   BsViewList,
@@ -67,5 +68,10 @@ Icons.IconifyIcon = (
 Icons.mdiAccountAlertOutline = (
   <Icon path={mdiAccountAlertOutline} size={iconSize / 22} style={iconStyle} />
 );
+Icons.IoShareSocial = <IoShareSocial size={iconSize} style={iconStyleWhite} />;
+Icons.ArrowRightLeft = (
+  <ArrowRightLeft size={iconSize} style={iconStyleWhite} />
+);
+Icons.ciHeart = <CiHeart size={iconSize} style={iconStyleWhite} />;
 
 export default Icons;
