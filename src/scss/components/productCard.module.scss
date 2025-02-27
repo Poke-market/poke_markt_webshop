@@ -44,9 +44,11 @@
       gap: 1.5rem;
       margin-top: 1.5rem;
       button {
+        display: flex;
+        justify-content: center;
         background: none;
         color: var(--white);
-        padding: 0.5rem 1rem;
+        padding: 0.5rem 0.5rem;
         border: none;
         font-size: 1.2rem;
         cursor: pointer;
@@ -171,4 +173,11 @@
   border: none;
   font-size: 1rem;
   cursor: pointer;
+}
+
+.overlayButtons button svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  color: var(--basic-blue);
+  margin-right: 0.5rem;
 }
