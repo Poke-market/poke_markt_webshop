@@ -15,7 +15,9 @@ const FilterSortBar = () => {
           <i>📋</i>
         </button>
         <span className={styles.separator}></span>
-        <p>Showing 1-16 of 32 results</p>
+        <span>
+          <p>Showing 1-16 of 32 results</p>
+        </span>
       </span>
       <span>
         <fieldset>
