@@ -1,9 +1,7 @@
-$text-color: #000000;
-$basic-blue: #3a76cf;
-$grey: #ccc;
+@import "../partials/_variables.scss";
 
 .filterSortBar {
-  background-color: $basic-blue;
+  background-color: var(--basic-blue);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -11,11 +9,13 @@ $grey: #ccc;
   padding: 2rem 8.5rem;
   font-size: 1.6rem;
   max-height: 10rem;
+  font-family: $font-family;
 
   span {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 1rem;
   }
 
   .filter,
@@ -24,7 +24,7 @@ $grey: #ccc;
     background: none;
     border: none;
     font-size: 3rem;
-    color: $grey;
+    color: var(--grey);
     cursor: pointer;
     transition: transform 0.2s ease;
 
@@ -41,13 +41,13 @@ $grey: #ccc;
     display: inline-block;
     width: 1px;
     height: 3.7rem;
-    background-color: $grey;
+    background-color: var(--grey);
     margin: 0 2rem;
   }
 
   p {
     font-size: 1.4rem;
-    color: $text-color;
+    color: var(--text-color);
     margin: 0;
   }
 
@@ -61,7 +61,7 @@ $grey: #ccc;
 
   fieldset label {
     font-size: 1.4rem;
-    color: $text-color;
+    color: var(--text-color);
     padding-right: 1.7rem;
   }
 
@@ -71,7 +71,7 @@ $grey: #ccc;
     padding: 0.5rem;
     border: none;
     outline: none;
-    color: $grey;
+    color: var(--grey);
   }
   #productsPerPage {
     width: 5.5rem;
@@ -82,6 +82,6 @@ $grey: #ccc;
   }
   fieldset input:focus,
   fieldset select:focus {
-    border-color: $basic-blue;
+    border-color: var(--basic-blue);
   }
 }

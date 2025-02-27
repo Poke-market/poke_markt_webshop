@@ -1,0 +1,76 @@
+@import "../partials/_variables";
+@import "../partials/_mixins";
+@import "../abstracts/typography.module";
+
+.header {
+  font-weight: $font-weight-medium;
+  padding: 2rem 6rem;
+  display: flex;
+  background-color: #ffffff;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+
+  @media (max-width: $breakpoint) {
+    padding: 2rem;
+  }
+
+  .headerLogo {
+    height: 5rem;
+    width: 11.5rem;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .navList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7.4rem;
+    list-style: none;
+
+    @media (max-width: $breakpoint) {
+      gap: 2.5rem;
+    }
+  }
+  .active {
+    font-weight: bold !important;
+  }
+
+  .iconContainer {
+    margin-right: 2.88rem;
+    width: 15%;
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+
+    .icon {
+      height: 1.75rem;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    .icont {
+      color: red;
+    }
+  }
+
+  @include responsive(md) {
+    flex-direction: column;
+    padding: 2rem;
+
+    .navList {
+      gap: 2rem;
+    }
+
+    .iconContainer {
+      margin-right: 0;
+      width: 100%;
+    }
+  }
+
+  @include responsive(sm) {
+    padding: 2rem;
+  }
+}

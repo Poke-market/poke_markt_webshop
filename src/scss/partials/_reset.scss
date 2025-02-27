@@ -8,13 +8,25 @@
 *::after,
 *::before {
   box-sizing: border-box;
+
+  body {
+    margin: 0;
+    padding: 0;
+  }
 }
 
-a {
-  text-decoration: none;
-  color: black;
+input {
+  background-color: transparent;
+  width: 100%;
 }
 
-img {
-  display: block;
+input:focus {
+  outline: none;
+}
+
+ul {
+  margin: 0;
+  margin-inline: unset !important;
+  padding: 0;
+  list-style: none;
 }
