@@ -3,8 +3,8 @@ name: Create Vercel preview URL
 on:
   pull_request:
     branches:
-      - main
-      - development
+      - experiment/092-deploy-to-vercel-main
+      - experiment/092-deploy-to-vercel-dev
 
 jobs:
   build_and_deploy:

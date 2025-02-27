@@ -3,7 +3,7 @@ name: Deploy to Vercel
 on:
   push:
     branches:
-      - main
+      - experiment/092-deploy-to-vercel-main
 
 jobs:
   build_and_deploy:
