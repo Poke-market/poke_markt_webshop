@@ -1,4 +1,5 @@
-import { Img, Heading, Icons } from "../utils";
+import { Img, Heading, Button } from "../utils";
+import Icons from "../utils/Icons";
 import styles from "../scss/components/ProductCard.module.scss";
 
 export type Props = {
@@ -53,17 +54,17 @@ export default function ProductCard({
       {...restProps}
     >
       <div className={styles.overlay}>
-        <button>Add to cart</button>
+        <Button>Add to cart</Button>
         <div className={styles.overlayButtons}>
-          <button className={styles.overlayButton}>
+          <Button className={styles.overlayButton}>
             <span className={styles.icon}>{Icons.IoShareSocial}</span>Share
-          </button>
-          <button className={styles.overlayButton}>
+          </Button>
+          <Button className={styles.overlayButton}>
             <span className={styles.icon}>{Icons.ArrowRightLeft}</span>Compare
-          </button>
-          <button className={styles.overlayButton}>
+          </Button>
+          <Button className={styles.overlayButton}>
             <span className={styles.icon}>{Icons.ciHeart}</span>Like
-          </button>
+          </Button>
         </div>
       </div>
       <div className={styles.imageWrapper}>
