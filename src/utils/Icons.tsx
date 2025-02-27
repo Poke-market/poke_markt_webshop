@@ -21,6 +21,7 @@ import {
 } from "akar-icons";
 import Icon from "@mdi/react";
 import { mdiAccountAlertOutline } from "@mdi/js";
+import { RxMixerHorizontal } from "react-icons/rx";
 
 const iconSize = 35;
 const iconStyle = { color: "black" };
@@ -47,6 +48,7 @@ const iconComponents = {
   XFill,
   LinkedinBoxFill,
   ShoppingBag,
+  RxMixerHorizontal,
 };
 
 const Icons = Object.fromEntries(
