@@ -19,7 +19,7 @@ export { default as Pagination } from "../components/Pagination.tsx";
 // Header links
 export const headerLinks = {
   navLinks: [
-    { path: "/", label: "Home" },
+    { path: "/", label: "Home EXPERIMENT" },
     { path: "/shop", label: "Shop" },
     { path: "/about", label: "About" },
     { path: "/contact", label: "Contact" },
