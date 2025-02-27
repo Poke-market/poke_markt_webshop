@@ -42,14 +42,16 @@
       display: flex;
       gap: 1.5rem;
       margin-top: 1.5rem;
-      button {
+      .overlayButton {
         display: flex;
         justify-content: center;
+        gap: 0.5rem;
         background: none;
         color: var(--white);
         padding: 0.5rem 0.5rem;
         border: none;
         font-size: 1.2rem;
+        font-weight: $font-weight-semi-bold;
         cursor: pointer;
         transition:
           background-color 0.2s ease,
