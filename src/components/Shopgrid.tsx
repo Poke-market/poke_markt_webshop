@@ -1,5 +1,5 @@
 import { Suspense, useState, useEffect } from "react";
-import styles from "../scss/components/shopGrid.module.scss";
+import styles from "../scss/components/ShopGrid.module.scss";
 import { LoadingSkeleton, ProductCard, Pagination } from "../utils";
 import { transformData } from "../utils/transformData";
 import { ApiResponse } from "../types/types";

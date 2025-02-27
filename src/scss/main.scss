@@ -1,8 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
-@import "partials/_reset.scss";
-@import "partials/_variables.scss";
+@use "partials/reset.scss";
+@use "partials/variables.scss" as *;
+
 body {
-  background-color: rgba(128, 128, 128, 0.16);
+  background-color: var(--background-color);
 }
 
 a,
@@ -12,9 +12,9 @@ h1 {
   color: inherit;
   transition: color 0.3s ease;
   &:hover {
-    color: #ff0000;
+    color: var(--red);
     * {
-      color: #ff0000;
+      color: var(--red);
       transition: color 0.3s ease;
     }
   }
