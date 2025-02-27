@@ -7,7 +7,7 @@ type Props = {
   className?: string;
 };
 
-export default function BannerShop({ title = "Shop" }: Props) {
+export default function BannerShop({ title = "Shop EXPERIMENT" }: Props) {
   return (
     <div className={styles.bannerShop}>
       <img
