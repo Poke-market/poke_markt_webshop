@@ -55,13 +55,13 @@ export default function ProductCard({
       <div className={styles.overlay}>
         <button>Add to cart</button>
         <div className={styles.overlayButtons}>
-          <button>
+          <button className={styles.overlayButton}>
             <span className={styles.icon}>{Icons.IoShareSocial}</span>Share
           </button>
-          <button>
+          <button className={styles.overlayButton}>
             <span className={styles.icon}>{Icons.ArrowRightLeft}</span>Compare
           </button>
-          <button>
+          <button className={styles.overlayButton}>
             <span className={styles.icon}>{Icons.ciHeart}</span>Like
           </button>
         </div>

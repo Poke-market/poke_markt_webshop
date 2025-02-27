@@ -22,6 +22,7 @@ import {
 import Icon from "@mdi/react";
 import { mdiAccountAlertOutline } from "@mdi/js";
 
+const iconSizeSmall = 10;
 const iconSize = 35;
 const iconStyle = { color: "black" };
 const iconStyleWhite = { color: "white" };
@@ -68,10 +69,12 @@ Icons.IconifyIcon = (
 Icons.mdiAccountAlertOutline = (
   <Icon path={mdiAccountAlertOutline} size={iconSize / 22} style={iconStyle} />
 );
-Icons.IoShareSocial = <IoShareSocial size={iconSize} style={iconStyleWhite} />;
-Icons.ArrowRightLeft = (
-  <ArrowRightLeft size={iconSize} style={iconStyleWhite} />
+Icons.IoShareSocial = (
+  <IoShareSocial size={iconSizeSmall} style={iconStyleWhite} />
 );
-Icons.ciHeart = <CiHeart size={iconSize} style={iconStyleWhite} />;
+Icons.ArrowRightLeft = (
+  <ArrowRightLeft size={iconSizeSmall} style={iconStyleWhite} />
+);
+Icons.ciHeart = <CiHeart size={iconSizeSmall} style={iconStyleWhite} />;
 
 export default Icons;
