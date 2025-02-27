@@ -1,6 +1,4 @@
 @import "../partials/variables";
-@import "../partials/_reset";
-@import "Pagination.module.scss";
 
 .shopContainer {
   .flexContainer {
@@ -15,10 +13,6 @@
     .container {
       position: relative;
       margin-top: -760px;
-      @media (max-width: $breakpoint-md) {
-        padding-left: 2rem;
-        padding-right: 2rem;
-      }
     }
 
     .contentWrapper {
@@ -26,9 +20,11 @@
       flex-direction: column;
       align-items: center;
       gap: 7rem;
+      margin: 5rem 0;
 
       @media (max-width: $breakpoint-md) {
         gap: 5.2rem;
+        margin: 3rem 0;
       }
 
       @media (max-width: $breakpoint-sm) {
@@ -38,9 +34,10 @@
       .gridContainer {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: 3.2rem;
+        gap: 3.5rem;
         justify-content: center;
         align-self: stretch;
+        padding: 0 5rem;
 
         @media (max-width: $breakpoint) {
           grid-template-columns: repeat(3, 1fr);
@@ -48,6 +45,7 @@
 
         @media (max-width: $breakpoint_md) {
           grid-template-columns: repeat(2, 1fr);
+          padding: 0;
         }
 
         @media (max-width: $breakpoint-sm) {

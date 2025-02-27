@@ -1,52 +1,48 @@
-import Heading from "./Headingtxt.tsx";
-import Icons from "../utils/Icons.tsx";
-import { HeadFootProps } from "../types/types";
+import { headerLinks, Heading } from "../utils";
+import { NavLink } from "react-router-dom";
 import PokeLogo from "../assets/poke.png";
 import styles from "../scss/components/Header.module.scss";
+import clsx from "clsx";
 
-export default function Header({
-  className = "header",
-  ...props
-}: HeadFootProps) {
+type Props = {
+  className?: string;
+};
+
+const Header = ({ className }: Props) => {
   return (
-    <header className={`${styles.header} ${className}`} {...props}>
-      <img src={PokeLogo} alt="Headerlogo" className={styles.headerLogo} />
+    <nav
+      className={clsx(styles.header, className)}
+      aria-label="Main Navigation"
+    >
+      <NavLink to="/" className={styles.logoLink}>
+        <img src={PokeLogo} alt="Pokemon Logo" className={styles.headerLogo} />
+      </NavLink>
       <ul className={styles.navList}>
-        <li>
-          <a href="#" target={"_blank"}>
-            <Heading>Home</Heading>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <Heading>Shop</Heading>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <Heading>About</Heading>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <Heading>Contact</Heading>
-          </a>
-        </li>
+        {headerLinks.navLinks.map((item) => (
+          <li key={item.path}>
+            <NavLink
+              to={item.path}
+              className={({ isActive }) => clsx(isActive && styles.active)}
+            >
+              <Heading>{item.label}</Heading>
+            </NavLink>
+          </li>
+        ))}
       </ul>
       <div className={styles.iconContainer}>
-        <a href="#" aria-label="Profile">
-          {Icons.mdiAccountAlertOutline}
-        </a>
-        <a href="#" aria-label="Search">
-          {Icons.Search}
-        </a>
-        <a href="#" aria-label="Wishlist">
-          {Icons.Heart}
-        </a>
-        <a href="#" aria-label="Shopping Cart">
-          {Icons.ShoppingBag}
-        </a>
+        {headerLinks.iconLinks.map((link) => (
+          <NavLink
+            key={link.path}
+            to={link.path}
+            aria-label={link.label}
+            className={({ isActive }) => clsx(isActive && styles.active)}
+          >
+            {link.icon}
+          </NavLink>
+        ))}
       </div>
-    </header>
+    </nav>
   );
-}
+};
+
+export default Header;

@@ -1,29 +1,22 @@
-import { ProductProps } from "../types/types.ts";
+import { Props } from "../components/ProductCard.tsx";
 
-interface ProductData {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-  price: number;
-  discount?: number;
-}
-
-// product data from the API has to include a discount value to be able to give a discount for the product
-export const transformData = (data: ProductData[]): ProductProps[] => {
-  return data.map((product) => {
-    const discount = product.discount ?? 20;
-    const originalPrice = product.price + (product.price * discount) / 100;
-    return {
-      id: product.id,
-      name: product.title,
-      title: product.title,
-      description: product.description,
-      image: product.image,
-      currentPrice: `€${product.price}`,
-      originalPrice: `€${originalPrice.toFixed(2)}`,
-      discountText: `-${discount}%`,
-      price: product.price,
-    };
-  });
+export const transformData = (
+  items: {
+    _id: string;
+    name: string;
+    description: string;
+    photoUrl: string;
+    price: number;
+  }[],
+): Props[] => {
+  return items.map((item) => ({
+    id: item._id,
+    name: item.name,
+    description: item.description,
+    image: item.photoUrl,
+    price: item.price,
+    currentPrice: `$${item.price}`,
+    originalPrice: `$${item.price + 300}`,
+    discountText: "30% ",
+  }));
 };

@@ -1,15 +1,36 @@
 import { Img, Heading } from "../utils";
 import styles from "../scss/components/ProductCard.module.scss";
-import { ProductProps } from "../types/types.ts";
+
+export type Props = {
+  id: string;
+  name: string;
+  description: string;
+  image: string;
+  price: number;
+  currentPrice: string;
+  originalPrice: string;
+  discountText?: string;
+  className?: string;
+  onClick?: () => void;
+};
 
 function truncateText(text: string, maxLength: number): string {
-  if (text.length <= maxLength) {
-    return text;
-  }
-  return text.substring(0, maxLength) + "...";
+  return text.length <= maxLength ? text : `${text.substring(0, maxLength)}...`;
 }
 
-export default function ProductDisplay({
+function DiscountBadge({ discountText }: { discountText?: string }) {
+  if (!discountText) return null; // renders if we only have a discount
+
+  return (
+    <div className={styles.absoluteCenter}>
+      <Heading as="p" className={styles.discountBadge}>
+        {discountText}
+      </Heading>
+    </div>
+  );
+}
+
+export default function ProductCard({
   id,
   name = "Product Name",
   description = "Product Description",
@@ -19,13 +40,16 @@ export default function ProductDisplay({
   discountText = "",
   className = "",
   ...restProps
-}: ProductProps) {
+}: Props) {
   const truncatedDescription = truncateText(description, 20);
   const truncatedName = truncateText(name, 10);
+
   return (
     <div
-      id={id.toString()}
+      id={id}
       className={`${className} ${styles.productContainer}`}
+      role="article"
+      aria-label={`Product: ${name}`}
       {...restProps}
     >
       <div className={styles.overlay}>
@@ -50,6 +74,7 @@ export default function ProductDisplay({
             {truncatedDescription}
           </Heading>
         </div>
+
         <div className={styles.priceContainer}>
           <Heading as="h5" size="headings" className={styles.currentPrice}>
             {currentPrice}
@@ -59,16 +84,6 @@ export default function ProductDisplay({
           </Heading>
         </div>
       </div>
-    </div>
-  );
-}
-
-function DiscountBadge({ discountText }: { discountText: string }) {
-  return (
-    <div className={styles.absoluteCenter}>
-      <Heading as="p" className={styles.discountBadge}>
-        {discountText}
-      </Heading>
     </div>
   );
 }

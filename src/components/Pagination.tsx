@@ -1,21 +1,48 @@
-import styles from "../scss/components/Pagination.module.css";
+import Button from "./Button";
+import styles from "../scss/components/Pagination.module.scss";
 
-const Pagination = () => {
+interface PaginationProps {
+  currentPage: number;
+  totalPages: number;
+  onPageChange: (pageNumber: number) => void;
+}
+
+const Pagination = ({
+  currentPage,
+  totalPages,
+  onPageChange,
+}: PaginationProps) => {
   return (
-    <div className={styles.pagination}>
-      <a href="#" className={styles.page}>
-        1
-      </a>
-      <a href="#" className={styles.page}>
-        2
-      </a>
-      <a href="#" className={styles.page}>
-        3
-      </a>
-      <a href="#" className={styles.next}>
-        Next
-      </a>
+    <div className={styles.buttonContainer}>
+      {currentPage > 1 && (
+        <Button
+          className={`${styles.button} ${styles.next}`}
+          onClick={() => onPageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+        >
+          Previous
+        </Button>
+      )}
+      {Array.from({ length: totalPages }, (_, index) => (
+        <Button
+          key={`page-${index + 1}`}
+          className={`${styles.button} ${currentPage === index + 1 ? styles.active : ""}`}
+          onClick={() => onPageChange(index + 1)}
+        >
+          {index + 1}
+        </Button>
+      ))}
+      {currentPage < totalPages && (
+        <Button
+          className={`${styles.button} ${styles.next}`}
+          onClick={() => onPageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+        >
+          Next
+        </Button>
+      )}
     </div>
   );
 };
+
 export default Pagination;

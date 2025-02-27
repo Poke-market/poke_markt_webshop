@@ -1,9 +1,20 @@
-import { ButtonProps } from "../types/types.ts";
 import styles from "../scss/components/Pagination.module.scss";
 
-const Button = ({ className = "", children, ...props }: ButtonProps) => {
+export type Props = {
+  color?: string;
+  size?: string;
+  variant?: string;
+  width?: string;
+  height?: string;
+  className?: string;
+  disabled?: boolean;
+  children?: React.ReactNode;
+  onClick?: () => void;
+};
+
+const Button = ({ children, ...props }: Props) => {
   return (
-    <button className={`${styles.button} ${className}`} {...props}>
+    <button className={styles.button} {...props}>
       {children}
     </button>
   );

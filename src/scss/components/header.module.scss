@@ -1,7 +1,6 @@
 @import "../partials/_variables";
 @import "../partials/_mixins";
 @import "../abstracts/typography.module";
-@import "../partials/_reset";
 
 .header {
   font-weight: $font-weight-medium;
@@ -29,14 +28,12 @@
     gap: 7.4rem;
     list-style: none;
 
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
     @media (max-width: $breakpoint) {
       gap: 2.5rem;
     }
+  }
+  .active {
+    font-weight: bold !important;
   }
 
   .iconContainer {
@@ -48,6 +45,14 @@
 
     .icon {
       height: 1.75rem;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    .icont {
+      color: red;
     }
   }
 
