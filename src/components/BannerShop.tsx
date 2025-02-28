@@ -1,21 +1,32 @@
 import styles from "../scss/components/BannerShop.module.css";
-import Headingtxt from "./Headingtxt.tsx";
+import Heading from "./Headingtxt";
+import { Link } from "react-router-dom";
 
-const BannerShop = () => {
+type Props = {
+  title?: string;
+  className?: string;
+};
+
+export default function BannerShop({ title = "Shop" }: Props) {
   return (
     <div className={styles.bannerShop}>
       <img
         src="/pokemart.jpeg"
         alt="Shop Banner"
         className={styles.bannerImage}
-      ></img>
-      <Headingtxt className={styles.heading}>Shop</Headingtxt>
+      />
+      <Heading as="h1" className={styles.heading}>
+        {title}
+      </Heading>
       <div className={styles.breadcrumb}>
-        <span>Home</span>
-        <span> ﹥ </span>
-        <span>Shop</span>
+        <Heading as="span">
+          <Link to="/">Home</Link>
+        </Heading>
+        <Heading as="span"> ﹥ </Heading>
+        <Heading as="span">
+          <Link to="/">{title}</Link>
+        </Heading>
       </div>
     </div>
   );
-};
-export default BannerShop;
+}

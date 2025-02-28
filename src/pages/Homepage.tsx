@@ -1,23 +1,19 @@
 import {
-  Header,
-  Footer,
   ShopGrid,
-  UsBanner,
+  UspBanner,
   BannerShop,
   FilterSortBar,
 } from "../utils/index.ts";
 
-export default function Homepage() {
+const Homepage = () => {
   return (
     <>
-      <Header />
       <BannerShop />
       <FilterSortBar />
-      <main>
-        <ShopGrid />
-      </main>
-      <UsBanner />
-      <Footer />
+      <ShopGrid />
+      <UspBanner />
     </>
   );
-}
+};
+
+export default Homepage;

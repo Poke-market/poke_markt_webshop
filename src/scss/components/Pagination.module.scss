@@ -1,4 +1,4 @@
-@import "../partials/variables";
+@use "../partials/variables" as *;
 
 .buttonContainer {
   display: flex;
@@ -14,10 +14,10 @@
   .button {
     width: 6rem;
     height: 6rem;
-    color: $text-color;
+    color: var(--text-color);
     border-radius: 1rem;
     transition: 0.3s ease;
-    background-color: $light-blue;
+    background-color: var(--light-blue);
     border: none;
     font-weight: $font-weight-medium;
     cursor: pointer;
@@ -28,13 +28,13 @@
     }
 
     &.active {
-      background-color: $basic-blue;
-      color: $white;
+      background-color: var(--basic-blue);
+      color: var(--white);
     }
 
     &:hover {
-      background-color: $basic-blue;
-      color: $white;
+      background-color: var(--basic-blue);
+      color: var(--white);
     }
 
     &.next {

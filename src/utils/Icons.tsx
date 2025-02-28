@@ -24,8 +24,10 @@ import { mdiAccountAlertOutline } from "@mdi/js";
 import { RxMixerHorizontal } from "react-icons/rx";
 import { PiCirclesFourFill } from "react-icons/pi";
 
+const iconSizeSmall = 10;
 const iconSize = 35;
 const iconStyle = { color: "black" };
+const iconStyleWhite = { color: "white" };
 
 const iconComponents = {
   BsViewList,
@@ -73,6 +75,13 @@ Icons.IconifyIcon = ({ size = iconSize, style = iconStyle }) => (
 Icons.mdiAccountAlertOutline = ({ size = iconSize, style = iconStyle }) => (
   <Icon path={mdiAccountAlertOutline} size={size / 22} style={style} />
 );
+Icons.IoShareSocial = (
+  <IoShareSocial size={iconSizeSmall} style={iconStyleWhite} />
+);
+Icons.ArrowRightLeft = (
+  <ArrowRightLeft size={iconSizeSmall} style={iconStyleWhite} />
+);
+Icons.ciHeart = <CiHeart size={iconSizeSmall} style={iconStyleWhite} />;
 
 const filterSortBarIconSize = 15;
 

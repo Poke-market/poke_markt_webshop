@@ -42,3 +42,4 @@ pnpmfile.cson
 
 # generated css files
 **/scss/**/*.css
+.vercel

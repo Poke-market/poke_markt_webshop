@@ -1,15 +1,22 @@
 import { forwardRef } from "react";
 import styles from "../scss/components/Input.module.scss";
-import type { InputProps } from "../types/types";
 
-const Input = forwardRef<HTMLInputElement, InputProps>(
+type Props = {
+  className?: string;
+  placeholder?: string;
+  variant?: "underline" | "fill";
+  size?: "sm" | "md" | "xs";
+  shape?: "square" | "round";
+  type?: "text" | "email" | "password";
+};
+
+const Input = forwardRef<HTMLInputElement, Props>(
   (
     {
       className = "",
       variant = "fill",
       size = "xs",
       shape = "square",
-      color = "",
       ...props
     },
     ref,
@@ -22,7 +29,6 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       <input
         ref={ref}
         className={`${styles.input} ${variantClass} ${sizeClass} ${shapeClass} ${className}`}
-        style={{ color }}
         {...props}
       />
     );

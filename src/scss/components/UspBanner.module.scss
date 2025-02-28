@@ -1,5 +1,6 @@
-@import "../partials/_variables.scss";
-@import "../partials/_mixins.scss"; // Zorg ervoor dat je mixins worden ingeladen
+@use "../partials/variables.scss" as *;
+@use "../partials/mixins.scss" as *;
+
 
 .uspBanner {
   display: flex;
@@ -9,7 +10,7 @@
   width: 100vw;
   height: 27.1rem;
   padding: 2rem 8.5rem;
-  background-color: $basic-blue;
+  background-color: var(--basic-blue);
   font-family: $font-family;
 
   .usp {
@@ -26,30 +27,29 @@
       i {
         height: 5.5rem;
         width: 6rem;
-        background-color: $red;
+        background-color: var(--red);
       }
     }
 
     div:nth-child(2) {
       flex-direction: column;
       align-items: flex-start;
-
       p {
         font-size: 2rem; // Oorspronkelijk 2.5rem, nu 0.5rem kleiner
         font-weight: 500;
-        color: $text-color-2;
+        color: var(--text-color-2);
         margin-bottom: 1rem;
       }
 
       span {
         font-size: 1.5rem; // Oorspronkelijk 2rem, nu 0.5rem kleiner
         font-weight: 300;
-        color: $light-blue;
+        color: var(--light-blue);
       }
     }
   }
 
-  /*** 📌 RESPONSIVE STYLES ***/
+  /*** RESPONSIVE STYLES ***/
   @include responsive(md) {
     flex-direction: column;
     height: auto;

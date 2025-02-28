@@ -1,4 +1,4 @@
-@import "../partials/_variables.scss";
+@use "../partials/variables.scss" as *;
 
 .bannerShop {
   display: flex;
@@ -20,7 +20,7 @@
   }
   .heading {
     font-size: 4.8rem;
-    color: $text-color;
+    color: var(--text-color);
     position: relative;
     z-index: 1;
     font-weight: 500;
@@ -40,7 +40,7 @@
     }
     span {
       font-size: 1.6rem;
-      color: $text-color;
+      color: var(--text-color);
     }
   }
 }
