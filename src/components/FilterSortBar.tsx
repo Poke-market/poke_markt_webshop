@@ -1,5 +1,5 @@
 import styles from "../scss/components/FilterSortBar.module.css";
-import Icons from "../utils/Icons";
+import { Icons } from "../utils/Icons";
 import Button from "./Button";
 
 const FilterSortBar = () => {
@@ -7,14 +7,14 @@ const FilterSortBar = () => {
     <div className={styles.filterSortBar}>
       <span>
         <Button className={styles.filterIcon}>
-          <Icons.RxMixerHorizontal />
+          <Icons.MixerHorizontal />
         </Button>
         <p>Filter</p>
         <Button className={styles.gridView}>
-          <Icons.PiCirclesFourFill />
+          <Icons.GridIcon />
         </Button>
         <Button className={styles.listView}>
-          <Icons.BsViewList />
+          <Icons.ViewList />
         </Button>
         <span className={styles.separator}></span>
         <span>
