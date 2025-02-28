@@ -37,4 +37,5 @@ export const Icons = {
   ArrowRight: createIcon("bi:arrow-right"),
   Arrowupsmall: createIcon("ri:arrow-up-s-line"),
   Arrowdownsmall: createIcon("ri:arrow-down-s-line"),
+  Arrowrightsmall: createIcon("weui:arrow-filled"),
 };
