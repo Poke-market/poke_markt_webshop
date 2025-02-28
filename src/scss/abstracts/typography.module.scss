@@ -1,5 +1,5 @@
-@import "../partials/mixins";
-@import "../partials/variables";
+@use "../partials/mixins" as *;
+@use "../partials/variables" as *;
 
 .text {
   font-family: $font-family;

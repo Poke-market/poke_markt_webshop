@@ -1,4 +1,4 @@
-import styles from "../scss/components/loading.module.css";
+import styles from "../scss/components/Loading.module.css";
 const LoadingSkeleton = () => {
   return (
     <div className={styles.shopContainer}>

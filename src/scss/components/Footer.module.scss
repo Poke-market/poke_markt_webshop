@@ -1,6 +1,5 @@
-@import "../abstracts/typography.module";
-@import "../partials/variables";
-@import "../partials/_reset";
+@use "../abstracts/typography.module" as *;
+@use "../partials/variables" as *;
 
 .footer {
   font-family: $font-family;
