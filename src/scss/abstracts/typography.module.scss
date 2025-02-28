@@ -1,0 +1,61 @@
+@use "../partials/mixins" as *;
+@use "../partials/variables" as *;
+
+.text {
+  font-family: $font-family;
+  color: var(--text-color);
+
+  &-xs {
+    font-size: 1.4rem;
+  }
+
+  &-lg {
+    font-size: 1.6rem;
+  }
+
+  &-md {
+    font-size: 3.2rem;
+  }
+
+  &-xl {
+    font-size: 2rem;
+  }
+
+  &-2xl {
+  }
+
+  &-3xl {
+  }
+
+  &-4xl {
+  }
+
+  &-5xl {
+  }
+}
+
+.heading {
+  &-xs {
+  }
+
+  &-lg {
+  }
+
+  &-md {
+  }
+
+  &-xl {
+  }
+
+  &-2xl {
+  }
+
+  &-3xl {
+  }
+
+  &-4xl {
+  }
+
+  &-5xl {
+  }
+}

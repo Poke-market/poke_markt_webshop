@@ -1,11 +1,21 @@
-@use "./partials/reset";
-@use "./partials/pallet";
+@use "partials/reset.scss";
+@use "partials/variables.scss" as *;
 
-$font-family-sans-serif: "Roboto", sans-serif;
-
-// testing the scss
 body {
-  font-size: 2rem;
-  font-family: $font-family-sans-serif;
-  color: red;
+  background-color: var(--background-color);
+}
+
+a,
+[role="link"],
+h1 {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease;
+  &:hover {
+    color: var(--red);
+    * {
+      color: var(--red);
+      transition: color 0.3s ease;
+    }
+  }
 }

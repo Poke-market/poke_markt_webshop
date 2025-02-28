@@ -1,0 +1,57 @@
+@use "../partials/variables" as *;
+
+.shopContainer {
+  .flexContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .backgroundBox {
+      height: 776px;
+    }
+
+    .container {
+      position: relative;
+      margin-top: -760px;
+    }
+
+    .contentWrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 7rem;
+      margin: 5rem 0;
+
+      @media (max-width: $breakpoint-md) {
+        gap: 5.2rem;
+        margin: 3rem 0;
+      }
+
+      @media (max-width: $breakpoint-sm) {
+        gap: 3.5rem;
+      }
+
+      .gridContainer {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 3.5rem;
+        justify-content: center;
+        align-self: stretch;
+        padding: 0 5rem;
+
+        @media (max-width: $breakpoint) {
+          grid-template-columns: repeat(3, 1fr);
+        }
+
+        @media (max-width: $breakpoint_md) {
+          grid-template-columns: repeat(2, 1fr);
+          padding: 0;
+        }
+
+        @media (max-width: $breakpoint-sm) {
+          grid-template-columns: repeat(1, 1fr);
+        }
+      }
+    }
+  }
+}

@@ -12,14 +12,21 @@
     "build-ts": "tsc -b",
     "build-vite": "vite build",
     "preview": "vite preview",
+    "type-check": "tsc --noEmit",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "fix": "npm-run-all lint:fix format"
   },
   "dependencies": {
+    "@iconify-icon/react": "^2.3.0",
+    "@mdi/js": "^7.4.47",
+    "clsx": "^2.1.1",
+    "eslint-config-prettier": "^10.0.2",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^7.2.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
@@ -31,7 +38,7 @@
     "eslint-plugin-react-refresh": "^0.4.18",
     "globals": "^15.14.0",
     "npm-run-all": "^4.1.5",
-    "prettier": "^3.5.1",
+    "prettier": "^3.5.2",
     "sass-embedded": "^1.85.0",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.22.0",
