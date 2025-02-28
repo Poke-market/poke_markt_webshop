@@ -53,29 +53,6 @@ export default function ProductCard({
       aria-label={`Product: ${name}`}
       {...restProps}
     >
-      <div className={styles.overlay}>
-        <Button>Add to cart</Button>
-        <div className={styles.overlayButtons}>
-          <Button className={styles.overlayButton}>
-            <span className={styles.icon}>
-              <Icons.Share />
-            </span>
-            Share
-          </Button>
-          <Button className={styles.overlayButton}>
-            <span className={styles.icon}>
-              <Icons.ArrowRightLeft />
-            </span>
-            Compare
-          </Button>
-          <Button className={styles.overlayButton}>
-            <span className={styles.icon}>
-              <Icons.Likeheart />
-            </span>
-            Like
-          </Button>
-        </div>
-      </div>
       <div className={styles.imageWrapper}>
         <Img src={image} alt={name} className={styles.productImage} />
         <DiscountBadge discountText={discountText} />
@@ -98,6 +75,30 @@ export default function ProductCard({
           <Heading as="p" className={styles.originalPrice}>
             {originalPrice}
           </Heading>
+        </div>
+      </div>
+
+      <div className={styles.overlay}>
+        <Button>Add to cart</Button>
+        <div className={styles.overlayButtons}>
+          <Button className={styles.overlayButton}>
+            <span className={styles.icon}>
+              <Icons.Share />
+            </span>
+            Share
+          </Button>
+          <Button className={styles.overlayButton}>
+            <span className={styles.icon}>
+              <Icons.ArrowRightLeft />
+            </span>
+            Compare
+          </Button>
+          <Button className={styles.overlayButton}>
+            <span className={styles.icon}>
+              <Icons.Likeheart />
+            </span>
+            Like
+          </Button>
         </div>
       </div>
     </div>
