@@ -22,6 +22,7 @@ import {
 import Icon from "@mdi/react";
 import { mdiAccountAlertOutline } from "@mdi/js";
 import { RxMixerHorizontal } from "react-icons/rx";
+import { PiCirclesFourFill } from "react-icons/pi";
 
 const iconSize = 35;
 const iconStyle = { color: "black" };
@@ -49,25 +50,38 @@ const iconComponents = {
   LinkedinBoxFill,
   ShoppingBag,
   RxMixerHorizontal,
+  PiCirclesFourFill,
 };
 
 const Icons = Object.fromEntries(
   Object.entries(iconComponents).map(([key, IconComponent]) => [
     key,
-    <IconComponent size={iconSize} style={iconStyle} />,
+    ({ size = iconSize, style = iconStyle }) => (
+      <IconComponent size={size} style={style} />
+    ),
   ]),
 );
 
-Icons.IconifyIcon = (
+Icons.IconifyIcon = ({ size = iconSize, style = iconStyle }) => (
   <IconifyIcon
     icon="mdi:account-alert-outline"
-    style={iconStyle}
-    width={iconSize}
-    height={iconSize}
+    style={style}
+    width={size}
+    height={size}
   />
 );
-Icons.mdiAccountAlertOutline = (
-  <Icon path={mdiAccountAlertOutline} size={iconSize / 22} style={iconStyle} />
+Icons.mdiAccountAlertOutline = ({ size = iconSize, style = iconStyle }) => (
+  <Icon path={mdiAccountAlertOutline} size={size / 22} style={style} />
 );
+
+const filterSortBarIconSize = 15;
+
+const filterSortBarIcons = {
+  RxMixerHorizontal: () => <RxMixerHorizontal size={filterSortBarIconSize} />,
+  PiCirclesFourFill: () => <PiCirclesFourFill size={filterSortBarIconSize} />,
+  BsViewList: () => <BsViewList size={filterSortBarIconSize} />,
+};
+
+Object.assign(Icons, filterSortBarIcons);
 
 export default Icons;

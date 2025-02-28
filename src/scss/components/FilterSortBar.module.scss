@@ -19,13 +19,23 @@
     gap: 1rem;
     width: auto;
     flex-wrap: wrap;
-    .filterIcon {
+    .filterIcon,
+    .gridView,
+    .listView {
       display: flex;
       align-items: center;
-      font-size: 0.5rem;
-      > svg {
-        width: 1.5rem !important;
+      // font-size: 0.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      > i {
+        font-size: 0.2rem;
       }
+    }
+    .filterIcon:hover,
+    .gridView:hover,
+    .listView:hover {
+      color: $red;
     }
   }
 
@@ -38,24 +48,23 @@
     flex-wrap: wrap;
   }
 
-  .filterIcon,
-  .gridView,
-  .listView {
-    background: none;
-    border: none;
-    font-size: 3rem;
-    color: $grey;
-    cursor: pointer;
-    transition: transform 0.2s ease;
+  // .filterIcon,
+  // .gridView,
+  // .listView {
+  //   background: none;
+  //   border: none;
+  //   color: $grey;
+  //   cursor: pointer;
+  //   transition: transform 0.2s ease;
+  //   > svg {
+  //     width: 1rem !important;
+  //     height: 1rem !important;
+  //   }
 
-    &:hover {
-      transform: scale(1.1);
-    }
-
-    i {
-      font-size: 2rem;
-    }
-  }
+  //   &:hover {
+  //     color: $red;
+  //   }
+  // }
 
   .separator {
     display: inline-block;
@@ -188,9 +197,4 @@
       max-width: 18.8rem;
     }
   }
-}
-
-.filterSortBar .filterIcon > svg {
-  width: 1.5rem;
-  height: 1.5rem;
 }

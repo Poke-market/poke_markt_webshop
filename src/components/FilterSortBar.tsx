@@ -1,18 +1,21 @@
 import styles from "../scss/components/FilterSortBar.module.css";
 import Icons from "../utils/Icons";
+import Button from "./Button";
 
 const FilterSortBar = () => {
   return (
     <div className={styles.filterSortBar}>
       <span>
-        <i className={styles.filterIcon}>{Icons.RxMixerHorizontal}</i>
+        <Button className={styles.filterIcon}>
+          <i>{Icons.RxMixerHorizontal({ size: 25 })}</i>
+        </Button>
         <p>Filter</p>
-        <button className={styles.gridView}>
-          <i>⌗</i>
-        </button>
-        <button className={styles.listView}>
-          <i>📋</i>
-        </button>
+        <Button className={styles.gridView}>
+          <i>{Icons.PiCirclesFourFill({ size: 25 })}</i>
+        </Button>
+        <Button className={styles.listView}>
+          <i>{Icons.BsViewList({ size: 25 })}</i>
+        </Button>
         <span className={styles.separator}></span>
         <span>
           <p>Showing 1-16 of 32 results</p>
