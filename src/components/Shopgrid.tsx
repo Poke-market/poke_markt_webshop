@@ -1,4 +1,4 @@
-import { Suspense, useState, useEffect } from "react";
+import { Suspense, useState, useEffect, useRef } from "react";
 import styles from "../scss/components/ShopGrid.module.scss";
 import { LoadingSkeleton, ProductCard, Pagination } from "../utils";
 import { transformData } from "../utils/transformData";
@@ -13,6 +13,7 @@ const ShopGrid = ({ data: initialData = [] }: ShopGridProps) => {
   const [loading, setLoading] = useState(!initialData.length);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const gridRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (initialData.length > 0) return;
@@ -37,12 +38,16 @@ const ShopGrid = ({ data: initialData = [] }: ShopGridProps) => {
     };
     void fetchData();
   }, [currentPage, initialData]);
+
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (gridRef.current) {
+      gridRef.current.scrollIntoView({ behavior: "smooth" });
+    }
   }, [currentPage]);
+
   if (loading) return <LoadingSkeleton />;
   return (
-    <div className={styles.shopContainer}>
+    <div className={styles.shopContainer} ref={gridRef}>
       <div className={styles.flexContainer}>
         <div className={styles.backgroundBox} />
         <div className={styles.container}>
