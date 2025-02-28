@@ -37,7 +37,7 @@ const Header = ({ className }: Props) => {
             aria-label={link.label}
             className={({ isActive }) => clsx(isActive && styles.active)}
           >
-            {link.icon}
+            <link.icon />
           </NavLink>
         ))}
       </div>
