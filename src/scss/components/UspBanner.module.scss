@@ -76,11 +76,11 @@
 
   @include responsive(sm) {
     padding: 1.5rem;
-    
+
     .usp {
       gap: 1.5rem;
     }
-    
+
     div:nth-child(2) {
       p {
         font-size: 1.8rem;
