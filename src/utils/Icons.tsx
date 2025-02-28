@@ -1,23 +1,12 @@
 import { Icon } from "@iconify-icon/react";
-import { BsViewList, BsArrowRight } from "react-icons/bs";
-import { MdKeyboardArrowUp, MdKeyboardArrowDown } from "react-icons/md";
-import { CSSProperties, ComponentType } from "react";
-
-interface IconProps {
+import { CSSProperties } from "react";
+interface Props {
   style?: CSSProperties;
 }
-
-const createIcon = (IconComponent: string | ComponentType<IconProps>) => {
-  return ({ style }: IconProps) => {
-    if (typeof IconComponent === "string") {
-      return (
-        <Icon icon={IconComponent} style={{ fontSize: "24px", ...style }} />
-      );
-    } else {
-      const IconElement = IconComponent;
-      return <IconElement style={{ fontSize: "24px", ...style }} />;
-    }
-  };
+const createIcon = (iconName: string) => {
+  return ({ style }: Props) => (
+    <Icon icon={iconName} style={{ fontSize: "24px", ...style }} />
+  );
 };
 export const Icons = {
   User: createIcon("tdesign:user"),
@@ -30,13 +19,22 @@ export const Icons = {
   Delivery: createIcon("icon-park-twotone:delivery"),
   CustomerService: createIcon("bx:support"),
   Share: createIcon("ri:share-fill"),
-  ViewList: createIcon(BsViewList),
-  KeyBoardArrowDown: createIcon(MdKeyboardArrowDown),
-  keyboardArrowUp: createIcon(MdKeyboardArrowUp),
-  ArrowRight: createIcon(BsArrowRight),
+  ViewList: createIcon("bi:view-list"),
   XFill: createIcon("flowbite:close-circle-solid"),
   Facebook: createIcon("formkit:facebook"),
   Linkedin: createIcon("mdi:linkedin"),
   XTwitter: createIcon("hugeicons:new-twitter-ellipse"),
   ArrowRightLeft: createIcon("fluent:arrow-swap-20-filled"),
+  Settings: createIcon("mingcute:settings-2-line"),
+  Bagx: createIcon("bi:bag-x"),
+  Star: createIcon("jam:star-f"),
+  HalfStar: createIcon("la:star-half"),
+  Likeheart: createIcon("ph:heart-light"),
+  Delete: createIcon("ant-design:delete-filled"),
+  Location: createIcon("carbon:location-filled"),
+  Phone: createIcon("bxs:phone"),
+  Clock: createIcon("bi:clock-fill"),
+  ArrowRight: createIcon("bi:arrow-right"),
+  Arrowupsmall: createIcon("ri:arrow-up-s-line"),
+  Arrowdownsmall: createIcon("ri:arrow-down-s-line"),
 };
