@@ -1,13 +1,16 @@
 import { Icon } from "@iconify-icon/react";
-import { CSSProperties } from "react";
-interface Props {
+import { ComponentProps, CSSProperties } from "react";
+
+type Props = {
   style?: CSSProperties;
-}
+} & Omit<ComponentProps<typeof Icon>, "style" | "icon">;
+
 const createIcon = (iconName: string) => {
-  return ({ style }: Props) => (
-    <Icon icon={iconName} style={{ fontSize: "24px", ...style }} />
+  return ({ style, ...rest }: Props) => (
+    <Icon icon={iconName} style={{ fontSize: "24px", ...style }} {...rest} />
   );
 };
+
 export const Icons = {
   User: createIcon("tdesign:user"),
   Search: createIcon("iconamoon:search"),
