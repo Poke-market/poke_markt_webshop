@@ -77,9 +77,15 @@ Icons.mdiAccountAlertOutline = ({ size = iconSize, style = iconStyle }) => (
 const filterSortBarIconSize = 15;
 
 const filterSortBarIcons = {
-  RxMixerHorizontal: () => <RxMixerHorizontal size={filterSortBarIconSize} />,
-  PiCirclesFourFill: () => <PiCirclesFourFill size={filterSortBarIconSize} />,
-  BsViewList: () => <BsViewList size={filterSortBarIconSize} />,
+  RxMixerHorizontal: ({ size = filterSortBarIconSize, style = {} }) => (
+    <RxMixerHorizontal size={size} style={style} />
+  ),
+  PiCirclesFourFill: ({ size = filterSortBarIconSize, style = {} }) => (
+    <PiCirclesFourFill size={size} style={style} />
+  ),
+  BsViewList: ({ size = filterSortBarIconSize, style = {} }) => (
+    <BsViewList size={size} style={style} />
+  ),
 };
 
 Object.assign(Icons, filterSortBarIcons);

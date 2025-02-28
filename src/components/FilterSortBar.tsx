@@ -7,14 +7,14 @@ const FilterSortBar = () => {
     <div className={styles.filterSortBar}>
       <span>
         <Button className={styles.filterIcon}>
-          <i>{Icons.RxMixerHorizontal({ size: 25 })}</i>
+          <Icons.RxMixerHorizontal />
         </Button>
         <p>Filter</p>
         <Button className={styles.gridView}>
-          <i>{Icons.PiCirclesFourFill({ size: 25 })}</i>
+          <Icons.PiCirclesFourFill />
         </Button>
         <Button className={styles.listView}>
-          <i>{Icons.BsViewList({ size: 25 })}</i>
+          <Icons.BsViewList />
         </Button>
         <span className={styles.separator}></span>
         <span>
