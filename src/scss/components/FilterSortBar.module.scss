@@ -38,6 +38,7 @@
       color: var(--red);
     }
   }
+
   span:nth-of-type(2) {
     display: flex;
     justify-content: flex-end;
@@ -69,8 +70,109 @@
     display: inline-block;
     width: 1px;
     height: 3.7rem;
-    background-color: var(--grey);
+    background-color: var(--text-color-2);
     padding: 0 0.1rem;
+    margin: 0 2rem;
+  }
+
+  p {
+    font-size: 1.4rem;
+    color: var(--text-color);
+    margin: 0;
+  }
+
+  span > fieldset {
+    border: none;
+    margin: 0 2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  fieldset label {
+    font-size: 1.4rem;
+    color: var(--text-color);
+    padding-right: 1.7rem;
+  }
+
+  fieldset input,
+  fieldset select {
+    font-size: 1.6rem;
+    padding: 0.5rem;
+    border: none;
+    outline: none;
+    color: var(--grey);
+  }
+
+  #productsPerPage {
+    width: 100%;
+    max-width: 4rem;
+    padding: 0;
+    font-size: 1.4rem;
+    text-align: center;
+    appearance: none;
+    border: 1px solid var(--basic-blue);
+    box-sizing: border-box;
+  }
+
+  #sort {
+    width: 18.8rem;
+  }
+
+  span:nth-of-type(2) > fieldset:first-child input {
+    max-width: 5rem;
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1.4rem;
+    text-align: center;
+    background-color: var(--white);
+  }
+
+  fieldset input:focus,
+  fieldset select:focus {
+    border-color: var(--basic-blue);
+  }
+
+  @include responsive(md) {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem 2rem;
+    min-height: auto;
+
+    span {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    span:first-of-type {
+      order: 1;
+      justify-content: center;
+      width: 100%;
+      gap: 1rem;
+    }
+
+    span:nth-of-type(2) {
+      order: 2;
+      justify-content: center;
+      width: 100%;
+      gap: 1rem;
+    }
+
+    span:last-of-type {
+      order: 3;
+      width: 100%;
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    .separator {
+      display: none !important;
+    }
 
     p {
       font-size: 1.4rem;
@@ -78,122 +180,21 @@
       margin: 0;
     }
 
-    span > fieldset {
-      border: none;
-      margin: 0 2rem;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-    }
-
-    fieldset label {
-      font-size: 1.4rem;
-      color: var(--text-color);
-      padding-right: 1.7rem;
-    }
-
-    fieldset input,
-    fieldset select {
-      font-size: 1.6rem;
-      padding: 0.5rem;
-      border: none;
-      outline: none;
-      color: var(--grey);
-      background-color: var(--white);
+    .filter,
+    .gridView,
+    .listView {
+      font-size: 2rem;
     }
 
     #productsPerPage {
-      width: 100%;
+      width: auto;
       max-width: 4rem;
-      padding: 0;
       font-size: 1.4rem;
-      text-align: center;
-      appearance: none;
-      border: 1px solid var(--basic-blue);
-      box-sizing: border-box;
     }
 
     #sort {
-      width: 18.8rem;
-    }
-
-    span:nth-of-type(2) > fieldset:first-child input {
-      max-width: 5rem;
-      width: 100%;
-      padding: 0.5rem;
-      font-size: 1.4rem;
-      text-align: center;
-      background-color: var(--white);
-    }
-
-    fieldset input:focus,
-    fieldset select:focus {
-      border-color: var(--basic-blue);
-    }
-
-    @include responsive(md) {
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 1.5rem 2rem;
-      min-height: auto;
-
-      span {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 1rem;
-        flex-wrap: wrap;
-      }
-
-      span:first-of-type {
-        order: 1;
-        justify-content: center;
-        width: 100%;
-        gap: 1rem;
-      }
-
-      span:nth-of-type(2) {
-        order: 2;
-        justify-content: center;
-        width: 100%;
-        gap: 1rem;
-      }
-
-      span:last-of-type {
-        order: 3;
-        width: 100%;
-        text-align: center;
-        margin-top: 1rem;
-      }
-
-      .separator {
-        display: none !important;
-      }
-
-      p {
-        font-size: 1.4rem;
-        color: var(--text-color);
-        margin: 0;
-      }
-
-      .filter,
-      .gridView,
-      .listView {
-        font-size: 2rem;
-      }
-
-      #productsPerPage {
-        width: auto;
-        max-width: 4rem;
-        font-size: 1.4rem;
-      }
-
-      #sort {
-        width: auto;
-        max-width: 18.8rem;
-      }
+      width: auto;
+      max-width: 18.8rem;
     }
   }
 }
