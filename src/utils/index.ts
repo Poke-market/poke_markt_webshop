@@ -1,4 +1,4 @@
-import Icons from "./Icons.tsx";
+import { Icons } from "./Icons.tsx";
 
 // Exporting all the components for easier importing
 export { default as Header } from "../components/Header.tsx";
@@ -14,7 +14,6 @@ export { default as UspBanner } from "../components/UspBanner.tsx";
 export { default as BannerShop } from "../components/BannerShop.tsx";
 export { default as FilterSortBar } from "../components/FilterSortBar.tsx";
 export { default as Pagination } from "../components/Pagination.tsx";
-export { default as Icons } from "./Icons";
 
 // I think putting the links here is a good idea, it makes it easier to manage and update as needed
 // Header links
@@ -26,10 +25,10 @@ export const headerLinks = {
     { path: "/contact", label: "Contact" },
   ],
   iconLinks: [
-    { path: "/profile", icon: Icons.mdiAccountAlertOutline, label: "Profile" },
+    { path: "/profile", icon: Icons.User, label: "Profile" },
     { path: "/search", icon: Icons.Search, label: "Search" },
-    { path: "/wishlist", icon: Icons.Heart, label: "Wishlist" },
-    { path: "/cart", icon: Icons.ShoppingBag, label: "Shopping Cart" },
+    { path: "/wishlist", icon: Icons.Wishlist, label: "Wishlist" },
+    { path: "/cart", icon: Icons.ShoppingCart, label: "Shopping Cart" },
   ],
 };
 
