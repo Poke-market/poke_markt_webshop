@@ -24,12 +24,11 @@
     .listView {
       display: flex;
       align-items: center;
-      // font-size: 0.5rem;
       background: none;
       border: none;
       cursor: pointer;
-      > i {
-        font-size: 0.2rem;
+      > .iconSmall {
+        font-size: 1.4rem !important;
       }
     }
     .filterIcon:hover,
@@ -47,24 +46,6 @@
     width: auto;
     flex-wrap: wrap;
   }
-
-  // .filterIcon,
-  // .gridView,
-  // .listView {
-  //   background: none;
-  //   border: none;
-  //   color: $grey;
-  //   cursor: pointer;
-  //   transition: transform 0.2s ease;
-  //   > svg {
-  //     width: 1rem !important;
-  //     height: 1rem !important;
-  //   }
-
-  //   &:hover {
-  //     color: $red;
-  //   }
-  // }
 
   .separator {
     display: inline-block;

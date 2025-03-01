@@ -7,14 +7,14 @@ const FilterSortBar = () => {
     <div className={styles.filterSortBar}>
       <span>
         <Button className={styles.filterIcon}>
-          <Icons.MixerHorizontal />
+          <Icons.MixerHorizontal className={styles.iconSmall} />
         </Button>
         <p>Filter</p>
         <Button className={styles.gridView}>
-          <Icons.GridIcon />
+          <Icons.GridIcon className={styles.iconSmall} />
         </Button>
         <Button className={styles.listView}>
-          <Icons.ViewList />
+          <Icons.ViewList className={styles.iconSmall} />
         </Button>
         <span className={styles.separator}></span>
         <span>
