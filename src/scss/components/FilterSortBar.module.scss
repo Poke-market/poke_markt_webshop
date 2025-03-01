@@ -116,8 +116,18 @@
 
   @include responsive(md) {
     padding: 2rem 4rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+
+    > span {
+      width: 100%;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
     .separator {
-      margin: 0 1rem !important;
+      margin: 0 1rem;
     }
   }
 
@@ -138,24 +148,21 @@
     }
 
     span:first-of-type {
-      order: 1;
       justify-content: center;
       width: 100%;
       gap: 1rem;
     }
 
     span:nth-of-type(2) {
-      order: 2;
       justify-content: center;
       width: 100%;
       gap: 1rem;
     }
 
     span:last-of-type {
-      order: 3;
       width: 100%;
       text-align: center;
-      margin-top: 1rem;
+      // margin-top: 1rem;
     }
 
     .separator {
