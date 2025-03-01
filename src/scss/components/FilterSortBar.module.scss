@@ -42,7 +42,7 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 1rem;
+    gap: 2rem;
     width: auto;
     flex-wrap: wrap;
   }
@@ -64,7 +64,7 @@
 
   span > fieldset {
     border: none;
-    margin: 0 2rem;
+    margin-left: 2rem;
     display: flex;
     flex-direction: row;
     align-items: center;
