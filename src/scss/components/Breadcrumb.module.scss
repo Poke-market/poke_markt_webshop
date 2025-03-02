@@ -1,0 +1,39 @@
+@use "../partials/variables.scss" as *;
+@use "../partials/mixins" as *;
+
+.breadcrumb {
+  font-family: $font-family;
+  padding: 3rem 0;
+  background-color: var(--basic-blue);
+
+  .breadcrumbContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5rem;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .breadcrumbItem {
+    font-size: 1.4rem;
+    color: var(--white);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--red);
+    }
+
+    &:last-child {
+      color: var(--text-color);
+      pointer-events: none;
+    }
+  }
+
+  .separator {
+    margin: 0 0.8rem;
+    color: var(--text-color);
+    font-size: 1.4rem;
+  }
+}

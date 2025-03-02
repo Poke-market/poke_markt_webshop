@@ -1,6 +1,7 @@
 import { Img, Heading, Button } from "../utils";
 import { Icons } from "../utils/Icons.tsx";
 import styles from "../scss/components/ProductCard.module.scss";
+import { Link } from "react-router-dom";
 
 export type Props = {
   id: string;
@@ -45,6 +46,9 @@ export default function ProductCard({
   const truncatedDescription = truncateText(description, 20);
   const truncatedName = truncateText(name, 10);
 
+  // Create URL-friendly version of the product name
+  const urlFriendlyName = name.toLowerCase().replace(/\s+/g, "-");
+
   return (
     <div
       id={id}
@@ -53,16 +57,21 @@ export default function ProductCard({
       aria-label={`Product: ${name}`}
       {...restProps}
     >
-      <div className={styles.imageWrapper}>
+      <Link to={`/detail/${urlFriendlyName}`} className={styles.imageWrapper}>
         <Img src={image} alt={name} className={styles.productImage} />
         <DiscountBadge discountText={discountText} />
-      </div>
+      </Link>
 
       <div className={styles.detailsContainer}>
         <div className={styles.textContainer}>
-          <Heading as="h4" size="headingmd" className={styles.productName}>
-            {truncatedName}
-          </Heading>
+          <Link
+            to={`/detail/${urlFriendlyName}`}
+            className={styles.productLink}
+          >
+            <Heading as="h4" size="headingmd" className={styles.productName}>
+              {truncatedName}
+            </Heading>
+          </Link>
           <Heading as="p" className={styles.productDescription}>
             {truncatedDescription}
           </Heading>
