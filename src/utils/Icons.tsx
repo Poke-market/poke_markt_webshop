@@ -41,5 +41,5 @@ export const Icons = {
   Arrowupsmall: createIcon("ri:arrow-up-s-line"),
   Arrowdownsmall: createIcon("ri:arrow-down-s-line"),
   Arrowrightsmall: createIcon("weui:arrow-filled"),
-  MixerHorizontal: createIcon("mdi:mixer-settings"),
+  Filtering: createIcon("system-uicons:filtering"),
 };

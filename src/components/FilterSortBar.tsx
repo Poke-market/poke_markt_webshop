@@ -6,10 +6,12 @@ const FilterSortBar = () => {
   return (
     <div className={styles.filterSortBar}>
       <span>
-        <Button className={styles.filterIcon}>
-          <Icons.MixerHorizontal className={styles.iconSmall} />
-        </Button>
-        <p>Filter</p>
+        <div className={styles.filter}>
+          <Button className={styles.filterIcon}>
+            <Icons.Filtering className={styles.iconSmall} />
+          </Button>
+          <p>Filter</p>
+        </div>
         <Button className={styles.gridView}>
           <Icons.GridIcon className={styles.iconSmall} />
         </Button>

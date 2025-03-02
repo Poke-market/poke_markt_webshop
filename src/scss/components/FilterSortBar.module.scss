@@ -36,6 +36,11 @@
     .listView:hover {
       color: var(--red);
     }
+    .filter {
+      display: flex;
+      align-items: center;
+      gap: 0.1rem;
+    }
   }
 
   span:nth-of-type(2) {
