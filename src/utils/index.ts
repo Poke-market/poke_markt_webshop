@@ -14,6 +14,7 @@ export { default as UspBanner } from "../components/UspBanner.tsx";
 export { default as BannerShop } from "../components/BannerShop.tsx";
 export { default as FilterSortBar } from "../components/FilterSortBar.tsx";
 export { default as Pagination } from "../components/Pagination.tsx";
+export { default as Breadcrumb } from "../components/Breadcrumb.tsx";
 
 // I think putting the links here is a good idea, it makes it easier to manage and update as needed
 // Header links
