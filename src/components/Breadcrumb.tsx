@@ -1,11 +1,12 @@
 import styles from "../scss/components/Breadcrumb.module.scss";
 import { Link, useLocation, useParams } from "react-router-dom";
+import { Icons } from "../utils/Icons";
+import Heading from "./Headingtxt";
 
 const Breadcrumb = () => {
   const location = useLocation();
   const { itemName } = useParams();
 
-  // Format the item name for display (convert hyphens to spaces and capitalize)
   const formatItemName = (name: string | undefined) => {
     if (!name) return "";
     return name
@@ -14,22 +15,23 @@ const Breadcrumb = () => {
       .join(" ");
   };
 
-  // Determine which breadcrumb items to show based on the current path
   const isDetailPage = location.pathname.includes("/detail/");
 
   return (
     <div className={styles.breadcrumb}>
       <div className={styles.breadcrumbContainer}>
-        <Link to="/" className={styles.breadcrumbItem}>
-          Home
-        </Link>
+        <Heading as="span" className={styles.breadcrumbItem}>
+          <Link to="/">Home</Link>
+        </Heading>
 
         {isDetailPage && itemName && (
           <>
-            <span className={styles.separator}>&gt;</span>
-            <span className={styles.breadcrumbItem}>
+            <Heading as="span" className={styles.separator}>
+              <Icons.Arrowrightsmall />
+            </Heading>
+            <Heading as="span" className={styles.breadcrumbItem}>
               {formatItemName(itemName)}
-            </span>
+            </Heading>
           </>
         )}
       </div>
