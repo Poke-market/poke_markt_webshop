@@ -1,4 +1,6 @@
-import styles from "../scss/components/Loading.module.css";
+import styles from "../scss/components/ShopGrid.module.scss";
+import skeletonStyles from "../scss/components/Loading.module.scss";
+
 const LoadingSkeleton = () => {
   return (
     <div className={styles.shopContainer}>
@@ -8,11 +10,18 @@ const LoadingSkeleton = () => {
           <div className={styles.contentWrapper}>
             <div className={styles.gridContainer}>
               {Array.from({ length: 16 }).map((_, index) => (
-                <div key={index} className={styles.skeletonCard}>
-                  <div className={styles.skeletonImage} />
-                  <div className={styles.skeletonText} />
-                  <div className={styles.skeletonText} />
-                  <div className={styles.skeletonButton} />
+                <div key={index} className={skeletonStyles.skeletonCard}>
+                  <div className={skeletonStyles.imageWrapper}>
+                    <div className={skeletonStyles.skeletonImage}></div>
+                  </div>
+                  <div className={skeletonStyles.detailsContainer}>
+                    <div className={skeletonStyles.skeletonText}></div>
+                    <div className={skeletonStyles.skeletonText}></div>
+                    <div className={skeletonStyles.priceContainer}>
+                      <div className={skeletonStyles.skeletonText}></div>
+                      <div className={skeletonStyles.skeletonText}></div>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
