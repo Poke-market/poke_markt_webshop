@@ -3,22 +3,20 @@
 
 .breadcrumb {
   font-family: $font-family;
-  padding: 2rem 0;
+  padding: 2rem 8rem;
   background-color: var(--basic-blue);
 
+  @media (max-width: $breakpoint-md) {
+    padding: 2rem 2rem;
+  }
+
   .breadcrumbContainer {
-    padding: 0 8rem;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-
-    @media (max-width: $breakpoint-md) {
-      padding: 0 2rem;
-    }
   }
 
   .breadcrumbItem {
-    font-size: 1.6rem;
     color: var(--light-blue);
     text-decoration: none;
     display: flex;
