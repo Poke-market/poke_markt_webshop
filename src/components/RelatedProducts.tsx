@@ -18,7 +18,7 @@ const RelatedProduct = () => {
         <Heading as="h2" size="text2xl">
           Related Products
         </Heading>
-        <ul className={styles.relatedProducts} title="Related Products">
+        <ul className={styles.relatedProducts}>
           <li>
             <ProductCard {...dummy} />
           </li>
