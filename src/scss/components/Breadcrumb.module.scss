@@ -18,7 +18,7 @@
 
   .breadcrumbItem {
     font-size: 1.4rem;
-    color: var(--white);
+    color: var(--light-color);
     text-decoration: none;
 
     &:hover {
@@ -26,14 +26,14 @@
     }
 
     &:last-child {
-      color: var(--text-color);
+      color: var(--text-color-2);
       pointer-events: none;
     }
   }
 
   .separator {
     margin: 0 0.8rem;
-    color: var(--text-color);
+    color: var(--text-color-2);
     font-size: 1.4rem;
   }
 }
