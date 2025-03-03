@@ -3,21 +3,22 @@
 
 .breadcrumb {
   font-family: $font-family;
-  padding: 3rem 0;
+  padding: 2rem 0;
   background-color: var(--basic-blue);
 
   .breadcrumbContainer {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 5rem;
+    padding: 0 8rem;
     display: flex;
-    align-items: center;
     flex-wrap: wrap;
     align-items: center;
+
+    @media (max-width: $breakpoint-md) {
+      padding: 0 2rem;
+    }
   }
 
   .breadcrumbItem {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     color: var(--light-blue);
     text-decoration: none;
     display: flex;
@@ -43,7 +44,7 @@
 
   .pipeSeparator {
     display: inline-block;
-    width: 1px;
+    width: 1.5px;
     height: 3.7rem;
     background-color: var(--light-blue);
     margin: 0 2rem 0 0;
