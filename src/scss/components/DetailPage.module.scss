@@ -1,0 +1,68 @@
+@use "../partials/variables" as *;
+
+.productDetail {
+  display: flex;
+  gap: 4rem;
+  padding: 2rem;
+  max-width: 120rem;
+  margin: 0 auto;
+
+  @media (max-width: $breakpoint) {
+    flex-direction: column;
+    gap: 2rem;
+  }
+}
+
+.notFound {
+  text-align: center;
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+
+  h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+  }
+
+  p {
+    color: var(--text-color);
+    margin-bottom: 2rem;
+  }
+}
+
+.availableProducts {
+  text-align: left;
+  background: var(--background-color);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  li {
+    a {
+      color: var(--text-color);
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: var(--light-blue);
+        color: var(--primary-color);
+      }
+    }
+  }
+}
