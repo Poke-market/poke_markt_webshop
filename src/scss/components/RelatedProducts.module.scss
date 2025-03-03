@@ -34,13 +34,16 @@
 
   .relatedProducts {
     margin-top: 2.6rem;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     gap: 3.2rem;
-    width: 100%;
-    align-items: center;
+    width: auto;
+    @media (max-width: $breakpoint) {
+      grid-template-columns: repeat(2, 1fr);
+    }
 
-    @media (max-width: $breakpoint-md) {
-      flex-direction: column;
+    @media (max-width: $breakpoint-sm) {
+      grid-template-columns: 1fr;
     }
   }
   .showBtn {
