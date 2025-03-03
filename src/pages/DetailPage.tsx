@@ -150,9 +150,15 @@ const DetailPage = () => {
         name={product.name}
         description={product.description}
         price={
-          product.discount ? product.discount.discountedPrice : product.price
+          product.discount && product.discount.discountedPrice !== product.price
+            ? product.discount.discountedPrice
+            : product.price
         }
-        originalPrice={product.discount ? product.price : undefined}
+        originalPrice={
+          product.discount && product.discount.discountedPrice !== product.price
+            ? product.price
+            : undefined
+        }
         id={product._id}
         category={product.category}
         tags={product.tags}
