@@ -84,6 +84,7 @@
       align-items: center;
       gap: 0.5rem;
       font-size: 1.6rem;
+      font-weight: $font-weight-light;
 
       .label {
         min-width: 8rem;
@@ -123,37 +124,24 @@
     .quantityContainer {
       display: flex;
       align-items: center;
-      border: 1px solid var(--basic-blue);
+      border: 1px solid var(--light-blue);
       border-radius: 1rem;
       overflow: hidden;
-      width: 10rem;
 
       .quantityButton {
-        width: 6rem;
+        width: 3rem;
         height: 4.8rem;
         background: transparent;
         border: none;
         color: var(--basic-blue);
-        font-size: 2rem;
         cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.2s ease;
-        padding: 0;
-
         &:hover {
           background: var(--basic-blue);
           color: var(--white);
         }
-
         &:disabled {
           opacity: 0.5;
           cursor: not-allowed;
-          &:hover {
-            background: transparent;
-            color: var(--basic-blue);
-          }
         }
       }
 
@@ -164,6 +152,7 @@
         text-align: center;
         font-size: 1.6rem;
         color: var(--text-color);
+        appearance: textfield;
         -moz-appearance: textfield;
 
         &::-webkit-outer-spin-button,
@@ -174,24 +163,19 @@
       }
     }
 
-    button {
-      //   padding: 1.2rem 2.4rem;
+    .addToCart {
+      background: var(--white);
+      color: var(--basic-blue);
+      border: 1px solid var(--basic-blue);
       border-radius: 1.5rem;
       font-size: 1.6rem;
       font-weight: $font-weight-medium;
       cursor: pointer;
       transition: all 0.2s ease;
       min-width: 16rem;
-
-      &.addToCart {
-        background: var(--white);
-        color: var(--basic-blue);
-        border: 1px solid var(--basic-blue);
-
-        &:hover {
-          background: var(--basic-blue);
-          color: var(--white);
-        }
+      &:hover {
+        background: var(--basic-blue);
+        color: var(--white);
       }
     }
   }
