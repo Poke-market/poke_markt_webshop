@@ -1,10 +1,11 @@
 import { Heading, Button } from "../utils";
+import styles from "../scss/components/RelatedProducts.module.scss";
 
 const RelatedProduct = () => {
   return (
-    <div>
-      <div>
-        <Heading as="h2" className="title">
+    <div className={styles.container}>
+      <div className={styles.internalContainer}>
+        <Heading as="h2" size="text2xl">
           Related Products
         </Heading>
         <div>Products</div>
