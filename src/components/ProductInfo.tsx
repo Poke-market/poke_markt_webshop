@@ -1,6 +1,7 @@
 import Heading from "../components/Headingtxt";
 import styles from "../scss/components/ProductInfo.module.scss";
 import { useState } from "react";
+import { Icons } from "../utils/Icons";
 
 interface ProductInfoProps {
   name: string;
@@ -86,6 +87,35 @@ const ProductInfo = ({
                 {tag}
               </span>
             ))}
+          </div>
+        </div>
+        <div className={styles.share}>
+          <span className={styles.label}>Share</span>
+          <div className={styles.socialIcons}>
+            <a
+              href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.socialIcon}
+            >
+              <Icons.Facebook />
+            </a>
+            <a
+              href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(window.location.href)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.socialIcon}
+            >
+              <Icons.Linkedin />
+            </a>
+            <a
+              href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.socialIcon}
+            >
+              <Icons.XTwitter />
+            </a>
           </div>
         </div>
       </div>
