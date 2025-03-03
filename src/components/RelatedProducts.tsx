@@ -5,7 +5,7 @@ const RelatedProduct = () => {
   const dummy = {
     id: "1",
     name: "Example Product",
-    description: "Product description",
+    description: "This is an example product description",
     image: poke,
     price: 29.99,
     currentPrice: "$29.99",
@@ -14,18 +14,26 @@ const RelatedProduct = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.internalContainer}>
+      <section className={styles.internalContainer} title="Related Products">
         <Heading as="h2" size="text2xl">
           Related Products
         </Heading>
-        <div className={styles.relatedProducts}>
-          <ProductCard {...dummy} />
-          <ProductCard {...dummy} />
-          <ProductCard {...dummy} />
-          <ProductCard {...dummy} />
-        </div>
+        <ul className={styles.relatedProducts} title="Related Products">
+          <li>
+            <ProductCard {...dummy} />
+          </li>
+          <li>
+            <ProductCard {...dummy} />
+          </li>
+          <li>
+            <ProductCard {...dummy} />
+          </li>
+          <li>
+            <ProductCard {...dummy} />
+          </li>
+        </ul>
         <Button className={styles.showBtn}>Show More</Button>
-      </div>
+      </section>
     </div>
   );
 };
