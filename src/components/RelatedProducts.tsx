@@ -1,7 +1,17 @@
-import { Heading, Button } from "../utils";
+import { Heading, Button, ProductCard } from "../utils";
 import styles from "../scss/components/RelatedProducts.module.scss";
-
+import poke from "../assets/poke.png";
 const RelatedProduct = () => {
+  const dummy = {
+    id: "1",
+    name: "Example Product",
+    description: "Product description",
+    image: poke,
+    price: 29.99,
+    currentPrice: "$29.99",
+    originalPrice: "$39.99",
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.internalContainer}>
@@ -9,26 +19,10 @@ const RelatedProduct = () => {
           Related Products
         </Heading>
         <div className={styles.relatedProducts}>
-          <div>
-            <img src="https://picsum.photos/150" alt="related product" />
-            <p>Product Name</p>
-            <p>$100</p>
-          </div>
-          <div>
-            <img src="https://picsum.photos/150" alt="related product" />
-            <p>Product Name</p>
-            <p>$100</p>
-          </div>
-          <div>
-            <img src="https://picsum.photos/150" alt="related product" />
-            <p>Product Name</p>
-            <p>$100</p>
-          </div>
-          <div>
-            <img src="https://picsum.photos/150" alt="related product" />
-            <p>Product Name</p>
-            <p>$100</p>
-          </div>
+          <ProductCard {...dummy} />
+          <ProductCard {...dummy} />
+          <ProductCard {...dummy} />
+          <ProductCard {...dummy} />
         </div>
         <Button className={styles.showBtn}>Show More</Button>
       </div>
