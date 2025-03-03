@@ -9,7 +9,7 @@
 
   .productName {
     font-size: 3.2rem;
-    font-weight: $font-weight-semi-bold;
+    font-weight: $font-weight-regular;
     color: var(--text-color);
   }
 
@@ -20,8 +20,8 @@
 
     .currentPrice {
       font-size: 2.4rem;
-      font-weight: $font-weight-semi-bold;
-      color: var(--current-price-color);
+      font-weight: $font-weight-regular;
+      color: var(--product-description-color);
     }
 
     .originalPrice {
@@ -33,7 +33,7 @@
 
   .description {
     font-size: 1.6rem;
-    color: var(--product-description-color);
+    color: var(--text-color);
     line-height: 1.6;
   }
 
@@ -48,6 +48,7 @@
       align-items: flex-start;
       gap: 0.5rem;
       font-size: 1.6rem;
+      font-weight: $font-weight-light;
 
       .label {
         min-width: 8rem;
