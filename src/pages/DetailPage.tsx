@@ -28,6 +28,9 @@ interface ApiListResponse {
   status: string;
   data: {
     items: Product[];
+    info: {
+      pages: number;
+    };
   };
 }
 
@@ -55,51 +58,62 @@ const DetailPage = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        // First, get all items to find the matching product
         const searchName = name?.replace(/-/g, " ");
+        let allProducts: Product[] = [];
+        let currentPage = 1;
+        let hasMorePages = true;
 
-        const response = await fetch(
-          "https://poke-market-backend-dev-rgj5.onrender.com/api/items",
-        );
-        if (!response.ok) throw new Error("Failed to fetch products");
-        const result = (await response.json()) as ApiListResponse;
-
-        // Check if we have valid data
-        if (!result?.data?.items) {
-          throw new Error("Invalid API response structure");
-        }
-
-        // Store all available products
-        setAvailableProducts(result.data.items);
-
-        // Find the product with matching name (case-insensitive and diacritic-insensitive matching)
-        const matchingProduct = result.data.items.find((item: Product) => {
-          if (!item?.name) return false;
-          const normalizedItemName = normalizeText(item.name);
-          const normalizedSearchTerm = normalizeText(searchName ?? "");
-          return normalizedItemName === normalizedSearchTerm;
-        });
-
-        if (matchingProduct) {
-          // If found, fetch the specific product by ID
-          const productResponse = await fetch(
-            `https://poke-market-backend-dev-rgj5.onrender.com/api/items/${matchingProduct._id}`,
+        // Fetch all pages until we find the product or run out of pages
+        while (hasMorePages) {
+          const response = await fetch(
+            `https://poke-market-backend-dev-rgj5.onrender.com/api/items?page=${currentPage}`,
           );
-          if (!productResponse.ok) throw new Error("Failed to fetch product");
-          const productResult =
-            (await productResponse.json()) as ApiSingleResponse;
+          if (!response.ok) throw new Error("Failed to fetch products");
+          const result = (await response.json()) as ApiListResponse;
 
-          // Check if we have valid product data
-          if (!productResult?.data?.item) {
-            throw new Error("Invalid product data received");
+          if (!result?.data?.items) {
+            throw new Error("Invalid API response structure");
           }
 
-          if (productResult.status === "success") {
-            setProduct(productResult.data.item);
-          } else {
-            throw new Error("Product fetch was not successful");
+          allProducts = [...allProducts, ...result.data.items];
+
+          // Check if we have more pages
+          hasMorePages = currentPage < result.data.info.pages;
+          currentPage++;
+
+          // Find the product with matching name
+          const matchingProduct = result.data.items.find((item: Product) => {
+            if (!item?.name) return false;
+            const normalizedItemName = normalizeText(item.name);
+            const normalizedSearchTerm = normalizeText(searchName ?? "");
+            return normalizedItemName === normalizedSearchTerm;
+          });
+
+          if (matchingProduct) {
+            // If found, fetch the specific product by ID
+            const productResponse = await fetch(
+              `https://poke-market-backend-dev-rgj5.onrender.com/api/items/${matchingProduct._id}`,
+            );
+            if (!productResponse.ok) throw new Error("Failed to fetch product");
+            const productResult =
+              (await productResponse.json()) as ApiSingleResponse;
+
+            if (!productResult?.data?.item) {
+              throw new Error("Invalid product data received");
+            }
+
+            if (productResult.status === "success") {
+              setProduct(productResult.data.item);
+              return;
+            } else {
+              throw new Error("Product fetch was not successful");
+            }
           }
         }
+
+        // If we get here, we've checked all pages and didn't find the product
+        setAvailableProducts(allProducts);
+        setProduct(null);
       } catch (error) {
         console.error("Error fetching product:", error);
         setProduct(null);
