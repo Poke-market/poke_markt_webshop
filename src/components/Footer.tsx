@@ -1,7 +1,6 @@
 import { Heading, Input, footerLinks } from "../utils";
 import { Link } from "react-router-dom";
 import styles from "../scss/components/Footer.module.scss";
-import PokeLogo from "../assets/poke.png";
 import clsx from "clsx";
 
 type Props = {
@@ -14,11 +13,9 @@ export default function Footer({ className }: Props) {
         <div className={styles.content}>
           <div className={styles.row}>
             <div className={styles.logoSection}>
-              <img
-                src={PokeLogo}
-                alt="Pokemon Logo"
-                className={styles.footerLogo}
-              />
+              <Heading size="textxl" className={styles.footerLogo}>
+                Poke-Mart
+              </Heading>
               <Heading as="p" className={styles.address}>
                 Oude Baan 2, 2800 Mechelen
                 <br />
