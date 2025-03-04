@@ -36,7 +36,7 @@ const ProductInfo = ({
 
   return (
     <div className={styles.productInfo}>
-      <Heading as="h1" size="text2xl" className={styles.productName}>
+      <Heading as="h1" size="textmd" className={styles.productName}>
         {name}
       </Heading>
       <div className={styles.priceContainer}>
