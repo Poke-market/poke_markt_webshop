@@ -11,7 +11,9 @@ const FilterSortBar = () => {
           <Button className={styles.filterIcon}>
             <Icons.Filtering />
           </Button>
-          <Heading size="textxl">Filter</Heading>
+          <Heading as="p" size="textxl">
+            Filter
+          </Heading>
         </div>
         <Button className={styles.gridView}>
           <Icons.GridIcon />
@@ -21,7 +23,9 @@ const FilterSortBar = () => {
         </Button>
         <span className={styles.separator}></span>
         <span>
-          <Heading size="textlg">Showing 1-16 of 32 results</Heading>
+          <Heading as="p" size="textlg">
+            Showing 1-16 of 32 results
+          </Heading>
         </span>
       </span>
       <span>

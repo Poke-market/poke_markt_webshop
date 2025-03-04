@@ -108,6 +108,23 @@
     border-color: var(--basic-blue);
   }
 
+  @media screen and (max-width: 1090px) {
+    padding: 2rem 4rem;
+    flex-direction: row;
+    align-items: center;
+    gap: 4rem;
+
+    > span {
+      width: auto;
+      justify-content: space-between;
+      margin-bottom: 0;
+    }
+
+    .separator {
+      margin: 0 2rem;
+    }
+  }
+
   @include responsive(md) {
     padding: 2rem 4rem;
     flex-direction: column;
@@ -117,7 +134,17 @@
     > span {
       width: 100%;
       justify-content: center;
-      margin-bottom: 1rem;
+      margin-bottom: 0;
+      flex-wrap: nowrap;
+    }
+
+    span:first-of-type {
+      justify-content: flex-start;
+      gap: 3rem;
+    }
+
+    span:nth-of-type(2) {
+      justify-content: flex-end;
     }
 
     .separator {
@@ -132,57 +159,32 @@
     padding: 1.5rem 2rem;
     min-height: auto;
 
-    span {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 1rem;
-      flex-wrap: wrap;
+    .filter,
+    .filter span,
+    .filter p,
+    span:last-of-type,
+    fieldset:first-child,
+    fieldset:last-child {
+      display: none;
     }
 
     span:first-of-type {
-      justify-content: center;
-      width: 100%;
-      gap: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 4rem;
+      width: auto;
+      margin: 0;
     }
 
-    span:nth-of-type(2) {
-      justify-content: center;
-      width: 100%;
-      gap: 1rem;
-    }
-
-    span:last-of-type {
-      width: 100%;
-      text-align: center;
+    .gridView,
+    .listView {
+      font-size: 2rem;
+      margin: 0;
     }
 
     .separator {
       display: none !important;
-    }
-
-    p {
-      font-size: 1.4rem;
-      color: var(--text-color);
-      margin: 0;
-    }
-
-    .filter,
-    .gridView,
-    .listView {
-      font-size: 2rem;
-    }
-
-    #productsPerPage {
-      width: auto;
-      max-width: 4rem;
-      font-size: 1.4rem;
-    }
-
-    #sort {
-      width: auto;
-      max-width: 18.8rem;
     }
   }
 }
