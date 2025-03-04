@@ -21,10 +21,9 @@
   margin: 0 auto;
   font-family: $font-family;
 
-  h2 {
-    color: var(--primary-color);
+  .notFoundTitle {
+    color: var(--red);
     margin-bottom: 1rem;
-    font-size: 2.4rem;
   }
 
   p {
@@ -41,10 +40,9 @@
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
-  h3 {
-    color: var(--primary-color);
+  .recommendationsTitle {
+    color: var(--red);
     margin-bottom: 1rem;
-    font-size: 2rem;
   }
 
   ul {
