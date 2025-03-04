@@ -10,7 +10,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/product/:itemName" element={<Detailpage />} />
-          <Route path="/detailpage" element={<Detailpage />} />
         </Routes>
       </Layout>
     </Router>
