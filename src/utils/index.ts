@@ -14,13 +14,14 @@ export { default as UspBanner } from "../components/UspBanner.tsx";
 export { default as BannerShop } from "../components/BannerShop.tsx";
 export { default as FilterSortBar } from "../components/FilterSortBar.tsx";
 export { default as Pagination } from "../components/Pagination.tsx";
+export { default as Related } from "../components/RelatedProducts.tsx";
 
 // I think putting the links here is a good idea, it makes it easier to manage and update as needed
 // Header links
 export const headerLinks = {
   navLinks: [
     { path: "/", label: "Home" },
-    { path: "/", label: "Shop" },
+    { path: "/shop", label: "Shop" },
     { path: "/about", label: "About" },
     { path: "/contact", label: "Contact" },
   ],

@@ -9,10 +9,10 @@
   position: relative;
 
   @media (max-width: $breakpoint-md) {
-    min-width: 320px;
+    min-width: 290px;
   }
   @media (max-width: $breakpoint-sm) {
-    min-width: 340px;
+    min-width: 300px;
   }
   .imageWrapper {
     position: relative;
