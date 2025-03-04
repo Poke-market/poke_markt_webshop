@@ -15,7 +15,7 @@ const Breadcrumb = () => {
       .join(" ");
   };
 
-  const isDetailPage = location.pathname.includes("/product/");
+  const isProductPage = location.pathname.includes("/product/");
 
   return (
     <div className={styles.breadcrumb}>
@@ -33,7 +33,7 @@ const Breadcrumb = () => {
           <Icons.Arrowrightsmall />
         </Heading>
 
-        {isDetailPage && itemName && (
+        {isProductPage && itemName && (
           <div className={styles.itemGroup}>
             <span className={styles.pipeSeparator}></span>
             <Heading as="span" className={styles.breadcrumbItem}>
