@@ -41,7 +41,6 @@ interface ApiSingleResponse {
   };
 }
 
-// Function to normalize text by removing diacritics
 const normalizeText = (text: string): string => {
   return text
     .normalize("NFD")
@@ -63,7 +62,6 @@ const DetailPage = () => {
         let currentPage = 1;
         let hasMorePages = true;
 
-        // Fetch all pages until we find the product or run out of pages
         while (hasMorePages) {
           const response = await fetch(
             `https://poke-market-backend-dev-rgj5.onrender.com/api/items?page=${currentPage}`,
@@ -77,11 +75,9 @@ const DetailPage = () => {
 
           allProducts = [...allProducts, ...result.data.items];
 
-          // Check if we have more pages
           hasMorePages = currentPage < result.data.info.pages;
           currentPage++;
 
-          // Find the product with matching name
           const matchingProduct = result.data.items.find((item: Product) => {
             if (!item?.name) return false;
             const normalizedItemName = normalizeText(item.name);
@@ -90,7 +86,6 @@ const DetailPage = () => {
           });
 
           if (matchingProduct) {
-            // If found, fetch the specific product by ID
             const productResponse = await fetch(
               `https://poke-market-backend-dev-rgj5.onrender.com/api/items/${matchingProduct._id}`,
             );
@@ -111,7 +106,6 @@ const DetailPage = () => {
           }
         }
 
-        // If we get here, we've checked all pages and didn't find the product
         setAvailableProducts(allProducts);
         setProduct(null);
       } catch (error) {
@@ -154,7 +148,6 @@ const DetailPage = () => {
     );
   }
 
-  // Create an array of images, using the product's photoUrl
   const images = [product.photoUrl];
 
   return (
