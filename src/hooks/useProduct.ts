@@ -11,7 +11,7 @@ export const useProduct = (name: string | undefined) => {
     const fetchProduct = async () => {
       try {
         const searchName = name?.replace(/-/g, " ");
-        
+
         // Fetch recommendations first
         const recommendations = await productService.getRecommendations();
         setAvailableProducts(recommendations);
@@ -35,4 +35,4 @@ export const useProduct = (name: string | undefined) => {
   }, [name]);
 
   return { product, loading, availableProducts };
-}; 
+};

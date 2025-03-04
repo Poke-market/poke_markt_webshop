@@ -35,7 +35,8 @@ export const productService = {
           `${API_BASE_URL}/items/${matchingProduct._id}`,
         );
         if (!productResponse.ok) throw new Error("Failed to fetch product");
-        const productResult = (await productResponse.json()) as ApiSingleResponse;
+        const productResult =
+          (await productResponse.json()) as ApiSingleResponse;
 
         if (!productResult?.data?.item) {
           throw new Error("Invalid product data received");
@@ -59,4 +60,4 @@ const normalizeText = (text: string): string => {
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
     .toLowerCase();
-}; 
+};
