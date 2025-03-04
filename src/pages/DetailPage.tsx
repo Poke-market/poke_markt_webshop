@@ -26,7 +26,6 @@ const DetailPage = () => {
         let currentPage = 1;
         let hasMorePages = true;
 
-        // First, fetch all products for recommendations
         const recommendationsResponse = await fetch(
           `https://poke-market-backend-dev-rgj5.onrender.com/api/items?page=1&limit=5`,
         );
