@@ -7,7 +7,7 @@ type Props = {
   variant?: "underline" | "fill";
   size?: "sm" | "md" | "xs";
   shape?: "square" | "round";
-  type?: "text" | "email" | "password";
+  type?: "text" | "email" | "password" | "number";
 };
 
 const Input = forwardRef<HTMLInputElement, Props>(
