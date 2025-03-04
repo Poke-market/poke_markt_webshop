@@ -1,4 +1,4 @@
-import Breadcrumb from "../components/Breadcrumb";
+import { Breadcrumb } from "../utils/index.ts";
 // import { useParams } from "react-router-dom";
 
 const Detailpage = () => {
