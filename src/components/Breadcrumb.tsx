@@ -15,7 +15,7 @@ const Breadcrumb = () => {
       .join(" ");
   };
 
-  const isDetailPage = location.pathname.includes("/detail/");
+  const isDetailPage = location.pathname.includes("/product/");
 
   return (
     <div className={styles.breadcrumb}>
