@@ -26,6 +26,20 @@ const DetailPage = () => {
         let currentPage = 1;
         let hasMorePages = true;
 
+        // First, fetch all products for recommendations
+        const recommendationsResponse = await fetch(
+          `https://poke-market-backend-dev-rgj5.onrender.com/api/items?page=1&limit=5`,
+        );
+        if (!recommendationsResponse.ok)
+          throw new Error("Failed to fetch recommendations");
+        const recommendationsResult =
+          (await recommendationsResponse.json()) as ApiListResponse;
+
+        if (recommendationsResult?.data?.items) {
+          setAvailableProducts(recommendationsResult.data.items);
+        }
+
+        // Then search for the specific product
         while (hasMorePages) {
           const response = await fetch(
             `https://poke-market-backend-dev-rgj5.onrender.com/api/items?page=${currentPage}`,
@@ -70,7 +84,6 @@ const DetailPage = () => {
           }
         }
 
-        setAvailableProducts(allProducts);
         setProduct(null);
       } catch (error) {
         console.error("Error fetching product:", error);
@@ -93,20 +106,22 @@ const DetailPage = () => {
         <div className={styles.notFound}>
           <h2>Product not found</h2>
           <p>Sorry, we couldn't find a product matching "{name}".</p>
-          <div className={styles.availableProducts}>
-            <h3>Available Products:</h3>
-            <ul>
-              {availableProducts.map((item) => (
-                <li key={item._id}>
-                  <a
-                    href={`/product/${item.name.toLowerCase().replace(/\s+/g, "-")}`}
-                  >
-                    {item.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {availableProducts.length > 0 && (
+            <div className={styles.availableProducts}>
+              <h3>Recommended Products:</h3>
+              <ul>
+                {availableProducts.map((item) => (
+                  <li key={item._id}>
+                    <a
+                      href={`/product/${item.name.toLowerCase().replace(/\s+/g, "-")}`}
+                    >
+                      {item.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       </div>
     );
