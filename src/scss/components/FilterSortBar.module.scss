@@ -1,6 +1,6 @@
 @use "../partials/variables.scss" as *;
 @use "../partials/mixins.scss" as *;
-
+@use "../abstracts/typography.module.scss" as *;
 .filterSortBar {
   background-color: var(--basic-blue);
   display: flex;
@@ -8,7 +8,6 @@
   justify-content: space-between;
   width: 100vw;
   padding: 2rem 6rem;
-  font-size: 1.6rem;
   min-height: 10rem;
   font-family: $font-family;
 
@@ -27,9 +26,6 @@
       background: none;
       border: none;
       cursor: pointer;
-      > .iconSmall {
-        font-size: 1.5rem !important;
-      }
     }
     .filterIcon:hover,
     .gridView:hover,
@@ -61,12 +57,6 @@
     margin: 0 2rem;
   }
 
-  p {
-    font-size: 1.4rem;
-    color: var(--text-color);
-    margin: 0;
-  }
-
   span > fieldset {
     border: none;
     margin-left: 2rem;
@@ -75,8 +65,7 @@
     align-items: center;
   }
 
-  fieldset label {
-    font-size: 1.4rem;
+  fieldset span {
     color: var(--text-color);
     padding-right: 1.7rem;
   }

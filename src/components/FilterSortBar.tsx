@@ -1,6 +1,7 @@
 import styles from "../scss/components/FilterSortBar.module.css";
 import { Icons } from "../utils/Icons";
 import Button from "./Button";
+import Heading from "./Headingtxt";
 
 const FilterSortBar = () => {
   return (
@@ -8,28 +9,32 @@ const FilterSortBar = () => {
       <span>
         <div className={styles.filter}>
           <Button className={styles.filterIcon}>
-            <Icons.Filtering className={styles.iconSmall} />
+            <Icons.Filtering />
           </Button>
-          <p>Filter</p>
+          <Heading size="textxl">Filter</Heading>
         </div>
         <Button className={styles.gridView}>
-          <Icons.GridIcon className={styles.iconSmall} />
+          <Icons.GridIcon />
         </Button>
         <Button className={styles.listView}>
-          <Icons.ViewList className={styles.iconSmall} />
+          <Icons.ViewList />
         </Button>
         <span className={styles.separator}></span>
         <span>
-          <p>Showing 1-16 of 32 results</p>
+          <Heading size="textlg">Showing 1-16 of 32 results</Heading>
         </span>
       </span>
       <span>
         <fieldset>
-          <label htmlFor="productsPerPage">Show</label>
+          <Heading size="textxl" as="span">
+            Show
+          </Heading>
           <input type="number" id="productsPerPage" placeholder="16" />
         </fieldset>
         <fieldset>
-          <label htmlFor="sort">Sort by</label>
+          <Heading size="textxl" as="span">
+            Sort by
+          </Heading>
           <select name="sort" id="sort">
             <option value="default">Default</option>
             <option value="price">Price</option>
