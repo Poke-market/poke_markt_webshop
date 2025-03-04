@@ -3,18 +3,13 @@ import styles from "../scss/components/ProductInfo.module.scss";
 import { useState } from "react";
 import { Icons } from "../utils/Icons";
 import ProductDisplay from "./ProductDisplay";
-import { ProductInfoProps } from "../types/types";
+import { Product } from "../types/types";
 
-const ProductInfo = ({
-  name,
-  description,
-  price,
-  originalPrice,
-  id,
-  category,
-  tags,
-  images,
-}: ProductInfoProps) => {
+interface ProductInfoProps {
+  product: Product;
+}
+
+const ProductInfo = ({ product }: ProductInfoProps) => {
   const [quantity, setQuantity] = useState(1);
 
   const handleIncrement = () => {
@@ -27,20 +22,30 @@ const ProductInfo = ({
     }
   };
 
+  const displayPrice =
+    product.discount && product.discount.discountedPrice !== product.price
+      ? product.discount.discountedPrice
+      : product.price;
+
+  const originalPrice =
+    product.discount && product.discount.discountedPrice !== product.price
+      ? product.price
+      : undefined;
+
   return (
     <div className={styles.productDetail}>
-      <ProductDisplay images={images} name={name} />
+      <ProductDisplay images={[product.photoUrl]} name={product.name} />
       <div className={styles.productInfo}>
         <Heading as="h1" size="textmd" className={styles.productName}>
-          {name}
+          {product.name}
         </Heading>
         <div className={styles.priceContainer}>
-          <span className={styles.currentPrice}>${price}</span>
+          <span className={styles.currentPrice}>${displayPrice}</span>
           {originalPrice && (
             <span className={styles.originalPrice}>${originalPrice}</span>
           )}
         </div>
-        <p className={styles.description}>{description}</p>
+        <p className={styles.description}>{product.description}</p>
         <div className={styles.actions}>
           <div className={styles.quantityContainer}>
             <button
@@ -68,16 +73,16 @@ const ProductInfo = ({
         <div className={styles.productDetails}>
           <div className={styles.sku}>
             <span className={styles.label}>SKU</span>
-            <span className={styles.value}>{id}</span>
+            <span className={styles.value}>{product._id}</span>
           </div>
           <div className={styles.category}>
             <span className={styles.label}>Category</span>
-            <span className={styles.value}>{category}</span>
+            <span className={styles.value}>{product.category}</span>
           </div>
           <div className={styles.tags}>
             <span className={styles.label}>Tags</span>
             <div className={styles.tagList}>
-              {tags.map((tag, index) => (
+              {product.tags.map((tag, index) => (
                 <span key={index} className={styles.tag}>
                   {tag}
                 </span>
