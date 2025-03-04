@@ -3,30 +3,33 @@
 .productDetail {
   display: flex;
   gap: 4rem;
-  padding: 2rem;
+  padding: 4rem 8rem;
   max-width: 120rem;
   margin: 0 auto;
 
   @media (max-width: $breakpoint) {
     flex-direction: column;
     gap: 2rem;
+    padding: 2rem;
   }
 }
 
 .notFound {
   text-align: center;
-  padding: 2rem;
+  padding: 4rem 8rem;
   max-width: 800px;
   margin: 0 auto;
 
   h2 {
     color: var(--primary-color);
     margin-bottom: 1rem;
+    font-size: 2.4rem;
   }
 
   p {
     color: var(--text-color);
     margin-bottom: 2rem;
+    font-size: 1.6rem;
   }
 }
 
@@ -40,6 +43,7 @@
   h3 {
     color: var(--primary-color);
     margin-bottom: 1rem;
+    font-size: 2rem;
   }
 
   ul {
@@ -49,19 +53,17 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 1rem;
-  }
 
-  li {
-    a {
-      color: var(--text-color);
-      text-decoration: none;
-      padding: 0.5rem 1rem;
-      border-radius: 4px;
-      transition: all 0.3s ease;
+    li {
+      a {
+        color: var(--text-color);
+        text-decoration: none;
+        font-size: 1.6rem;
+        transition: color 0.2s ease;
 
-      &:hover {
-        background: var(--light-blue);
-        color: var(--primary-color);
+        &:hover {
+          color: var(--basic-blue);
+        }
       }
     }
   }

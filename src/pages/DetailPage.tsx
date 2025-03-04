@@ -1,45 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import ProductDisplay from "../components/ProductDisplay";
 import ProductInfo from "../components/ProductInfo";
+import Loading from "../components/Loading";
 import styles from "../scss/components/DetailPage.module.scss";
-
-interface Product {
-  isNewItem: boolean;
-  _id: string;
-  name: string;
-  description: string;
-  photoUrl: string;
-  price: number;
-  category: string;
-  tags: string[];
-  __v: number;
-  createdAt: string;
-  updatedAt: string;
-  discount: {
-    amount: number;
-    type: string;
-    discountedPrice: number;
-    hasDiscount: boolean;
-  };
-}
-
-interface ApiListResponse {
-  status: string;
-  data: {
-    items: Product[];
-    info: {
-      pages: number;
-    };
-  };
-}
-
-interface ApiSingleResponse {
-  status: string;
-  data: {
-    item: Product;
-  };
-}
+import { Product, ApiListResponse, ApiSingleResponse } from "../types/types";
 
 const normalizeText = (text: string): string => {
   return text
@@ -120,7 +84,7 @@ const DetailPage = () => {
   }, [name]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   if (!product) {
@@ -148,11 +112,8 @@ const DetailPage = () => {
     );
   }
 
-  const images = [product.photoUrl];
-
   return (
-    <div className={styles.productDetail}>
-      <ProductDisplay images={images} name={product.name} />
+    <>
       <ProductInfo
         name={product.name}
         description={product.description}
@@ -169,8 +130,9 @@ const DetailPage = () => {
         id={product._id}
         category={product.category}
         tags={product.tags}
+        images={[product.photoUrl]}
       />
-    </div>
+    </>
   );
 };
 

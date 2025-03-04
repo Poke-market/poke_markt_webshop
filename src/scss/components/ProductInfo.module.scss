@@ -1,6 +1,20 @@
 @use "../partials/variables" as *;
 @use "../abstracts/typography.module.scss" as *;
 
+.productDetail {
+  display: flex;
+  gap: 4rem;
+  padding: 4rem 8rem;
+  max-width: 120rem;
+  margin: 0 auto;
+
+  @media (max-width: $breakpoint) {
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+  }
+}
+
 .productInfo {
   font-family: $font-family;
   flex: 1;
