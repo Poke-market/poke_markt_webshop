@@ -1,14 +1,12 @@
+import { Related } from "../utils/index.ts";
 import { Breadcrumb } from "../utils/index.ts";
-// import { useParams } from "react-router-dom";
 
 const Detailpage = () => {
-  // Get the itemName parameter from the URL
-  //   const { itemName } = useParams();
-
   return (
-    <div>
+    <>
       <Breadcrumb />
-    </div>
+      <Related />
+    </>
   );
 };
 export default Detailpage;

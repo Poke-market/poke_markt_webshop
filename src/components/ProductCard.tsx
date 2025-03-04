@@ -43,8 +43,8 @@ export default function ProductCard({
   className = "",
   ...restProps
 }: Props) {
-  const truncatedDescription = truncateText(description, 20);
-  const truncatedName = truncateText(name, 10);
+  const truncatedDescription = truncateText(description, 25);
+  const truncatedName = truncateText(name, 20);
 
   // Create URL-friendly version of the product name
   const urlFriendlyName = name.toLowerCase().replace(/\s+/g, "-");
