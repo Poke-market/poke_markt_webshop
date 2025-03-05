@@ -15,11 +15,22 @@
     padding: 2rem;
   }
 
+  .logoLink {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+  }
+
   .headerLogo {
-    height: 5rem;
-    width: 11.5rem;
-    object-fit: cover;
+    height: 2.5rem;
+    width: fit-content;
+    object-fit: contain;
     object-position: center;
+  }
+
+  .logoText {
+    color: var(--red);
   }
 
   .navList {
