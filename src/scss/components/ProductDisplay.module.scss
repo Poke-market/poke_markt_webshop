@@ -29,6 +29,7 @@
   }
 
   @media (max-width: $breakpoint-sm) {
+    flex-direction: column;
     gap: 1rem;
   }
 
@@ -38,6 +39,7 @@
     border-radius: 1rem;
     overflow: hidden;
     background: var(--bluegrey);
+    order: 1;
 
     img {
       width: 100%;
@@ -51,6 +53,7 @@
     flex-direction: column;
     gap: 1rem;
     width: 8rem;
+    order: 2;
 
     @media (max-width: $breakpoint) {
       width: 6rem;
@@ -58,8 +61,17 @@
     }
 
     @media (max-width: $breakpoint-sm) {
-      width: 5rem;
+      flex-direction: row;
+      width: 100%;
       gap: 0.6rem;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE and Edge */
+      &::-webkit-scrollbar {
+        display: none; /* Chrome, Safari and Opera */
+      }
     }
 
     .thumbnail {
@@ -71,6 +83,11 @@
       border: 2px solid transparent;
       transition: border-color 0.2s ease;
       background: var(--bluegrey);
+
+      @media (max-width: $breakpoint-sm) {
+        width: 5rem;
+        flex-shrink: 0;
+      }
 
       &.active {
         border-color: var(--basic-blue);
