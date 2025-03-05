@@ -1,15 +1,16 @@
 import { useParams } from "react-router-dom";
 import { Related } from "../utils/index.ts";
-import ProductInfo from "../components/ProductInfo";
-import { useProduct } from "../hooks/useProduct";
+import ProductInfo from "../components/ProductInfo.tsx";
+import { useProduct } from "../hooks/useProduct.ts";
 import styles from "../scss/components/DetailPage.module.scss";
+import Loading from "../components/Loading.tsx";
 
 const Detailpage = () => {
   const { name } = useParams();
   const { product, loading, availableProducts } = useProduct(name);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   if (!product) {
