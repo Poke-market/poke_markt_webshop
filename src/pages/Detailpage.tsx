@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
-import { Related } from "../utils/index.ts";
-import ProductInfo from "../components/ProductInfo.tsx";
-import { useProduct } from "../hooks/useProduct.ts";
+import ProductInfo from "../components/ProductInfo";
+import Loading from "../components/Loading";
+import Heading from "../components/Headingtxt";
 import styles from "../scss/components/DetailPage.module.scss";
-import Loading from "../components/Loading.tsx";
+import { useProduct } from "../hooks/useProduct";
 
 const DetailPage = () => {
   const { name } = useParams();
@@ -15,33 +15,40 @@ const DetailPage = () => {
 
   if (!product) {
     return (
-      <div className={styles.notFound}>
-        <h1 className={styles.notFoundTitle}>Product Not Found</h1>
-        <p>Sorry, we couldn't find the product you're looking for.</p>
-        <div className={styles.availableProducts}>
-          <h2 className={styles.recommendationsTitle}>Available Products</h2>
-          <ul>
-            {availableProducts.map((product) => (
-              <li key={product._id}>
-                <a
-                  href={`/product/${product.name.toLowerCase().replace(/\s+/g, "-")}`}
-                >
-                  {product.name}
-                </a>
-              </li>
-            ))}
-          </ul>
+      <div className={styles.productDetail}>
+        <div className={styles.notFound}>
+          <Heading as="h2" size="textmd" className={styles.notFoundTitle}>
+            Product not found
+          </Heading>
+          <p>Sorry, we couldn't find a product matching "{name}".</p>
+          {availableProducts.length > 0 && (
+            <div className={styles.availableProducts}>
+              <Heading
+                as="h3"
+                size="textlg"
+                className={styles.recommendationsTitle}
+              >
+                Recommended Products:
+              </Heading>
+              <ul>
+                {availableProducts.map((item) => (
+                  <li key={item._id}>
+                    <a
+                      href={`/product/${item.name.toLowerCase().replace(/\s+/g, "-")}`}
+                    >
+                      {item.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       </div>
     );
   }
 
-  return (
-    <>
-      <ProductInfo product={product} />
-      <Related />
-    </>
-  );
+  return <ProductInfo product={product} />;
 };
 
 export default DetailPage;
