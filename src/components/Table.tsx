@@ -12,6 +12,12 @@ type Props<T> = {
   data: T[];
   className?: string;
   style?: CSSProperties;
+  header?: { className?: string; style?: CSSProperties };
+  hedaerCell?: { className?: string; style?: CSSProperties };
+  body?: { className?: string; style?: CSSProperties };
+  rowData?: { className?: string; style?: CSSProperties };
+  cell?: { className?: string; style?: CSSProperties };
+  [key: string]: any;
 };
 
 export function Table<T>({
