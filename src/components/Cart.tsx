@@ -35,7 +35,7 @@ const CartPage = () => {
       columnHelper.accessor("rowProduct", {
         cell: (info) => (
           <div className={styles["product-cell"]}>
-            {prolongation.length === 0 ? (
+            {prolongation.length === 1 ? (
               <Heading>{info.getValue()}</Heading>
             ) : (
               <>
@@ -70,7 +70,7 @@ const CartPage = () => {
       columnHelper.accessor("rowQuantity", {
         cell: (info) => (
           <div className={styles["quantity-cell"]}>
-            <Input type="number" defaultValue={info.getValue()} />
+            <Input type="number" defaultValue={parseFloat(info.getValue())} />
           </div>
         ),
         header: () => (
