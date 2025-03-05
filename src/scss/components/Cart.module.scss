@@ -92,3 +92,25 @@
     color: var(--red);
   }
 }
+
+.header-cell {
+  padding: 1.4rem 0;
+  font-weight: $font-weight-medium;
+
+  &.product-header {
+    padding: 1.4rem 4.4rem;
+    text-align: end;
+  }
+
+  &.price-header {
+    margin-left: 6.8rem;
+  }
+
+  &.quantity-header {
+    padding: 1.4rem 1.8rem;
+  }
+
+  &.subtotal-header {
+    margin-left: 1.8rem;
+  }
+}
