@@ -3,7 +3,6 @@ import Layout from "./components/Layout.tsx";
 import Homepage from "./pages/Homepage.tsx";
 import DetailPage from "./pages/DetailPage.tsx";
 
-
 function App() {
   return (
     <Router>
