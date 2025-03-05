@@ -10,6 +10,7 @@ export type Props = {
   disabled?: boolean;
   children?: React.ReactNode;
   onClick?: () => void;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLButtonElement>) => void;
 };
 
 const Button = ({ children, ...props }: Props) => {

@@ -1,5 +1,5 @@
 import { Icons } from "../utils/Icons";
-import { Heading } from "../utils";
+import { Heading, Button } from "../utils";
 import styles from "../scss/components/CartOverlay.module.scss";
 
 interface CartOverlayProps {
@@ -12,16 +12,23 @@ export const CartOverlay = ({ isOpen, onClose }: CartOverlayProps) => {
 
   return (
     <>
-      <div className={styles.backdrop} onClick={onClose} />
+      <Button
+        className={styles.backdrop}
+        onClick={onClose}
+        onKeyDown={(e: React.KeyboardEvent<HTMLButtonElement>) =>
+          e.key === "Escape" && onClose()
+        }
+        aria-label="Close cart"
+      />
       <div className={styles.overlay}>
         <div className={styles.cartContent}>
           <div className={styles.header}>
             <Heading as="h2" size="textxl">
               Shopping Cart
             </Heading>
-            <button className={styles.closeButton} onClick={onClose}>
+            <Button className={styles.closeButton} onClick={onClose}>
               <Icons.Bagx />
-            </button>
+            </Button>
           </div>
           <div className={styles.headerDivider} />
           <div className={styles.itemsContainer}>
@@ -43,27 +50,27 @@ export const CartOverlay = ({ isOpen, onClose }: CartOverlayProps) => {
           </div>
           <div className={styles.divider} />
           <div className={styles.actionButtons}>
-            <button className={styles.actionButton}>
+            <Button className={styles.actionButton}>
               <Heading as="span" size="textxs">
                 Cart
               </Heading>
-            </button>
-            <button className={styles.actionButton}>
+            </Button>
+            <Button className={styles.actionButton}>
               <Heading as="span" size="textxs">
                 Checkout
               </Heading>
-            </button>
-            <button className={styles.actionButton}>
+            </Button>
+            <Button className={styles.actionButton}>
               <Heading as="span" size="textxs">
                 Comparison
               </Heading>
-            </button>
+            </Button>
           </div>
-          <button className={styles.closeButtonMobile} onClick={onClose}>
+          <Button className={styles.closeButtonMobile} onClick={onClose}>
             <Heading as="span" size="textxs">
               Close
             </Heading>
-          </button>
+          </Button>
         </div>
       </div>
     </>
