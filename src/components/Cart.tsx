@@ -1,3 +1,4 @@
+import styles from "../scss/components/Cart.module.scss";
 import { Button, Heading, Icons, Img, Input } from "../utils";
 import { Table } from "./Table";
 import { createColumnHelper } from "@tanstack/react-table";
@@ -111,7 +112,7 @@ const CartPage = () => {
   }, [prolongation]);
 
   return (
-    <section className="cart">
+    <section className={styles.cart}>
       <div className="table-container">
         <Table
           columns={columns}

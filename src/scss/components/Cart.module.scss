@@ -6,5 +6,23 @@
   justify-content: center;
   gap: 3rem;
   width: 100%;
-  background-color: yellow;
+}
+
+.table-container {
+  width: 100%;
+}
+
+.cart-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.cart-th {
+  vertical-align: middle;
+  text-align: left;
+  background-color: var(--blue-grey);
+}
+
+.cart-td {
+  vertical-align: middle;
 }
