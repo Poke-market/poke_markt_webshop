@@ -34,12 +34,12 @@ const ProductDisplay = ({ images, name }: ProductDisplayProps) => {
                 setSelectedImageIndex(index);
               }
             }}
-            aria-label={`View ${name} image ${index + 1}`}
+            aria-label={`View ${name} ${index + 1}`}
             type="button"
           >
             <img
               src={image}
-              alt={`${name} view ${index + 1}`}
+              alt={`${name} ${index + 1}`}
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
                 target.src = "/placeholder-image.jpg";
@@ -51,7 +51,7 @@ const ProductDisplay = ({ images, name }: ProductDisplayProps) => {
       <div className={styles.mainImage}>
         <img
           src={images[selectedImageIndex]}
-          alt={`${name} main view`}
+          alt={name}
           onError={(e) => {
             const target = e.target as HTMLImageElement;
             target.src = "/placeholder-image.jpg";
