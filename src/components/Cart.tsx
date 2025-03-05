@@ -1,4 +1,4 @@
-import { Button, Heading, Img, Input } from "../utils";
+import { Button, Heading, Icons, Img, Input } from "../utils";
 import { Table } from "./Table";
 import { createColumnHelper } from "@tanstack/react-table";
 import { useMemo } from "react";
@@ -39,39 +39,76 @@ const CartPage = () => {
             ) : (
               <>
                 <div className="image-container">
-                  <Img src="https://via.placeholder.com/150" alt="Product" />
+                  <Img src="https://picsum.photos/200/200" alt="Product" />
                 </div>
                 <Heading>{info.getValue()}</Heading>
               </>
             )}
           </div>
         ),
-        header: "Product",
+        header: () => (
+          <div className="header-cell product-header">
+            <Heading>Product</Heading>
+          </div>
+        ),
       }),
       columnHelper.accessor("rowPrice", {
-        cell: (info) => <Heading>{info.getValue()}</Heading>,
-        header: "Price",
+        cell: (info) => (
+          <div className="price-cell">
+            <Heading>{info.getValue()}</Heading>
+          </div>
+        ),
+        header: () => (
+          <div className="header-cell price-header">
+            <Heading>Price</Heading>
+          </div>
+        ),
       }),
       columnHelper.accessor("rowQuantity", {
-        cell: (info) => <Input type="number" defaultValue={info.getValue()} />,
-        header: "Quantity",
+        cell: (info) => (
+          <div className="quantity-cell">
+            <Input type="number" defaultValue={info.getValue()} />
+          </div>
+        ),
+        header: () => (
+          <div className="header-cell quantity-header">
+            <Heading>Quantity</Heading>
+          </div>
+        ),
       }),
       columnHelper.accessor("rowSubtotal", {
-        cell: (info) => <Heading>{info.getValue()}</Heading>,
-        header: "Total",
+        cell: (info) => (
+          <div className="subtotal-cell">
+            <Heading>{info.getValue()}</Heading>
+          </div>
+        ),
+        header: () => (
+          <div className="header-cell subtotal-header">
+            <Heading>Subtotal</Heading>
+          </div>
+        ),
       }),
       columnHelper.display({
         id: "delete",
         cell: () =>
           prolongation.length > 0 && (
-            <Button className="delete-cell">Delete</Button>
+            <Button className="delete-cell">
+              <Icons.Delete />
+            </Button>
           ),
+        header: () => null,
       }),
     ],
     [columnHelper],
   );
 
   const isCartEmpty = prolongation.length === 0;
+
+  const cartSubtotal = useMemo(() => {
+    return prolongation
+      .reduce((sum, item) => sum + parseFloat(item.rowSubtotal), 0)
+      .toFixed(2);
+  }, [prolongation]);
 
   return (
     <section className="cart">
@@ -94,15 +131,20 @@ const CartPage = () => {
           </Heading>
           <div className="subtotal">
             <Heading>Subtotal</Heading>
-            <Heading>{isCartEmpty ? "0.00" : "0.00"}</Heading>
+            <Heading>${isCartEmpty ? "0.00" : cartSubtotal}</Heading>
           </div>
           <div className="total">
             <Heading>Total</Heading>
             <Heading className="total-amount">
-              {isCartEmpty ? "0.00" : "0.00"}
+              ${isCartEmpty ? "0.00" : cartSubtotal}
             </Heading>
           </div>
-          <Button disabled={isCartEmpty}>Check Out</Button>
+          <Button
+            disabled={isCartEmpty}
+            cursor={isCartEmpty ? "not-allowed" : "pointer"}
+          >
+            Check Out
+          </Button>
         </div>
       </div>
     </section>
