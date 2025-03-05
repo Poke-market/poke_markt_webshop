@@ -11,7 +11,7 @@ const createIcon = (iconName: string) => {
   );
 };
 
-export const Icons = {
+const Icons = {
   User: createIcon("tdesign:user"),
   Search: createIcon("iconamoon:search"),
   Wishlist: createIcon("ant-design:heart-outlined"),
@@ -43,3 +43,6 @@ export const Icons = {
   Arrowrightsmall: createIcon("weui:arrow-filled"),
   Filtering: createIcon("system-uicons:filtering"),
 };
+
+export default Icons;
+export { Icons };

@@ -8,7 +8,7 @@ import {
 const Homepage = () => {
   return (
     <>
-      <BannerShop />
+      <BannerShop title="Shop" />
       <FilterSortBar />
       <ShopGrid />
       <UspBanner />
