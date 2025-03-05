@@ -1,66 +1,71 @@
 @use "../partials/variables.scss" as *;
-
+@use "../partials/mixins.scss" as *;
+@use "../abstracts/typography.module.scss" as *;
 .filterSortBar {
   background-color: var(--basic-blue);
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100vw;
-  padding: 2rem 8.5rem;
-  font-size: 1.6rem;
-  max-height: 10rem;
+  padding: 2rem 6rem;
+  min-height: 10rem;
   font-family: $font-family;
 
-  span {
+  span:first-of-type {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     gap: 1rem;
+    width: auto;
+    flex-wrap: wrap;
+    .filterIcon,
+    .gridView,
+    .listView {
+      display: flex;
+      align-items: center;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    .filterIcon:hover,
+    .gridView:hover,
+    .listView:hover {
+      color: var(--red);
+    }
+    .filter {
+      display: flex;
+      align-items: center;
+      gap: 0.1rem;
+    }
   }
 
-  .filter,
-  .gridView,
-  .listView {
-    background: none;
-    border: none;
-    font-size: 3rem;
-    color: var(--grey);
-    cursor: pointer;
-    transition: transform 0.2s ease;
-
-    &:hover {
-      transform: scale(1.1);
-    }
-
-    i {
-      font-size: 2rem;
-    }
+  span:nth-of-type(2) {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 2rem;
+    width: auto;
+    flex-wrap: wrap;
   }
 
   .separator {
     display: inline-block;
     width: 1px;
     height: 3.7rem;
-    background-color: var(--grey);
+    background-color: var(--text-color-2);
+    padding: 0 0.1rem;
     margin: 0 2rem;
-  }
-
-  p {
-    font-size: 1.4rem;
-    color: var(--text-color);
-    margin: 0;
   }
 
   span > fieldset {
     border: none;
-    margin: 0 2rem;
+    margin-left: 2rem;
     display: flex;
     flex-direction: row;
     align-items: center;
   }
 
-  fieldset label {
-    font-size: 1.4rem;
+  fieldset span {
     color: var(--text-color);
     padding-right: 1.7rem;
   }
@@ -73,15 +78,113 @@
     outline: none;
     color: var(--grey);
   }
+
   #productsPerPage {
-    width: 5.5rem;
+    width: 100%;
+    max-width: 4rem;
+    padding: 0;
+    font-size: 1.4rem;
+    text-align: center;
+    appearance: none;
+    border: 1px solid var(--basic-blue);
+    box-sizing: border-box;
   }
 
   #sort {
     width: 18.8rem;
   }
+
+  span:nth-of-type(2) > fieldset:first-child input {
+    max-width: 5rem;
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1.4rem;
+    text-align: center;
+    background-color: var(--white);
+  }
+
   fieldset input:focus,
   fieldset select:focus {
     border-color: var(--basic-blue);
+  }
+
+  @media screen and (max-width: 1090px) {
+    padding: 2rem 4rem;
+    flex-direction: row;
+    align-items: center;
+    gap: 4rem;
+
+    > span {
+      width: auto;
+      justify-content: space-between;
+      margin-bottom: 0;
+    }
+
+    .separator {
+      margin: 0 2rem;
+    }
+  }
+
+  @include responsive(md) {
+    padding: 2rem 4rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+
+    > span {
+      width: 100%;
+      justify-content: center;
+      margin-bottom: 0;
+      flex-wrap: nowrap;
+    }
+
+    span:first-of-type {
+      justify-content: flex-start;
+      gap: 3rem;
+    }
+
+    span:nth-of-type(2) {
+      justify-content: flex-end;
+    }
+
+    .separator {
+      margin: 0 1rem;
+    }
+  }
+
+  @include responsive(sm) {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem 2rem;
+    min-height: auto;
+
+    .filter,
+    .filter span,
+    .filter p,
+    span:last-of-type,
+    fieldset:first-child,
+    fieldset:last-child {
+      display: none;
+    }
+
+    span:first-of-type {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 4rem;
+      width: auto;
+      margin: 0;
+    }
+
+    .gridView,
+    .listView {
+      font-size: 2rem;
+      margin: 0;
+    }
+
+    .separator {
+      display: none !important;
+    }
   }
 }

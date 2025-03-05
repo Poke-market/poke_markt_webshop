@@ -1,39 +1,32 @@
-import styles from "../scss/components/UspBanner.module.css";
+import styles from "../scss/components/UspBanner.module.scss";
+import { Icons } from "../utils/Icons";
 
 const UspBanner = () => {
   return (
     <div className={styles.uspBanner}>
       <div className={styles.usp}>
-        <div>
-          <i></i>
-        </div>
+        <Icons.Trophy className={styles.iconBig} />
         <div>
           <p>High Quality</p>
           <span>Crafted from top materials</span>
         </div>
       </div>
       <div className={styles.usp}>
-        <div>
-          <i></i>
-        </div>
+        <Icons.Warranty className={styles.iconBig} />
         <div>
           <p>Warranty Protection</p>
           <span>Over 2 years</span>
         </div>
       </div>
       <div className={styles.usp}>
-        <div>
-          <i></i>
-        </div>
+        <Icons.Delivery className={styles.iconBig} />
         <div>
           <p>Free Shipping</p>
           <span>Order over $150</span>
         </div>
       </div>
       <div className={styles.usp}>
-        <div>
-          <i></i>
-        </div>
+        <Icons.CustomerService className={styles.iconBig} />
         <div>
           <p>24 / 7 Support</p>
           <span>Dedicated support</span>
@@ -42,4 +35,5 @@ const UspBanner = () => {
     </div>
   );
 };
+
 export default UspBanner;
