@@ -1,6 +1,5 @@
 import { headerLinks, Heading } from "../utils";
 import { NavLink } from "react-router-dom";
-import PokeLogo from "../assets/poke.png";
 import styles from "../scss/components/Header.module.scss";
 import clsx from "clsx";
 
@@ -15,7 +14,14 @@ const Header = ({ className }: Props) => {
       aria-label="Main Navigation"
     >
       <NavLink to="/" className={styles.logoLink}>
-        <img src={PokeLogo} alt="Pokemon Logo" className={styles.headerLogo} />
+        <img
+          src="/poke-mart-logo.png"
+          alt="Pokemon Mart Logo"
+          className={styles.headerLogo}
+        />
+        <Heading size="text2xl" className={styles.logoText}>
+          Poke-Mart
+        </Heading>
       </NavLink>
       <ul className={styles.navList}>
         {headerLinks.navLinks.map((item) => (
