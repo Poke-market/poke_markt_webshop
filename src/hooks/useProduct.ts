@@ -12,12 +12,10 @@ export const useProduct = (name: string | undefined) => {
       try {
         const searchName = name?.replace(/-/g, " ");
 
-        // Fetch recommendations first
         const recommendations = await productService.getRecommendations();
         setAvailableProducts(recommendations);
 
         if (searchName) {
-          // Then search for the specific product
           const foundProduct = await productService.searchProduct(searchName);
           setProduct(foundProduct);
         } else {
