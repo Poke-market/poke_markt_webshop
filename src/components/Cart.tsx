@@ -138,12 +138,12 @@ const CartPage = () => {
           </Heading>
           <div className={styles.subtotal}>
             <Heading>Subtotal</Heading>
-            <Heading>${isCartEmpty ? "0.00" : cartSubtotal}</Heading>
+            <Heading>€{isCartEmpty ? "0.00" : cartSubtotal}</Heading>
           </div>
           <div className={styles.total}>
             <Heading>Total</Heading>
             <Heading className={styles["total-amount"]}>
-              ${isCartEmpty ? "0.00" : cartSubtotal}
+              €{isCartEmpty ? "0.00" : cartSubtotal}
             </Heading>
           </div>
           <Button

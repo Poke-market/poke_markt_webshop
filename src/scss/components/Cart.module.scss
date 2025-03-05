@@ -161,5 +161,29 @@
         }
       }
     }
+
+    button {
+      margin: 4rem 1rem 0;
+      border: 1px solid var(--basic-blue);
+      background-color: var(--blue-grey);
+      color: var(--basic-blue);
+      border-radius: 1.4rem;
+      transition: 0.3s;
+      font-size: 2rem;
+      width: 20rem;
+      height: 5.8rem;
+
+      &:hover {
+        background-color: var(--basic-blue);
+        color: var(--white);
+      }
+
+      &:disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+        background-color: var(--blue-grey);
+        color: var(--basic-blue);
+      }
+    }
   }
 }
