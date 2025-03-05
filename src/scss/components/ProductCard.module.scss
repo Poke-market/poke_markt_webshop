@@ -112,6 +112,16 @@
         text-decoration: line-through;
       }
     }
+
+    .productLink {
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+
+      &:hover .productName {
+        color: var(--basic-blue);
+      }
+    }
   }
   .overlay {
     position: absolute;
@@ -174,4 +184,9 @@
   &:hover .overlay {
     opacity: 1;
   }
+}
+.cardLink {
+  text-decoration: none;
+  color: inherit;
+  display: block;
 }
