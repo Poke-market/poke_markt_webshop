@@ -1,7 +1,13 @@
+import {
+  flexRender,
+  getCoreRowModel,
+  useReactTable,
+  type ColumnDef,
+} from "@tanstack/react-table";
 import { CSSProperties } from "react";
 
 type Props<T> = {
-  columns: any[];
+  columns: ColumnDef<T, any>[];
   data: T[];
   className?: string;
   style?: CSSProperties;
@@ -13,14 +19,29 @@ export function Table<T>({
   className = "",
   style,
 }: Props<T>) {
+  const table = useReactTable({
+    data,
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+  });
+
   return (
     <table className={className} style={style}>
       <thead>
-        <tr>
-          {columns.map((col, index) => (
-            <th key={index}>{col.header}</th>
-          ))}
-        </tr>
+        {table.getHeaderGroups().map((headerGroup) => (
+          <tr key={headerGroup.id}>
+            {headerGroup.headers.map((header) => (
+              <th key={header.id}>
+                {header.isPlaceholder
+                  ? null
+                  : flexRender(
+                      header.column.columnDef.header,
+                      header.getContext(),
+                    )}
+              </th>
+            ))}
+          </tr>
+        ))}
       </thead>
       <tbody>{}</tbody>
     </table>
