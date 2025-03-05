@@ -16,11 +16,11 @@ export const CartOverlay = ({ isOpen, onClose }: CartOverlayProps) => {
       <div className={styles.overlay}>
         <div className={styles.cartContent}>
           <div className={styles.header}>
-            <Heading as="h2" size="headingmd">
-              Cart
+            <Heading as="h2" size="textxl">
+              Shopping Cart
             </Heading>
             <button className={styles.closeButton} onClick={onClose}>
-              <Icons.XFill />
+              <Icons.Bagx />
             </button>
           </div>
 
@@ -32,10 +32,10 @@ export const CartOverlay = ({ isOpen, onClose }: CartOverlayProps) => {
 
           <div className={styles.footer}>
             <div className={styles.total}>
-              <Heading as="span" size="headingmd">
-                Total:
+              <Heading as="span" size="textlg">
+                Subtotal
               </Heading>
-              <Heading as="span" size="headingmd">
+              <Heading as="span" size="textlg">
                 $0.00
               </Heading>
             </div>
