@@ -68,6 +68,7 @@
         min-width: 8rem;
         color: var(--product-description-color);
         position: relative;
+        flex-shrink: 0;
 
         &::after {
           content: ":";
@@ -79,6 +80,8 @@
       .value {
         color: var(--product-description-color);
         margin-left: 3rem;
+        flex: 1;
+        word-break: break-word;
       }
     }
 
@@ -86,6 +89,8 @@
       .tagList {
         color: var(--product-description-color);
         margin-left: 3rem;
+        flex: 1;
+        word-break: break-word;
         .tag:not(:last-child)::after {
           content: ", ";
         }

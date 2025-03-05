@@ -12,6 +12,10 @@
     gap: 2rem;
     padding: 2rem;
   }
+
+  @media (max-width: $breakpoint-sm) {
+    padding: 1.5rem;
+  }
 }
 
 .notFound {
@@ -21,15 +25,32 @@
   margin: 0 auto;
   font-family: $font-family;
 
+  @media (max-width: $breakpoint) {
+    padding: 3rem 2rem;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    padding: 2rem 1.5rem;
+  }
+
   .notFoundTitle {
     color: var(--red);
     margin-bottom: 1rem;
+    font-size: 2.4rem;
+
+    @media (max-width: $breakpoint-sm) {
+      font-size: 2rem;
+    }
   }
 
   p {
     color: var(--text-color);
     margin-bottom: 2rem;
     font-size: 1.6rem;
+
+    @media (max-width: $breakpoint-sm) {
+      font-size: 1.4rem;
+    }
   }
 }
 
@@ -40,9 +61,19 @@
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
+  @media (max-width: $breakpoint-sm) {
+    padding: 1.5rem;
+  }
+
   .recommendationsTitle {
     color: var(--red);
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+
+    @media (max-width: $breakpoint-sm) {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
   }
 
   ul {
@@ -51,7 +82,17 @@
     margin: 0;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1rem;
+    gap: 1.5rem;
+
+    @media (max-width: $breakpoint) {
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 1rem;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+      grid-template-columns: 1fr;
+      gap: 0.8rem;
+    }
 
     li {
       a {
@@ -59,6 +100,12 @@
         text-decoration: none;
         font-size: 1.6rem;
         transition: color 0.2s ease;
+        display: block;
+        padding: 0.5rem 0;
+
+        @media (max-width: $breakpoint-sm) {
+          font-size: 1.4rem;
+        }
 
         &:hover {
           color: var(--red);
