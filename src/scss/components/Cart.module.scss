@@ -56,4 +56,15 @@
   padding: 0 3.6rem;
   width: 10.5rem;
   margin-top: 0.5rem;
+
+  input {
+    border: 1px solid var(--text-color);
+    width: 3.2rem;
+    height: 3.2rem;
+    border-radius: 5px;
+    background-color: transparent;
+    text-align: center;
+    color: var(--text-color);
+    font-size: 1.6rem;
+  }
 }
