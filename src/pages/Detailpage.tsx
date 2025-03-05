@@ -5,7 +5,7 @@ import { useProduct } from "../hooks/useProduct.ts";
 import styles from "../scss/components/DetailPage.module.scss";
 import Loading from "../components/Loading.tsx";
 
-const Detailpage = () => {
+const DetailPage = () => {
   const { name } = useParams();
   const { product, loading, availableProducts } = useProduct(name);
 
@@ -44,4 +44,4 @@ const Detailpage = () => {
   );
 };
 
-export default Detailpage;
+export default DetailPage;
