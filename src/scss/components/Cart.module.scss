@@ -6,10 +6,22 @@
   justify-content: center;
   gap: 3rem;
   width: 100%;
+
+  @media (max-width: 1050px) {
+    padding: 2rem;
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 .table-container {
   width: 100%;
+  @media (max-width: 768px) {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    max-width: 100%;
+  }
 }
 
 .cart-table {
@@ -20,11 +32,23 @@
 .cart-th {
   vertical-align: middle;
   text-align: left;
+  padding: 0;
+  border: none;
   background-color: var(--blue-grey);
 }
 
 .cart-td {
   vertical-align: middle;
+
+  p {
+    font-size: 1.6rem;
+    color: var(--light-blue);
+    font-weight: normal;
+
+    @media (max-width: 768px) {
+      font-size: 1.4rem;
+    }
+  }
 }
 
 .product-cell {
@@ -33,6 +57,7 @@
   justify-content: space-between;
   gap: 2rem;
   width: 25rem;
+  max-width: 100%;
 
   .image-container {
     border-radius: 10px;
@@ -43,13 +68,27 @@
       height: 10.5rem;
       object-fit: contain;
       border-radius: 10px;
+
+      @media (max-width: 768px) {
+        height: 8rem;
+      }
     }
+  }
+
+  @media (max-width: 768px) {
+    width: auto;
+    gap: 1rem;
   }
 }
 
 .price-cell {
   margin-left: 6.8rem;
   width: 15.8rem;
+
+  @media (max-width: 768px) {
+    margin-left: 2rem;
+    width: auto;
+  }
 }
 
 .quantity-cell {
@@ -66,6 +105,30 @@
     text-align: center;
     color: var(--text-color);
     font-size: 1.6rem;
+
+    @media (max-width: 768px) {
+      width: 2.8rem;
+      height: 2.8rem;
+      font-size: 1.4rem;
+    }
+
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+    }
+
+    &:hover {
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: auto;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 0 1rem;
+    width: auto;
+  }
+  @media (max-width: 640px) {
+    padding: 0 1rem;
   }
 }
 
@@ -75,6 +138,15 @@
   align-items: center;
   gap: 2rem;
   width: 15rem;
+
+  p {
+    color: black;
+  }
+
+  @media (max-width: 768px) {
+    margin-left: 1rem;
+    width: auto;
+  }
 }
 
 .delete-cell {
@@ -91,27 +163,56 @@
   &:hover {
     color: var(--red);
   }
+
+  @media (max-width: 768px) {
+    width: 3rem;
+  }
 }
 
 .header-cell {
   padding: 1.4rem 0;
-  font-weight: $font-weight-medium;
+  background-color: inherit;
 
   &.product-header {
     padding: 1.4rem 4.4rem;
     text-align: end;
+
+    @media (max-width: 768px) {
+      padding: 1rem 2rem;
+    }
   }
 
   &.price-header {
     margin-left: 6.8rem;
+
+    @media (max-width: 768px) {
+      margin-left: 2rem;
+    }
   }
 
   &.quantity-header {
     padding: 1.4rem 1.8rem;
+
+    @media (max-width: 768px) {
+      padding: 1rem;
+    }
   }
 
   &.subtotal-header {
     margin-left: 1.8rem;
+
+    @media (max-width: 768px) {
+      margin-left: 1rem;
+    }
+  }
+
+  p {
+    font-size: 1.6rem;
+    font-weight: $font-weight-medium;
+
+    @media (max-width: 768px) {
+      font-size: 1.4rem;
+    }
   }
 }
 
@@ -122,6 +223,14 @@
   justify-content: center;
   width: 28%;
 
+  @media (max-width: 1050px) {
+    width: 50%;
+  }
+
+  @media (max-width: 640px) {
+    width: 100%;
+  }
+
   .totals-content {
     width: 70%;
     display: flex;
@@ -129,9 +238,22 @@
     align-items: center;
     margin-bottom: 6rem;
 
+    @media (max-width: 768px) {
+      width: 100%;
+      margin-bottom: 0;
+    }
+
     h1 {
       font-weight: $font-weight-medium;
       text-wrap: nowrap;
+
+      @media (max-width: 768px) {
+        margin-left: 0;
+        font-size: 3rem;
+      }
+      @media (max-width: 630px) {
+        font-size: 2.8rem;
+      }
     }
 
     .subtotal,
@@ -149,7 +271,6 @@
       p:first-child {
         font-weight: $font-weight-semi-bold;
       }
-
       p:last-child {
         color: var(--product-name-color);
         font-weight: normal;
@@ -177,12 +298,15 @@
         background-color: var(--basic-blue);
         color: var(--white);
       }
-
       &:disabled {
-        opacity: 0.3;
+        opacity: 0.5;
         cursor: not-allowed;
         background-color: var(--blue-grey);
         color: var(--basic-blue);
+      }
+
+      @media (max-width: 630px) {
+        margin: 4.2rem 0;
       }
     }
   }

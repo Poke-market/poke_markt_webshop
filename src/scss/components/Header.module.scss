@@ -50,10 +50,6 @@
         cursor: pointer;
       }
     }
-
-    .icont {
-      color: red;
-    }
   }
 
   @include responsive(md) {
@@ -67,6 +63,7 @@
     .iconContainer {
       margin-right: 0;
       width: 100%;
+      justify-content: space-around;
     }
   }
 

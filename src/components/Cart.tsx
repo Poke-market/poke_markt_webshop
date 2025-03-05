@@ -35,7 +35,7 @@ const CartPage = () => {
       columnHelper.accessor("rowProduct", {
         cell: (info) => (
           <div className={styles["product-cell"]}>
-            {prolongation.length === 1 ? (
+            {prolongation.length === 0 ? (
               <Heading>{info.getValue()}</Heading>
             ) : (
               <>
@@ -98,7 +98,7 @@ const CartPage = () => {
       columnHelper.display({
         id: "delete",
         cell: () =>
-          prolongation.length === 0 && (
+          prolongation.length > 0 && (
             <Button className={styles["delete-cell"]}>
               <Icons.Delete />
             </Button>
