@@ -13,7 +13,7 @@ const ProductDisplay = ({ images, name }: ProductDisplayProps) => {
     return (
       <div className={styles.imageGallery}>
         <div className={styles.mainImage}>
-          <img src="/placeholder-image.jpg" alt="No image available" />
+          <img src="/placeholder-image.jpg" alt="No content available" />
         </div>
       </div>
     );
