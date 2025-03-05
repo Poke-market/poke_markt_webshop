@@ -1,5 +1,12 @@
 import { Button, Heading } from "../utils";
 
+type CartItem = {
+  rowProduct: string;
+  rowPrice: string;
+  rowQuantity: string;
+  rowSubtotal: string;
+};
+
 const CartPage = () => (
   <section className="cart">
     <div className="table-container">
@@ -38,7 +45,7 @@ const CartPage = () => (
     </div>
     <div className="totals-container">
       <div className="totals-content">
-        <Heading as="h1" size={"textmd"}>
+        <Heading as="h1" size="textmd">
           Cart Totals
         </Heading>
         <div className="subtotal">

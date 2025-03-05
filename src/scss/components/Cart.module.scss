@@ -1,0 +1,10 @@
+@use "../partials/variables" as *;
+
+.cart {
+  padding: 5rem 15rem;
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  width: 100%;
+  background-color: yellow;
+}
