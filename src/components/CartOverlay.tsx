@@ -23,13 +23,14 @@ export const CartOverlay = ({ isOpen, onClose }: CartOverlayProps) => {
               <Icons.Bagx />
             </button>
           </div>
-
+          <div className={styles.headerDivider} />
           <div className={styles.itemsContainer}>
             <Heading as="p" size="textxl" className={styles.emptyCart}>
               Your cart is empty
             </Heading>
           </div>
-
+        </div>
+        <div className={styles.bottomSection}>
           <div className={styles.footer}>
             <div className={styles.total}>
               <Heading as="span" size="textlg">
@@ -58,6 +59,11 @@ export const CartOverlay = ({ isOpen, onClose }: CartOverlayProps) => {
               </Heading>
             </button>
           </div>
+          <button className={styles.closeButtonMobile} onClick={onClose}>
+            <Heading as="span" size="textxs">
+              Close
+            </Heading>
+          </button>
         </div>
       </div>
     </>
