@@ -114,3 +114,52 @@
     margin-left: 1.8rem;
   }
 }
+
+.totals-container {
+  background-color: var(--blue-grey);
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  width: 28%;
+
+  .totals-content {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 6rem;
+
+    h1 {
+      font-weight: $font-weight-medium;
+      text-wrap: nowrap;
+    }
+
+    .subtotal,
+    .total {
+      display: flex;
+      justify-content: space-between;
+      gap: 2rem;
+      width: 100%;
+      margin-top: 3rem;
+
+      &.subtotal {
+        margin-top: 6rem;
+      }
+
+      p:first-child {
+        font-weight: $font-weight-semi-bold;
+      }
+
+      p:last-child {
+        color: var(--product-name-color);
+        font-weight: normal;
+
+        &.total-amount {
+          font-size: 2rem;
+          color: var(--basic-blue);
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
