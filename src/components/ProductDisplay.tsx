@@ -23,12 +23,19 @@ const ProductDisplay = ({ images, name }: ProductDisplayProps) => {
     <div className={styles.imageGallery}>
       <div className={styles.thumbnailSlider}>
         {images.map((image, index) => (
-          <div
+          <button
             key={index}
             className={`${styles.thumbnail} ${
               index === selectedImageIndex ? styles.active : ""
             }`}
             onClick={() => setSelectedImageIndex(index)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                setSelectedImageIndex(index);
+              }
+            }}
+            aria-label={`View ${name} image ${index + 1}`}
+            type="button"
           >
             <img
               src={image}
@@ -38,13 +45,13 @@ const ProductDisplay = ({ images, name }: ProductDisplayProps) => {
                 target.src = "/placeholder-image.jpg";
               }}
             />
-          </div>
+          </button>
         ))}
       </div>
       <div className={styles.mainImage}>
         <img
           src={images[selectedImageIndex]}
-          alt={name}
+          alt={`${name} main view`}
           onError={(e) => {
             const target = e.target as HTMLImageElement;
             target.src = "/placeholder-image.jpg";
