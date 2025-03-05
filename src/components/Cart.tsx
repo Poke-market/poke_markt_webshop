@@ -1,5 +1,5 @@
 import styles from "../scss/components/Cart.module.scss";
-import { Button, Heading, Icons, Img, Input } from "../utils";
+import { Button, Heading, Icons, Img, Input } from ".././utils";
 import { Table } from "./Table";
 import { createColumnHelper } from "@tanstack/react-table";
 import { useMemo } from "react";
@@ -34,12 +34,12 @@ const CartPage = () => {
     () => [
       columnHelper.accessor("rowProduct", {
         cell: (info) => (
-          <div className="product-cell">
+          <div className={styles["product-cell"]}>
             {prolongation.length === 0 ? (
               <Heading>{info.getValue()}</Heading>
             ) : (
               <>
-                <div className="image-container">
+                <div className={styles["image-container"]}>
                   <Img src="https://picsum.photos/200/200" alt="Product" />
                 </div>
                 <Heading>{info.getValue()}</Heading>
@@ -48,43 +48,49 @@ const CartPage = () => {
           </div>
         ),
         header: () => (
-          <div className="header-cell product-header">
+          <div
+            className={`${styles["header-cell"]} ${styles["product-header"]}`}
+          >
             <Heading>Product</Heading>
           </div>
         ),
       }),
       columnHelper.accessor("rowPrice", {
         cell: (info) => (
-          <div className="price-cell">
+          <div className={styles["price-cell"]}>
             <Heading>{info.getValue()}</Heading>
           </div>
         ),
         header: () => (
-          <div className="header-cell price-header">
+          <div className={`${styles["header-cell"]} ${styles["price-header"]}`}>
             <Heading>Price</Heading>
           </div>
         ),
       }),
       columnHelper.accessor("rowQuantity", {
         cell: (info) => (
-          <div className="quantity-cell">
+          <div className={styles["quantity-cell"]}>
             <Input type="number" defaultValue={info.getValue()} />
           </div>
         ),
         header: () => (
-          <div className="header-cell quantity-header">
+          <div
+            className={`${styles["header-cell"]} ${styles["quantity-header"]}`}
+          >
             <Heading>Quantity</Heading>
           </div>
         ),
       }),
       columnHelper.accessor("rowSubtotal", {
         cell: (info) => (
-          <div className="subtotal-cell">
+          <div className={styles["subtotal-cell"]}>
             <Heading>{info.getValue()}</Heading>
           </div>
         ),
         header: () => (
-          <div className="header-cell subtotal-header">
+          <div
+            className={`${styles["header-cell"]} ${styles["subtotal-header"]}`}
+          >
             <Heading>Subtotal</Heading>
           </div>
         ),
@@ -93,7 +99,7 @@ const CartPage = () => {
         id: "delete",
         cell: () =>
           prolongation.length > 0 && (
-            <Button className="delete-cell">
+            <Button className={styles["delete-cell"]}>
               <Icons.Delete />
             </Button>
           ),
@@ -113,30 +119,30 @@ const CartPage = () => {
 
   return (
     <section className={styles.cart}>
-      <div className="table-container">
+      <div className={styles["table-container"]}>
         <Table
           columns={columns}
           data={data}
-          className="cart-table"
-          theadProps={{ className: "cart-thead" }}
-          thProps={{ className: "cart-th" }}
-          tbodyProps={{ className: "cart-tbody" }}
-          trProps={{ className: "cart-tr" }}
-          tdProps={{ className: "cart-td" }}
+          className={styles["cart-table"]}
+          theadProps={{ className: styles["cart-thead"] }}
+          thProps={{ className: styles["cart-th"] }}
+          tbodyProps={{ className: styles["cart-tbody"] }}
+          trProps={{ className: styles["cart-tr"] }}
+          tdProps={{ className: styles["cart-td"] }}
         />
       </div>
-      <div className="totals-container">
-        <div className="totals-content">
+      <div className={styles["totals-container"]}>
+        <div className={styles["totals-content"]}>
           <Heading as="h1" size="textmd">
             Cart Totals
           </Heading>
-          <div className="subtotal">
+          <div className={styles.subtotal}>
             <Heading>Subtotal</Heading>
             <Heading>${isCartEmpty ? "0.00" : cartSubtotal}</Heading>
           </div>
-          <div className="total">
+          <div className={styles.total}>
             <Heading>Total</Heading>
-            <Heading className="total-amount">
+            <Heading className={styles["total-amount"]}>
               ${isCartEmpty ? "0.00" : cartSubtotal}
             </Heading>
           </div>
