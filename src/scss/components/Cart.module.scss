@@ -68,3 +68,27 @@
     font-size: 1.6rem;
   }
 }
+
+.subtotal-cell {
+  margin-left: 1.808rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  width: 15rem;
+}
+
+.delete-cell {
+  margin-left: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  width: 4rem;
+  color: var(--basic-blue);
+  transition: 0.3s;
+
+  &:hover {
+    color: var(--red);
+  }
+}

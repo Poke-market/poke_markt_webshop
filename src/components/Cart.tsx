@@ -98,7 +98,7 @@ const CartPage = () => {
       columnHelper.display({
         id: "delete",
         cell: () =>
-          prolongation.length > 0 && (
+          prolongation.length === 0 && (
             <Button className={styles["delete-cell"]}>
               <Icons.Delete />
             </Button>
