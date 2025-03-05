@@ -2,6 +2,7 @@ import {
   flexRender,
   getCoreRowModel,
   useReactTable,
+  getSortedRowModel,
   type ColumnDef,
 } from "@tanstack/react-table";
 import { CSSProperties } from "react";
@@ -23,6 +24,7 @@ export function Table<T>({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
   });
 
   return (
