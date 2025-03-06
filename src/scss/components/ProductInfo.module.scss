@@ -45,6 +45,34 @@
     }
   }
 
+  .reviewContainer {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin: 0.2rem 0;
+
+    .stars {
+      display: flex;
+      gap: 0.2rem;
+      color: #ffb800;
+
+      .star {
+        font-size: 1rem;
+      }
+    }
+
+    .pipe {
+      color: var(--product-description-color);
+      width: 1px;
+      height: 4rem;
+      background-color: var(--product-description-color);
+    }
+
+    .reviewText {
+      color: var(--product-description-color);
+    }
+  }
+
   .description {
     font-size: 1.6rem;
     color: var(--text-color);

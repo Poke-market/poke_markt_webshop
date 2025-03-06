@@ -45,6 +45,21 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
             <span className={styles.originalPrice}>${originalPrice}</span>
           )}
         </div>
+
+        <div className={styles.reviewContainer}>
+          <div className={styles.stars}>
+            <Icons.Star className={styles.star} />
+            <Icons.Star className={styles.star} />
+            <Icons.Star className={styles.star} />
+            <Icons.Star className={styles.star} />
+            <Icons.HalfStar className={styles.star} />
+          </div>
+          <div className={styles.pipe} />
+          <Heading as="p" size="textxs" className={styles.reviewText}>
+            5 Customer Review
+          </Heading>
+        </div>
+
         <p className={styles.description}>{product.description}</p>
         <div className={styles.actions}>
           <div className={styles.quantityContainer}>
