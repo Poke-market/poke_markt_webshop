@@ -23,14 +23,26 @@
 .imageGallery {
   flex: 1;
   display: flex;
+  flex-direction: column;
   gap: 2rem;
   max-width: 60rem;
   margin: 0 auto;
 
+  .mainImage {
+    order: -1;
+  }
+
+  @media (min-width: $breakpoint) {
+    flex-direction: row;
+    .mainImage {
+      order: 2;
+      width: 45rem;
+      height: 45rem;
+    }
+  }
+
   @media (max-width: $breakpoint) {
-    flex-direction: column;
     align-items: center;
-    gap: 2rem;
     width: 100%;
 
     .mainImage {
@@ -84,7 +96,6 @@
     border-radius: 1rem;
     overflow: hidden;
     background: var(--bluegrey);
-    order: -1;
 
     img {
       width: 100%;
