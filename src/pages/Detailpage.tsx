@@ -51,11 +51,11 @@ const DetailPage = () => {
   }
 
   return (
-  <>
-    <Breadcrumb />
-    <ProductInfo product={product} />
-    <Related />
-  </>
+    <>
+      <Breadcrumb />
+      <ProductInfo product={product} />
+      <Related />
+    </>
   );
 };
 
