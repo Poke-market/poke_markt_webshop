@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Icons } from "../utils/Icons";
 import ProductDisplay from "./ProductDisplay";
 import { Product } from "../types/types";
+import Button from "./Button";
 
 interface ProductInfoProps {
   product: Product;
@@ -63,13 +64,13 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
         <p className={styles.description}>{product.description}</p>
         <div className={styles.actions}>
           <div className={styles.quantityContainer}>
-            <button
+            <Button
               className={styles.quantityButton}
               onClick={handleDecrement}
               disabled={quantity <= 1}
             >
               -
-            </button>
+            </Button>
             <input
               type="number"
               value={quantity}
@@ -79,11 +80,11 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
               min="1"
               className={styles.quantityInput}
             />
-            <button className={styles.quantityButton} onClick={handleIncrement}>
+            <Button className={styles.quantityButton} onClick={handleIncrement}>
               +
-            </button>
+            </Button>
           </div>
-          <button className={styles.addToCart}>Add To Cart</button>
+          <Button className={styles.addToCart}>Add To Cart</Button>
         </div>
         <div className={styles.productDetails}>
           <div className={styles.sku}>
