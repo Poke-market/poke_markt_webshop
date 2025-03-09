@@ -1,6 +1,7 @@
 import { Icons } from "../utils/Icons";
 import { Heading, Button } from "../utils";
 import styles from "../scss/components/CartOverlay.module.scss";
+import { Link } from "react-router-dom";
 
 interface CartOverlayProps {
   isOpen: boolean;
@@ -50,21 +51,21 @@ export const CartOverlay = ({ isOpen, onClose }: CartOverlayProps) => {
           </div>
           <div className={styles.divider} />
           <div className={styles.actionButtons}>
-            <Button className={styles.actionButton}>
+            <Link to="/cart" className={styles.actionButton}>
               <Heading as="span" size="textxs">
                 Cart
               </Heading>
-            </Button>
-            <Button className={styles.actionButton}>
+            </Link>
+            <Link to="/checkout" className={styles.actionButton}>
               <Heading as="span" size="textxs">
                 Checkout
               </Heading>
-            </Button>
-            <Button className={styles.actionButton}>
+            </Link>
+            <Link to="/comparison" className={styles.actionButton}>
               <Heading as="span" size="textxs">
                 Comparison
               </Heading>
-            </Button>
+            </Link>
           </div>
           <Button className={styles.closeButtonMobile} onClick={onClose}>
             <Heading as="span" size="textxs">
