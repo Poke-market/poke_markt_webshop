@@ -9,7 +9,7 @@ function App() {
       <Layout>
         <Routes>
           <Route path="/" element={<Homepage />} />
-          <Route path="/detailpage" element={<Detailpage />} />
+          <Route path="/product/:itemName" element={<Detailpage />} />
         </Routes>
       </Layout>
     </Router>
