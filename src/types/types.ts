@@ -23,3 +23,51 @@ export interface ApiResponse {
     }[];
   };
 }
+
+export interface Product {
+  isNewItem: boolean;
+  _id: string;
+  name: string;
+  description: string;
+  photoUrl: string;
+  price: number;
+  category: string;
+  tags: string[];
+  __v: number;
+  createdAt: string;
+  updatedAt: string;
+  discount: {
+    amount: number;
+    type: string;
+    discountedPrice: number;
+    hasDiscount: boolean;
+  };
+}
+
+export interface ApiListResponse {
+  status: string;
+  data: {
+    items: Product[];
+    info: {
+      pages: number;
+    };
+  };
+}
+
+export interface ApiSingleResponse {
+  status: string;
+  data: {
+    item: Product;
+  };
+}
+
+export interface ProductInfoProps {
+  name: string;
+  description: string;
+  price: number;
+  originalPrice?: number;
+  id: string;
+  category: string;
+  tags: string[];
+  images: string[];
+}

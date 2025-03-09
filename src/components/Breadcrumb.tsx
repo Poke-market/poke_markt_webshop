@@ -1,11 +1,10 @@
 import styles from "../scss/components/Breadcrumb.module.scss";
 import { Link, useLocation, useParams } from "react-router-dom";
-import Heading from "./Headingtxt";
-import { Icons } from "../utils/Icons";
+import { Icons, Heading } from "../utils";
 
 const Breadcrumb = () => {
   const location = useLocation();
-  const { itemName } = useParams();
+  const { name } = useParams();
 
   const formatItemName = (name: string | undefined) => {
     if (!name) return "";
@@ -15,7 +14,7 @@ const Breadcrumb = () => {
       .join(" ");
   };
 
-  const isProductPage = location.pathname.includes("/product/");
+  const isProductPage = location.pathname.includes("/item/");
 
   return (
     <div className={styles.breadcrumb}>
@@ -33,11 +32,11 @@ const Breadcrumb = () => {
           <Icons.Arrowrightsmall />
         </Heading>
 
-        {isProductPage && itemName && (
+        {isProductPage && name && (
           <div className={styles.itemGroup}>
             <span className={styles.pipeSeparator}></span>
             <Heading as="span" className={styles.breadcrumbItem}>
-              {formatItemName(itemName)}
+              {formatItemName(name)}
             </Heading>
           </div>
         )}
