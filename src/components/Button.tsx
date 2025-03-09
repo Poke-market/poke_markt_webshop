@@ -10,6 +10,7 @@ export type Props = {
   disabled?: boolean;
   children?: React.ReactNode;
   onClick?: () => void;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLButtonElement>) => void;
   cursor?: CursorType;
 };
 const Button = ({ children, cursor = "pointer", ...props }: Props) => {

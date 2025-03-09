@@ -1,4 +1,6 @@
 import { Icons } from "./Icons.tsx";
+
+// Exporting all the components for easier importing
 export { default as Header } from "../components/Header.tsx";
 export { default as Footer } from "../components/Footer.tsx";
 export { default as ProductCard } from "../components/ProductCard.tsx";
@@ -12,6 +14,7 @@ export { default as UspBanner } from "../components/UspBanner.tsx";
 export { default as BannerShop } from "../components/BannerShop.tsx";
 export { default as FilterSortBar } from "../components/FilterSortBar.tsx";
 export { default as Pagination } from "../components/Pagination.tsx";
+export { default as Breadcrumb } from "../components/Breadcrumb.tsx";
 export { default as Icons } from "./Icons.tsx";
 export { default as Related } from "../components/RelatedProducts.tsx";
 
