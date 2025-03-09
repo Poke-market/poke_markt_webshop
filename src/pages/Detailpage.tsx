@@ -4,6 +4,8 @@ import Loading from "../components/Loading";
 import Heading from "../components/Headingtxt";
 import styles from "../scss/components/DetailPage.module.scss";
 import { useProduct } from "../hooks/useProduct";
+import { Breadcrumb } from "../utils/index.ts";
+import { Related } from "../utils/index.ts";
 
 const DetailPage = () => {
   const { name } = useParams();
@@ -48,7 +50,13 @@ const DetailPage = () => {
     );
   }
 
-  return <ProductInfo product={product} />;
+  return (
+  <>
+    <Breadcrumb />
+    <ProductInfo product={product} />
+    <Related />
+  </>
+  );
 };
 
 export default DetailPage;
