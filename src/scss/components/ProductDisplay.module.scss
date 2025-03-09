@@ -34,14 +34,20 @@
   }
 
   .mainImage {
-    flex: 1;
-    aspect-ratio: 1;
+    width: 50rem;
+    height: 50rem;
     border-radius: 1rem;
     overflow: hidden;
     background: var(--bluegrey);
 
+    @media (max-width: $breakpoint) {
+      width: 40rem;
+      height: 40rem;
+    }
+
     @media (max-width: $breakpoint-sm) {
       width: 100%;
+      aspect-ratio: 1;
       order: 1;
     }
 
