@@ -17,6 +17,9 @@ export { default as Pagination } from "../components/Pagination.tsx";
 export { default as Breadcrumb } from "../components/Breadcrumb.tsx";
 export { default as Related } from "../components/RelatedProducts.tsx";
 
+// export all the icons
+export { Icons };
+
 // I think putting the links here is a good idea, it makes it easier to manage and update as needed
 // Header links
 export const headerLinks = {

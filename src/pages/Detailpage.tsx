@@ -36,7 +36,7 @@ const DetailPage = () => {
                 {availableProducts.map((item) => (
                   <li key={item._id}>
                     <a
-                      href={`/product/${item.name.toLowerCase().replace(/\s+/g, "-")}`}
+                      href={`/item/${item.name.toLowerCase().replace(/\s+/g, "-")}`}
                     >
                       {item.name}
                     </a>
