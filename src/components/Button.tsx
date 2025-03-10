@@ -1,5 +1,5 @@
 import styles from "../scss/components/Pagination.module.scss";
-
+type CursorType = "pointer" | "not-allowed";
 export type Props = {
   color?: string;
   size?: string;
@@ -10,14 +10,14 @@ export type Props = {
   disabled?: boolean;
   children?: React.ReactNode;
   onClick?: () => void;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLButtonElement>) => void;
+  cursor?: CursorType;
 };
-
-const Button = ({ children, ...props }: Props) => {
+const Button = ({ children, cursor = "pointer", ...props }: Props) => {
   return (
-    <button className={styles.button} {...props}>
+    <button className={styles.button} style={{ cursor: cursor }} {...props}>
       {children}
     </button>
   );
 };
-
 export default Button;
