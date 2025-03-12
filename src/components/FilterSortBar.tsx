@@ -1,4 +1,4 @@
-import styles from "../scss/components/FilterSortBar.module.css";
+import styles from "../scss/components/FilterSortBar.module.scss";
 import { Icons } from "../utils/Icons";
 import Button from "./Button";
 import Heading from "./Headingtxt";
