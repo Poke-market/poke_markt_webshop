@@ -1,4 +1,4 @@
-import styles from "../scss/components/BannerShop.module.css";
+import styles from "../scss/components/BannerShop.module.scss";
 import Heading from "./Headingtxt";
 import { Link } from "react-router-dom";
 import { Icons } from "../utils/Icons";
