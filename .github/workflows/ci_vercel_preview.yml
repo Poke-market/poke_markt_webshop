@@ -21,7 +21,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "16" # Specify your required Node.js version
+          node-version: "18" # Updated to Node.js 18
 
       - name: Build & Generate Preview on Vercel
         uses: amondnet/vercel-action@v25
