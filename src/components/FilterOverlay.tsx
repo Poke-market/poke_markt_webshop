@@ -1,5 +1,6 @@
 import { Button } from "../utils";
 import styles from "../scss/components/FilterOverlay.module.scss";
+import FilterForm from "./FilterForm";
 
 interface FilterOverlayProps {
   isOpen: boolean;
@@ -19,7 +20,9 @@ export const FilterOverlay = ({ isOpen, onClose }: FilterOverlayProps) => {
         }
         aria-label="Close cart"
       />
-      <div className={styles.overlay}></div>
+      <div className={styles.overlay}>
+        <FilterForm />
+      </div>
     </>
   );
 };
