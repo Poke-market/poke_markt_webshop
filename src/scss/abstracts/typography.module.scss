@@ -1,8 +1,12 @@
 @use "../partials/mixins" as *;
 @use "../partials/variables" as *;
 
-.text {
+.text,
+.heading {
   font-family: $font-family;
+  &[class*="heading"] {
+    font-weight: bold;
+  }
 
   &-xs {
     font-size: 1.4rem;
@@ -32,31 +36,5 @@
 
   &-5xl {
     font-size: 6rem;
-  }
-}
-
-.heading {
-  &-xs {
-  }
-
-  &-lg {
-  }
-
-  &-md {
-  }
-
-  &-xl {
-  }
-
-  &-2xl {
-  }
-
-  &-3xl {
-  }
-
-  &-4xl {
-  }
-
-  &-5xl {
   }
 }
