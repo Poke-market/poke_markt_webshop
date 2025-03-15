@@ -1,3 +1,5 @@
+@use "../partials/variables" as *;
+
 .fieldset {
   border: none;
 
@@ -5,10 +7,18 @@
     position: relative;
     align-items: center;
     padding: 12px 0;
-    cursor: pointer;
 
     legend {
+      display: flex;
+      align-items: baseline;
+      gap: 13px;
       pointer-events: none; /* Prevent legend from catching clicks */
+      margin-bottom: 6px;
+      .subLegend {
+        font-size: $font-size-lg;
+        font-weight: $font-weight-light;
+        color: var(--grey-4);
+      }
     }
 
     .toggleButton {
@@ -30,7 +40,6 @@
   }
 
   > hr {
-    margin: 0 0 12px 0;
     border: none;
     border-top: 1px solid #e0e0e0;
   }
