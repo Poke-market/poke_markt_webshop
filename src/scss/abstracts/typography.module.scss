@@ -9,32 +9,34 @@
   }
 
   &-xs {
-    font-size: 1.4rem;
+    font-size: $font-size-xs;
   }
 
   &-lg {
-    font-size: 1.6rem;
+    font-size: $font-size-lg;
   }
 
   &-md {
-    font-size: 3.2rem;
+    font-size: $font-size-md;
   }
 
   &-xl {
-    font-size: 2rem;
+    font-size: $font-size-xl;
   }
 
   &-2xl {
-    font-size: 2.5rem;
+    font-size: $font-size-2xl;
   }
 
   &-3xl {
+    font-size: $font-size-3xl;
   }
 
   &-4xl {
+    font-size: $font-size-4xl;
   }
 
   &-5xl {
-    font-size: 6rem;
+    font-size: $font-size-5xl;
   }
 }

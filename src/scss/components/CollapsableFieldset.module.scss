@@ -1,0 +1,52 @@
+.fieldset {
+  border: none;
+
+  .header {
+    position: relative;
+    align-items: center;
+    padding: 12px 0;
+    cursor: pointer;
+
+    legend {
+      pointer-events: none; /* Prevent legend from catching clicks */
+    }
+
+    .toggleButton {
+      position: absolute;
+      display: block;
+      background: none;
+      inset: 0;
+      border: none;
+      cursor: pointer;
+      z-index: 1;
+
+      /* position button */
+      & {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+      }
+    }
+  }
+
+  > hr {
+    margin: 0 0 12px 0;
+    border: none;
+    border-top: 1px solid #e0e0e0;
+  }
+
+  .content {
+    interpolate-size: allow-keywords;
+    overflow: hidden;
+    transition:
+      max-height 0.6s ease-in-out,
+      margin-bottom 0.6s ease-in-out;
+    max-height: 0;
+    margin-bottom: 0;
+
+    &.open {
+      max-height: 500px;
+      margin-bottom: 16px;
+    }
+  }
+}
