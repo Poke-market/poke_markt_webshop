@@ -39,6 +39,8 @@ pnpmfile.yaml
 pnpmfile.yml
 pnpmfile.cson
 .env
+.env.local
+.env.*.local
 
 # generated css files
 **/scss/**/*.css
