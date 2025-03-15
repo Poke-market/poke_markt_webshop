@@ -22,7 +22,7 @@ export { default as Related } from "../components/RelatedProducts.tsx";
 export const headerLinks = {
   navLinks: [
     { path: "/", label: "Home" },
-    { path: "/", label: "Shop" },
+    { path: "/shop", label: "Shop" },
     { path: "/about", label: "About" },
     { path: "/contact", label: "Contact" },
   ],
