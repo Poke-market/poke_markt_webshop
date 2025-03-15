@@ -1,5 +1,5 @@
 import { BannerShop, Button, Heading, Input, UspBanner } from "../utils";
-import styles from "./scss/pages/Loginpage.module.scss";
+import styles from "../scss/pages/LoginPage.module.scss";
 const Loginpage = () => {
   return (
     <>
