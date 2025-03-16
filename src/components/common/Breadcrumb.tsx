@@ -1,6 +1,6 @@
 import styles from "../../styles/components/common/Breadcrumb.module.scss";
 import { Link, useLocation, useParams } from "react-router-dom";
-import { Icons, Heading } from "../../utils";
+import { Icons } from "../../utils";
 
 const Breadcrumb = () => {
   const location = useLocation();
@@ -19,25 +19,24 @@ const Breadcrumb = () => {
   return (
     <div className={styles.breadcrumb}>
       <div className={styles.breadcrumbContainer}>
-        <Heading as="span" className={styles.breadcrumbItem}>
+        <span className={styles.breadcrumbItem}>
           <Link to="/">Home</Link>
-        </Heading>
-        <Heading as="span" className={styles.separator}>
+        </span>
+        <span className={styles.separator}>
           <Icons.Arrowrightsmall />
-        </Heading>
-        <Heading as="span" className={styles.breadcrumbItem}>
+        </span>
+        <span className={styles.breadcrumbItem}>
           <Link to="/">Shop</Link>
-        </Heading>
-        <Heading as="span" className={styles.separator}>
+        </span>
+        <span className={styles.separator}>
           <Icons.Arrowrightsmall />
-        </Heading>
-
+        </span>
         {isProductPage && name && (
           <div className={styles.itemGroup}>
             <span className={styles.pipeSeparator}></span>
-            <Heading as="span" className={styles.breadcrumbItem}>
+            <span className={styles.breadcrumbItem}>
               {formatItemName(name)}
-            </Heading>
+            </span>
           </div>
         )}
       </div>
