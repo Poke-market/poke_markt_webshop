@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { forwardRef, ChangeEvent } from "react";
 import styles from "../scss/components/Input.module.scss";
 
 type Props = {
@@ -9,6 +9,10 @@ type Props = {
   shape?: "square" | "round";
   type?: "text" | "email" | "password" | "number";
   defaultValue?: string | number;
+  value?: string;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  required?: boolean;
+  id?: string;
 };
 
 const Input = forwardRef<HTMLInputElement, Props>(

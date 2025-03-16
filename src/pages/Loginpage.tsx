@@ -1,26 +1,60 @@
-import { BannerShop, Button, Heading, Input, UspBanner } from "../utils";
+import { BannerShop, Button, Input, UspBanner } from "../utils";
 import styles from "../scss/pages/LoginPage.module.scss";
+import { ChangeEvent, FormEvent, useState } from "react";
+
 const Loginpage = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    //TODO: add functionality
+    console.log("Login attempt with:", { email, password });
+  };
+
+  const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+  };
+
   return (
     <>
       <BannerShop title="Login" />
-      <div className={styles.loginContainer}>
+      <form onSubmit={handleSubmit} className={styles.loginContainer}>
         <div>
-          <Heading as="h2" size="textlg">
+          <label htmlFor="email" className={styles.label}>
             Email address
-          </Heading>
-          <Input type="email" placeholder="Abc@def.com" />
+          </label>
+          <Input
+            id="email"
+            type="email"
+            placeholder="Abc@def.com"
+            value={email}
+            onChange={handleEmailChange}
+            required
+          />
         </div>
         <div>
-          <Heading as="h2" size="textlg">
+          <label htmlFor="password" className={styles.label}>
             Password
-          </Heading>
-          <Input type="password" placeholder="Password" />
+          </label>
+          <Input
+            id="password"
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={handlePasswordChange}
+            required
+          />
         </div>
         <Button>Login</Button>
-      </div>
+      </form>
       <UspBanner />
     </>
   );
 };
+
 export default Loginpage;
