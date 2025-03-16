@@ -8,7 +8,8 @@ import { Props } from "./ProductCard.tsx";
 export interface ShopGridProps {
   data?: Props[];
 }
-const ShopGrid = ({ data: initialData = [] }: ShopGridProps) => {
+
+const ProductGrid = ({ data: initialData = [] }: ShopGridProps) => {
   const [data, setData] = useState<Props[]>(initialData);
   const [loading, setLoading] = useState(!initialData.length);
   const [currentPage, setCurrentPage] = useState(1);
@@ -70,4 +71,4 @@ const ShopGrid = ({ data: initialData = [] }: ShopGridProps) => {
     </div>
   );
 };
-export default ShopGrid;
+export default ProductGrid;

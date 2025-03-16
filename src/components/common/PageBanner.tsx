@@ -1,4 +1,4 @@
-import styles from "../../scss/components/common/BannerShop.module.scss";
+import styles from "../../scss/components/common/PageBanner.module.scss";
 import Heading from "./Headingtxt.tsx";
 import { Link } from "react-router-dom";
 import { Icons } from "../../utils/Icons.tsx";
@@ -8,7 +8,7 @@ type Props = {
   className?: string;
 };
 
-export default function BannerShop({ title = "Shop" }: Props) {
+export default function PageBanner({ title = "Shop" }: Props) {
   return (
     <div className={styles.bannerShop}>
       <img
