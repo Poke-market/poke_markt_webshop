@@ -1,5 +1,4 @@
-import { UspBanner, PageBanner } from "../utils";
-import Cart from "../components/cart/Cart.tsx";
+import { UspBanner, PageBanner, Cart } from "../utils";
 
 const CartPage = () => {
   return (

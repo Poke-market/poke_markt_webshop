@@ -1,4 +1,4 @@
-type ImgProps = {
+type Props = {
   className?: string;
   src?: string;
   alt?: string;
@@ -11,7 +11,7 @@ const Image = ({
   alt = "",
   loading = "lazy",
   ...restProps
-}: ImgProps) => {
+}: Props) => {
   return (
     <img
       className={className}

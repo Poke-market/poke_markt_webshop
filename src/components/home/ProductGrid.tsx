@@ -5,9 +5,9 @@ import { transformData } from "../../utils/transformData.ts";
 import { ApiResponse } from "../../types/types.ts";
 import { Props } from "./ProductCard.tsx";
 
-export interface ShopGridProps {
+export type ShopGridProps = {
   data?: Props[];
-}
+};
 
 const ProductGrid = ({ data: initialData = [] }: ShopGridProps) => {
   const [data, setData] = useState<Props[]>(initialData);

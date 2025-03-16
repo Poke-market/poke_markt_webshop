@@ -4,17 +4,17 @@ import { Table } from "../common/Table.tsx";
 import { createColumnHelper } from "@tanstack/react-table";
 import { useMemo } from "react";
 
-type CartItem = {
+type props = {
   rowProduct: string;
   rowPrice: string;
   rowQuantity: string;
   rowSubtotal: string;
 };
 
-const prolongation: CartItem[] = [];
+const prolongation: props[] = [];
 
 const CartPage = () => {
-  const columnHelper = createColumnHelper<CartItem>();
+  const columnHelper = createColumnHelper<props>();
 
   const data = useMemo(() => {
     if (prolongation.length === 0) {

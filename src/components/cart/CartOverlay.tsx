@@ -4,12 +4,12 @@ import styles from "../../styles/components/cart/CartOverlay.module.scss";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-interface CartOverlayProps {
+type Props = {
   isOpen: boolean;
   onClose: () => void;
-}
+};
 
-export const CartOverlay = ({ isOpen, onClose }: CartOverlayProps) => {
+export const CartOverlay = ({ isOpen, onClose }: Props) => {
   const [isClosing, setIsClosing] = useState(false);
 
   useEffect(() => {

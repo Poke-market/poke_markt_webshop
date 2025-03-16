@@ -3,12 +3,12 @@ import clsx from "clsx";
 import styles from "../../styles/components/filters/PriceRangeSlider.module.scss";
 import { flatMapJoin } from "../../utils";
 
-interface PriceRangeSliderProps {
+type PriceRangeSliderProps = {
   min: number;
   max: number;
   initialMin?: number;
   initialMax?: number;
-}
+};
 
 // Slider component with dual thumbs for selecting a price range
 const PriceRangeSlider = ({

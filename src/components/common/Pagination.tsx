@@ -1,11 +1,11 @@
 import Button from "./Button.tsx";
 import styles from "../../styles/components/common/Pagination.module.scss";
 
-interface PaginationProps {
+type PaginationProps = {
   currentPage: number;
   totalPages: number;
   onPageChange: (pageNumber: number) => void;
-}
+};
 
 const Pagination = ({
   currentPage,

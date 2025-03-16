@@ -6,9 +6,9 @@ import ProductDisplay from "./ProductDisplay.tsx";
 import { Product } from "../../types/types.ts";
 import Button from "../common/Button.tsx";
 
-interface ProductInfoProps {
+type ProductInfoProps = {
   product: Product;
-}
+};
 
 const ProductInfo = ({ product }: ProductInfoProps) => {
   const [quantity, setQuantity] = useState(1);

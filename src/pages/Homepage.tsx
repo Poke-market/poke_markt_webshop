@@ -1,9 +1,4 @@
-import {
-  ProductGrid,
-  UspBanner,
-  PageBanner,
-  FilterSortBar,
-} from "../utils/index.ts";
+import { ProductGrid, PageBanner, FilterSortBar, UspBanner } from "../utils";
 
 const Homepage = () => {
   return (

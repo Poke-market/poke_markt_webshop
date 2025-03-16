@@ -3,10 +3,10 @@ import styles from "../../styles/components/filters/FilterOverlay.module.scss";
 import FilterForm from "./FilterForm.tsx";
 import clsx from "clsx";
 
-interface FilterOverlayProps {
+type FilterOverlayProps = {
   isOpen: boolean;
   onClose: () => void;
-}
+};
 
 export const FilterOverlay = ({ isOpen, onClose }: FilterOverlayProps) => {
   return (
