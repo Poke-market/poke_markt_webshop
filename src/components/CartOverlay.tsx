@@ -11,6 +11,11 @@ interface CartOverlayProps {
 export const CartOverlay = ({ isOpen, onClose }: CartOverlayProps) => {
   if (!isOpen) return null;
 
+  const clearCart = () => {
+    // TODO: Implement cart clearing functionality when needed
+    console.log("Cart cleared");
+  };
+
   return (
     <>
       <Button
@@ -27,7 +32,7 @@ export const CartOverlay = ({ isOpen, onClose }: CartOverlayProps) => {
             <Heading as="h2" size="textxl">
               Shopping Cart
             </Heading>
-            <Button className={styles.closeButton} onClick={onClose}>
+            <Button className={styles.closeButton} onClick={clearCart}>
               <Icons.Bagx />
             </Button>
           </div>
