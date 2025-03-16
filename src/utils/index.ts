@@ -1,6 +1,5 @@
-import { Icons } from "./Icons.tsx";
-
 // Exporting all the components for easier importing
+
 export { default as Header } from "../components/common/Header.tsx";
 export { default as Footer } from "../components/common/Footer.tsx";
 export { default as ProductCard } from "../components/home/ProductCard.tsx";
@@ -19,33 +18,3 @@ export { default as Icons } from "./Icons.tsx";
 export { default as Related } from "../components/detailpage/RelatedProducts.tsx";
 export * from "./helperFunctions.ts";
 
-// Header links
-export const headerLinks = {
-  navLinks: [
-    { path: "/", label: "Home" },
-    { path: "/shop", label: "Shop" },
-    { path: "/about", label: "About" },
-    { path: "/contact", label: "Contact" },
-  ],
-  iconLinks: [
-    { path: "/profile", icon: Icons.User, label: "Profile" },
-    { path: "/search", icon: Icons.Search, label: "Search" },
-    { path: "/wishlist", icon: Icons.Wishlist, label: "Wishlist" },
-    { path: "/cart", icon: Icons.ShoppingCart, label: "Shopping Cart" },
-  ],
-};
-
-// Footer links
-export const footerLinks = {
-  mainLinks: [
-    { path: "/", label: "Home" },
-    { path: "/shop", label: "Shop" },
-    { path: "/about", label: "About" },
-    { path: "/contact", label: "Contact" },
-  ],
-  helpLinks: [
-    { path: "/payment", label: "Payment Options" },
-    { path: "/returns", label: "Returns" },
-    { path: "/privacy", label: "Privacy Policies" },
-  ],
-};

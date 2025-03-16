@@ -1,6 +1,7 @@
-import { Heading, Input, footerLinks } from "../../utils";
-import { Link } from "react-router-dom";
 import styles from "../../scss/components/common/Footer.module.scss";
+import { Heading, Input } from "../../utils";
+import { Link } from "react-router-dom";
+import { footerLinks } from "../../config/links.ts";
 import clsx from "clsx";
 
 type Props = {

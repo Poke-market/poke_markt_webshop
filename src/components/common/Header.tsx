@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { headerLinks, Heading } from "../../utils";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Heading } from "../../utils";
+import { headerLinks } from "../../config/links";
 import styles from "../../scss/components/common/Header.module.scss";
-import clsx from "clsx";
 import { CartOverlay } from "../cart/CartOverlay.tsx";
+import { NavLink, useNavigate } from "react-router-dom";
+import clsx from "clsx";
 
 type Props = {
   className?: string;
