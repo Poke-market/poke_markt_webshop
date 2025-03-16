@@ -17,7 +17,7 @@ export const CartOverlay = ({ isOpen, onClose }: CartOverlayProps) => {
       setIsClosing(true);
       const timer = setTimeout(() => {
         setIsClosing(false);
-      }, 300); // Match this with your animation duration
+      }, 300);
       return () => clearTimeout(timer);
     }
   }, [isOpen]);
