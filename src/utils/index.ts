@@ -17,6 +17,7 @@ export { default as Pagination } from "../components/Pagination.tsx";
 export { default as Breadcrumb } from "../components/Breadcrumb.tsx";
 export { default as Icons } from "./Icons.tsx";
 export { default as Related } from "../components/RelatedProducts.tsx";
+export * from "./helperFunctions.ts";
 
 // Header links
 export const headerLinks = {
