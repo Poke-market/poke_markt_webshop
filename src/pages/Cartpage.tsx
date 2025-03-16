@@ -1,5 +1,5 @@
 import { UspBanner, BannerShop } from "../utils";
-import Cart from "../components/Cart.tsx";
+import Cart from "../components/cart/Cart.tsx";
 
 const CartPage = () => {
   return (

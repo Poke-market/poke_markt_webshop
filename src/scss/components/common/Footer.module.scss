@@ -1,0 +1,205 @@
+@use "../../abstracts/typography.module.css" as *;
+@use "../../partials/variables" as *;
+
+.footer {
+  font-family: $font-family;
+  font-weight: $font-weight-medium;
+  background-color: var(--background-color);
+  border-top: 1px solid rgba(0, 0, 0, 0.17);
+
+  @media (max-width: $breakpoint-sm) {
+    padding: 2rem 0;
+  }
+
+  .container {
+    margin-top: 0.63rem;
+    display: flex;
+    justify-content: center;
+
+    @media (max-width: $breakpoint-md) {
+      padding: 0 2rem;
+    }
+  }
+
+  .content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4rem;
+    padding: 4rem 8rem;
+
+    @media (max-width: $breakpoint-md) {
+      padding: 0;
+    }
+  }
+
+  .row {
+    width: 90%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+
+    @media (max-width: $breakpoint-md) {
+      width: 100%;
+      flex-direction: column;
+      gap: 4rem;
+    }
+  }
+
+  .logoSection {
+    width: 24%;
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+
+    @media (max-width: $breakpoint-md) {
+      width: 100%;
+    }
+
+    .address {
+      font-size: 1.6rem;
+      line-height: 2.4rem;
+      color: rgba(87, 136, 194, 0.74);
+      font-weight: $font-weight-regular;
+    }
+  }
+
+  .footerHeading {
+    color: rgba(87, 136, 194, 0.74);
+    font-weight: $font-weight-medium;
+    font-size: 1.6rem;
+  }
+
+  .linksSection {
+    width: 6%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5.4rem;
+    align-self: center;
+
+    @media (max-width: $breakpoint-md) {
+      width: 100%;
+      gap: 3.2rem;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+      gap: 2.7rem;
+    }
+
+    .linksList {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4.4rem;
+
+      @media (max-width: $breakpoint-md) {
+        gap: 2.7rem;
+      }
+
+      .linkItem {
+        font-size: 1rem;
+        font-weight: $font-weight-medium;
+      }
+    }
+  }
+
+  .helpSection {
+    width: 44%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+
+    @media (max-width: $breakpoint-md) {
+      width: 100%;
+      flex-direction: column;
+    }
+
+    .helpLinks {
+      width: 27%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 5.4rem;
+      align-self: center;
+      text-wrap: nowrap;
+
+      .linksList {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4.4rem;
+
+        @media (max-width: $breakpoint-md) {
+          gap: 2.7rem;
+        }
+      }
+
+      @media (max-width: 1050px), (max-width: $breakpoint-md) {
+        text-wrap: nowrap;
+        width: 100%;
+      }
+
+      @media (max-width: $breakpoint-md) {
+        gap: 2rem;
+      }
+    }
+
+    .newsletterSection {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 5.2rem;
+
+      @media (max-width: $breakpoint-sm) {
+        width: 100%;
+        gap: 2.6rem;
+        margin-top: 3.2rem;
+      }
+
+      .newsletterInput {
+        display: flex;
+        gap: 3.2rem;
+        align-items: center;
+
+        ::placeholder {
+          color: rgba(87, 136, 194, 0.74);
+          font-size: 1.4rem;
+        }
+
+        @media (max-width: $breakpoint) {
+          gap: 4rem;
+        }
+      }
+
+      .subscribeButton {
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        gap: 4.8rem;
+      }
+
+      .subscribeText {
+        font-size: 0.88rem;
+      }
+    }
+  }
+
+  .divider {
+    height: 0.08px;
+    width: 100%;
+    background-color: black;
+    margin-top: 0.4rem;
+  }
+
+  .copyright {
+    font-size: 1.6rem;
+    font-weight: $font-weight-regular;
+  }
+}

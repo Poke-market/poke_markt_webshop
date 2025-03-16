@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
-import ProductInfo from "../components/ProductInfo";
-import Loading from "../components/Loading";
-import Heading from "../components/Headingtxt";
-import styles from "../scss/components/DetailPage.module.scss";
+import ProductInfo from "../components/detailpage/ProductInfo.tsx";
+import Loading from "../components/common/Loading.tsx";
+import Heading from "../components/common/Headingtxt.tsx";
+import styles from "../scss/pages/DetailPage.module.scss";
 import { useProduct } from "../hooks/useProduct";
 import { Breadcrumb } from "../utils/index.ts";
 import { Related } from "../utils/index.ts";
