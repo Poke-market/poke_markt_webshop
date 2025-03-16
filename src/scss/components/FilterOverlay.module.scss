@@ -1,6 +1,12 @@
 @use "../partials/variables.scss" as *;
 @use "../partials/mixins" as *;
 
+@include responsive(sm) {
+  :global(html):has(.backdrop) {
+    overflow: hidden;
+  }
+}
+
 .backdrop {
   position: absolute;
   top: 0;
@@ -27,40 +33,35 @@
   font-family: $font-family;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
 
-  @media (max-width: $breakpoint-sm) {
+  @include responsive(sm) {
+    position: fixed;
     max-width: unset;
-  }
-}
-
-.closeButtonMobile {
-  display: none;
-  width: calc(100% - 8rem);
-  background: var(--white);
-  color: var(--product-description-color);
-  padding: 1rem 0.8rem;
-  border: 1px solid var(--border-color);
-  border-radius: 5rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  margin: 0 4rem 2rem 4rem;
-
-  span {
-    color: var(--product-description-color);
-    transition: color 0.2s ease;
-    font-size: 1rem;
+    min-height: 100vh;
+    height: 100%;
   }
 
-  &:hover {
-    background-color: var(--product-description-color);
-    border-color: var(--product-description-color);
-    span {
-      color: var(--white);
+  .bottomSection {
+    display: none;
+    margin-top: auto;
+    text-align: center;
+    @include responsive(sm) {
+      display: block;
     }
-  }
-
-  @media (max-width: $breakpoint-sm) {
-    display: block;
+    hr {
+      border: none;
+      border-top: 1px solid var(--text-color);
+      opacity: 0.2;
+      margin: 0;
+    }
+    .closeButtonMobile {
+      background: none;
+      color: var(--grey-4);
+      padding: 20px 80px;
+      border: none;
+      cursor: pointer;
+    }
   }
 }
 

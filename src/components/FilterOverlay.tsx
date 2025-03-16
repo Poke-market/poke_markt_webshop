@@ -1,4 +1,4 @@
-import { Button } from "../utils";
+import { Button, Heading } from "../utils";
 import styles from "../scss/components/FilterOverlay.module.scss";
 import FilterForm from "./FilterForm";
 
@@ -22,6 +22,14 @@ export const FilterOverlay = ({ isOpen, onClose }: FilterOverlayProps) => {
       />
       <div className={styles.overlay}>
         <FilterForm />
+        <div className={styles.bottomSection}>
+          <hr />
+          <Button className={styles.closeButtonMobile} onClick={onClose}>
+            <Heading as="span" size="textxs">
+              Close
+            </Heading>
+          </Button>
+        </div>
       </div>
     </>
   );
