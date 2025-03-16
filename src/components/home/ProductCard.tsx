@@ -1,4 +1,4 @@
-import { Img, Heading, Button } from "../../utils";
+import { Img, Heading, Button, Text } from "../../utils";
 import { Icons } from "../../utils/Icons.tsx";
 import styles from "../../styles/components/home/ProductCard.module.scss";
 import { Link } from "react-router-dom";
@@ -68,22 +68,22 @@ export default function ProductCard({
             to={`/detail/${urlFriendlyName}`}
             className={styles.productLink}
           >
-            <Heading as="h4" size="headingmd" className={styles.productName}>
+            <Text as="h4" size="headingmd" className={styles.productName}>
               {truncatedName}
-            </Heading>
+            </Text>
           </Link>
-          <Heading as="p" className={styles.productDescription}>
+          <Text as="p" className={styles.productDescription}>
             {truncatedDescription}
-          </Heading>
+          </Text>
         </div>
 
         <div className={styles.priceContainer}>
-          <Heading as="h5" size="headings" className={styles.currentPrice}>
+          <Text as="h5" size="headings" className={styles.currentPrice}>
             {currentPrice}
-          </Heading>
-          <Heading as="p" className={styles.originalPrice}>
+          </Text>
+          <Text as="p" className={styles.originalPrice}>
             {originalPrice}
-          </Heading>
+          </Text>
         </div>
       </div>
 

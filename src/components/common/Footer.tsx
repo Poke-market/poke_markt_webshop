@@ -1,5 +1,5 @@
 import styles from "../../styles/components/common/Footer.module.scss";
-import { Heading, Input } from "../../utils";
+import { Heading, Input, Text } from "../../utils";
 import { Link } from "react-router-dom";
 import { footerLinks } from "../../config/links.ts";
 import clsx from "clsx";
@@ -17,11 +17,11 @@ export default function Footer({ className }: Props) {
               <Heading size="textxl" className={styles.footerLogo}>
                 Poke-Mart
               </Heading>
-              <Heading as="p" className={styles.address}>
+              <Text as="p" className={styles.address}>
                 Oude Baan 2, 2800 Mechelen
                 <br />
                 Belgium
-              </Heading>
+              </Text>
             </div>
 
             <div className={styles.linksSection}>

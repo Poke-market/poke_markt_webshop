@@ -9,7 +9,7 @@ type Props = {
   children?: any;
 };
 
-const Heading = ({
+const HeadingText = ({
   className = "text",
   size = "textlg",
   as: Component = "p",
@@ -19,8 +19,12 @@ const Heading = ({
     <Component
       className={`${styles.text} ${styles[typographySizes[size]]} ${className}`}
       {...restProps}
-    ></Component>
+    >
+      {restProps.children}
+    </Component>
   );
 };
 
-export default Heading;
+export const Heading = HeadingText;
+export const Text = HeadingText;
+export default HeadingText;

@@ -1,5 +1,5 @@
 import styles from "../../styles/components/common/PageBanner.module.scss";
-import Heading from "./Headingtxt.tsx";
+import Heading from "./HeadingText.tsx";
 import { Link } from "react-router-dom";
 import { Icons } from "../../utils/Icons.tsx";
 
