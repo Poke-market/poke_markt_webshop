@@ -20,7 +20,7 @@ const ShopGrid = ({ data: initialData = [] }: ShopGridProps) => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://poke-market-backend-dev-rgj5.onrender.com/api/items?page=${currentPage}`,
+          `${import.meta.env.VITE_API_URL}/items?page=${currentPage}`,
         );
         if (!response.ok) throw new Error("Failed to fetch data");
         const result = (await response.json()) as ApiResponse;
