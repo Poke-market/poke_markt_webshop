@@ -1,6 +1,6 @@
 import { Img, Heading, Button } from "../../utils";
 import { Icons } from "../../utils/Icons.tsx";
-import styles from "../../scss/components/home/ProductCard.module.scss";
+import styles from "../../styles/components/home/ProductCard.module.scss";
 import { Link } from "react-router-dom";
 
 export type Props = {

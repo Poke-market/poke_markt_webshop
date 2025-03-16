@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Icons, Heading } from "../../utils";
-import styles from "../../scss/components/filters/CollapsableFieldset.module.scss";
+import styles from "../../styles/components/filters/CollapsableFieldset.module.scss";
 import clsx from "clsx";
 
 type CollapsableFieldsetProps = {

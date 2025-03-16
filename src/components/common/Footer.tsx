@@ -1,4 +1,4 @@
-import styles from "../../scss/components/common/Footer.module.scss";
+import styles from "../../styles/components/common/Footer.module.scss";
 import { Heading, Input } from "../../utils";
 import { Link } from "react-router-dom";
 import { footerLinks } from "../../config/links.ts";

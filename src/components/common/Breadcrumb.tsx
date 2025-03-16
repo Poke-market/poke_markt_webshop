@@ -1,4 +1,4 @@
-import styles from "../../scss/components/common/Breadcrumb.module.scss";
+import styles from "../../styles/components/common/Breadcrumb.module.scss";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { Icons, Heading } from "../../utils";
 

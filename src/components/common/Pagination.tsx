@@ -1,5 +1,5 @@
 import Button from "./Button.tsx";
-import styles from "../../scss/components/common/Pagination.module.scss";
+import styles from "../../styles/components/common/Pagination.module.scss";
 
 interface PaginationProps {
   currentPage: number;

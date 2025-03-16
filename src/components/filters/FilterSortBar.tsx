@@ -1,4 +1,4 @@
-import styles from "../../scss/components/filters/FilterSortBar.module.css";
+import styles from "../../styles/components/filters/FilterSortBar.module.css";
 import { Icons } from "../../utils/Icons.tsx";
 import Button from "../common/Button.tsx";
 import Heading from "../common/Headingtxt.tsx";

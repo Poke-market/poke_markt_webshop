@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from "../../scss/components/detailpage/ProductDisplay.module.scss";
+import styles from "../../styles/components/detailpage/ProductDisplay.module.scss";
 import Button from "../common/Button.tsx";
 
 interface ProductDisplayProps {

@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, ChangeEvent } from "react";
 import clsx from "clsx";
-import styles from "../../scss/components/filters/PriceRangeSlider.module.scss";
+import styles from "../../styles/components/filters/PriceRangeSlider.module.scss";
 import { flatMapJoin } from "../../utils";
 
 interface PriceRangeSliderProps {

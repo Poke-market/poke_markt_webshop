@@ -1,5 +1,5 @@
 import { InputHTMLAttributes } from "react";
-import styles from "../../scss/components/filters/LabelCheckbox.module.scss";
+import styles from "../../styles/components/filters/LabelCheckbox.module.scss";
 import { Icons } from "../../utils";
 
 type LabelCheckboxProps = {

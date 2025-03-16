@@ -1,5 +1,5 @@
 import { Button, Heading } from "../../utils";
-import styles from "../../scss/components/filters/FilterOverlay.module.scss";
+import styles from "../../styles/components/filters/FilterOverlay.module.scss";
 import FilterForm from "./FilterForm.tsx";
 import clsx from "clsx";
 

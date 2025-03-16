@@ -2,7 +2,7 @@ import CollapsableFieldset from "./CollapsableFieldset.tsx";
 import LabelCheckbox from "./LabelCheckbox.tsx";
 import PillCheckbox from "./PillCheckbox.tsx";
 import PriceRangeSlider from "./PriceRangeSlider.tsx";
-import styles from "../../scss/components/filters/FilterForm.module.scss";
+import styles from "../../styles/components/filters/FilterForm.module.scss";
 
 // TODO: Get categories from backend
 const categories = {

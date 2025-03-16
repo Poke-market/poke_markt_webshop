@@ -1,4 +1,4 @@
-import { Header, Footer } from "../utils/index.ts";
+import { Header, Footer } from "../../utils";
 
 type Props = {
   children: React.ReactNode;

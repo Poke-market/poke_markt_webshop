@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Heading } from "../../utils";
 import { headerLinks } from "../../config/links";
-import styles from "../../scss/components/common/Header.module.scss";
+import styles from "../../styles/components/common/Header.module.scss";
 import { CartOverlay } from "../cart/CartOverlay.tsx";
 import { NavLink, useNavigate } from "react-router-dom";
 import clsx from "clsx";
@@ -32,7 +32,7 @@ const Header = ({ className }: Props) => {
       >
         <NavLink to="/" className={styles.logoLink}>
           <img
-            src="/poke-mart-logo.png"
+            src="/src/assets/logos/poke-mart-logo.png"
             alt="Pokemon Mart Logo"
             className={styles.headerLogo}
           />

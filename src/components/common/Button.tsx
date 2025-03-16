@@ -1,4 +1,4 @@
-import styles from "../../scss/components/common/Pagination.module.scss";
+import styles from "../../styles/components/common/Pagination.module.scss";
 type CursorType = "pointer" | "not-allowed";
 export type Props = {
   color?: string;

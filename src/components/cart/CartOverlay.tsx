@@ -1,6 +1,6 @@
 import { Icons } from "../../utils/Icons.tsx";
 import { Heading, Button } from "../../utils";
-import styles from "../../scss/components/cart/CartOverlay.module.scss";
+import styles from "../../styles/components/cart/CartOverlay.module.scss";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 

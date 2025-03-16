@@ -1,5 +1,5 @@
 import Heading from "../common/Headingtxt.tsx";
-import styles from "../../scss/components/detailpage/ProductInfo.module.scss";
+import styles from "../../styles/components/detailpage/ProductInfo.module.scss";
 import { useState } from "react";
 import { Icons } from "../../utils/Icons.tsx";
 import ProductDisplay from "./ProductDisplay.tsx";

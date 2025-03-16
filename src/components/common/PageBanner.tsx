@@ -1,4 +1,4 @@
-import styles from "../../scss/components/common/PageBanner.module.scss";
+import styles from "../../styles/components/common/PageBanner.module.scss";
 import Heading from "./Headingtxt.tsx";
 import { Link } from "react-router-dom";
 import { Icons } from "../../utils/Icons.tsx";
@@ -12,7 +12,7 @@ export default function PageBanner({ title = "Shop" }: Props) {
   return (
     <div className={styles.bannerShop}>
       <img
-        src="/pokemart.jpeg"
+        src="/src/assets/images/pokemart.jpeg"
         alt="Shop Banner"
         className={styles.bannerImage}
       />

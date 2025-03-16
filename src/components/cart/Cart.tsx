@@ -1,4 +1,4 @@
-import styles from "../../scss/components/cart/Cart.module.scss";
+import styles from "../../styles/components/cart/Cart.module.scss";
 import { Button, Heading, Icons, Img, Input } from "../../utils";
 import { Table } from "../common/Table.tsx";
 import { createColumnHelper } from "@tanstack/react-table";

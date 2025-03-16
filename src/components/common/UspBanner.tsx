@@ -1,4 +1,4 @@
-import styles from "../../scss/components/common/UspBanner.module.scss";
+import styles from "../../styles/components/common/UspBanner.module.scss";
 import { Icons } from "../../utils/Icons.tsx";
 
 const UspBanner = () => {
