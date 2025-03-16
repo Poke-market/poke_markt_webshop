@@ -9,8 +9,9 @@ const Homepage = () => {
   return (
     <>
       <BannerShop title="Shop" />
-      <FilterSortBar />
-      <ShopGrid />
+      <FilterSortBar>
+        <ShopGrid />
+      </FilterSortBar>
       <UspBanner />
     </>
   );

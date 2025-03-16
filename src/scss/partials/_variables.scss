@@ -16,8 +16,9 @@
   --product-description-color: #898989;
   --details-container-bg: rgba(218, 218, 227, 0.79);
   --current-price-color: #3a3a3a;
-  --original-price-color: #b0b0b0;
+  --grey-4: #b0b0b0;
   --blue-grey: #e7eef9;
+  --original-price-color: var(--grey-4);
 }
 
 // fonts
@@ -26,6 +27,16 @@ $font-weight-light: 300;
 $font-weight-regular: 400;
 $font-weight-medium: 500;
 $font-weight-semi-bold: 600;
+
+// font sizes
+$font-size-xs: 1.4rem;
+$font-size-lg: 1.6rem;
+$font-size-md: 3.2rem;
+$font-size-xl: 2rem;
+$font-size-2xl: 2.5rem;
+$font-size-3xl: 2.5rem;
+$font-size-4xl: 2.5rem;
+$font-size-5xl: 6rem;
 
 // breakpoints/responsiveness
 $breakpoint: 1090px;
