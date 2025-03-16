@@ -46,6 +46,7 @@
         /* Remove arrows for Firefox */
         &[type="number"] {
           -moz-appearance: textfield;
+          appearance: textfield;
         }
 
         &:focus {
