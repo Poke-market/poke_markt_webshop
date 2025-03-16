@@ -61,15 +61,14 @@
     .address {
       font-size: 1.6rem;
       line-height: 2.4rem;
-      color: rgba(87, 136, 194, 0.74);
+      color: var(--light-blue-2);
       font-weight: $font-weight-regular;
     }
   }
 
   .footerHeading {
-    color: rgba(87, 136, 194, 0.74);
+    color: var(--light-blue-2);
     font-weight: $font-weight-medium;
-    font-size: 1.6rem;
   }
 
   .linksSection {
@@ -199,7 +198,6 @@
   }
 
   .copyright {
-    font-size: 1.6rem;
     font-weight: $font-weight-regular;
   }
 }

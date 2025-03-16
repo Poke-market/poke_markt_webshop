@@ -25,9 +25,7 @@ function DiscountBadge({ discountText }: { discountText?: string }) {
 
   return (
     <div className={styles.absoluteCenter}>
-      <Heading as="p" className={styles.discountBadge}>
-        {discountText}
-      </Heading>
+      <Heading className={styles.discountBadge}>{discountText}</Heading>
     </div>
   );
 }
@@ -68,22 +66,20 @@ export default function ProductCard({
             to={`/detail/${urlFriendlyName}`}
             className={styles.productLink}
           >
-            <Text as="h4" size="headingmd" className={styles.productName}>
+            <Text as="h4" size="text2xl" className={styles.productName}>
               {truncatedName}
             </Text>
           </Link>
-          <Text as="p" className={styles.productDescription}>
+          <Text className={styles.productDescription}>
             {truncatedDescription}
           </Text>
         </div>
 
         <div className={styles.priceContainer}>
-          <Text as="h5" size="headings" className={styles.currentPrice}>
+          <Text as="h5" size="textxl" className={styles.currentPrice}>
             {currentPrice}
           </Text>
-          <Text as="p" className={styles.originalPrice}>
-            {originalPrice}
-          </Text>
+          <Text className={styles.originalPrice}>{originalPrice}</Text>
         </div>
       </div>
 

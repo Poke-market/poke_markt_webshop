@@ -15,7 +15,7 @@ const RelatedProduct = () => {
   return (
     <div className={styles.container}>
       <section className={styles.internalContainer} title="Related Products">
-        <Heading as="h2" size="text2xl">
+        <Heading as="h2" size="heading3xl">
           Related Products
         </Heading>
         <ul className={styles.relatedProducts}>

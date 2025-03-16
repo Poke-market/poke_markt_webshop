@@ -14,10 +14,10 @@ export default function Footer({ className }: Props) {
         <div className={styles.content}>
           <div className={styles.row}>
             <div className={styles.logoSection}>
-              <Heading size="textxl" className={styles.footerLogo}>
+              <Heading size="headingxl" className={styles.footerLogo}>
                 Poke-Mart
               </Heading>
-              <Text as="p" className={styles.address}>
+              <Text className={styles.address}>
                 Oude Baan 2, 2800 Mechelen
                 <br />
                 Belgium
