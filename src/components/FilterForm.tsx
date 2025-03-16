@@ -1,6 +1,7 @@
 import CollapsableFieldset from "./CollapsableFieldset";
 import LabelCheckbox from "./LabelCheckbox";
 import PillCheckbox from "./PillCheckbox";
+import PriceRangeSlider from "./PriceRangeSlider";
 import styles from "../scss/components/FilterForm.module.scss";
 
 // TODO: Get categories from backend
@@ -25,10 +26,26 @@ const tags = [
   "featured",
   "bestseller",
 ];
+let timerId: number | null = null;
+function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  e.preventDefault();
+  const fd = new FormData(e.currentTarget);
+  console.log("categories", fd.getAll("categorie[]"));
+  console.log("tags", fd.getAll("tag[]"));
+  console.log("minPrice", fd.get("minPrice"));
+  console.log("maxPrice", fd.get("maxPrice"));
+}
 
+function handleChange(e: React.ChangeEvent<HTMLFormElement>) {
+  const form = e.currentTarget;
+  if (timerId) clearTimeout(timerId);
+  timerId = setTimeout(() => {
+    form.requestSubmit();
+  }, 300);
+}
 const FilterForm = () => {
   return (
-    <form action="">
+    <form onSubmit={handleSubmit} onChange={handleChange}>
       <CollapsableFieldset
         className={styles.categories}
         legend="Categories"
@@ -57,7 +74,7 @@ const FilterForm = () => {
       </CollapsableFieldset>
       <CollapsableFieldset legend="Price">
         <div className="price-filter">
-          {/* Price filter content will go here */}
+          <PriceRangeSlider min={100} max={999999} />
         </div>
       </CollapsableFieldset>
     </form>
