@@ -6,6 +6,11 @@
   max-width: 30rem;
   margin: 0 auto;
   padding: 4rem 0;
+  font-family: $font-family;
+  label {
+    font-size: 1.4rem;
+    color: var(--text-color);
+  }
 
   input {
     border: 1px solid var(-original-price-color);
