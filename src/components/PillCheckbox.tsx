@@ -9,11 +9,12 @@ type PillCheckboxProps = {
 const PillCheckbox = ({
   label,
   id = label,
+  value = label,
   ...inputProps
 }: PillCheckboxProps) => {
   return (
     <div className={styles.pillCheckbox}>
-      <input type="checkbox" id={id} {...inputProps} />
+      <input type="checkbox" id={id} value={value} {...inputProps} />
       <label htmlFor={id}>
         <span>{label}</span>
         <Icons.XFill className={styles.icon} />

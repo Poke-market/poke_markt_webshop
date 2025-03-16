@@ -11,11 +11,12 @@ const LabelCheckbox = ({
   label,
   subLabel,
   id = label,
+  value = label,
   ...inputProps
 }: LabelCheckboxProps) => {
   return (
     <div className={styles.labelCheckbox}>
-      <input type="checkbox" id={id} {...inputProps} />
+      <input type="checkbox" id={id} value={value} {...inputProps} />
       <label htmlFor={id}>
         <span>{label}</span>
         <Icons.XFill className={styles.icon} height={16} />
