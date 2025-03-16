@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { headerLinks, Heading } from "../utils";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import styles from "../scss/components/Header.module.scss";
 import clsx from "clsx";
 import { CartOverlay } from "./CartOverlay";
@@ -11,10 +11,16 @@ type Props = {
 
 const Header = ({ className }: Props) => {
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleCartClick = (e: React.MouseEvent) => {
     e.preventDefault();
     setIsCartOpen(true);
+  };
+
+  const handleProfileClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    void navigate("/login");
   };
 
   return (
@@ -53,7 +59,11 @@ const Header = ({ className }: Props) => {
               aria-label={link.label}
               className={({ isActive }) => clsx(isActive && styles.active)}
               onClick={
-                link.label === "Shopping Cart" ? handleCartClick : undefined
+                link.label === "Shopping Cart"
+                  ? handleCartClick
+                  : link.label === "Profile"
+                    ? handleProfileClick
+                    : undefined
               }
             >
               <link.icon />
