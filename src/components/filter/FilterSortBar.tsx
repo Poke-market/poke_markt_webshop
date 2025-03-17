@@ -1,7 +1,6 @@
 import styles from "../../styles/components/filters/FilterSortBar.module.css";
 import { Icons } from "../../utils/Icons.tsx";
-import Button from "../common/Button.tsx";
-import Heading from "../common/HeadingText.tsx";
+import { Button, Heading } from "../common";
 import { FilterOverlay } from "./FilterOverlay.tsx";
 import { useState } from "react";
 

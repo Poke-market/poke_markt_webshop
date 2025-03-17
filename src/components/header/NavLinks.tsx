@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import clsx from "clsx";
 import { Heading } from "../common";
-import { headerLinks } from "../../config/links";
+import { headerLinks } from "../../config";
 import styles from "../../styles/components/common/Header.module.scss";
 
 const NavLinks = () => (

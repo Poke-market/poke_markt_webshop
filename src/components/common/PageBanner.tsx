@@ -12,7 +12,7 @@ export default function PageBanner({ title = "Shop" }: Props) {
   return (
     <div className={styles.bannerShop}>
       <img
-        src="/src/assets/images/pokemart.jpeg"
+        src="/images/pokemart.jpeg"
         alt="Shop Banner"
         className={styles.bannerImage}
       />
@@ -20,15 +20,15 @@ export default function PageBanner({ title = "Shop" }: Props) {
         {title}
       </Heading>
       <div className={styles.breadcrumb}>
-        <span>
+        <Heading as="span">
           <Link to="/">Home</Link>
-        </span>
-        <span>
+        </Heading>
+        <Heading as="span">
           <Icons.Arrowrightsmall />
-        </span>
-        <span>
+        </Heading>
+        <Heading as="span">
           <Link to="/">{title}</Link>
-        </span>
+        </Heading>
       </div>
     </div>
   );

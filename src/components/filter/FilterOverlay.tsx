@@ -1,4 +1,4 @@
-import { Button, Heading } from "../../utils";
+import { Button, Heading } from "../common";
 import styles from "../../styles/components/filters/FilterOverlay.module.scss";
 import FilterForm from "./FilterForm.tsx";
 import clsx from "clsx";
