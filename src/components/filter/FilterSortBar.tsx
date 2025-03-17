@@ -1,4 +1,4 @@
-import styles from "../../styles/components/filters/FilterSortBar.module.css";
+import styles from "../../styles/components/filters/FilterSortBar.module.scss";
 import { Icons } from "../../utils/Icons.tsx";
 import { Button, Heading } from "../common";
 import { FilterOverlay } from "./FilterOverlay.tsx";

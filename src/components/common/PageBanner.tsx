@@ -12,7 +12,7 @@ export default function PageBanner({ title = "Shop" }: Props) {
   return (
     <div className={styles.bannerShop}>
       <img
-        src="/images/pokemart.jpeg"
+        src="/pokemart.jpeg"
         alt="Shop Banner"
         className={styles.bannerImage}
       />

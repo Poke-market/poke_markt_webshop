@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import clsx from "clsx";
-import { headerLinks } from "../../config/links";
+import { headerLinks } from "../../config";
 import styles from "../../styles/components/common/Header.module.scss";
 
 type IconLinksProps = {

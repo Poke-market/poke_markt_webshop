@@ -1,6 +1,6 @@
 @use "../../partials/variables" as *;
 @use "../../partials/mixins" as *;
-@use "../../abstracts/typography.module.css" as *;
+@use "../../abstracts/typography.module" as *;
 
 .header {
   font-weight: $font-weight-medium;

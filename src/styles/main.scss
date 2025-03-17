@@ -1,5 +1,5 @@
-@use "partials/reset.scss";
-@use "partials/variables.scss" as *;
+@use "partials/reset";
+@use "partials/variables" as *;
 
 body {
   background-color: var(--background-color);

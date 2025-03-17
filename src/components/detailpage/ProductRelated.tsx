@@ -1,6 +1,6 @@
 import { Heading, Button } from "../common";
 import styles from "../../styles/components/detailpage/RelatedProducts.module.scss";
-import poke from "../../../public/images/poke.png";
+import poke from "/poke.png?url";
 import { ProductCard } from "../home";
 const RelatedProduct = () => {
   const dummy = {
