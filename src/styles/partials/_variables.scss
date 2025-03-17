@@ -1,0 +1,52 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+// colors
+:root {
+  --text-color: #000000;
+  --discount-color-30: #e97171;
+  --background-color: #fff;
+  --text-color-2: #0f1e34;
+  --grey: #ccc;
+  --white: #fff;
+  --basic-blue: #3a76cf;
+  --light-blue: #9dbbe7;
+  --light-blue-2: rgba(87, 136, 194, 0.74);
+  --bluegrey: #e7eef9;
+  --red: #ff5a50;
+  --product-name-color: #3a3a3a;
+  --product-description-color: #898989;
+  --details-container-bg: rgba(218, 218, 227, 0.79);
+  --current-price-color: #3a3a3a;
+  --grey-4: #b0b0b0;
+  --blue-grey: #e7eef9;
+  --original-price-color: var(--grey-4);
+}
+
+// fonts
+$font-family: "Poppins", sans-serif;
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semi-bold: 600;
+
+// font sizes
+$font-size-xs: 1.4rem;
+$font-size-lg: 1.6rem;
+$font-size-md: 3.2rem;
+$font-size-xl: 2rem;
+$font-size-2xl: 2.4rem;
+$font-size-3xl: 2.5rem;
+$font-size-4xl: 2.5rem;
+$font-size-5xl: 6rem;
+
+// breakpoints/responsiveness
+$breakpoint: 1090px;
+$breakpoint-md: 975px;
+$breakpoint-sm: 630px;
+
+// productCard
+$product-image-height: 300.96px;
+$discount-badge-size: 4.8rem;
+$product-name-font-size: 2.4rem;
+$current-price-font-size: 2rem;
+$original-price-font-size: 1.6rem;

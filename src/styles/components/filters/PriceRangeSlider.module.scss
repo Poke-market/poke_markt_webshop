@@ -1,0 +1,142 @@
+@use "../../partials/variables" as *;
+
+.priceRangeContainer {
+  margin: 1.5rem 0;
+  padding: 0 0.5rem;
+
+  .inputGroup {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    width: 100%;
+    font-size: $font-size-lg;
+
+    .inputWrapper {
+      position: relative;
+      flex: 1;
+      max-width: calc(50% - 1rem);
+      .currencySymbol {
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--light-blue);
+        z-index: 1;
+        pointer-events: none;
+      }
+      .priceInput {
+        background-color: var(--blue-grey);
+        border: none;
+        padding: 0.5rem 1rem 0.5rem 2rem;
+        width: 100%;
+        border-radius: 4px;
+        font-family: $font-family;
+        text-align: center;
+        color: var(--light-blue);
+        font-weight: $font-weight-medium;
+
+        /* Remove arrows for Chrome, Safari, Edge, Opera */
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+
+        /* Remove arrows for Firefox */
+        &[type="number"] {
+          -moz-appearance: textfield;
+          appearance: textfield;
+        }
+
+        &:focus {
+          outline: 1px solid var(--basic-blue);
+        }
+      }
+    }
+  }
+
+  .sliderContainer {
+    position: relative;
+    height: 4rem;
+    margin-top: 1rem;
+
+    .rangeSlider {
+      position: relative;
+      width: 100%;
+      height: 5px;
+      background-color: var(--grey);
+      border-radius: 5px;
+      top: 50%;
+      transform: translateY(-50%);
+
+      .progress {
+        position: absolute;
+        height: 100%;
+        background-color: var(--basic-blue);
+        border-radius: 5px;
+        z-index: 1;
+      }
+    }
+
+    input[type="range"] {
+      position: absolute;
+      width: 100%;
+      -webkit-appearance: none;
+      appearance: none;
+      height: 5px;
+      background-color: transparent;
+      top: 50%;
+      transform: translateY(-50%);
+      margin: 0;
+      pointer-events: none;
+
+      &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        pointer-events: auto;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background-color: var(--basic-blue);
+        cursor: pointer;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      &::-moz-range-thumb {
+        pointer-events: auto;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background-color: var(--basic-blue);
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .minRange {
+      z-index: 2;
+    }
+
+    .maxRange {
+      z-index: 3;
+    }
+
+    // Active thumb gets highest z-index
+    .topThumb {
+      z-index: 10; // Significantly higher to ensure it's always on top
+    }
+  }
+
+  .rangeValues {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+    font-size: $font-size-xs;
+    color: var(--text-color);
+  }
+}

@@ -1,4 +1,4 @@
-import { Props } from "../components/ProductCard.tsx";
+import { Props } from "../components/home/ProductCard.tsx";
 
 export const transformData = (
   items: {

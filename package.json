@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "sass-dev": "sass  --no-source-map --watch --update --style=compressed src/scss:src/scss",
-    "sass-prod": "sass --no-source-map --style=compressed src/scss:src/scss",
+    "sass-dev": "sass  --no-source-map --watch --update --style=compressed src/styles:src/styles",
+    "sass-prod": "sass --no-source-map --style=compressed src/styles:src/styles",
     "vite": "vite",
     "dev": "npm-run-all --parallel sass-dev vite",
     "build": "npm-run-all sass-prod build-ts build-vite",

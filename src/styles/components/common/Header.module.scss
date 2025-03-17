@@ -1,0 +1,89 @@
+@use "../../partials/variables" as *;
+@use "../../partials/mixins" as *;
+@use "../../abstracts/typography.module" as *;
+
+.header {
+  font-weight: $font-weight-medium;
+  padding: 2rem 6rem;
+  display: flex;
+  background-color: #ffffff;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 800;
+
+  @media (max-width: $breakpoint) {
+    padding: 2rem;
+  }
+
+  .logoLink {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    width: 17%;
+    margin-left: 2.88rem;
+  }
+
+  .headerLogo {
+    height: 2.5rem;
+    width: fit-content;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  .logoText {
+    color: var(--red);
+  }
+
+  .navList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7.4rem;
+    list-style: none;
+
+    @media (max-width: $breakpoint) {
+      gap: 2.5rem;
+    }
+  }
+  .active {
+    font-weight: bold !important;
+  }
+
+  .iconContainer {
+    margin-right: 2.88rem;
+    width: 15%;
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+
+    .icon {
+      height: 1.75rem;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  @include responsive(md) {
+    flex-direction: column;
+    padding: 2rem;
+
+    .navList {
+      gap: 2rem;
+    }
+
+    .iconContainer {
+      margin-right: 0;
+      width: 100%;
+      justify-content: space-around;
+    }
+  }
+
+  @include responsive(sm) {
+    padding: 2rem;
+  }
+}

@@ -1,5 +1,5 @@
-import { BannerShop, Button, Input, UspBanner } from "../utils";
-import styles from "../scss/pages/LoginPage.module.scss";
+import { PageBanner, Button, Input, UspBanner } from "../utils";
+import styles from "../styles/pages/LoginPage.module.scss";
 import { ChangeEvent, FormEvent, useState } from "react";
 
 const Loginpage = () => {
@@ -22,7 +22,7 @@ const Loginpage = () => {
 
   return (
     <>
-      <BannerShop title="Login" />
+      <PageBanner title="Login" />
       <form onSubmit={handleSubmit} className={styles.loginContainer}>
         <div>
           <label htmlFor="email" className={styles.label}>
