@@ -14,7 +14,7 @@ export * from "../components/cart";
 export * from "../components/home";
 
 // filters
-export * from "../components/filters";
+export * from "../components/filter";
 export * from "./helperFunctions.ts";
 
 // detailpage
