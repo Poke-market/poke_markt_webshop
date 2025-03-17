@@ -25,3 +25,6 @@ export * from "../components/detailpage";
 
 // Icons
 export { default as Icons } from "./Icons.tsx";
+
+// config
+export * from "../config";

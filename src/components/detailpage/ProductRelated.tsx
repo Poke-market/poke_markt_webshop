@@ -1,6 +1,7 @@
-import { Heading, Button, ProductCard } from "../../utils";
+import { Heading, Button } from "../common";
 import styles from "../../styles/components/detailpage/RelatedProducts.module.scss";
 import poke from "../../assets/images/poke.png";
+import { ProductCard } from "../home";
 const RelatedProduct = () => {
   const dummy = {
     id: "1",

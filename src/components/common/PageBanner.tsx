@@ -1,7 +1,7 @@
 import styles from "../../styles/components/common/PageBanner.module.scss";
-import Heading from "./HeadingText.tsx";
 import { Link } from "react-router-dom";
-import { Icons } from "../../utils/Icons.tsx";
+import { Icons } from "../../utils";
+import Heading from "./HeadingText";
 
 type Props = {
   title?: string;
@@ -20,15 +20,15 @@ export default function PageBanner({ title = "Shop" }: Props) {
         {title}
       </Heading>
       <div className={styles.breadcrumb}>
-        <Heading as="span">
+        <span>
           <Link to="/">Home</Link>
-        </Heading>
-        <Heading as="span">
+        </span>
+        <span>
           <Icons.Arrowrightsmall />
-        </Heading>
-        <Heading as="span">
+        </span>
+        <span>
           <Link to="/">{title}</Link>
-        </Heading>
+        </span>
       </div>
     </div>
   );

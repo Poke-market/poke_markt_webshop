@@ -1,10 +1,9 @@
-import Heading from "../common/HeadingText.tsx";
 import styles from "../../styles/components/detailpage/ProductInfo.module.scss";
 import { useState } from "react";
-import { Icons } from "../../utils/Icons.tsx";
+import { Icons } from "../../utils";
+import { Button, Heading } from "../common";
 import ProductDisplay from "./ProductDisplay.tsx";
 import { Product } from "../../types/types.ts";
-import Button from "../common/Button.tsx";
 
 type ProductInfoProps = {
   product: Product;

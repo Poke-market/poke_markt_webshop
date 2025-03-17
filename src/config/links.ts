@@ -1,7 +1,7 @@
 import { Icons } from "../utils/Icons.tsx";
 
 // Header links
-export const headerLinks = {
+const headerLinks = {
   navLinks: [
     { path: "/", label: "Home" },
     { path: "/shop", label: "Shop" },
@@ -17,7 +17,7 @@ export const headerLinks = {
 };
 
 // Footer links
-export const footerLinks = {
+const footerLinks = {
   mainLinks: [
     { path: "/", label: "Home" },
     { path: "/shop", label: "Shop" },
@@ -30,3 +30,5 @@ export const footerLinks = {
     { path: "/privacy", label: "Privacy Policies" },
   ],
 };
+
+export { headerLinks, footerLinks };

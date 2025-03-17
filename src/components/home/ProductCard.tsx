@@ -1,5 +1,5 @@
-import { Img, Heading, Button, Text } from "../../utils";
-import { Icons } from "../../utils/Icons.tsx";
+import { Img, Heading, Button, Text } from "../common";
+import { Icons } from "../../utils";
 import styles from "../../styles/components/home/ProductCard.module.scss";
 import { Link } from "react-router-dom";
 

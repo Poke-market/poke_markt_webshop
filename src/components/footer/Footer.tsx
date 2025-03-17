@@ -1,7 +1,7 @@
 import styles from "../../styles/components/common/Footer.module.scss";
-import { footerLinks } from "../../config/links.ts";
 import clsx from "clsx";
-import { FooterLinks, FooterLogo, Copyright, Newsletter } from "./index.ts";
+import { FooterLinks, FooterLogo, Copyright, Newsletter } from "./index";
+import { footerLinks } from "../../config";
 
 type Props = {
   className?: string;

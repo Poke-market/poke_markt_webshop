@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from "../../styles/components/detailpage/ProductDisplay.module.scss";
-import Button from "../common/Button.tsx";
+import { Button } from "../common";
 
 type ProductDisplayProps = {
   images: string[];

@@ -1,4 +1,4 @@
-import { typographySizes } from "../../config/typographySizes.ts";
+import { typographySizes } from "../../config";
 import styles from "../../styles/abstracts/typography.module.scss";
 
 type Props = {
