@@ -1,5 +1,4 @@
 // Desc: Export all common components
-export { default as Header } from "./Header.tsx";
 export { default as Footer } from "./Footer.tsx";
 export { default as Img } from "./Image.tsx";
 export { default as Input } from "./Input.tsx";

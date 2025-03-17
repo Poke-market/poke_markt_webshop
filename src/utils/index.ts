@@ -1,6 +1,9 @@
 // common Components
 export * from "../components/common";
 
+// Header
+export * from "../components/header";
+
 // Layout
 export * from "../pages";
 
