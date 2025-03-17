@@ -26,7 +26,7 @@ jobs:
           projectName: poke-markt-webshop
           envVariableKeys: VITE_API_URL
         env:
-          VITE_API_URL: ${{ env.VITE_API_URL }}
+          VITE_API_URL: ${{ vars.VITE_API_URL }}
           TARGET_VITE_API_URL: preview
           TYPE_VITE_API_URL: plain
 
