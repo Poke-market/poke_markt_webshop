@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { headerLinks, Heading } from "../utils";
 import { NavLink, useNavigate } from "react-router-dom";
 import styles from "../scss/components/Header.module.scss";
@@ -11,15 +11,33 @@ type Props = {
 
 const Header = ({ className }: Props) => {
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleCartClick = (e: React.MouseEvent) => {
     e.preventDefault();
     setIsCartOpen(true);
   };
 
-  const handleProfileClick = (e: React.MouseEvent) => {
-    e.preventDefault();
+  const handleLoginClick = () => {
+    setIsDropdownOpen(false);
     void navigate("/login");
   };
 
@@ -51,7 +69,12 @@ const Header = ({ className }: Props) => {
             </li>
           ))}
         </ul>
-        <div className={styles.iconContainer}>
+        <div
+          className={styles.iconContainer}
+          ref={dropdownRef}
+          onMouseEnter={() => setIsDropdownOpen(true)}
+          onMouseLeave={() => setIsDropdownOpen(false)}
+        >
           {headerLinks.iconLinks.map((link) => (
             <NavLink
               key={link.path}
@@ -59,16 +82,22 @@ const Header = ({ className }: Props) => {
               aria-label={link.label}
               className={({ isActive }) => clsx(isActive && styles.active)}
               onClick={
-                link.label === "Shopping Cart"
-                  ? handleCartClick
-                  : link.label === "Profile"
-                    ? handleProfileClick
-                    : undefined
+                link.label === "Shopping Cart" ? handleCartClick : undefined
               }
             >
               <link.icon />
             </NavLink>
           ))}
+          {isDropdownOpen && (
+            <div className={styles.profileDropdown}>
+              <button
+                className={styles.dropdownItem}
+                onClick={handleLoginClick}
+              >
+                Click to log in
+              </button>
+            </div>
+          )}
         </div>
       </nav>
 
