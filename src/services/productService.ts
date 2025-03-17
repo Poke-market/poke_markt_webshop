@@ -1,6 +1,6 @@
 import { Product, ApiListResponse, ApiSingleResponse } from "../types/types";
 
-const API_BASE_URL: string = import.meta.env.VITE_API_URL;
+const API_BASE_URL: string = import.meta.env.VITE_API_URL + "/api";
 
 export const productService = {
   async getRecommendations(limit: number = 5): Promise<Product[]> {

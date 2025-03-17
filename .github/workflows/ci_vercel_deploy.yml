@@ -9,9 +9,21 @@ jobs:
   build_and_deploy:
     name: Build & Deploy
     runs-on: ubuntu-latest
+    environment: production
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Set ENV variables
+        uses: dkershner6/vercel-set-env-action@v3
+        with:
+          token: ${{ secrets.VERCEL_TOKEN }}
+          projectName: poke-markt-webshop
+          envVariableKeys: VITE_API_URL
+        env:
+          VITE_API_URL: ${{ env.VITE_API_URL }}
+          TARGET_VITE_API_URL: production
+          TYPE_VITE_API_URL: plain
 
       - name: Build & Deploy on Vercel
         uses: amondnet/vercel-action@v25
