@@ -1,4 +1,4 @@
-import { Heading, Input } from "../../utils";
+import { Heading, Input } from "../common";
 import { Link } from "react-router-dom";
 import styles from "../../styles/components/common/Footer.module.scss";
 

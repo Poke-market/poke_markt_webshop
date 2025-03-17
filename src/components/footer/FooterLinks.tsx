@@ -1,4 +1,4 @@
-import { Heading } from "../../utils";
+import { Heading } from "../common";
 import { Link } from "react-router-dom";
 import styles from "../../styles/components/common/Footer.module.scss";
 

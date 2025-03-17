@@ -1,4 +1,4 @@
-import { Heading } from "../../utils";
+import { Heading } from "../common";
 import styles from "../../styles/components/common/Footer.module.scss";
 
 const Copyright = () => (

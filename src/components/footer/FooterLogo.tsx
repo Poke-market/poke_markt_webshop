@@ -1,4 +1,4 @@
-import { Heading, Text } from "../../utils";
+import { Heading, Text } from "../common";
 import styles from "../../styles/components/common/Footer.module.scss";
 
 const FooterLogo = () => (
