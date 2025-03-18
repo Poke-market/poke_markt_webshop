@@ -3,16 +3,8 @@ import LabelCheckbox from "./LabelCheckbox.tsx";
 import PillCheckbox from "./PillCheckbox.tsx";
 import PriceRangeSlider from "./PriceRangeSlider.tsx";
 import styles from "../../styles/components/filters/FilterForm.module.scss";
-import { useAppDispatch, useAppSelector } from "../../store";
-import {
-  selectFilterCategories,
-  selectFilterPriceRange,
-  selectFilterTags,
-  toggleFilterCategory,
-  toggleFilterTag,
-  setFilterPriceRange,
-} from "../../store/filterSlice.ts";
 import { Category } from "../../types/apiTypes/item.ts";
+import { useSearchParams } from "react-router-dom";
 // TODO: Get categories from backend
 const categories = {
   medicine: 5,
@@ -38,10 +30,7 @@ const tags = [
 
 const FilterForm = () => {
   // State for filter values
-  const filterCategories = useAppSelector(selectFilterCategories);
-  const filterPriceRange = useAppSelector(selectFilterPriceRange);
-  const filterTags = useAppSelector(selectFilterTags);
-  const dispatch = useAppDispatch();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   return (
     <form>
@@ -57,8 +46,13 @@ const FilterForm = () => {
                 label={category}
                 name="category"
                 subLabel={count}
-                checked={filterCategories.includes(category)}
-                onChange={() => dispatch(toggleFilterCategory(category))}
+                checked={searchParams.has("cat", category)}
+                onChange={() => {
+                  if (searchParams.has("cat", category))
+                    searchParams.delete("cat", category);
+                  else searchParams.append("cat", category);
+                  setSearchParams(searchParams);
+                }}
               />
             </li>
           ))}
@@ -72,8 +66,13 @@ const FilterForm = () => {
               <PillCheckbox
                 label={tag}
                 name="tag"
-                checked={filterTags.includes(tag)}
-                onChange={() => dispatch(toggleFilterTag(tag))}
+                checked={searchParams.has("tag", tag)}
+                onChange={() => {
+                  if (searchParams.has("tag", tag))
+                    searchParams.delete("tag", tag);
+                  else searchParams.append("tag", tag);
+                  setSearchParams(searchParams);
+                }}
               />
             </li>
           ))}
@@ -85,9 +84,15 @@ const FilterForm = () => {
           <PriceRangeSlider
             min={100}
             max={999999}
-            initialMin={filterPriceRange.min}
-            initialMax={filterPriceRange.max}
-            onChangeComplete={(range) => dispatch(setFilterPriceRange(range))}
+            initialMin={Number(searchParams.get("minPrice")) || 100}
+            initialMax={Number(searchParams.get("maxPrice")) || 999999}
+            onChangeComplete={(range) => {
+              searchParams.set("minPrice", range.min.toString());
+              searchParams.set("maxPrice", range.max.toString());
+              if (range.min === 100) searchParams.delete("minPrice");
+              if (range.max === 999999) searchParams.delete("maxPrice");
+              setSearchParams(searchParams);
+            }}
           />
         </div>
       </CollapsableFieldset>
