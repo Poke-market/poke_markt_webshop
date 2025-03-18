@@ -7,9 +7,14 @@ import styles from "../../styles/components/common/Header.module.scss";
 type IconLinksProps = {
   onCartClick: (e: React.MouseEvent) => void;
   onProfileClick: (e: React.MouseEvent) => void;
+  onWishlistClick: (e: React.MouseEvent) => void;
 };
 
-const IconLinks = ({ onCartClick, onProfileClick }: IconLinksProps) => (
+const IconLinks = ({
+  onCartClick,
+  onProfileClick,
+  onWishlistClick,
+}: IconLinksProps) => (
   <div className={styles.iconContainer}>
     {headerLinks.iconLinks.map((link) => (
       <NavLink
@@ -22,7 +27,9 @@ const IconLinks = ({ onCartClick, onProfileClick }: IconLinksProps) => (
             ? onCartClick
             : link.label === "Profile"
               ? onProfileClick
-              : undefined
+              : link.label === "Wishlist"
+                ? onWishlistClick
+                : undefined
         }
       >
         <link.icon />

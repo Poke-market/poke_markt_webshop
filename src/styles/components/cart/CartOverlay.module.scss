@@ -131,6 +131,16 @@
   justify-content: space-between;
   padding: 0 4rem 4rem 4rem;
 
+  // When there's only one button, make it smaller
+  &:has(.actionButton:only-child) {
+    justify-content: center;
+
+    .actionButton {
+      max-width: 90px;
+      padding: 0.8rem 0.5rem;
+    }
+  }
+
   .actionButton {
     flex: 1;
     background: var(--white);
