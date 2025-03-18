@@ -19,8 +19,31 @@ const pokemartApi = createApi({
       query: (id) => `/items/${id}`,
       transformResponse: (response: { item: Item }) => response.item,
     }),
+
+    // register:
+    register: builder.mutation<
+      { token: string },
+      {
+        email: string;
+        password: string;
+        firstname: string;
+        lastname: string;
+        city: string;
+        street: string;
+        housenumber: string;
+        zipcode: string;
+        telephone: string;
+        isAdmin?: boolean;
+      }
+    >({
+      query: (userData) => ({
+        url: "/auth/register",
+        method: "POST",
+        body: userData,
+      }),
+    }),
   }),
 });
 
-export const { useGetItemsQuery, useGetItemByIdQuery } = pokemartApi;
-export default pokemartApi;
+export const { useGetItemsQuery, useGetItemByIdQuery, useRegisterMutation } =
+  pokemartApi;
