@@ -9,13 +9,15 @@ import {
   useLocation,
 } from "react-router-dom";
 import { Category } from "../../types/apiTypes/item";
-
+import { useAppDispatch } from "../../store";
+import { setCategorieCounts, setTotalCount } from "../../store/filterSlice";
 const ProductGrid = () => {
   const { page = 1 } = useParams();
   const navigate = useNavigate();
   const gridRef = useRef<HTMLDivElement>(null);
   const [searchParams] = useSearchParams();
   const { search } = useLocation();
+  const dispatch = useAppDispatch();
 
   const { data, isLoading } = useGetItemsQuery({
     page: +page,
@@ -36,6 +38,8 @@ const ProductGrid = () => {
 
   if (isLoading || !data) return <LoadingSkeleton />;
   const { items, info } = data;
+  dispatch(setCategorieCounts(info.categorieCount));
+  dispatch(setTotalCount(info.count));
   return (
     <div className={styles.shopContainer} ref={gridRef}>
       <div className={styles.flexContainer}>

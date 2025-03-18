@@ -3,44 +3,30 @@ import LabelCheckbox from "./LabelCheckbox.tsx";
 import PillCheckbox from "./PillCheckbox.tsx";
 import PriceRangeSlider from "./PriceRangeSlider.tsx";
 import styles from "../../styles/components/filters/FilterForm.module.scss";
-import { Category } from "../../types/apiTypes/item.ts";
 import { useSearchParams } from "react-router-dom";
-// TODO: Get categories from backend
-const categories = {
-  medicine: 5,
-  berries: 10,
-  food: 15,
-  pokéballs: 20,
-  evolution: 25,
-  vitamins: 30,
-  "tm/hm": 35,
-  "mega stones": 40,
-} as Record<Category, number>;
-
-// TODO: Get tags from backend
-const tags = [
-  "new",
-  "sale",
-  "limited",
-  "popular",
-  "best seller",
-  "featured",
-  "bestseller",
-];
+import { useGetTagsQuery } from "../../store/pokemartApi.ts";
+import { useAppSelector } from "../../store";
+import {
+  selectCategorieCounts,
+  selectTotalCount,
+} from "../../store/filterSlice.ts";
 
 const FilterForm = () => {
   // State for filter values
   const [searchParams, setSearchParams] = useSearchParams();
+  const { data: tags } = useGetTagsQuery();
+  const categorieCounts = useAppSelector(selectCategorieCounts);
+  const totalCount = useAppSelector(selectTotalCount);
 
   return (
     <form>
       <CollapsableFieldset
         className={styles.categories}
         legend="Categories"
-        subLegend="9"
+        subLegend={totalCount.toString()}
       >
         <ul>
-          {Object.entries(categories).map(([category, count]) => (
+          {Object.entries(categorieCounts).map(([category, count]) => (
             <li key={category}>
               <LabelCheckbox
                 label={category}
@@ -61,7 +47,7 @@ const FilterForm = () => {
 
       <CollapsableFieldset className={styles.tags} legend="Tags">
         <ul>
-          {tags.map((tag) => (
+          {tags?.map((tag) => (
             <li key={tag}>
               <PillCheckbox
                 label={tag}

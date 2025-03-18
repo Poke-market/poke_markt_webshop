@@ -8,7 +8,7 @@ const pokemartApi = createApi({
     baseUrl: import.meta.env.VITE_API_URL,
     responseHandler: async (response) => {
       const data = (await response.json()) as apiResponse;
-      return data.data;
+      return "data" in data ? data.data : data;
     },
   }),
   endpoints: (builder) => ({
@@ -26,8 +26,14 @@ const pokemartApi = createApi({
       query: (id) => `/items/${id}`,
       transformResponse: (response: { item: Item }) => response.item,
     }),
+    getTags: builder.query<string[], void>({
+      query: () => "/tags",
+      transformResponse: (response: { name: string }[]) =>
+        response.map((tag) => tag.name),
+    }),
   }),
 });
 
-export const { useGetItemsQuery, useGetItemByIdQuery } = pokemartApi;
+export const { useGetItemsQuery, useGetItemByIdQuery, useGetTagsQuery } =
+  pokemartApi;
 export default pokemartApi;
