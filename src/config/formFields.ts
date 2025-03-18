@@ -1,7 +1,9 @@
+import { RegisterFormData } from "../types/apiTypes/auth";
+
 export type FormField = {
   label: string;
-  type: "text" | "email" | "password" | "number" | "name";
-  name: string;
+  type: "text" | "email" | "password" | "number";
+  name: keyof RegisterFormData;
   required?: boolean;
 };
 
