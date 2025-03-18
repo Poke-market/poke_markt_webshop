@@ -15,7 +15,11 @@ const pokemartApi = createApi({
     getItems: builder.query<GetItemsData, GetItemsParams>({
       query: (params) => ({
         url: "/items",
-        params,
+        params: {
+          ...params,
+          tag: params.tag?.join(","),
+          cat: params.cat?.join(","),
+        },
       }),
     }),
     getItemById: builder.query<Item, Item["_id"]>({
