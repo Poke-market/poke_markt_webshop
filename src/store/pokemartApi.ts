@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { getItemsData, Item } from "../types/apiTypes/item";
+import { GetItemsData, Item, GetItemsParams } from "../types/apiTypes/item";
 import { apiResponse } from "../types/apiTypes/response";
 
 const pokemartApi = createApi({
@@ -12,8 +12,11 @@ const pokemartApi = createApi({
     },
   }),
   endpoints: (builder) => ({
-    getItems: builder.query<getItemsData, void>({
-      query: () => "/items",
+    getItems: builder.query<GetItemsData, GetItemsParams>({
+      query: (params) => ({
+        url: "/items",
+        params,
+      }),
     }),
     getItemById: builder.query<Item, Item["_id"]>({
       query: (id) => `/items/${id}`,
