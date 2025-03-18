@@ -1,29 +1,32 @@
 import React from "react";
 import Input from "../common/Input.tsx";
 import { formFields, FormField } from "../../config/formFields";
+import { RegisterFormData } from "../../types/apiTypes/auth";
 
 const FormFields = ({
   formData,
   handleChange,
 }: {
-  formData: Record<string, string>;
+  formData: RegisterFormData;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }) => {
   return (
     <>
-      {/* Iterating over formFields array in formFields.ts to generate input fields */}
-      {formFields.map((field: FormField) => (
-        <div key={field.name}>
-          <label>{field.label}:</label>
-          <Input
-            type={field.type}
-            name={field.name}
-            value={formData[field.name]}
-            onChange={handleChange}
-            required={field.required}
-          />
-        </div>
-      ))}
+      {formFields.map((field: FormField) => {
+        const value = formData[field.name];
+        return (
+          <div key={field.name}>
+            <label>{field.label}:</label>
+            <Input
+              type={field.type}
+              name={field.name}
+              value={value !== undefined ? value.toString() : ""}
+              onChange={handleChange}
+              required={field.required}
+            />
+          </div>
+        );
+      })}
     </>
   );
 };
