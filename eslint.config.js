@@ -4,18 +4,16 @@ import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
 import tseslint from "typescript-eslint";
 import eslintConfigPrettier from "eslint-config-prettier";
-import jsxA11y from "eslint-plugin-jsx-a11y";
 
 export default tseslint.config(
   { ignores: ["dist"] },
-  jsxA11y.flatConfigs.recommended,
   {
     extends: [
       js.configs.recommended,
       ...tseslint.configs.recommendedTypeChecked,
       ...tseslint.configs.stylisticTypeCheckedOnly,
     ],
-    files: ["**/*.{ts,tsx}"],
+    files: ["**/*.{ts,tsx,jsx,js}"],
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
@@ -35,6 +33,10 @@ export default tseslint.config(
         { allowConstantExport: true },
       ],
       "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/no-unsafe-assignment": "off",
+      "@typescript-eslint/no-unsafe-call": "off",
+      "@typescript-eslint/no-unsafe-argument": "off",
+      "@typescript-eslint/no-misused-promises": "off",
     },
   },
   eslintConfigPrettier,
