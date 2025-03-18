@@ -1,10 +1,21 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Category } from "../types/apiTypes/item";
+import { categories, Category } from "../types/apiTypes/item";
 import { toggleArrayElement } from "../utils/helperFunctions";
 
-const initialState = {
-  categories: <Category[]>[],
-  tags: <string[]>[],
+type PriceRange = {
+  min: number;
+  max: number;
+};
+
+type FilterState = {
+  categories: Category[];
+  tags: string[];
+  priceRange: PriceRange;
+};
+
+const initialState: FilterState = {
+  categories: [],
+  tags: [],
   priceRange: {
     min: 100,
     max: 999999,
@@ -15,20 +26,31 @@ const filterSlice = createSlice({
   name: "filter",
   initialState,
   reducers: {
-    toggleCategory: (state, { payload: category }: PayloadAction<Category>) => {
+    toggleFilterCategory: (
+      state,
+      { payload: category }: PayloadAction<string>,
+    ) => {
+      if (!categories.includes(category)) return;
       state.categories = toggleArrayElement(state.categories, category);
     },
 
-    toggleTag: (state, { payload: tag }: PayloadAction<string>) => {
+    toggleFilterTag: (state, { payload: tag }: PayloadAction<string>) => {
       state.tags = toggleArrayElement(state.tags, tag);
     },
 
-    setMinPrice: (state, { payload: min }: PayloadAction<number>) => {
+    setFilterMinPrice: (state, { payload: min }: PayloadAction<number>) => {
       state.priceRange.min = min;
     },
 
-    setMaxPrice: (state, { payload: max }: PayloadAction<number>) => {
+    setFilterMaxPrice: (state, { payload: max }: PayloadAction<number>) => {
       state.priceRange.max = max;
+    },
+
+    setFilterPriceRange: (
+      state,
+      { payload: range }: PayloadAction<PriceRange>,
+    ) => {
+      state.priceRange = range;
     },
 
     resetFilters: () => {
@@ -36,20 +58,24 @@ const filterSlice = createSlice({
     },
   },
   selectors: {
-    selectPriceRange: (state) => state.priceRange,
-    selectCategories: (state) => state.categories,
-    selectTags: (state) => state.tags,
+    selectFilterPriceRange: (state) => state.priceRange,
+    selectFilterCategories: (state) => state.categories,
+    selectFilterTags: (state) => state.tags,
   },
 });
 
 export const {
-  toggleCategory,
-  toggleTag,
-  setMinPrice,
-  setMaxPrice,
+  toggleFilterCategory,
+  toggleFilterTag,
+  setFilterMinPrice,
+  setFilterMaxPrice,
+  setFilterPriceRange,
   resetFilters,
 } = filterSlice.actions;
-export const { selectPriceRange, selectCategories, selectTags } =
-  filterSlice.selectors;
+export const {
+  selectFilterPriceRange,
+  selectFilterCategories,
+  selectFilterTags,
+} = filterSlice.selectors;
 
 export default filterSlice;
