@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { getItemsData, Item } from "../types/apiTypes/item";
 import { apiResponse } from "../types/apiTypes/response";
+import { RegisterFormData, RegisterResponse } from "../types/apiTypes/auth";
 
 const pokemartApi = createApi({
   reducerPath: "pokemartApi",
@@ -19,27 +20,11 @@ const pokemartApi = createApi({
       query: (id) => `/items/${id}`,
       transformResponse: (response: { item: Item }) => response.item,
     }),
-
-    // register:
-    register: builder.mutation<
-      { token: string },
-      {
-        email: string;
-        password: string;
-        firstname: string;
-        lastname: string;
-        city: string;
-        street: string;
-        housenumber: string;
-        zipcode: string;
-        telephone: string;
-        isAdmin?: boolean;
-      }
-    >({
-      query: (userData) => ({
-        url: "/auth/register",
+    register: builder.mutation<RegisterResponse, RegisterFormData>({
+      query: (credentials) => ({
+        url: "/register",
         method: "POST",
-        body: userData,
+        body: credentials,
       }),
     }),
   }),
