@@ -5,7 +5,7 @@ import { apiResponse } from "../types/apiTypes/response";
 const pokemartApi = createApi({
   reducerPath: "pokemartApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: import.meta.env.VITE_API_URL,
+    baseUrl: import.meta.env.VITE_API_URL + "/api",
     responseHandler: async (response) => {
       const data = (await response.json()) as apiResponse;
       return "data" in data ? data.data : data;
