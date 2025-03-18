@@ -1,5 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Layout, Homepage, Cartpage, Detailpage, Loginpage } from "./utils";
+import {
+  Layout,
+  Homepage,
+  Cartpage,
+  Detailpage,
+  Loginpage,
+  Registerpage,
+} from "./utils";
 
 function App() {
   return (
@@ -11,6 +18,7 @@ function App() {
           <Route path="/cart" element={<Cartpage />} />
           <Route path="/item/:name" element={<Detailpage />} />
           <Route path="/login" element={<Loginpage />} />
+          <Route path="/register" element={<Registerpage />} />
         </Routes>
       </Layout>
     </Router>
