@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import styles from "../../scss/components/Input.module.scss";
+import styles from "../../styles/components/common/Input.module.scss";
 
 type Props = {
   className?: string;

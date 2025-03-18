@@ -32,3 +32,4 @@ const pokemartApi = createApi({
 
 export const { useGetItemsQuery, useGetItemByIdQuery, useRegisterMutation } =
   pokemartApi;
+export default pokemartApi;
