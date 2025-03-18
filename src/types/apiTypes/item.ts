@@ -44,13 +44,28 @@ export type Category = (typeof categories)[number];
  *           RESPONSES          *
  ********************************/
 
-export type getItemsData = {
+export type GetItemsData = {
   info: paginationInfo & {
     categorieCount: Record<Category, number>;
   };
   items: Item[];
 };
 
-export type getItemData = {
+export type GetItemData = {
   item: Item;
+};
+
+/********************************
+ *           PARAMS             *
+ ********************************/
+
+export type GetItemsParams = {
+  page?: number;
+  limit?: number;
+  cat?: Category;
+  tag?: string[];
+  minPrice?: number;
+  maxPrice?: number;
+  sort?: "price" | "name";
+  order?: "asc" | "desc";
 };
