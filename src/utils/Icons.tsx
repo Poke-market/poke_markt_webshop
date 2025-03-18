@@ -42,6 +42,7 @@ const Icons = {
   Arrowdownsmall: createIcon("ri:arrow-down-s-line"),
   Arrowrightsmall: createIcon("weui:arrow-filled"),
   Filtering: createIcon("system-uicons:filtering"),
+  Unlike: createIcon("icon-park-outline:unlike"),
 };
 
 export default Icons;
