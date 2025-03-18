@@ -44,6 +44,10 @@ export const Overlay = ({
 
   const ClearIcon = Icons[clearIcon];
 
+  const handleButtonClick = () => {
+    onClose();
+  };
+
   return (
     <>
       <Button
@@ -96,7 +100,12 @@ export const Overlay = ({
           {!showSubtotal && <div className={styles.divider} />}
           <div className={styles.actionButtons}>
             {actionButtons.map((button, index) => (
-              <Link key={index} to={button.to} className={styles.actionButton}>
+              <Link
+                key={index}
+                to={button.to}
+                className={styles.actionButton}
+                onClick={handleButtonClick}
+              >
                 <Heading as="span" size="textxs">
                   {button.text}
                 </Heading>
