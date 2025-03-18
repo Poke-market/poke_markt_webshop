@@ -19,11 +19,13 @@ const ProductGrid = () => {
 
   const { data, isLoading } = useGetItemsQuery({
     page: +page,
-    limit: 16,
+    limit: Number(searchParams.get("limit")),
     cat: searchParams.getAll("cat") as Category[],
     tag: searchParams.getAll("tag"),
     minPrice: Number(searchParams.get("minPrice")),
     maxPrice: Number(searchParams.get("maxPrice")),
+    sort: (searchParams.get("sort") as "price" | "name") ?? undefined,
+    order: (searchParams.get("order") as "asc" | "desc") ?? undefined,
   });
 
   useEffect(() => {
