@@ -71,35 +71,42 @@ const PriceRangeSlider = ({
   const completeChange = () =>
     onChangeComplete?.(applyConstraints(inputValues));
 
+  const [minInput, maxInput] = (["min", "max"] as const).map((key) => (
+    <div className={styles.inputWrapper}>
+      <span className={styles.currencySymbol}>$</span>
+      <input
+        className={styles.priceInput}
+        type="number"
+        value={inputValues[key]}
+        onChange={(e) => handleInputChange(e, key)}
+        onBlur={completeChange}
+        onKeyDown={(e) => e.key === "Enter" && pd(completeChange)(e)}
+      />
+    </div>
+  ));
+
+  const [minThumb, maxThumb] = (["min", "max"] as const).map((key) => (
+    <input
+      type="range"
+      min={min}
+      max={max}
+      value={range[key]}
+      onChange={(e) => handleSliderChange(e, key)}
+      onMouseUp={completeChange}
+      onTouchEnd={completeChange}
+      className={clsx(styles.range, styles[`${key}Range`], {
+        [styles.topThumb]: isTopThumb(key),
+      })}
+    />
+  ));
+
   return (
     <div className={styles.priceRangeContainer}>
       {/* Number inputs */}
       <div className={styles.inputGroup}>
-        <div className={styles.inputWrapper}>
-          <span className={styles.currencySymbol}>$</span>
-          <input
-            className={styles.priceInput}
-            type="number"
-            name="priceMin"
-            value={inputValues.min}
-            onChange={(e) => handleInputChange(e, "min")}
-            onBlur={completeChange}
-            onKeyDown={(e) => e.key === "Enter" && pd(completeChange)(e)}
-          />
-        </div>
+        {minInput}
         <span>-</span>
-        <div className={styles.inputWrapper}>
-          <span className={styles.currencySymbol}>$</span>
-          <input
-            className={styles.priceInput}
-            type="number"
-            name="priceMax"
-            value={inputValues.max}
-            onChange={(e) => handleInputChange(e, "max")}
-            onBlur={completeChange}
-            onKeyDown={(e) => e.key === "Enter" && pd(completeChange)(e)}
-          />
-        </div>
+        {maxInput}
       </div>
 
       {/* Slider */}
@@ -114,33 +121,8 @@ const PriceRangeSlider = ({
           ></div>
         </div>
 
-        {/* Min thumb */}
-        <input
-          type="range"
-          min={min}
-          max={max}
-          value={range.min}
-          onChange={(e) => handleSliderChange(e, "min")}
-          onMouseUp={completeChange}
-          onTouchEnd={completeChange}
-          className={clsx(styles.range, styles.minRange, {
-            [styles.topThumb]: isTopThumb("min"),
-          })}
-        />
-
-        {/* Max thumb */}
-        <input
-          type="range"
-          min={min}
-          max={max}
-          value={range.max}
-          onChange={(e) => handleSliderChange(e, "max")}
-          onMouseUp={completeChange}
-          onTouchEnd={completeChange}
-          className={clsx(styles.range, styles.maxRange, {
-            [styles.topThumb]: isTopThumb("max"),
-          })}
-        />
+        {minThumb}
+        {maxThumb}
       </div>
 
       {/* Range labels */}
