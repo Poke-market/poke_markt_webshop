@@ -5,6 +5,7 @@
   font-family: $font-family;
   padding: 2rem 8rem;
   background-color: var(--basic-blue);
+  font-size: 1.6rem;
 
   @media (max-width: $breakpoint-md) {
     padding: 2rem 2rem;
