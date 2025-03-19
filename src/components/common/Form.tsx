@@ -47,7 +47,10 @@ type FormProps<T extends Record<string, string | number | boolean>> = {
   submitButtonText?: string;
   buttonClassName?: string;
   className?: string;
-  toastResponse?: { key: string; type: ToastResponseType };
+  toastResponse?: {
+    key: keyof typeof import("../../config/toastResponses.ts").toastResponses;
+    type: ToastResponseType;
+  };
 };
 
 export const Form = <T extends Record<string, string | number | boolean>>({
