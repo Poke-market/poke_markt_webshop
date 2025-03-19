@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "../../styles/components/home/ShopGrid.module.scss";
 import { LoadingSkeleton } from "../../utils";
 import ProductCard from "./ProductCard";
@@ -7,20 +7,22 @@ import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { Pagination } from "../common";
 
 const ProductGrid = () => {
-  const { page = "1" } = useParams<{ page?: string }>();
+  const { page = 1 } = useParams();
   const navigate = useNavigate();
   const gridRef = useRef<HTMLDivElement>(null);
   const { search } = useLocation();
+  const [pageChanged, setPageChanged] = useState(false);
 
   const { data, isLoading } = useGetItemsQuery({
     page: Number(page),
   });
 
   useEffect(() => {
-    if (gridRef.current) {
+    if (pageChanged && gridRef.current) {
       gridRef.current.scrollIntoView({ behavior: "smooth" });
+      setPageChanged(false); // Reset the state after scrolling
     }
-  }, [page]);
+  }, [pageChanged]);
 
   if (isLoading || !data) return <LoadingSkeleton />;
 
@@ -39,6 +41,7 @@ const ProductGrid = () => {
               currentPage={Number(page)}
               totalPages={data.info.pages}
               onPageChange={(newPage) => {
+                setPageChanged(true); // Set the state when page changes
                 void navigate(`/shop/${newPage}${search}`);
               }}
             />
