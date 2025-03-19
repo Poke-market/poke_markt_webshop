@@ -2,16 +2,10 @@ import { Img, Heading, Button, Text } from "../common";
 import { Icons } from "../../utils";
 import styles from "../../styles/components/home/ProductCard.module.scss";
 import { Link } from "react-router-dom";
+import { Item } from "../../types/apiTypes/item";
 
 export type Props = {
-  id: string;
-  name: string;
-  description: string;
-  image: string;
-  price: number;
-  currentPrice: string;
-  originalPrice: string;
-  discountText?: string;
+  item: Item;
   className?: string;
   onClick?: () => void;
 };
@@ -20,9 +14,8 @@ function truncateText(text: string, maxLength: number): string {
   return text.length <= maxLength ? text : `${text.substring(0, maxLength)}...`;
 }
 
-function DiscountBadge({ discountText }: { discountText?: string }) {
-  if (!discountText) return null; // renders if we only have a discount
-
+function DiscountBadge({ amount, type }: { amount?: number; type?: string }) {
+  const discountText = type === "percentage" ? `- ${amount}%` : `- $${amount}`;
   return (
     <div className={styles.absoluteCenter}>
       <Heading className={styles.discountBadge}>{discountText}</Heading>
@@ -31,21 +24,13 @@ function DiscountBadge({ discountText }: { discountText?: string }) {
 }
 
 export default function ProductCard({
-  id,
-  name = "Product Name",
-  description = "Product Description",
-  image = "",
-  currentPrice = "",
-  originalPrice = "",
-  discountText = "",
+  item,
   className = "",
   ...restProps
 }: Props) {
+  const { _id: id, name, description, photoUrl, price, discount, slug } = item;
   const truncatedDescription = truncateText(description, 25);
   const truncatedName = truncateText(name, 20);
-
-  // Create URL-friendly version of the product name
-  const urlFriendlyName = name.toLowerCase().replace(/\s+/g, "-");
 
   return (
     <div
@@ -55,17 +40,14 @@ export default function ProductCard({
       aria-label={`Product: ${name}`}
       {...restProps}
     >
-      <Link to={`/detail/${urlFriendlyName}`} className={styles.imageWrapper}>
-        <Img src={image} alt={name} className={styles.productImage} />
-        <DiscountBadge discountText={discountText} />
+      <Link to={`/item/${slug}`} className={styles.imageWrapper}>
+        <Img src={photoUrl} alt={name} className={styles.productImage} />
+        {discount.hasDiscount && <DiscountBadge {...discount} />}
       </Link>
 
       <div className={styles.detailsContainer}>
         <div className={styles.textContainer}>
-          <Link
-            to={`/detail/${urlFriendlyName}`}
-            className={styles.productLink}
-          >
+          <Link to={`/item/${slug}`} className={styles.productLink}>
             <Text as="h4" size="text2xl" className={styles.productName}>
               {truncatedName}
             </Text>
@@ -77,13 +59,15 @@ export default function ProductCard({
 
         <div className={styles.priceContainer}>
           <Text as="h5" size="textxl" className={styles.currentPrice}>
-            {currentPrice}
+            ${discount.discountedPrice}
           </Text>
-          <Text className={styles.originalPrice}>{originalPrice}</Text>
+          {discount.hasDiscount && (
+            <Text className={styles.originalPrice}>${price}</Text>
+          )}
         </div>
       </div>
 
-      <div className={styles.overlay}>
+      <Link to={`/item/${slug}`} className={styles.overlay}>
         <Button>Add to cart</Button>
         <div className={styles.overlayButtons}>
           <Button className={styles.overlayButton}>
@@ -105,7 +89,7 @@ export default function ProductCard({
             Like
           </Button>
         </div>
-      </div>
+      </Link>
     </div>
   );
 }

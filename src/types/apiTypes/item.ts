@@ -17,6 +17,7 @@ export interface Item {
   __v: number;
   createdAt: Date;
   updatedAt: Date;
+  slug: string;
 }
 
 export interface Discount {
@@ -53,4 +54,15 @@ export type getItemsData = {
 
 export type getItemData = {
   item: Item;
+};
+
+// filter valid params
+
+export type GetItemsParams = {
+  page?: number;
+  limit?: number;
+  sort?: string;
+  order?: string;
+  cat?: Category[];
+  tag?: string[];
 };

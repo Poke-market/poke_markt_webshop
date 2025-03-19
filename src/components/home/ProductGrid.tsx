@@ -1,59 +1,46 @@
-import { useState, useRef } from "react";
+import { useEffect, useRef } from "react";
 import styles from "../../styles/components/home/ShopGrid.module.scss";
-import { LoadingSkeleton, ProductCard, Pagination } from "../../utils";
-import { transformData } from "../../utils/transformData.ts";
-import { Props } from "./ProductCard.tsx";
+import { LoadingSkeleton } from "../../utils";
+import ProductCard from "./ProductCard";
 import { useGetItemsQuery } from "../../store/pokemartApi";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
+import { Pagination } from "../common";
 
-export type ShopGridProps = {
-  data?: Props[];
-};
+const ProductGrid = () => {
+  const { page = "1" } = useParams<{ page?: string }>();
+  const navigate = useNavigate();
+  const gridRef = useRef<HTMLDivElement>(null);
+  const { search } = useLocation();
 
-const ProductGrid = ({ data: initialData = [] }: ShopGridProps) => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  const { data: apiData, isLoading } = useGetItemsQuery(currentPage, {
-    skip: initialData.length > 0,
+  const { data, isLoading } = useGetItemsQuery({
+    page: Number(page),
   });
 
-  const displayData =
-    initialData.length > 0
-      ? initialData
-      : apiData
-        ? transformData(apiData.items)
-        : [];
-  const totalPages = apiData?.info.pages ?? 1;
-
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-
-    // Scroll to the top of the container where filters would be
-    if (containerRef.current) {
-      containerRef.current.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
+  useEffect(() => {
+    if (gridRef.current) {
+      gridRef.current.scrollIntoView({ behavior: "smooth" });
     }
-  };
+  }, [page]);
 
-  if (isLoading) return <LoadingSkeleton />;
+  if (isLoading || !data) return <LoadingSkeleton />;
 
   return (
-    <div className={styles.shopContainer} ref={containerRef}>
+    <div className={styles.shopContainer} ref={gridRef}>
       <div className={styles.flexContainer}>
         <div className={styles.backgroundBox} />
         <div className={styles.container}>
           <div className={styles.contentWrapper}>
             <div className={styles.gridContainer}>
-              {displayData.map((product) => (
-                <ProductCard key={product.id} {...product} />
+              {data.items.map((item) => (
+                <ProductCard key={item._id} item={item} className="" />
               ))}
             </div>
             <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={handlePageChange}
+              currentPage={Number(page)}
+              totalPages={data.info.pages}
+              onPageChange={(newPage) => {
+                void navigate(`/shop/${newPage}${search}`);
+              }}
             />
           </div>
         </div>

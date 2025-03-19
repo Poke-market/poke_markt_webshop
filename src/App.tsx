@@ -16,8 +16,8 @@ function App() {
     <Router>
       <Layout>
         <Routes>
-          <Route path="/" element={<Homepage />} />
-          <Route path="/shop" element={<Homepage />} />
+          <Route path="/:page?" element={<Homepage />} />
+          <Route path="/shop/:page?" element={<Homepage />} />
           <Route path="/cart" element={<Cartpage />} />
           <Route path="/item/:name" element={<Detailpage />} />
           <Route path="/login" element={<Loginpage />} />
