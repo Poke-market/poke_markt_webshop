@@ -1,6 +1,12 @@
 import { Suspense, useEffect, useRef } from "react";
 import styles from "../../styles/components/home/ShopGrid.module.scss";
-import { LoadingSkeleton, ProductCard, Pagination } from "../../utils";
+import {
+  LoadingSkeleton,
+  ProductCard,
+  Pagination,
+  SearchParamGetter,
+  Heading,
+} from "../../utils";
 import { useGetItemsQuery } from "../../store/pokemartApi";
 import {
   useParams,
@@ -8,9 +14,9 @@ import {
   useSearchParams,
   useLocation,
 } from "react-router-dom";
-import { Category } from "../../types/apiTypes/item";
 import { useAppDispatch } from "../../store";
 import { setCategorieCounts, setTotalCount } from "../../store/filterSlice";
+
 const ProductGrid = () => {
   const { page = 1 } = useParams();
   const navigate = useNavigate();
@@ -19,43 +25,60 @@ const ProductGrid = () => {
   const { search } = useLocation();
   const dispatch = useAppDispatch();
 
+  const searchParamsGetter = new SearchParamGetter(searchParams);
+
   const { data, isLoading } = useGetItemsQuery({
     page: +page,
-    limit: Number(searchParams.get("limit")),
-    cat: searchParams.getAll("cat") as Category[],
-    tag: searchParams.getAll("tag"),
-    minPrice: Number(searchParams.get("minPrice")),
-    maxPrice: Number(searchParams.get("maxPrice")),
-    sort: (searchParams.get("sort") as "price" | "name") ?? undefined,
-    order: (searchParams.get("order") as "asc" | "desc") ?? undefined,
+    ...searchParamsGetter
+      .get("sort")
+      .get("order")
+      .get("limit")
+      .getAll("cat")
+      .getAll("tag")
+      .get("minPrice")
+      .get("maxPrice")
+      .getFoundParams(),
   });
+  const info = data?.info;
+  const items = data?.items;
 
   useEffect(() => {
-    if (gridRef.current) {
+    const isInView = (gridRef.current?.getBoundingClientRect().top ?? -1) >= 0;
+    if (gridRef.current && !isInView) {
       gridRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [page]);
 
-  if (isLoading || !data) return <LoadingSkeleton />;
-  const { items, info } = data;
-  dispatch(setCategorieCounts(info.categorieCount));
-  dispatch(setTotalCount(info.count));
+  useEffect(() => {
+    if (info) {
+      dispatch(setCategorieCounts(info.categorieCount));
+      dispatch(setTotalCount(info.count));
+    }
+  }, [info, dispatch]);
+
+  if (isLoading) return <LoadingSkeleton />;
   return (
     <div className={styles.shopContainer} ref={gridRef}>
       <div className={styles.flexContainer}>
         <div className={styles.backgroundBox} />
         <div className={styles.container}>
           <div className={styles.contentWrapper}>
-            <div className={styles.gridContainer}>
-              <Suspense fallback={<LoadingSkeleton />}>
-                {items?.map((item) => (
-                  <ProductCard key={item._id} item={item} className="" />
-                ))}
-              </Suspense>
-            </div>
+            {items?.length ? (
+              <div className={styles.gridContainer}>
+                <Suspense fallback={<LoadingSkeleton />}>
+                  {items.map((item) => (
+                    <ProductCard key={item._id} item={item} className="" />
+                  ))}
+                </Suspense>
+              </div>
+            ) : (
+              <div className={styles.noItems}>
+                <Heading size="textxl">No items found</Heading>
+              </div>
+            )}
             <Pagination
               currentPage={+page}
-              totalPages={info.pages}
+              totalPages={info?.pages ?? 0}
               onPageChange={(page) => {
                 void navigate(`/shop/${page}${search}`);
               }}
