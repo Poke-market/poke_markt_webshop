@@ -1,17 +1,14 @@
 import { Heading, Button } from "../common";
 import styles from "../../styles/components/detailpage/RelatedProducts.module.scss";
-import poke from "/poke.png?url";
 import { ProductCard } from "../home";
+import { useProduct } from "../../hooks/useProduct";
+import { useParams } from "react-router-dom";
+import { transformData } from "../../utils/transformData";
+
 const RelatedProduct = () => {
-  const dummy = {
-    id: "1",
-    name: "Example Product",
-    description: "This is an example product description",
-    image: poke,
-    price: 29.99,
-    currentPrice: "$29.99",
-    originalPrice: "$39.99",
-  };
+  const { slug } = useParams();
+  const { availableProducts } = useProduct(slug);
+  const transformedProducts = transformData(availableProducts);
 
   return (
     <div className={styles.container}>
@@ -20,18 +17,11 @@ const RelatedProduct = () => {
           Related Products
         </Heading>
         <ul className={styles.relatedProducts}>
-          <li>
-            <ProductCard {...dummy} />
-          </li>
-          <li>
-            <ProductCard {...dummy} />
-          </li>
-          <li>
-            <ProductCard {...dummy} />
-          </li>
-          <li>
-            <ProductCard {...dummy} />
-          </li>
+          {transformedProducts.map((product) => (
+            <li key={product.id}>
+              <ProductCard {...product} />
+            </li>
+          ))}
         </ul>
         <Button className={styles.showBtn}>Show More</Button>
       </section>
