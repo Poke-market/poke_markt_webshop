@@ -1,69 +1,59 @@
-import { Suspense, useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import styles from "../../styles/components/home/ShopGrid.module.scss";
 import { LoadingSkeleton, ProductCard, Pagination } from "../../utils";
 import { transformData } from "../../utils/transformData.ts";
-import { ApiResponse } from "../../types/types.ts";
 import { Props } from "./ProductCard.tsx";
+import { useGetItemsQuery } from "../../store/pokemartApi";
 
 export type ShopGridProps = {
   data?: Props[];
 };
 
 const ProductGrid = ({ data: initialData = [] }: ShopGridProps) => {
-  const [data, setData] = useState<Props[]>(initialData);
-  const [loading, setLoading] = useState(!initialData.length);
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-  const gridRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (initialData.length > 0) return;
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          `${import.meta.env.VITE_API_URL}/items?page=${currentPage}`,
-        );
-        if (!response.ok) throw new Error("Failed to fetch data");
-        const result = (await response.json()) as ApiResponse;
-        if (result.status !== "success") {
-          throw new Error("API err");
-        }
-        const transformedData = transformData(result.data.items);
-        setData(transformedData);
-        setTotalPages(result.data.info.pages);
-      } catch (err) {
-        console.log(err instanceof Error ? err.message : "Error");
-      } finally {
-        setLoading(false);
-      }
-    };
-    void fetchData();
-  }, [currentPage, initialData]);
+  const { data: apiData, isLoading } = useGetItemsQuery(currentPage, {
+    skip: initialData.length > 0,
+  });
 
-  useEffect(() => {
-    if (gridRef.current) {
-      gridRef.current.scrollIntoView({ behavior: "smooth" });
+  const displayData =
+    initialData.length > 0
+      ? initialData
+      : apiData
+        ? transformData(apiData.items)
+        : [];
+  const totalPages = apiData?.info.pages ?? 1;
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+
+    // Scroll to the top of the container where filters would be
+    if (containerRef.current) {
+      containerRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
     }
-  }, [currentPage]);
+  };
 
-  if (loading) return <LoadingSkeleton />;
+  if (isLoading) return <LoadingSkeleton />;
+
   return (
-    <div className={styles.shopContainer} ref={gridRef}>
+    <div className={styles.shopContainer} ref={containerRef}>
       <div className={styles.flexContainer}>
         <div className={styles.backgroundBox} />
         <div className={styles.container}>
           <div className={styles.contentWrapper}>
             <div className={styles.gridContainer}>
-              <Suspense fallback={<LoadingSkeleton />}>
-                {data.map((product) => (
-                  <ProductCard key={product.id} {...product} className="" />
-                ))}
-              </Suspense>
+              {displayData.map((product) => (
+                <ProductCard key={product.id} {...product} />
+              ))}
             </div>
             <Pagination
               currentPage={currentPage}
               totalPages={totalPages}
-              onPageChange={setCurrentPage}
+              onPageChange={handlePageChange}
             />
           </div>
         </div>
@@ -71,4 +61,5 @@ const ProductGrid = ({ data: initialData = [] }: ShopGridProps) => {
     </div>
   );
 };
+
 export default ProductGrid;
