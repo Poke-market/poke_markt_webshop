@@ -6,6 +6,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import cartSlice from "./cartSlice";
 import pokemartApi from "./pokemartApi";
+import authSlice from "./authSlice";
 import storage from "redux-persist/lib/storage";
 import {
   persistStore,
@@ -19,13 +20,13 @@ import {
 } from "redux-persist";
 
 const devToolsOptions: DevToolsEnhancerOptions = {
-  // add action creators here so they are available in the Redux DevTools
   actionCreators: { ...cartSlice.actions },
 };
 
 const rootReducer = combineReducers({
   [cartSlice.reducerPath]: cartSlice.reducer,
   [pokemartApi.reducerPath]: pokemartApi.reducer,
+  auth: authSlice,
 });
 
 const persistConfig = {
@@ -53,6 +54,5 @@ export const persistor = persistStore(store);
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
-// Use throughout the app instead of plain `useDispatch` and `useSelector`
 export const useAppDispatch = useDispatch.withTypes<AppDispatch>();
 export const useAppSelector = useSelector.withTypes<RootState>();
