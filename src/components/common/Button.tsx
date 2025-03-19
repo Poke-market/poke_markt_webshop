@@ -1,4 +1,5 @@
 import { ButtonHTMLAttributes } from "react";
+import styles from "../../styles/components/common/Button.module.scss";
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   className?: string;
@@ -6,10 +7,21 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   cursor?: "pointer" | "not-allowed";
 };
 
-const Button = ({ children, className = "", ...props }: ButtonProps) => (
-  <button className={className} {...props}>
-    {children}
-  </button>
-);
+const Button = ({
+  children,
+  className = "",
+  cursor = "pointer",
+  ...props
+}: ButtonProps) => {
+  return (
+    <button
+      className={`${styles.button} ${className}`}
+      style={{ cursor }}
+      {...props}
+    >
+      {children}
+    </button>
+  );
+};
 
 export default Button;

@@ -157,3 +157,5 @@ export const Form = <T extends Record<string, string | number | boolean>>({
     </div>
   );
 };
+
+export default Form;
