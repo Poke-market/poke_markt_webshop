@@ -15,8 +15,9 @@ export interface Item {
   isNewItem: boolean;
   discount: Discount;
   __v: number;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
+  slug: string;
 }
 
 export interface Discount {

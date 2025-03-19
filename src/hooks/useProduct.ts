@@ -1,36 +1,21 @@
-import { useState, useEffect } from "react";
-import { Product } from "../types/types";
-import { productService } from "../services/productService";
+import { useGetItemBySlugQuery, useGetItemsQuery } from "../store/pokemartApi";
 
-export const useProduct = (name: string | undefined) => {
-  const [product, setProduct] = useState<Product | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [availableProducts, setAvailableProducts] = useState<Product[]>([]);
+export const useProduct = (slug: string | undefined) => {
+  const { data: product, isLoading: loading } = useGetItemBySlugQuery(
+    slug ?? "not-found",
+    {
+      skip: !slug,
+    },
+  );
+  const { data: itemsData } = useGetItemsQuery(undefined, {
+    selectFromResult: ({ data }) => ({
+      data: data?.items.slice(0, 5),
+    }),
+  });
 
-  useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        const searchName = name?.replace(/-/g, " ");
-
-        const recommendations = await productService.getRecommendations();
-        setAvailableProducts(recommendations);
-
-        if (searchName) {
-          const foundProduct = await productService.searchProduct(searchName);
-          setProduct(foundProduct);
-        } else {
-          setProduct(null);
-        }
-      } catch (error) {
-        console.error("Error fetching product:", error);
-        setProduct(null);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    void fetchProduct();
-  }, [name]);
-
-  return { product, loading, availableProducts };
+  return {
+    product: product ?? null,
+    loading,
+    availableProducts: itemsData ?? [],
+  };
 };

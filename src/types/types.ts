@@ -36,6 +36,7 @@ export interface Product {
   __v: number;
   createdAt: string;
   updatedAt: string;
+  slug: string;
   discount: {
     amount: number;
     type: string;
