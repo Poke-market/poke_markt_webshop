@@ -4,6 +4,7 @@ import { Icons } from "../../utils";
 import { Button, Heading } from "../common";
 import ProductDisplay from "./ProductDisplay.tsx";
 import { Product } from "../../types/types.ts";
+import { capitalizeWords } from "../../utils/formatters";
 
 type ProductInfoProps = {
   product: Product;
@@ -37,7 +38,7 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
       <ProductDisplay images={[product.photoUrl]} name={product.name} />
       <div className={styles.productInfo}>
         <Heading as="h1" size="textmd" className={styles.productName}>
-          {product.name}
+          {capitalizeWords(product.name)}
         </Heading>
         <div className={styles.priceContainer}>
           <span className={styles.currentPrice}>${displayPrice}</span>
