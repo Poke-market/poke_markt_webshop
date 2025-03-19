@@ -36,9 +36,23 @@ const pokemartApi = createApi({
         body: userData,
       }),
     }),
+    login: builder.mutation<
+      { token: string },
+      { email: string; password: string }
+    >({
+      query: (credentials) => ({
+        url: "/auth/login",
+        method: "POST",
+        body: credentials,
+      }),
+    }),
   }),
 });
 
-export const { useGetItemsQuery, useGetItemByIdQuery, useRegisterMutation } =
-  pokemartApi;
+export const {
+  useGetItemsQuery,
+  useGetItemByIdQuery,
+  useRegisterMutation,
+  useLoginMutation,
+} = pokemartApi;
 export default pokemartApi;
