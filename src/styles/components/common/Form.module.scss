@@ -1,0 +1,20 @@
+.form-container {
+  padding: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+}
+
+.success-message {
+  color: green;
+}
+
+.error-message {
+  color: red;
+}
