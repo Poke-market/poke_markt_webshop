@@ -1,11 +1,7 @@
+import styles from "../styles/pages/DetailPage.module.scss";
+import { Breadcrumb, Related, Heading, Loading, ProductInfo } from "../utils";
 import { useParams } from "react-router-dom";
-import ProductInfo from "../components/ProductInfo";
-import Loading from "../components/Loading";
-import Heading from "../components/Headingtxt";
-import styles from "../scss/components/DetailPage.module.scss";
 import { useProduct } from "../hooks/useProduct";
-import { Breadcrumb } from "../utils/index.ts";
-import { Related } from "../utils/index.ts";
 
 const DetailPage = () => {
   const { name } = useParams();

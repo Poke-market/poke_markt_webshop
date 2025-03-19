@@ -1,10 +1,9 @@
-import { UspBanner, BannerShop } from "../utils";
-import Cart from "../components/Cart.tsx";
+import { UspBanner, PageBanner, Cart } from "../utils";
 
 const CartPage = () => {
   return (
     <>
-      <BannerShop title="Cart" />
+      <PageBanner title="Cart" />
       <Cart />
       <UspBanner />
     </>

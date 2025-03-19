@@ -1,50 +1,30 @@
-import { Icons } from "./Icons.tsx";
+// common Components
+export * from "../components/common";
 
-// Exporting all the components for easier importing
-export { default as Header } from "../components/Header.tsx";
-export { default as Footer } from "../components/Footer.tsx";
-export { default as ProductCard } from "../components/ProductCard.tsx";
-export { default as Img } from "../components/Image.tsx";
-export { default as Heading } from "../components/Headingtxt.tsx";
-export { default as Input } from "../components/Input.tsx";
-export { default as ShopGrid } from "../components/Shopgrid.tsx";
-export { default as Button } from "../components/Button.tsx";
-export { default as LoadingSkeleton } from "../components/LoadingSkeleton.tsx";
-export { default as UspBanner } from "../components/UspBanner.tsx";
-export { default as BannerShop } from "../components/BannerShop.tsx";
-export { default as FilterSortBar } from "../components/FilterSortBar.tsx";
-export { default as Pagination } from "../components/Pagination.tsx";
-export { default as Breadcrumb } from "../components/Breadcrumb.tsx";
+// Header
+export * from "../components/header";
+
+// Footer
+export * from "../components/footer";
+
+// Layout
+export * from "../pages";
+
+// Cart
+export * from "../components/cart";
+
+// Home
+export * from "../components/home";
+
+// filter
+export * from "../components/filter";
+export * from "./helperFunctions.ts";
+
+// detailpage
+export * from "../components/detailpage";
+
+// Icons
 export { default as Icons } from "./Icons.tsx";
-export { default as Related } from "../components/RelatedProducts.tsx";
 
-// Header links
-export const headerLinks = {
-  navLinks: [
-    { path: "/", label: "Home" },
-    { path: "/shop", label: "Shop" },
-    { path: "/about", label: "About" },
-    { path: "/contact", label: "Contact" },
-  ],
-  iconLinks: [
-    { path: "/profile", icon: Icons.User, label: "Profile" },
-    { path: "/search", icon: Icons.Search, label: "Search" },
-    { path: "/wishlist", icon: Icons.Wishlist, label: "Wishlist" },
-    { path: "/cart", icon: Icons.ShoppingCart, label: "Shopping Cart" },
-  ],
-};
-
-// Footer links
-export const footerLinks = {
-  mainLinks: [
-    { path: "/", label: "Home" },
-    { path: "/shop", label: "Shop" },
-    { path: "/about", label: "About" },
-    { path: "/contact", label: "Contact" },
-  ],
-  helpLinks: [
-    { path: "/payment", label: "Payment Options" },
-    { path: "/returns", label: "Returns" },
-    { path: "/privacy", label: "Privacy Policies" },
-  ],
-};
+// config
+export * from "../config";
