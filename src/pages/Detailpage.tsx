@@ -46,7 +46,7 @@ const DetailPage = () => {
     <>
       <Breadcrumb />
       <ProductInfo product={product} />
-      <Related />
+      <Related slug={slug} />
     </>
   );
 };

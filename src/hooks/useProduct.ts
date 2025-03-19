@@ -30,7 +30,19 @@ export const useProduct = (slug: string | undefined) => {
             item.tags.some((tag) => product.tags.includes(tag))
           );
         })
-        .slice(0, 4),
+        .sort((a, b) => {
+          if (!product) return 0;
+          const aMatchesBoth =
+            a.category === product.category &&
+            a.tags.some((tag) => product.tags.includes(tag));
+          const bMatchesBoth =
+            b.category === product.category &&
+            b.tags.some((tag) => product.tags.includes(tag));
+
+          if (aMatchesBoth && !bMatchesBoth) return -1;
+          if (!aMatchesBoth && bMatchesBoth) return 1;
+          return 0;
+        }),
     }),
   });
 

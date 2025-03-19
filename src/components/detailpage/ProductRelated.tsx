@@ -1,17 +1,14 @@
 import { Heading, Button } from "../common";
 import styles from "../../styles/components/detailpage/RelatedProducts.module.scss";
-import poke from "/poke.png?url";
 import { ProductCard } from "../home";
-const RelatedProduct = () => {
-  const dummy = {
-    id: "1",
-    name: "Example Product",
-    description: "This is an example product description",
-    image: poke,
-    price: 29.99,
-    currentPrice: "$29.99",
-    originalPrice: "$39.99",
-  };
+import { useProduct } from "../../hooks/useProduct";
+
+type RelatedProductProps = {
+  slug?: string;
+};
+
+const RelatedProduct = ({ slug }: RelatedProductProps) => {
+  const { availableProducts } = useProduct(slug);
 
   return (
     <div className={styles.container}>
@@ -20,18 +17,19 @@ const RelatedProduct = () => {
           Related Products
         </Heading>
         <ul className={styles.relatedProducts}>
-          <li>
-            <ProductCard {...dummy} />
-          </li>
-          <li>
-            <ProductCard {...dummy} />
-          </li>
-          <li>
-            <ProductCard {...dummy} />
-          </li>
-          <li>
-            <ProductCard {...dummy} />
-          </li>
+          {availableProducts.map((product) => (
+            <li key={product._id}>
+              <ProductCard
+                id={product._id}
+                name={product.name}
+                description={product.description}
+                image={product.photoUrl}
+                price={product.price}
+                currentPrice={`$${product.price.toFixed(2)}`}
+                originalPrice={`$${(product.price * 1.2).toFixed(2)}`}
+              />
+            </li>
+          ))}
         </ul>
         <Button className={styles.showBtn}>Show More</Button>
       </section>
