@@ -18,6 +18,7 @@ export const useProduct = (slug: string | undefined) => {
     },
   );
 
+  //to see other products in the same category or with the same tags (related products)
   const { data: itemsData } = useGetItemsQuery(undefined, {
     selectFromResult: ({ data }) => ({
       data: data?.items
