@@ -1,6 +1,6 @@
 import styles from "../styles/pages/DetailPage.module.scss";
 import { Breadcrumb, Related, Heading, Loading, ProductInfo } from "../utils";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useProduct } from "../hooks/useProduct";
 
 const DetailPage = () => {
@@ -31,7 +31,7 @@ const DetailPage = () => {
               <ul>
                 {availableProducts.map((item) => (
                   <li key={item._id}>
-                    <a href={`/item/${item.slug}`}>{item.name}</a>
+                    <Link to={`/item/${item.name}`}>{item.name}</Link>
                   </li>
                 ))}
               </ul>
