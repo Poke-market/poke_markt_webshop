@@ -3,7 +3,7 @@ import LabelCheckbox from "./LabelCheckbox.tsx";
 import PillCheckbox from "./PillCheckbox.tsx";
 import PriceRangeSlider from "./PriceRangeSlider.tsx";
 import styles from "../../styles/components/filters/FilterForm.module.scss";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useLocation, useNavigate } from "react-router-dom";
 import { useGetTagsQuery } from "../../store/pokemartApi.ts";
 import { useAppSelector } from "../../store";
 import {
@@ -13,10 +13,24 @@ import {
 
 const FilterForm = () => {
   // State for filter values
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const { data: tags } = useGetTagsQuery();
   const categorieCounts = useAppSelector(selectCategorieCounts);
   const totalCount = useAppSelector(selectTotalCount);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const applyFiltersAndResetPage = () => {
+    const pathParts = location.pathname.split("/");
+
+    // if path ends with a page number, remove it
+    if (!Number.isNaN([...pathParts].pop())) pathParts.pop();
+
+    let link = pathParts.join("/");
+    if (searchParams.size > 0) link += `?${searchParams}`;
+
+    void navigate(link);
+  };
 
   return (
     <form>
@@ -37,7 +51,7 @@ const FilterForm = () => {
                   if (searchParams.has("cat", category))
                     searchParams.delete("cat", category);
                   else searchParams.append("cat", category);
-                  setSearchParams(searchParams);
+                  applyFiltersAndResetPage();
                 }}
               />
             </li>
@@ -57,7 +71,7 @@ const FilterForm = () => {
                   if (searchParams.has("tag", tag))
                     searchParams.delete("tag", tag);
                   else searchParams.append("tag", tag);
-                  setSearchParams(searchParams);
+                  applyFiltersAndResetPage();
                 }}
               />
             </li>
@@ -77,7 +91,7 @@ const FilterForm = () => {
               searchParams.set("maxPrice", range.max.toString());
               if (range.min === 100) searchParams.delete("minPrice");
               if (range.max === 999999) searchParams.delete("maxPrice");
-              setSearchParams(searchParams);
+              applyFiltersAndResetPage();
             }}
           />
         </div>
