@@ -25,3 +25,24 @@ export const pd =
     e.preventDefault();
     return fn(e, ...args);
   };
+
+export class SearchParamGetter<T = Record<string, any>> {
+  private foundParams: Record<string, string | string[]> = {};
+  constructor(private searchParams: URLSearchParams) {}
+
+  get(key: string) {
+    if (!this.searchParams.has(key)) return this;
+    this.foundParams[key] = this.searchParams.get(key)!;
+    return this;
+  }
+
+  getAll(key: string) {
+    if (!this.searchParams.has(key)) return this;
+    this.foundParams[key] = this.searchParams.getAll(key);
+    return this;
+  }
+
+  getFoundParams() {
+    return this.foundParams as T;
+  }
+}
