@@ -7,6 +7,7 @@ export const transformData = (
     description: string;
     photoUrl: string;
     price: number;
+    slug: string;
   }[],
 ): Props[] => {
   return items.map((item) => ({
@@ -18,5 +19,6 @@ export const transformData = (
     currentPrice: `$${item.price}`,
     originalPrice: `$${item.price + 300}`,
     discountText: "30% ",
+    slug: item.slug,
   }));
 };
