@@ -6,7 +6,7 @@ import { RootState } from "./index";
 const pokemartApi = createApi({
   reducerPath: "pokemartApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: import.meta.env.VITE_API_URL,
+    baseUrl: import.meta.env.VITE_API_URL + "/api",
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as RootState).auth.token;
       if (token) {
