@@ -7,6 +7,9 @@ import {
   Loginpage,
   Registerpage,
 } from "./utils";
+import { ToastContainer } from "react-toastify";
+import { toastConfig } from "./config";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
@@ -20,6 +23,7 @@ function App() {
           <Route path="/login" element={<Loginpage />} />
           <Route path="/register" element={<Registerpage />} />
         </Routes>
+        <ToastContainer {...toastConfig} />
       </Layout>
     </Router>
   );

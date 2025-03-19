@@ -5,7 +5,7 @@ const RegisterPage = () => {
   return (
     <>
       <PageBanner title="Register" />
-      <RegisterForm onRegisterSuccess={() => {}} onRegisterFailure={() => {}} />
+      <RegisterForm />
       <UspBanner />
     </>
   );
