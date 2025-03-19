@@ -2,16 +2,23 @@ import { Heading, Button } from "../common";
 import styles from "../../styles/components/detailpage/RelatedProducts.module.scss";
 import poke from "/poke.png?url";
 import { ProductCard } from "../home";
+import { Item } from "../../types/apiTypes/item";
+
 const RelatedProduct = () => {
   const dummy = {
-    id: "1",
+    _id: "1",
     name: "Example Product",
     description: "This is an example product description",
-    image: poke,
+    photoUrl: poke,
     price: 29.99,
-    currentPrice: "$29.99",
-    originalPrice: "$39.99",
-  };
+    discount: {
+      hasDiscount: true,
+      amount: 10,
+      type: "percentage",
+      discountedPrice: 29.99,
+    },
+    slug: "example-product",
+  } as Item;
 
   return (
     <div className={styles.container}>
@@ -21,16 +28,16 @@ const RelatedProduct = () => {
         </Heading>
         <ul className={styles.relatedProducts}>
           <li>
-            <ProductCard {...dummy} />
+            <ProductCard item={dummy} />
           </li>
           <li>
-            <ProductCard {...dummy} />
+            <ProductCard item={dummy} />
           </li>
           <li>
-            <ProductCard {...dummy} />
+            <ProductCard item={dummy} />
           </li>
           <li>
-            <ProductCard {...dummy} />
+            <ProductCard item={dummy} />
           </li>
         </ul>
         <Button className={styles.showBtn}>Show More</Button>
