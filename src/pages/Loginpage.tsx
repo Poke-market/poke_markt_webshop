@@ -1,6 +1,7 @@
 import { PageBanner, Button, Input, UspBanner } from "../utils";
 import styles from "../styles/pages/LoginPage.module.scss";
 import { ChangeEvent, FormEvent, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Loginpage = () => {
   const [email, setEmail] = useState("");
@@ -51,6 +52,10 @@ const Loginpage = () => {
           />
         </div>
         <Button>Login</Button>
+        <div className={styles.registerLink}>
+          <span>Don't have an account?</span>
+          <Link to="/register">Register here</Link>
+        </div>
       </form>
       <UspBanner />
     </>
