@@ -17,7 +17,7 @@ const RegisterForm = () => {
 
   return (
     <div className={styles["register-form-container"]}>
-      <Heading>Register New Account</Heading>
+      <Heading as="h2">Register New Account</Heading>
       <Form
         fields={registerFields}
         formData={formData}

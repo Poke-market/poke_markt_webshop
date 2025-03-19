@@ -23,3 +23,8 @@ export const initialUserData: UserData = {
   telephone: "",
   isAdmin: false,
 };
+export type RegisterResponse = {
+  success: boolean;
+  user: UserData;
+  token: string;
+};
