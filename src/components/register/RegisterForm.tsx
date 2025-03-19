@@ -1,18 +1,34 @@
-import Form from "../common/Form.tsx";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { Form } from "../common/Form.tsx";
+import { initialUserData } from "../../types/auth.ts";
+import { registerFields } from "../../config/formFields.ts";
+import { Heading } from "../common";
+import { useRegisterForm } from "../../hooks/useRegisterForm.ts";
+import styles from "../../styles/components/register.module.scss";
 
 const RegisterForm = () => {
+  const {
+    formData,
+    statusMessage,
+    toastResponse,
+    isLoading,
+    handleChange,
+    handleSubmit,
+  } = useRegisterForm(initialUserData);
+
   return (
-    <>
+    <div className={styles["register-form-container"]}>
+      <Heading>Register New Account</Heading>
       <Form
-        onSubmit={() => {}}
-        submitText="Register"
-        children={undefined}
-        isLoading={false}
-      ></Form>
-      <ToastContainer />
-    </>
+        fields={registerFields}
+        formData={formData}
+        onChange={handleChange}
+        onSubmit={handleSubmit}
+        statusMessage={statusMessage}
+        isLoading={isLoading}
+        submitButtonText="Register"
+        toastResponse={toastResponse}
+      />
+    </div>
   );
 };
 
