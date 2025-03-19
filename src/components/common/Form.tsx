@@ -29,10 +29,8 @@ export type FormField = {
     onChange: (e: ChangeEvent<any>) => void;
   }) => ReactNode;
   variant?: "underline" | "fill";
-  size?: "sm" | "md" | "xs";
   shape?: "square" | "round";
   className?: string;
-  inputClassName?: string;
 };
 
 type FormProps<T extends Record<string, string | number | boolean>> = {
@@ -108,7 +106,6 @@ export const Form = <T extends Record<string, string | number | boolean>>({
                 value={(formData[field.name as keyof T] as string) || ""}
                 onChange={onChange}
                 required={field.required}
-                className={field.inputClassName ?? ""}
               >
                 <option value="">Select an option</option>
                 {field.options.map((option) => (
@@ -124,7 +121,6 @@ export const Form = <T extends Record<string, string | number | boolean>>({
                 value={(formData[field.name as keyof T] as string) || ""}
                 onChange={onChange}
                 required={field.required}
-                className={field.inputClassName ?? ""}
               />
             ) : (
               <Input
@@ -144,10 +140,6 @@ export const Form = <T extends Record<string, string | number | boolean>>({
                   onChange as (e: ChangeEvent<HTMLInputElement>) => void
                 }
                 required={field.required}
-                variant={field.variant ?? "fill"}
-                size={field.size ?? "md"}
-                shape={field.shape ?? "round"}
-                className={field.inputClassName ?? ""}
               />
             )}
           </div>

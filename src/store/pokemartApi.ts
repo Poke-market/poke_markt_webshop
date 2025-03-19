@@ -1,17 +1,15 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { getItemsData, GetItemsParams, Item } from "../types/apiTypes/item";
+import { getItemsData, Item, GetItemsParams } from "../types/apiTypes/item";
 import { apiResponse } from "../types/apiTypes/response";
 import { RootState } from "./index";
 
 const pokemartApi = createApi({
   reducerPath: "pokemartApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: import.meta.env.VITE_API_URL + "/api",
+    baseUrl: import.meta.env.VITE_API_URL,
     prepareHeaders: (headers, { getState }) => {
-      const state = getState() as RootState;
-      const token = state.auth?.token;
-
-      if (token && typeof token === "string") {
+      const token = (getState() as RootState).auth.token;
+      if (token) {
         headers.set("Authorization", `Bearer ${token}`);
       }
       return headers;

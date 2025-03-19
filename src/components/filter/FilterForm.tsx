@@ -45,7 +45,11 @@ function handleChange(e: React.ChangeEvent<HTMLFormElement>) {
 }
 const FilterForm = () => {
   return (
-    <form onSubmit={handleSubmit} onChange={handleChange}>
+    <form
+      onSubmit={handleSubmit}
+      onChange={handleChange}
+      className={styles.form}
+    >
       <CollapsableFieldset
         className={styles.categories}
         legend="Categories"
