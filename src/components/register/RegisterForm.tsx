@@ -1,9 +1,7 @@
-import { Form } from "../common/Form.tsx";
 import { initialUserData } from "../../types/auth.ts";
 import { registerFields } from "../../config/formFields.ts";
-import { Heading } from "../common";
-import Loading from "../common/Loading"; // Import your Loading component
-import { useRegisterForm } from "../../hooks/useRegisterForm.ts";
+import { Heading, Loading, Form } from "../common";
+import useRegisterForm from "../../hooks/useRegisterForm.ts";
 import styles from "../../styles/components/Register.module.scss";
 
 const RegisterForm = () => {

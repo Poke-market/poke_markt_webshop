@@ -9,4 +9,5 @@ export { default as Pagination } from "./Pagination.tsx";
 export { default as Breadcrumb } from "./Breadcrumb.tsx";
 export { default as Loading } from "./Loading.tsx";
 export { default as Layout } from "./Layout.tsx";
+export { default as Form } from "./Form.tsx";
 export * from "./HeadingText.tsx";

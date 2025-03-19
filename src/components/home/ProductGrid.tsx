@@ -7,20 +7,23 @@ import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { Pagination } from "../common";
 
 const ProductGrid = () => {
-  const { page = 1 } = useParams();
+  const { page } = useParams();
   const navigate = useNavigate();
   const gridRef = useRef<HTMLDivElement>(null);
   const { search } = useLocation();
   const [pageChanged, setPageChanged] = useState(false);
 
+  const currentPage = page ? parseInt(page, 10) : 1;
+  const validPage = isNaN(currentPage) ? 1 : currentPage;
+
   const { data, isLoading } = useGetItemsQuery({
-    page: Number(page),
+    page: validPage,
   });
 
   useEffect(() => {
     if (pageChanged && gridRef.current) {
       gridRef.current.scrollIntoView({ behavior: "smooth" });
-      setPageChanged(false); // Reset the state after scrolling
+      setPageChanged(false);
     }
   }, [pageChanged]);
 
@@ -38,10 +41,10 @@ const ProductGrid = () => {
               ))}
             </div>
             <Pagination
-              currentPage={Number(page)}
+              currentPage={validPage}
               totalPages={data.info.pages}
               onPageChange={(newPage) => {
-                setPageChanged(true); // Set the state when page changes
+                setPageChanged(true);
                 void navigate(`/shop/${newPage}${search}`);
               }}
             />

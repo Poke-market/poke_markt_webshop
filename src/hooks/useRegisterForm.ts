@@ -59,3 +59,5 @@ export const useRegisterForm = (initialState: UserData) => {
     handleSubmit,
   };
 };
+
+export default useRegisterForm;
