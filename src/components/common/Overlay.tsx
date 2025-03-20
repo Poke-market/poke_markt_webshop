@@ -44,7 +44,7 @@ export const Overlay = ({
         <div className={styles.overlay}>
           <div className={styles.content}>
             <div className={styles.header}>
-              <Heading as="h2" size="textxl">
+              <Heading as="h2" size="text2xl">
                 {title}
               </Heading>
               {onClear && (
@@ -89,9 +89,7 @@ export const Overlay = ({
                   className={styles.actionButton}
                   onClick={onClose}
                 >
-                  <Heading as="span" size="textxs">
-                    {button.text}
-                  </Heading>
+                  <Heading as="span">{button.text}</Heading>
                 </Link>
               ))}
             </div>

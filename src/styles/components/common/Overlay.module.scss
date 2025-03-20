@@ -27,6 +27,7 @@ div {
   .overlay {
     translate: 100% 0;
     transition: translate 0.3s ease-out;
+    max-height: 70vh;
   }
   &.open {
     .backdrop {
@@ -68,7 +69,7 @@ div {
 .content {
   display: flex;
   flex-direction: column;
-  padding: 4rem 4rem 0 4rem;
+  padding: 3rem 3rem 0 3rem;
   height: calc(100vh - 8rem);
   overflow-y: auto;
 }
@@ -138,6 +139,7 @@ div {
       justify-content: space-between;
       align-items: center;
       color: var(--text-color);
+      padding-right: 4rem;
       span:last-child {
         color: var(--basic-blue);
         font-weight: $font-weight-semi-bold;
@@ -157,7 +159,7 @@ div {
   display: flex;
   gap: 1rem;
   justify-content: space-between;
-  padding: 0 4rem 4rem 4rem;
+  padding: 0 4rem 3rem 4rem;
 
   // When there's only one button, make it smaller
   &:has(.actionButton:only-child) {
@@ -165,15 +167,14 @@ div {
 
     .actionButton {
       max-width: 90px;
-      padding: 0.8rem 0.5rem;
+      padding: 1rem 3rem;
     }
   }
 
   .actionButton {
-    flex: 1;
+    padding: 0.8rem 2.5rem;
     background: var(--white);
     color: var(--basic-blue);
-    padding: 0.5rem 0.8rem;
     border: 1px solid var(--basic-blue);
     border-radius: 5rem;
     cursor: pointer;
@@ -181,12 +182,13 @@ div {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 0;
+    min-width: fit-content;
 
     span {
       color: var(--basic-blue);
       transition: color 0.2s ease;
-      font-size: 1rem;
+      white-space: nowrap;
+      font-size: 1.2rem;
     }
 
     &:hover {
