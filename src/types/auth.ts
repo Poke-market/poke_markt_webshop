@@ -28,3 +28,13 @@ export type RegisterResponse = {
   user: UserData;
   token: string;
 };
+
+export interface AuthResponse {
+  user: UserData;
+  token: string;
+}
+
+export interface LoginCredentials {
+  email: string;
+  password: string;
+}
