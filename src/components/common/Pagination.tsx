@@ -5,7 +5,7 @@ type PaginationProps = {
   currentPage: number;
   totalPages: number;
   onPageChange: (pageNumber: number) => void;
-  maxDisplayedPages: number;
+  maxDisplayedPages?: number;
 };
 
 const Pagination = ({
