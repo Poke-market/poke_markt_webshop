@@ -1,5 +1,5 @@
 import { PageBanner, UspBanner } from "../components/common";
-import LoginForm from "../components/login/loginForm.tsx";
+import LoginForm from "../components/auth/loginForm.tsx";
 
 const LoginPage = () => {
   return (
