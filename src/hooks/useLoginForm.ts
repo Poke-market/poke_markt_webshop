@@ -12,9 +12,11 @@ export const useLoginForm = (
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoginFailed(false);
+
     const success = await handleLogin({ email, password });
     if (success) {
-      onLoginSuccess();
+      setTimeout(onLoginSuccess, 500);
     } else {
       setLoginFailed(true);
       onLoginFailure();
@@ -30,6 +32,7 @@ export const useLoginForm = (
     } else if (name === "password") {
       setPassword(value);
     }
+    setLoginFailed(false);
   };
 
   return {
