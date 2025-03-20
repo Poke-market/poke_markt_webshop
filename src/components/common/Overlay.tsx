@@ -89,7 +89,9 @@ export const Overlay = ({
                   className={styles.actionButton}
                   onClick={onClose}
                 >
-                  <Heading as="span">{button.text}</Heading>
+                  <Heading as="span" size="textxxs">
+                    {button.text}
+                  </Heading>
                 </Link>
               ))}
             </div>
