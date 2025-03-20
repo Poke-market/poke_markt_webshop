@@ -8,6 +8,7 @@ export interface ToastResponse {
 }
 
 export const toastResponses = {
+  // Register responses
   registerSuccess: {
     message: "Registration successful!",
     options: { toastId: "register-success" },
@@ -19,6 +20,19 @@ export const toastResponses = {
   registerError: {
     message: "An error occurred during registration.",
     options: { toastId: "register-error" },
+  },
+  // Login responses
+  loginSuccess: {
+    message: "Login successful! Welcome back.",
+    options: { toastId: "login-success" },
+  },
+  loginFail: {
+    message: "Invalid email or password.",
+    options: { toastId: "login-fail" },
+  },
+  loginError: {
+    message: "An error occurred during login.",
+    options: { toastId: "login-error" },
   },
 } as const;
 
@@ -33,4 +47,7 @@ export const TOAST_KEYS = {
   REGISTER_SUCCESS: "registerSuccess",
   REGISTER_FAIL: "registerFail",
   REGISTER_ERROR: "registerError",
+  LOGIN_SUCCESS: "loginSuccess",
+  LOGIN_FAIL: "loginFail",
+  LOGIN_ERROR: "loginError",
 } as const;
