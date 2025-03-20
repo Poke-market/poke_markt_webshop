@@ -6,12 +6,51 @@
   :global(html):has(.open) {
     overflow: hidden;
   }
-  // repeated selector to safely increase specificity
-  .overlay.overlay,
-  .backdrop.backdrop {
-    max-width: unset;
+
+  .overlay.overlay {
+    max-width: 100%;
+    width: 100%;
     min-height: 100vh;
     height: 100%;
+    right: 0;
+    left: 0;
+  }
+
+  .content {
+    padding: 2rem 1rem 0 1rem;
+  }
+
+  .header {
+    padding: 0 1rem 1rem 1rem;
+    margin: 0 0 1rem 0;
+  }
+
+  .bottomSection {
+    .footer {
+      padding: 1rem 1rem 0 1rem;
+      margin-bottom: 1rem;
+
+      .total {
+        padding-right: 0;
+      }
+    }
+  }
+
+  .actionButtons {
+    padding: 0 1rem 1rem 1rem;
+    gap: 0.5rem;
+    justify-content: center;
+
+    .actionButton {
+      padding: 0.75rem 1.5rem;
+      display: inline-flex;
+      min-width: 0;
+    }
+  }
+
+  .closeButtonMobile {
+    width: auto;
+    margin: 0 1rem 1rem 1rem;
   }
 }
 
@@ -161,7 +200,6 @@ div {
   justify-content: space-between;
   padding: 0 4rem 3rem 4rem;
 
-  // When there's only one button, make it smaller
   &:has(.actionButton:only-child) {
     justify-content: center;
 
@@ -179,10 +217,9 @@ div {
     border-radius: 5rem;
     cursor: pointer;
     transition: all 0.2s ease;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: fit-content;
 
     span {
       color: var(--basic-blue);
