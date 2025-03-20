@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { getItemsData, Item, GetItemsParams } from "../types/apiTypes/item";
 import { apiResponse } from "../types/apiTypes/response";
 import { RootState } from "./index";
-import { UserData } from "../types/auth.ts";
+import { AuthResponse, LoginCredentials } from "../types/auth";
 
 const pokemartApi = createApi({
   reducerPath: "pokemartApi",
@@ -37,10 +37,7 @@ const pokemartApi = createApi({
         body: userData,
       }),
     }),
-    login: builder.mutation<
-      { user: UserData; token: string },
-      { email: string; password: string }
-    >({
+    login: builder.mutation<AuthResponse, LoginCredentials>({
       query: (credentials) => ({
         url: "/auth/login",
         method: "POST",
