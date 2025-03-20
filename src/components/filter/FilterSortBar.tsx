@@ -4,6 +4,8 @@ import { Button, Heading } from "../common";
 import { FilterOverlay } from "./FilterOverlay.tsx";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import CustomSelect from "../common/CustomSelect";
+
 type Props = {
   children: React.ReactNode;
 };
@@ -41,6 +43,24 @@ const FilterSortBar = ({ children }: Props) => {
     setSearchParams(searchParams);
   }, [itemsPerPage, searchParams, setSearchParams]);
 
+  // Options for the CustomSelect components
+  const productsOptions = [
+    { value: 4, label: "4" },
+    { value: 8, label: "8" },
+    { value: 12, label: "12" },
+    { value: 16, label: "16" },
+    { value: 24, label: "24" },
+    { value: 32, label: "32" },
+  ];
+
+  const sortOptions = [
+    { value: "default", label: "Default" },
+    { value: "price-asc", label: "Price (asc)" },
+    { value: "price-desc", label: "Price (desc)" },
+    { value: "name-asc", label: "Name (asc)" },
+    { value: "name-desc", label: "Name (desc)" },
+  ];
+
   return (
     <>
       <div className={styles.filterSortBar}>
@@ -72,30 +92,29 @@ const FilterSortBar = ({ children }: Props) => {
             <Heading size="textxl" as="span">
               Show
             </Heading>
-            <input
-              type="number"
-              id="productsPerPage"
-              placeholder="16"
-              onChange={(e) => setItemsPerPage(Number(e.target.value))}
+            <CustomSelect
+              options={productsOptions}
               value={itemsPerPage}
+              onChange={(value: string | number) =>
+                setItemsPerPage(Number(value))
+              }
+              className={styles.showSelect}
+              name="productsPerPage"
+              id="productsPerPage"
             />
           </fieldset>
           <fieldset>
             <Heading size="textxl" as="span">
               Sort by
             </Heading>
-            <select
+            <CustomSelect
+              options={sortOptions}
+              value={sort}
+              onChange={(value: string | number) => setSort(String(value))}
+              className={styles.sortSelect}
               name="sort"
               id="sort"
-              onChange={(e) => setSort(e.target.value)}
-              value={sort}
-            >
-              <option value="default">Default</option>
-              <option value="price-asc">Price (asc)</option>
-              <option value="price-desc">Price (desc)</option>
-              <option value="name-asc">Name (asc)</option>
-              <option value="name-desc">Name (desc)</option>
-            </select>
+            />
           </fieldset>
         </span>
       </div>
