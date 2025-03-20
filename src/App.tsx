@@ -10,18 +10,33 @@ import {
 import { ToastContainer } from "react-toastify";
 import { toastConfig } from "./config";
 import "react-toastify/dist/ReactToastify.css";
+import ProtectedAuthRoute from "./components/auth/ProtectedAuthRoute";
 
 function App() {
   return (
     <Router>
       <Layout>
         <Routes>
-          <Route path="/:page?" element={<Homepage />} />
-          <Route path="/shop/:page?" element={<Homepage />} />
+          <Route
+            path="/login"
+            element={
+              <ProtectedAuthRoute>
+                <Loginpage />
+              </ProtectedAuthRoute>
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <ProtectedAuthRoute>
+                <Registerpage />
+              </ProtectedAuthRoute>
+            }
+          />
           <Route path="/cart" element={<Cartpage />} />
           <Route path="/item/:name" element={<Detailpage />} />
-          <Route path="/login" element={<Loginpage />} />
-          <Route path="/register" element={<Registerpage />} />
+          <Route path="/shop/:page?" element={<Homepage />} />
+          <Route path="/:page?" element={<Homepage />} />
         </Routes>
         <ToastContainer {...toastConfig} />
       </Layout>
