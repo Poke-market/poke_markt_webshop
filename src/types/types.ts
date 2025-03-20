@@ -20,6 +20,7 @@ export interface ApiResponse {
       tags: string[];
       createdAt: string;
       updatedAt: string;
+      slug: string;
     }[];
   };
 }

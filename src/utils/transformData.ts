@@ -7,6 +7,8 @@ export const transformData = (
     description: string;
     photoUrl: string;
     price: number;
+    category: string;
+    tags: string[];
     slug: string;
   }[],
 ): Props[] => {
