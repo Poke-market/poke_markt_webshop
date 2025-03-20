@@ -1,17 +1,26 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useRegister } from "./useRegister.ts";
-import { UserData } from "../types/auth.ts";
-import { TOAST_KEYS, toastResponses } from "../config/toastResponses.ts";
+import { useRegister } from "./useRegister";
+import { UserData } from "../types/auth";
+import { TOAST_KEYS, getToastResponse } from "../config/toastResponses";
+import { toast } from "react-toastify";
 
 export const useRegisterForm = (initialState: UserData) => {
   const [formData, setFormData] = useState<UserData>(initialState);
   const [statusMessage, setStatusMessage] = useState("");
-  const [toastResponse, setToastResponse] = useState<
-    { key: keyof typeof toastResponses; type: "success" | "error" } | undefined
-  >();
-  const { handleRegister, isLoading } = useRegister();
   const navigate = useNavigate();
+
+  const showToast = (key: keyof typeof TOAST_KEYS) => {
+    const { message, options } = getToastResponse(TOAST_KEYS[key]);
+    if (key.includes("SUCCESS")) {
+      toast.success(message, options);
+    } else {
+      toast.error(message, options);
+    }
+  };
+
+  const { handleRegister, isLoading } = useRegister();
+
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
@@ -28,6 +37,7 @@ export const useRegisterForm = (initialState: UserData) => {
       [name]: inputValue,
     }));
   };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatusMessage("Registering...");
@@ -36,14 +46,14 @@ export const useRegisterForm = (initialState: UserData) => {
       const result = await handleRegister(formData);
 
       if (result.success) {
-        setToastResponse({ key: TOAST_KEYS.REGISTER_SUCCESS, type: "success" });
+        showToast("REGISTER_SUCCESS");
         setFormData(initialState);
         void navigate("/shop");
       } else {
-        setToastResponse({ key: TOAST_KEYS.REGISTER_FAIL, type: "error" });
+        showToast("REGISTER_FAIL");
       }
     } catch (error) {
-      setToastResponse({ key: TOAST_KEYS.REGISTER_ERROR, type: "error" });
+      showToast("REGISTER_ERROR");
       console.error("Error:", error);
     } finally {
       setStatusMessage("");
@@ -53,7 +63,6 @@ export const useRegisterForm = (initialState: UserData) => {
   return {
     formData,
     statusMessage,
-    toastResponse,
     isLoading,
     handleChange,
     handleSubmit,

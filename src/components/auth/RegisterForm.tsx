@@ -1,18 +1,12 @@
-import { initialUserData } from "../../types/auth.ts";
-import { registerFields } from "../../config/formFields.ts";
+import { initialUserData } from "../../types/auth";
+import { registerFields } from "../../config/formFields";
 import { Heading, Loading, Form } from "../common";
-import useRegisterForm from "../../hooks/useRegisterForm.ts";
+import useRegisterForm from "../../hooks/useRegisterForm";
 import styles from "../../styles/components/Register.module.scss";
 
 const RegisterForm = () => {
-  const {
-    formData,
-    statusMessage,
-    toastResponse,
-    isLoading,
-    handleChange,
-    handleSubmit,
-  } = useRegisterForm(initialUserData);
+  const { formData, statusMessage, isLoading, handleChange, handleSubmit } =
+    useRegisterForm(initialUserData);
 
   if (isLoading) return <Loading />;
 
@@ -26,7 +20,6 @@ const RegisterForm = () => {
         onSubmit={handleSubmit}
         statusMessage={statusMessage}
         submitButtonText="Register"
-        toastResponse={toastResponse}
       />
     </div>
   );
