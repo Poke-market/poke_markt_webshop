@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import styles from "../../styles/components/common/CustomSelect.module.scss";
 
 export type Option = {
@@ -49,6 +49,51 @@ const CustomSelect = ({
   const optionsRef = useRef<HTMLDivElement>(null);
   const optionRefs = useRef<(HTMLDivElement | null)[]>([]);
 
+  // Find which option is currently in the center of the viewport
+  const findCenterOption = useCallback((): number => {
+    if (!optionsRef.current) return highlightedIndex;
+
+    const container = optionsRef.current;
+    const containerRect = container.getBoundingClientRect();
+    const containerCenter = containerRect.top + containerRect.height / 2;
+
+    // Find the option closest to the center
+    let closestIndex = highlightedIndex;
+    let minDistance = Infinity;
+
+    optionRefs.current.forEach((optionEl, index) => {
+      if (!optionEl) return;
+
+      const optionRect = optionEl.getBoundingClientRect();
+
+      // Check if option is visible
+      const isVisible =
+        optionRect.bottom > containerRect.top &&
+        optionRect.top < containerRect.bottom;
+
+      if (isVisible) {
+        // Calculate distance from center
+        const optionCenter = optionRect.top + optionRect.height / 2;
+        const distance = Math.abs(containerCenter - optionCenter);
+
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestIndex = index;
+        }
+      }
+    });
+
+    return closestIndex;
+  }, [highlightedIndex]);
+
+  // Select the option in the center of the viewport
+  const selectCenterOption = useCallback(() => {
+    const centerIndex = findCenterOption();
+    if (centerIndex >= 0 && centerIndex < options.length) {
+      onChange(options[centerIndex].value);
+    }
+  }, [findCenterOption, options, onChange]);
+
   // Close the dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -66,7 +111,7 @@ const CustomSelect = ({
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [options]);
+  }, [options, selectCenterOption]);
 
   // Reset highlighted index when value changes externally
   useEffect(() => {
@@ -81,6 +126,35 @@ const CustomSelect = ({
       setIsPositioned(false);
     }
   }, [isOpen]);
+
+  // Scroll to a specific option index
+  const scrollToIndex = useCallback(
+    (index: number, smooth = true) => {
+      if (!optionsRef.current || index < 0 || index >= options.length) return;
+
+      const optionsContainer = optionsRef.current;
+      const optionEl = optionRefs.current[index];
+
+      if (!optionEl) return;
+
+      // Calculate scroll position to center the option
+      const containerHeight = optionsContainer.clientHeight;
+      const optionHeight = optionEl.clientHeight;
+
+      // Using offsetTop gives the most accurate position
+      const optionTop = optionEl.offsetTop;
+
+      // Center the option in the viewport
+      const scrollTop = optionTop - containerHeight / 2 + optionHeight / 2;
+
+      // Scroll to position
+      optionsContainer.scrollTo({
+        top: Math.max(0, scrollTop),
+        behavior: smooth ? "smooth" : "auto",
+      });
+    },
+    [options.length],
+  );
 
   // Setup scrolling and highlighting when dropdown opens
   useEffect(() => {
@@ -129,52 +203,13 @@ const CustomSelect = ({
       optionsContainer.removeEventListener("wheel", handleWheel);
       optionsContainer.removeEventListener("scroll", handleScroll);
     };
-  }, [isOpen, currentValueIndex, options.length]);
-
-  // Find which option is currently in the center of the viewport
-  const findCenterOption = (): number => {
-    if (!optionsRef.current) return highlightedIndex;
-
-    const container = optionsRef.current;
-    const containerRect = container.getBoundingClientRect();
-    const containerCenter = containerRect.top + containerRect.height / 2;
-
-    // Find the option closest to the center
-    let closestIndex = highlightedIndex;
-    let minDistance = Infinity;
-
-    optionRefs.current.forEach((optionEl, index) => {
-      if (!optionEl) return;
-
-      const optionRect = optionEl.getBoundingClientRect();
-
-      // Check if option is visible
-      const isVisible =
-        optionRect.bottom > containerRect.top &&
-        optionRect.top < containerRect.bottom;
-
-      if (isVisible) {
-        // Calculate distance from center
-        const optionCenter = optionRect.top + optionRect.height / 2;
-        const distance = Math.abs(containerCenter - optionCenter);
-
-        if (distance < minDistance) {
-          minDistance = distance;
-          closestIndex = index;
-        }
-      }
-    });
-
-    return closestIndex;
-  };
-
-  // Select the option in the center of the viewport
-  const selectCenterOption = () => {
-    const centerIndex = findCenterOption();
-    if (centerIndex >= 0 && centerIndex < options.length) {
-      onChange(options[centerIndex].value);
-    }
-  };
+  }, [
+    isOpen,
+    currentValueIndex,
+    options.length,
+    findCenterOption,
+    scrollToIndex,
+  ]);
 
   // Handle keyboard navigation
   const handleKeyDown = (event: React.KeyboardEvent) => {
@@ -222,32 +257,6 @@ const CustomSelect = ({
     }
   };
 
-  // Scroll to a specific option index
-  const scrollToIndex = (index: number, smooth = true) => {
-    if (!optionsRef.current || index < 0 || index >= options.length) return;
-
-    const optionsContainer = optionsRef.current;
-    const optionEl = optionRefs.current[index];
-
-    if (!optionEl) return;
-
-    // Calculate scroll position to center the option
-    const containerHeight = optionsContainer.clientHeight;
-    const optionHeight = optionEl.clientHeight;
-
-    // Using offsetTop gives the most accurate position
-    const optionTop = optionEl.offsetTop;
-
-    // Center the option in the viewport
-    const scrollTop = optionTop - containerHeight / 2 + optionHeight / 2;
-
-    // Scroll to position
-    optionsContainer.scrollTo({
-      top: Math.max(0, scrollTop),
-      behavior: smooth ? "smooth" : "auto",
-    });
-  };
-
   // Handle component losing focus
   const handleBlur = (event: React.FocusEvent) => {
     if (!containerRef.current?.contains(event.relatedTarget as Node)) {
@@ -285,7 +294,7 @@ const CustomSelect = ({
       // Re-center the highlighted option when expansion state changes
       scrollToIndex(highlightedIndex, false);
     }
-  }, [isExpanded, highlightedIndex, isOpen, isPositioned]);
+  }, [isExpanded, highlightedIndex, isOpen, isPositioned, scrollToIndex]);
 
   return (
     <div
