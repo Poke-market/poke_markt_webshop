@@ -5,13 +5,26 @@ type PaginationProps = {
   currentPage: number;
   totalPages: number;
   onPageChange: (pageNumber: number) => void;
+  maxDisplayedPages: number;
 };
 
 const Pagination = ({
   currentPage,
   totalPages,
   onPageChange,
+  maxDisplayedPages = 3,
 }: PaginationProps) => {
+  let pagesFrom = Math.max(
+    1,
+    currentPage - Math.floor((maxDisplayedPages - 1) / 2),
+  );
+  const pagesTo = Math.min(totalPages, pagesFrom + maxDisplayedPages - 1);
+  pagesFrom = Math.max(1, pagesTo - maxDisplayedPages + 1); // intentional re-adjustment
+
+  const pages = Array(pagesTo - pagesFrom + 1)
+    .fill(0)
+    .map((_, index) => pagesFrom + index);
+
   return (
     <div className={styles.buttonContainer}>
       {currentPage > 1 && (
@@ -23,13 +36,13 @@ const Pagination = ({
           Previous
         </Button>
       )}
-      {Array.from({ length: totalPages }, (_, index) => (
+      {pages.map((page) => (
         <Button
-          key={`page-${index + 1}`}
-          className={`${styles.button} ${currentPage === index + 1 ? styles.active : ""}`}
-          onClick={() => onPageChange(index + 1)}
+          key={`page-${page}`}
+          className={`${styles.button} ${currentPage === page ? styles.active : ""}`}
+          onClick={() => onPageChange(page)}
         >
-          {index + 1}
+          {page}
         </Button>
       ))}
       {currentPage < totalPages && (
