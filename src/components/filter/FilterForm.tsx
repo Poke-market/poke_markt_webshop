@@ -4,17 +4,22 @@ import PillCheckbox from "./PillCheckbox.tsx";
 import PriceRangeSlider from "./PriceRangeSlider.tsx";
 import styles from "../../styles/components/filters/FilterForm.module.scss";
 import { useSearchParams, useLocation, useNavigate } from "react-router-dom";
-import { useGetTagsQuery } from "../../store/pokemartApi.ts";
+import { useGetTagsQuery } from "../../store/pokemartApi";
 import { useAppSelector } from "../../store";
 import {
   selectCategorieCounts,
   selectTotalCount,
-} from "../../store/filterSlice.ts";
+} from "../../store/filterSlice";
+
+interface PriceRange {
+  min: number;
+  max: number;
+}
 
 const FilterForm = () => {
   // State for filter values
   const [searchParams] = useSearchParams();
-  const { data: tags } = useGetTagsQuery();
+  const { data: tags = [] } = useGetTagsQuery();
   const categorieCounts = useAppSelector(selectCategorieCounts);
   const totalCount = useAppSelector(selectTotalCount);
   const location = useLocation();
@@ -61,7 +66,7 @@ const FilterForm = () => {
 
       <CollapsableFieldset className={styles.tags} legend="Tags">
         <ul>
-          {tags?.map((tag) => (
+          {tags.map((tag: string) => (
             <li key={tag}>
               <PillCheckbox
                 label={tag}
@@ -86,7 +91,7 @@ const FilterForm = () => {
             max={999999}
             initialMin={Number(searchParams.get("minPrice")) || 100}
             initialMax={Number(searchParams.get("maxPrice")) || 999999}
-            onChangeComplete={(range) => {
+            onChangeComplete={(range: PriceRange) => {
               searchParams.set("minPrice", range.min.toString());
               searchParams.set("maxPrice", range.max.toString());
               if (range.min === 100) searchParams.delete("minPrice");

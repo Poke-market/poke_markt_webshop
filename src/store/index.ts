@@ -18,6 +18,7 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
+
 const devToolsOptions: DevToolsEnhancerOptions = {
   // add action creators here so they are available in the Redux DevTools
   actionCreators: {
@@ -26,9 +27,9 @@ const devToolsOptions: DevToolsEnhancerOptions = {
 };
 
 const rootReducer = combineReducers({
-  [cartSlice.reducerPath]: cartSlice.reducer,
+  cart: cartSlice.reducer,
   [pokemartApi.reducerPath]: pokemartApi.reducer,
-  [filterSlice.reducerPath]: filterSlice.reducer,
+  filter: filterSlice.reducer,
 });
 
 const persistConfig = {

@@ -18,7 +18,6 @@ export interface Item {
   __v: number;
   createdAt: string;
   updatedAt: string;
-  slug: string;
 }
 
 export interface Discount {

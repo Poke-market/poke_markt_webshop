@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Category } from "../types/apiTypes/item";
+import type { RootState } from "./index";
 
 interface FilterState {
   categorieCounts: Record<Category, number>;
@@ -25,14 +26,13 @@ export const filterSlice = createSlice({
       state.totalCount = action.payload;
     },
   },
-  selectors: {
-    selectCategorieCounts: (state) => state.categorieCounts,
-    selectTotalCount: (state) => state.totalCount,
-  },
 });
 
 export const { setCategorieCounts, setTotalCount } = filterSlice.actions;
-export const { selectCategorieCounts, selectTotalCount } =
-  filterSlice.selectors;
+
+// Create selectors
+export const selectCategorieCounts = (state: RootState) =>
+  state.filter.categorieCounts;
+export const selectTotalCount = (state: RootState) => state.filter.totalCount;
 
 export default filterSlice;
