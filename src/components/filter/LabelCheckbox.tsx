@@ -21,7 +21,7 @@ const LabelCheckbox = ({
         <span>{label}</span>
         <Icons.XFill className={styles.icon} height={16} />
       </label>
-      {subLabel && <span>{subLabel}</span>}
+      {subLabel !== undefined && <span>{subLabel}</span>}
     </div>
   );
 };
