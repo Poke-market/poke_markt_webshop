@@ -1,4 +1,5 @@
 export const typographySizes = {
+  textxxs: "text-xxs",
   textxs: "text-xs",
   textmd: "text-md",
   textlg: "text-lg",
