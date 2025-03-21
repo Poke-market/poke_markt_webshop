@@ -2,19 +2,14 @@ import { Form } from "../common/Form.tsx";
 import { initialUserData } from "../../types/auth.ts";
 import { registerFields } from "../../config/formFields.ts";
 import { Heading } from "../common";
-import Loading from "../common/Loading"; // Import your Loading component
-import { useRegisterForm } from "../../hooks/useRegisterForm.ts";
+import Loading from "../common/Loading";
+import useRegisterForm from "../../hooks/useRegisterForm.ts";
 import styles from "../../styles/components/Register.module.scss";
+import "react-toastify/dist/ReactToastify.css";
 
 const RegisterForm = () => {
-  const {
-    formData,
-    statusMessage,
-    toastResponse,
-    isLoading,
-    handleChange,
-    handleSubmit,
-  } = useRegisterForm(initialUserData);
+  const { formData, isLoading, errors, handleChange, handleSubmit } =
+    useRegisterForm(initialUserData);
 
   if (isLoading) return <Loading />;
 
@@ -26,9 +21,8 @@ const RegisterForm = () => {
         formData={formData}
         onChange={handleChange}
         onSubmit={handleSubmit}
-        statusMessage={statusMessage}
         submitButtonText="Register"
-        toastResponse={toastResponse}
+        errors={errors}
       />
     </div>
   );

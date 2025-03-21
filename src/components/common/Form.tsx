@@ -49,6 +49,7 @@ type FormProps<T extends Record<string, string | number | boolean>> = {
     key: keyof typeof import("../../config/toastResponses.ts").toastResponses;
     type: ToastResponseType;
   };
+  errors?: Record<string, string>;
 };
 
 export const Form = <T extends Record<string, string | number | boolean>>({
