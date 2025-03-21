@@ -1,69 +1,87 @@
-import { Suspense, useState, useEffect, useRef } from "react";
+import { Suspense, useEffect, useRef } from "react";
 import styles from "../../styles/components/home/ShopGrid.module.scss";
-import { LoadingSkeleton, ProductCard, Pagination } from "../../utils";
-import { transformData } from "../../utils/transformData.ts";
-import { ApiResponse } from "../../types/types.ts";
-import { Props } from "./ProductCard.tsx";
+import {
+  LoadingSkeleton,
+  ProductCard,
+  Pagination,
+  SearchParamGetter,
+  Heading,
+} from "../../utils";
+import { useGetItemsQuery } from "../../store/pokemartApi";
+import {
+  useParams,
+  useNavigate,
+  useSearchParams,
+  useLocation,
+} from "react-router-dom";
+import { useAppDispatch } from "../../store";
+import { setCategorieCounts, setTotalCount } from "../../store/filterSlice";
 
-export type ShopGridProps = {
-  data?: Props[];
-};
-
-const ProductGrid = ({ data: initialData = [] }: ShopGridProps) => {
-  const [data, setData] = useState<Props[]>(initialData);
-  const [loading, setLoading] = useState(!initialData.length);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
+const ProductGrid = () => {
+  const { page = 1 } = useParams();
+  const navigate = useNavigate();
   const gridRef = useRef<HTMLDivElement>(null);
+  const [searchParams] = useSearchParams();
+  const { search } = useLocation();
+  const dispatch = useAppDispatch();
+
+  const searchParamsGetter = new SearchParamGetter(searchParams);
+
+  const { data, isLoading } = useGetItemsQuery({
+    page: +page,
+    ...searchParamsGetter
+      .get("sort")
+      .get("order")
+      .get("limit")
+      .getAll("cat")
+      .getAll("tag")
+      .get("minPrice")
+      .get("maxPrice")
+      .getFoundParams(),
+  });
+  const info = data?.info;
+  const items = data?.items;
 
   useEffect(() => {
-    if (initialData.length > 0) return;
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/items?page=${currentPage}`,
-        );
-        if (!response.ok) throw new Error("Failed to fetch data");
-        const result = (await response.json()) as ApiResponse;
-        if (result.status !== "success") {
-          throw new Error("API err");
-        }
-        const transformedData = transformData(result.data.items);
-        setData(transformedData);
-        setTotalPages(result.data.info.pages);
-      } catch (err) {
-        console.log(err instanceof Error ? err.message : "Error");
-      } finally {
-        setLoading(false);
-      }
-    };
-    void fetchData();
-  }, [currentPage, initialData]);
-
-  useEffect(() => {
-    if (gridRef.current) {
+    const isInView = (gridRef.current?.getBoundingClientRect().top ?? -1) >= 0;
+    if (gridRef.current && !isInView) {
       gridRef.current.scrollIntoView({ behavior: "smooth" });
     }
-  }, [currentPage]);
+  }, [page]);
 
-  if (loading) return <LoadingSkeleton />;
+  useEffect(() => {
+    if (info) {
+      dispatch(setCategorieCounts(info.categorieCount));
+      dispatch(setTotalCount(info.count));
+    }
+  }, [info, dispatch]);
+
+  if (isLoading) return <LoadingSkeleton />;
   return (
     <div className={styles.shopContainer} ref={gridRef}>
       <div className={styles.flexContainer}>
         <div className={styles.backgroundBox} />
         <div className={styles.container}>
           <div className={styles.contentWrapper}>
-            <div className={styles.gridContainer}>
-              <Suspense fallback={<LoadingSkeleton />}>
-                {data.map((product) => (
-                  <ProductCard key={product.id} {...product} className="" />
-                ))}
-              </Suspense>
-            </div>
+            {items?.length ? (
+              <div className={styles.gridContainer}>
+                <Suspense fallback={<LoadingSkeleton />}>
+                  {items.map((item) => (
+                    <ProductCard key={item._id} item={item} className="" />
+                  ))}
+                </Suspense>
+              </div>
+            ) : (
+              <div className={styles.noItems}>
+                <Heading size="textxl">No items found</Heading>
+              </div>
+            )}
             <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={setCurrentPage}
+              currentPage={+page}
+              totalPages={info?.pages ?? 0}
+              onPageChange={(page) => {
+                void navigate(`/shop/${page}${search}`);
+              }}
             />
           </div>
         </div>

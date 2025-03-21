@@ -2,7 +2,9 @@ import styles from "../../styles/components/filters/FilterSortBar.module.scss";
 import { Icons } from "../../utils/Icons.tsx";
 import { Button, Heading } from "../common";
 import { FilterOverlay } from "./FilterOverlay.tsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
+import CustomSelect from "../common/CustomSelect";
 
 type Props = {
   children: React.ReactNode;
@@ -10,6 +12,54 @@ type Props = {
 
 const FilterSortBar = ({ children }: Props) => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const _sort = searchParams.get("sort");
+  const _order = searchParams.get("order");
+  const [sort, setSort] = useState(
+    _sort && _order ? `${_sort}-${_order}` : "default",
+  );
+  const [itemsPerPage, setItemsPerPage] = useState(
+    Number(searchParams.get("limit") ?? 16),
+  );
+
+  useEffect(() => {
+    if (sort === "default") {
+      searchParams.delete("sort");
+      searchParams.delete("order");
+    } else {
+      const [sortType, order] = sort.split("-");
+      searchParams.set("sort", sortType);
+      searchParams.set("order", order);
+    }
+    setSearchParams(searchParams);
+  }, [sort, searchParams, setSearchParams]);
+
+  useEffect(() => {
+    if (itemsPerPage === 16) {
+      searchParams.delete("limit");
+    } else {
+      searchParams.set("limit", itemsPerPage.toString());
+    }
+    setSearchParams(searchParams);
+  }, [itemsPerPage, searchParams, setSearchParams]);
+
+  // Options for the CustomSelect components
+  const productsOptions = [
+    { value: 4, label: "4" },
+    { value: 8, label: "8" },
+    { value: 12, label: "12" },
+    { value: 16, label: "16" },
+    { value: 24, label: "24" },
+    { value: 32, label: "32" },
+  ];
+
+  const sortOptions = [
+    { value: "default", label: "Default" },
+    { value: "price-asc", label: "Price (asc)" },
+    { value: "price-desc", label: "Price (desc)" },
+    { value: "name-asc", label: "Name (asc)" },
+    { value: "name-desc", label: "Name (desc)" },
+  ];
 
   return (
     <>
@@ -42,17 +92,29 @@ const FilterSortBar = ({ children }: Props) => {
             <Heading size="textxl" as="span">
               Show
             </Heading>
-            <input type="number" id="productsPerPage" placeholder="16" />
+            <CustomSelect
+              options={productsOptions}
+              value={itemsPerPage}
+              onChange={(value: string | number) =>
+                setItemsPerPage(Number(value))
+              }
+              className={styles.showSelect}
+              name="productsPerPage"
+              id="productsPerPage"
+            />
           </fieldset>
           <fieldset>
             <Heading size="textxl" as="span">
               Sort by
             </Heading>
-            <select name="sort" id="sort">
-              <option value="default">Default</option>
-              <option value="price">Price</option>
-              <option value="name">Name</option>
-            </select>
+            <CustomSelect
+              options={sortOptions}
+              value={sort}
+              onChange={(value: string | number) => setSort(String(value))}
+              className={styles.sortSelect}
+              name="sort"
+              id="sort"
+            />
           </fieldset>
         </span>
       </div>

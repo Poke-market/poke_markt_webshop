@@ -14,6 +14,7 @@ export interface Item {
   tags: string[];
   isNewItem: boolean;
   discount: Discount;
+  slug: string;
   __v: number;
   createdAt: string;
   updatedAt: string;
@@ -40,18 +41,38 @@ export const categories = [
 
 // Create a string union type from the categories array values
 export type Category = (typeof categories)[number];
+export type PriceRange = {
+  min: number;
+  max: number;
+};
 
 /********************************
  *           RESPONSES          *
  ********************************/
 
-export type getItemsData = {
+export type GetItemsData = {
   info: paginationInfo & {
     categorieCount: Record<Category, number>;
+    priceRange: PriceRange;
   };
   items: Item[];
 };
 
-export type getItemData = {
+export type GetItemData = {
   item: Item;
+};
+
+/********************************
+ *           PARAMS             *
+ ********************************/
+
+export type GetItemsParams = {
+  page?: number;
+  limit?: number;
+  cat?: Category[];
+  tag?: string[];
+  minPrice?: number;
+  maxPrice?: number;
+  sort?: "price" | "name";
+  order?: "asc" | "desc";
 };

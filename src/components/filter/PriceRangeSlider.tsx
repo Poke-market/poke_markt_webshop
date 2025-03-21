@@ -1,150 +1,101 @@
-import { useState, useEffect, useRef, ChangeEvent } from "react";
+import { useState, ChangeEvent } from "react";
 import clsx from "clsx";
 import styles from "../../styles/components/filters/PriceRangeSlider.module.scss";
-import { flatMapJoin } from "../../utils";
+import { pd } from "../../utils";
 
+type ThumbKey = "min" | "max";
+type Range = Record<ThumbKey, number>;
 type PriceRangeSliderProps = {
   min: number;
   max: number;
   initialMin?: number;
   initialMax?: number;
+  onChange?: (values: Range) => void;
+  onChangeComplete?: (values: Range) => void;
 };
 
-// Slider component with dual thumbs for selecting a price range
 const PriceRangeSlider = ({
   min,
   max,
   initialMin,
   initialMax,
+  onChange,
+  onChangeComplete,
 }: PriceRangeSliderProps) => {
-  // State for validated values
-  const [minVal, setMinVal] = useState(initialMin ?? min);
-  const [maxVal, setMaxVal] = useState(initialMax ?? max);
-  const [topThumb, setTopThumb] = useState<"min" | "max">("max");
-
-  // State for input fields (allowing free typing)
-  const [inputValues, setInputValues] = useState({
-    min: minVal.toString(),
-    max: maxVal.toString(),
+  // State for slider values (constrained)
+  const [range, setRange] = useState<Range>({
+    min: initialMin ?? min,
+    max: initialMax ?? max,
   });
+  // State for input values (unconstrained, allows temporary invalid values)
+  const [inputValues, setInputValues] = useState<Range>(range);
 
-  // Refs
-  const progressRef = useRef<HTMLDivElement>(null);
+  const getPercent = (key: ThumbKey) =>
+    Math.round(((range[key] - min) / (max - min)) * 100);
 
-  // Update validated value with constraints
-  const updateValue = (newValue: number, isMin: boolean) => {
-    if (isMin) {
-      const constrainedValue = Math.max(min, Math.min(newValue, maxVal - 1));
-      setMinVal(constrainedValue);
-      setInputValues((prev) => ({ ...prev, min: constrainedValue.toString() }));
-      setTopThumb("min");
-    } else {
-      const constrainedValue = Math.min(max, Math.max(newValue, minVal + 1));
-      setMaxVal(constrainedValue);
-      setInputValues((prev) => ({ ...prev, max: constrainedValue.toString() }));
-      setTopThumb("max");
-    }
+  // Determine if the thumb is on the top or bottom so that we don't get stuck when they overlap at the edges
+  const isTopThumb = (thumb: ThumbKey) =>
+    ({ min: getPercent("min") > 50, max: getPercent("max") < 50 })[thumb];
+
+  const applyConstraints = ({ min: newMin, max: newMax }: Range): Range => {
+    const sanitizedMin = Math.max(min, Math.min(newMin, newMax - 1));
+    const sanitizedMax = Math.min(max, Math.max(newMax, sanitizedMin + 1));
+    const sanitizedRange = { min: sanitizedMin, max: sanitizedMax };
+
+    setRange(sanitizedRange);
+    setInputValues(sanitizedRange);
+
+    return sanitizedRange;
   };
 
-  // Update progress bar and manage thumb display
-  useEffect(() => {
-    if (!progressRef.current) return;
+  const handleSliderChange = (
+    e: ChangeEvent<HTMLInputElement>,
+    thumb: ThumbKey,
+  ) => {
+    const newRange = { ...range, [thumb]: +e.target.value };
 
-    // Calculate percentages for progress bar
-    const getPercent = (value: number) =>
-      Math.round(((value - min) / (max - min)) * 100);
+    const constrainedRange = applyConstraints(newRange);
+    onChange?.(constrainedRange);
+  };
 
-    const minPercent = getPercent(minVal);
-    const maxPercent = getPercent(maxVal);
-
-    // Update progress bar
-    progressRef.current.style.left = `${minPercent}%`;
-    progressRef.current.style.width = `${maxPercent - minPercent}%`;
-
-    // Set top thumb based on position
-    const isMinNearRight = minVal > min + (max - min) * 0.7;
-
-    if (isMinNearRight && topThumb !== "min") {
-      setTopThumb("min");
-    } else if (!isMinNearRight && topThumb !== "max") {
-      setTopThumb("max");
-    }
-  }, [minVal, maxVal, min, max, topThumb]);
-
-  // Event handlers
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement>,
-    isMin: boolean,
+    thumb: ThumbKey,
   ) => {
-    const field = isMin ? "min" : "max";
-    setInputValues((prev) => ({ ...prev, [field]: e.target.value }));
+    const newInputValues = { ...inputValues, [thumb]: +e.target.value };
+
+    setInputValues(newInputValues);
+    onChange?.(newInputValues);
   };
 
-  const validateInput = (value: string, isMin: boolean) => {
-    const parsedValue = parseInt(value, 10);
-    if (!isNaN(parsedValue)) {
-      updateValue(parsedValue, isMin);
-    } else {
-      // Reset to current valid value if input is invalid
-      setInputValues((prev) => ({
-        ...prev,
-        [isMin ? "min" : "max"]: isMin ? minVal.toString() : maxVal.toString(),
-      }));
-    }
-  };
+  const completeChange = () =>
+    onChangeComplete?.(applyConstraints(inputValues));
 
-  // Input configuration for mapping
-  const inputConfig = [
-    {
-      name: "minPrice",
-      isMin: true,
-      value: inputValues.min,
-      minConstraint: min,
-      maxConstraint: maxVal - 1,
-    },
-    {
-      name: "maxPrice",
-      isMin: false,
-      value: inputValues.max,
-      minConstraint: minVal + 1,
-      maxConstraint: max,
-    },
-  ];
+  const [minInput, maxInput] = (["min", "max"] as const).map((key) => (
+    <div className={styles.inputWrapper}>
+      <span className={styles.currencySymbol}>$</span>
+      <input
+        className={styles.priceInput}
+        type="number"
+        value={inputValues[key]}
+        onChange={(e) => handleInputChange(e, key)}
+        onBlur={completeChange}
+        onKeyDown={(e) => e.key === "Enter" && pd(completeChange)(e)}
+      />
+    </div>
+  ));
 
-  // Create input elements
-  const inputElements = inputConfig
-    .map((config) => (
-      <div key={config.isMin ? "min" : "max"} className={styles.inputWrapper}>
-        <span className={styles.currencySymbol}>$</span>
-        <input
-          className={styles.priceInput}
-          type="number"
-          name={config.name}
-          value={config.value}
-          onChange={(e) => handleInputChange(e, config.isMin)}
-          onBlur={(e) => validateInput(e.target.value, config.isMin)}
-          onKeyDown={(e) =>
-            e.key === "Enter" &&
-            validateInput(e.currentTarget.value, config.isMin)
-          }
-          min={config.minConstraint}
-          max={config.maxConstraint}
-        />
-      </div>
-    ))
-    .flatMap(flatMapJoin(<span key="sep">-</span>));
-
-  const sliderThumbs = [true, false].map((isMin) => (
+  const [minThumb, maxThumb] = (["min", "max"] as const).map((key) => (
     <input
-      key={isMin ? "min" : "max"}
       type="range"
       min={min}
       max={max}
-      value={isMin ? minVal : maxVal}
-      onChange={(e) => updateValue(+e.target.value, isMin)}
-      onMouseDown={() => setTopThumb(isMin ? "min" : "max")}
-      className={clsx(styles.range, isMin ? styles.minRange : styles.maxRange, {
-        [styles.topThumb]: topThumb === (isMin ? "min" : "max"),
+      value={range[key]}
+      onChange={(e) => handleSliderChange(e, key)}
+      onMouseUp={completeChange}
+      onTouchEnd={completeChange}
+      className={clsx(styles.range, styles[`${key}Range`], {
+        [styles.topThumb]: isTopThumb(key),
       })}
     />
   ));
@@ -152,20 +103,32 @@ const PriceRangeSlider = ({
   return (
     <div className={styles.priceRangeContainer}>
       {/* Number inputs */}
-      <div className={styles.inputGroup}>{inputElements}</div>
+      <div className={styles.inputGroup}>
+        {minInput}
+        <span>-</span>
+        {maxInput}
+      </div>
 
       {/* Slider */}
       <div className={styles.sliderContainer}>
         <div className={styles.rangeSlider}>
-          <div className={styles.progress} ref={progressRef}></div>
+          <div
+            className={styles.progress}
+            style={{
+              left: `${getPercent("min")}%`,
+              width: `${getPercent("max") - getPercent("min")}%`,
+            }}
+          ></div>
         </div>
-        {sliderThumbs}
+
+        {minThumb}
+        {maxThumb}
       </div>
 
       {/* Range labels */}
       <div className={styles.rangeValues}>
-        <span>{min}</span>
-        <span>{max}</span>
+        <span>${min}</span>
+        <span>${max}</span>
       </div>
     </div>
   );

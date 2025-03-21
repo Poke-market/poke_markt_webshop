@@ -56,49 +56,66 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    position: relative;
+
+    &::after {
+      content: none;
+      display: none;
+    }
   }
 
-  fieldset span {
+  fieldset > span {
     color: var(--text-color);
     padding-right: 1.7rem;
   }
 
-  fieldset input,
   fieldset select {
-    font-size: 1.6rem;
+    font-size: $font-size-xl;
     padding: 0.5rem;
     border: none;
     outline: none;
-    color: var(--grey);
-  }
-
-  #productsPerPage {
-    width: 100%;
-    max-width: 4rem;
-    padding: 0;
-    font-size: 1.4rem;
-    text-align: center;
+    background-color: var(--bluegrey);
+    color: var(--light-blue);
+    height: 5.5rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
     appearance: none;
-    border: 1px solid var(--basic-blue);
-    box-sizing: border-box;
+    cursor: pointer;
+
+    &:focus {
+      border-color: var(--basic-blue);
+    }
+
+    /* Style dropdown options */
+    option {
+      background-color: var(--bluegrey);
+      color: var(--light-blue);
+      font-size: $font-size-xl;
+      padding: 0.5rem;
+    }
   }
 
+  select[name="productsPerPage"],
+  #productsPerPage {
+    width: 5.5rem;
+    text-align: center;
+  }
+
+  select[name="sort"],
   #sort {
     width: 18.8rem;
+    padding-left: 3rem;
   }
 
-  span:nth-of-type(2) > fieldset:first-child input {
-    max-width: 5rem;
-    width: 100%;
-    padding: 0.5rem;
-    font-size: 1.4rem;
-    text-align: center;
-    background-color: var(--white);
+  @-moz-document url-prefix() {
+    fieldset select {
+      text-indent: 0.01px;
+      text-overflow: "";
+    }
   }
 
-  fieldset input:focus,
-  fieldset select:focus {
-    border-color: var(--basic-blue);
+  select::-ms-expand {
+    display: none;
   }
 
   @media screen and (max-width: 1090px) {
@@ -184,4 +201,44 @@
 
 .filteredContent {
   position: relative;
+}
+
+/* Custom selects styling overrides */
+.showSelect {
+  width: 5.5rem;
+
+  /* Override the trigger styling */
+  > div {
+    justify-content: center;
+    text-align: center;
+    * {
+      justify-content: center;
+      text-align: center;
+    }
+
+    &::after {
+      display: none; /* Hide the dropdown arrow */
+    }
+  }
+}
+
+.sortSelect {
+  width: 18.8rem;
+
+  /* Override the trigger styling */
+  > div {
+    padding-left: 3rem;
+    * {
+      padding-left: 0;
+    }
+
+    &::after {
+      display: none; /* Hide the dropdown arrow */
+    }
+  }
+
+  /* Ensure options have the same padding as the trigger */
+  .optionsContainer .optionsWrapper .option {
+    padding-left: 3rem;
+  }
 }

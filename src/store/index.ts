@@ -6,6 +6,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import cartSlice from "./cartSlice";
 import pokemartApi from "./pokemartApi";
+import filterSlice from "./filterSlice";
 import storage from "redux-persist/lib/storage";
 import {
   persistStore,
@@ -17,15 +18,17 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
-
 const devToolsOptions: DevToolsEnhancerOptions = {
   // add action creators here so they are available in the Redux DevTools
-  actionCreators: { ...cartSlice.actions },
+  actionCreators: {
+    ...cartSlice.actions,
+  },
 };
 
 const rootReducer = combineReducers({
   [cartSlice.reducerPath]: cartSlice.reducer,
   [pokemartApi.reducerPath]: pokemartApi.reducer,
+  [filterSlice.reducerPath]: filterSlice.reducer,
 });
 
 const persistConfig = {
