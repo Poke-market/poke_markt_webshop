@@ -3,10 +3,10 @@ import { useState } from "react";
 import { Icons } from "../../utils";
 import { Button, Heading } from "../common";
 import ProductDisplay from "./ProductDisplay.tsx";
-import { Product } from "../../types/types.ts";
+import { Item } from "../../types/apiTypes/item";
 
 type ProductInfoProps = {
-  product: Product;
+  product: Item;
 };
 
 const ProductInfo = ({ product }: ProductInfoProps) => {

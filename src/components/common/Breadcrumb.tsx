@@ -4,11 +4,11 @@ import { Icons } from "../../utils";
 
 const Breadcrumb = () => {
   const location = useLocation();
-  const { name } = useParams();
+  const { slug } = useParams();
 
-  const formatItemName = (name: string | undefined) => {
-    if (!name) return "";
-    return name
+  const formatItemName = (slug: string | undefined) => {
+    if (!slug) return "";
+    return slug
       .split("-")
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
       .join(" ");
@@ -31,11 +31,11 @@ const Breadcrumb = () => {
         <span className={styles.separator}>
           <Icons.Arrowrightsmall />
         </span>
-        {isProductPage && name && (
+        {isProductPage && slug && (
           <div className={styles.itemGroup}>
             <span className={styles.pipeSeparator}></span>
             <span className={styles.breadcrumbItem}>
-              {formatItemName(name)}
+              {formatItemName(slug)}
             </span>
           </div>
         )}

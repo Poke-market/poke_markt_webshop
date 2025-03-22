@@ -1,10 +1,25 @@
 import { Breadcrumb, Related, Loading, ProductInfo } from "../utils";
 import { useParams } from "react-router-dom";
-import { useProduct } from "../hooks/useProduct";
+import { useGetItemsQuery, useGetItemBySlugQuery } from "../store/pokemartApi";
 import ProductNotFound from "../components/detailpage/ProductNotFound";
+
 const DetailPage = () => {
-  const { name } = useParams();
-  const { product, loading, availableProducts } = useProduct(name);
+  const { slug } = useParams();
+  const {
+    data: product,
+    isLoading: loading,
+    error,
+  } = useGetItemBySlugQuery(slug ?? "", {
+    skip: !slug,
+  });
+  const { data: availableProductsData } = useGetItemsQuery({
+    page: 1,
+    limit: 5,
+  });
+
+  console.log("Slug:", slug);
+  console.log("Product:", product);
+  console.log("Error:", error);
 
   if (loading) {
     return <Loading />;
@@ -13,8 +28,8 @@ const DetailPage = () => {
   if (!product) {
     return (
       <ProductNotFound
-        name={name ?? ""}
-        availableProducts={availableProducts}
+        name={slug ?? ""}
+        availableProducts={availableProductsData?.items ?? []}
       />
     );
   }

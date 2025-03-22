@@ -26,6 +26,13 @@ const pokemartApi = createApi({
       query: (id) => `/items/${id}`,
       transformResponse: (response: { item: Item }) => response.item,
     }),
+    getItemBySlug: builder.query<Item, string>({
+      query: (slug) => ({
+        url: "/items",
+        params: { slug },
+      }),
+      transformResponse: (response: { items: Item[] }) => response.items[0],
+    }),
     getTags: builder.query<string[], void>({
       query: () => "/tags",
       transformResponse: (response: { name: string }[]) =>
@@ -34,6 +41,10 @@ const pokemartApi = createApi({
   }),
 });
 
-export const { useGetItemsQuery, useGetItemByIdQuery, useGetTagsQuery } =
-  pokemartApi;
+export const {
+  useGetItemsQuery,
+  useGetItemByIdQuery,
+  useGetItemBySlugQuery,
+  useGetTagsQuery,
+} = pokemartApi;
 export default pokemartApi;

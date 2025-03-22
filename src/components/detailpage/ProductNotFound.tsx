@@ -1,9 +1,10 @@
 import styles from "../../styles/components/detailpage/ProductNotFound.module.scss";
 import { Heading } from "../../utils";
+import { Item } from "../../types/apiTypes/item";
 
 interface ProductNotFoundProps {
   name: string;
-  availableProducts: Array<{ _id: string; name: string }>;
+  availableProducts: Item[];
 }
 
 const ProductNotFound = ({ name, availableProducts }: ProductNotFoundProps) => {
@@ -26,11 +27,7 @@ const ProductNotFound = ({ name, availableProducts }: ProductNotFoundProps) => {
             <ul>
               {availableProducts.map((item) => (
                 <li key={item._id}>
-                  <a
-                    href={`/item/${item.name.toLowerCase().replace(/\s+/g, "-")}`}
-                  >
-                    {item.name}
-                  </a>
+                  <a href={`/item/${item.slug}`}>{item.name}</a>
                 </li>
               ))}
             </ul>
