@@ -1,8 +1,7 @@
-import styles from "../styles/pages/DetailPage.module.scss";
-import { Breadcrumb, Related, Heading, Loading, ProductInfo } from "../utils";
+import { Breadcrumb, Related, Loading, ProductInfo } from "../utils";
 import { useParams } from "react-router-dom";
 import { useProduct } from "../hooks/useProduct";
-
+import ProductNotFound from "../components/detailpage/ProductNotFound";
 const DetailPage = () => {
   const { name } = useParams();
   const { product, loading, availableProducts } = useProduct(name);
@@ -13,36 +12,10 @@ const DetailPage = () => {
 
   if (!product) {
     return (
-      <div className={styles.productDetail}>
-        <div className={styles.notFound}>
-          <Heading as="h2" size="textmd" className={styles.notFoundTitle}>
-            Product not found
-          </Heading>
-          <p>Sorry, we couldn't find a product matching "{name}".</p>
-          {availableProducts.length > 0 && (
-            <div className={styles.availableProducts}>
-              <Heading
-                as="h3"
-                size="textlg"
-                className={styles.recommendationsTitle}
-              >
-                Recommended Products:
-              </Heading>
-              <ul>
-                {availableProducts.map((item) => (
-                  <li key={item._id}>
-                    <a
-                      href={`/item/${item.name.toLowerCase().replace(/\s+/g, "-")}`}
-                    >
-                      {item.name}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </div>
-      </div>
+      <ProductNotFound
+        name={name ?? ""}
+        availableProducts={availableProducts}
+      />
     );
   }
 
