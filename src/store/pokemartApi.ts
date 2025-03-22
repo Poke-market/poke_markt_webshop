@@ -4,7 +4,7 @@ import {
   FetchBaseQueryError,
 } from "@reduxjs/toolkit/query/react";
 import { getItemsData, Item, GetItemsParams } from "../types/apiTypes/item";
-import { apiResponse } from "../types/apiTypes/response";
+import { ApiResponse } from "../types/apiTypes/response";
 import { RootState } from "./index";
 import { UserData, RegisterResponse } from "../types/auth";
 import { ErrorResponse } from "../types/auth";
@@ -26,7 +26,7 @@ const pokemartApi = createApi({
       query: ({ page }) => {
         return `/items?page=${page}`;
       },
-      transformResponse: (response: apiResponse): getItemsData => {
+      transformResponse: (response: ApiResponse): getItemsData => {
         return response.data as getItemsData;
       },
       transformErrorResponse: (response: FetchBaseQueryError | ErrorResponse) =>
@@ -34,8 +34,12 @@ const pokemartApi = createApi({
     }),
     getItemById: builder.query<Item, Item["_id"]>({
       query: (id) => `/items/${id}`,
-      transformResponse: (response: apiResponse): Item => {
-        if (response.data && "item" in response.data) {
+      transformResponse: (response: ApiResponse): Item => {
+        if (
+          response.data &&
+          typeof response.data === "object" &&
+          "item" in response.data
+        ) {
           return response.data.item as Item;
         }
         throw new Error("Item not found in response");
@@ -49,7 +53,7 @@ const pokemartApi = createApi({
         method: "POST",
         body: userData,
       }),
-      transformResponse: (response: apiResponse): RegisterResponse => {
+      transformResponse: (response: ApiResponse): RegisterResponse => {
         return response.data as RegisterResponse;
       },
       transformErrorResponse: (response: FetchBaseQueryError | ErrorResponse) =>

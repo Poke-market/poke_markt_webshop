@@ -11,11 +11,9 @@ type Props = {
 export default function PageBanner({ title = "Shop" }: Props) {
   return (
     <div className={styles.bannerShop}>
-      <img
-        src="/pokemart.jpeg"
-        alt="Shop Banner"
-        className={styles.bannerImage}
-      />
+      <div className={styles.backgroundImage} />
+      <div className={styles.overlay} />
+
       <Heading as="h1" className={styles.heading}>
         {title}
       </Heading>
