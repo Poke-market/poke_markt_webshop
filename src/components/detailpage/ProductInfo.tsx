@@ -110,7 +110,7 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
               <a
                 href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener"
                 className={styles.socialIcon}
               >
                 <Icons.Facebook />
@@ -118,7 +118,7 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
               <a
                 href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(window.location.href)}`}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener"
                 className={styles.socialIcon}
               >
                 <Icons.Linkedin />
@@ -126,7 +126,7 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
               <a
                 href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}`}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener"
                 className={styles.socialIcon}
               >
                 <Icons.XTwitter />
