@@ -23,6 +23,7 @@ export const initialUserData: UserData = {
   telephone: "",
   isAdmin: false,
 };
+
 export type RegisterResponse = {
   success: boolean;
   user: UserData;
@@ -38,3 +39,20 @@ export interface LoginCredentials {
   email: string;
   password: string;
 }
+
+export interface ApiErrorData {
+  data?: {
+    endpoint?: string;
+    method?: string;
+    errors?: [string, string][];
+    message?: string;
+    item?: unknown;
+  };
+  status?: string;
+  message?: string;
+}
+
+export type ErrorResponse = {
+  status: number;
+  data: ApiErrorData;
+};

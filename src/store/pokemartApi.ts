@@ -1,8 +1,14 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import {
+  createApi,
+  fetchBaseQuery,
+  FetchBaseQueryError,
+} from "@reduxjs/toolkit/query/react";
 import { getItemsData, Item, GetItemsParams } from "../types/apiTypes/item";
-import { apiResponse } from "../types/apiTypes/response";
+import { ApiResponse } from "../types/apiTypes/response";
 import { RootState } from "./index";
 import { AuthResponse, LoginCredentials } from "../types/auth";
+import { UserData, RegisterResponse } from "../types/auth";
+import { ErrorResponse } from "../types/auth";
 
 const pokemartApi = createApi({
   reducerPath: "pokemartApi",
@@ -15,27 +21,44 @@ const pokemartApi = createApi({
       }
       return headers;
     },
-    responseHandler: async (response) => {
-      const data = (await response.json()) as apiResponse;
-      return data.data;
-    },
   }),
   endpoints: (builder) => ({
     getItems: builder.query<getItemsData, GetItemsParams>({
       query: ({ page }) => {
         return `/items?page=${page}`;
       },
+      transformResponse: (response: ApiResponse): getItemsData => {
+        return response.data as getItemsData;
+      },
+      transformErrorResponse: (response: FetchBaseQueryError | ErrorResponse) =>
+        response,
     }),
     getItemById: builder.query<Item, Item["_id"]>({
       query: (id) => `/items/${id}`,
-      transformResponse: (response: { item: Item }) => response.item,
+      transformResponse: (response: ApiResponse): Item => {
+        if (
+          response.data &&
+          typeof response.data === "object" &&
+          "item" in response.data
+        ) {
+          return response.data.item as Item;
+        }
+        throw new Error("Item not found in response");
+      },
+      transformErrorResponse: (response: FetchBaseQueryError | ErrorResponse) =>
+        response,
     }),
-    register: builder.mutation({
+    register: builder.mutation<RegisterResponse, UserData>({
       query: (userData) => ({
         url: "auth/register",
         method: "POST",
         body: userData,
       }),
+      transformResponse: (response: ApiResponse): RegisterResponse => {
+        return response.data as RegisterResponse;
+      },
+      transformErrorResponse: (response: FetchBaseQueryError | ErrorResponse) =>
+        response,
     }),
     login: builder.mutation<AuthResponse, LoginCredentials>({
       query: (credentials) => ({

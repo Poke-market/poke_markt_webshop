@@ -1,28 +1,21 @@
 import { requestInfo } from "./info";
+import { ErrorResponse } from "../auth";
 
-export type responseStatus = "success" | "error" | "fail";
+export type ResponseStatus = "success" | "error" | "fail";
 
-export interface apiSuccessResponse<T extends null | object> {
+export type ApiSuccessResponse<T> = {
   status: "success";
   data: T;
-}
+};
 
-export interface apiFailResponse {
+export interface ApiFailResponse {
   status: "fail";
   data: requestInfo & {
-    errors: string[] | [string, string][];
+    errors: Array<string | [string, string]>;
   };
 }
 
-export interface apiErrorResponse {
-  status: "error";
-  message: string;
-  data: requestInfo & {
-    errors: string[];
-  };
-}
-
-export type apiResponse<T extends null | object = object | null> =
-  | apiSuccessResponse<T>
-  | apiFailResponse
-  | apiErrorResponse;
+export type ApiResponse<T = unknown> =
+  | ApiSuccessResponse<T>
+  | ApiFailResponse
+  | ErrorResponse;

@@ -10,23 +10,12 @@ export const useRegister = () => {
   const handleRegister = async (userData: UserData) => {
     try {
       const response = (await register(userData).unwrap()) as RegisterResponse;
-      console.log("Register response:", response);
-
-      dispatch(
-        setAuth({
-          user: response.user,
-          token: response.token,
-        }),
-      );
-
-      return {
-        success: true,
-        data: response,
-      };
-    } catch (error) {
+      dispatch(setAuth({ user: response.user, token: response.token }));
+      return { success: true, data: response };
+    } catch (error: any) {
       return {
         success: false,
-        error: error as Error,
+        error: error,
       };
     }
   };
