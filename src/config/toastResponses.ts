@@ -34,6 +34,11 @@ export const toastResponses = {
     message: "An error occurred during login.",
     options: { toastId: "login-error" },
   },
+  // Logout responses
+  logoutSuccess: {
+    message: "You have been successfully logged out.",
+    options: { toastId: "logout-success" },
+  },
 } as const;
 
 export const getToastResponse = (
@@ -50,4 +55,5 @@ export const TOAST_KEYS = {
   LOGIN_SUCCESS: "loginSuccess",
   LOGIN_FAIL: "loginFail",
   LOGIN_ERROR: "loginError",
+  LOGOUT_SUCCESS: "logoutSuccess",
 } as const;
