@@ -16,23 +16,6 @@ export interface ApiResponse {
   };
 }
 
-export interface ApiListResponse {
-  status: string;
-  data: {
-    items: Item[];
-    info: {
-      pages: number;
-    };
-  };
-}
-
-export interface ApiSingleResponse {
-  status: string;
-  data: {
-    item: Item;
-  };
-}
-
 export interface ProductInfoProps {
   name: string;
   description: string;
