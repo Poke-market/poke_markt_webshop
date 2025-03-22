@@ -1,5 +1,5 @@
 import { PageBanner, UspBanner } from "../components/common";
-import RegisterForm from "../components/auth/RegisterForm.tsx";
+import RegisterForm from "../components/register/RegisterForm";
 
 const RegisterPage = () => {
   return (
