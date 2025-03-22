@@ -5,11 +5,7 @@ import ProductNotFound from "../components/detailpage/ProductNotFound";
 
 const DetailPage = () => {
   const { slug } = useParams();
-  const {
-    data: product,
-    isLoading: loading,
-    error,
-  } = useGetItemBySlugQuery(slug ?? "", {
+  const { data: Item, isLoading: loading } = useGetItemBySlugQuery(slug ?? "", {
     skip: !slug,
   });
   const { data: availableProductsData } = useGetItemsQuery({
@@ -17,15 +13,11 @@ const DetailPage = () => {
     limit: 5,
   });
 
-  console.log("Slug:", slug);
-  console.log("Product:", product);
-  console.log("Error:", error);
-
   if (loading) {
     return <Loading />;
   }
 
-  if (!product) {
+  if (!Item) {
     return (
       <ProductNotFound
         name={slug ?? ""}
@@ -37,7 +29,7 @@ const DetailPage = () => {
   return (
     <>
       <Breadcrumb />
-      <ProductInfo product={product} />
+      <ProductInfo product={Item} />
       <Related />
     </>
   );

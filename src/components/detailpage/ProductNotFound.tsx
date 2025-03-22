@@ -1,6 +1,7 @@
 import styles from "../../styles/components/detailpage/ProductNotFound.module.scss";
 import { Heading } from "../../utils";
 import { Item } from "../../types/apiTypes/item";
+import { Link } from "react-router-dom";
 
 interface ProductNotFoundProps {
   name: string;
@@ -27,7 +28,7 @@ const ProductNotFound = ({ name, availableProducts }: ProductNotFoundProps) => {
             <ul>
               {availableProducts.map((item) => (
                 <li key={item._id}>
-                  <a href={`/item/${item.slug}`}>{item.name}</a>
+                  <Link to={`/item/${item.slug}`}>{item.name}</Link>
                 </li>
               ))}
             </ul>
