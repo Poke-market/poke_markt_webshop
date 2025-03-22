@@ -18,20 +18,20 @@
   .notFoundTitle {
     color: var(--red);
     margin-bottom: 1rem;
-    font-size: 2.4rem;
+    font-size: $font-size-2xl;
 
     @media (max-width: $breakpoint-sm) {
-      font-size: 2rem;
+      font-size: $font-size-xl;
     }
   }
 
   p {
     color: var(--text-color);
     margin-bottom: 2rem;
-    font-size: 1.6rem;
+    font-size: $font-size-lg;
 
     @media (max-width: $breakpoint-sm) {
-      font-size: 1.4rem;
+      font-size: $font-size-xs;
     }
   }
 }
@@ -52,10 +52,10 @@
   .recommendationsTitle {
     color: var(--red);
     margin-bottom: 1.5rem;
-    font-size: 2rem;
+    font-size: $font-size-xl;
 
     @media (max-width: $breakpoint-sm) {
-      font-size: 1.8rem;
+      font-size: $font-size-lg;
       margin-bottom: 1rem;
     }
   }
@@ -84,13 +84,13 @@
       a {
         color: var(--text-color);
         text-decoration: none;
-        font-size: 1.6rem;
+        font-size: $font-size-lg;
         transition: color 0.2s ease;
         display: block;
         padding: 0.5rem 0;
 
         @media (max-width: $breakpoint-sm) {
-          font-size: 1.4rem;
+          font-size: $font-size-xs;
         }
 
         &:hover {
