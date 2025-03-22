@@ -1,55 +1,50 @@
-import styles from "../styles/pages/DetailPage.module.scss";
-import { Breadcrumb, Related, Heading, Loading, ProductInfo } from "../utils";
+import { Breadcrumb, Related, Loading, ProductInfo } from "../utils";
 import { useParams } from "react-router-dom";
-import { useProduct } from "../hooks/useProduct";
+import { useGetItemsQuery, useGetItemBySlugQuery } from "../store/pokemartApi";
+import ProductNotFound from "../components/detailpage/ProductNotFound";
+import { useMemo } from "react";
+import { getRandomItems } from "../utils/arrayUtils";
 
 const DetailPage = () => {
-  const { name } = useParams();
-  const { product, loading, availableProducts } = useProduct(name);
+  const { slug } = useParams();
+  const { data: Item, isLoading: loading } = useGetItemBySlugQuery(slug ?? "", {
+    skip: !slug,
+  });
+
+  const { data: countData } = useGetItemsQuery({
+    page: 1,
+    limit: 1,
+  });
+
+  const { data: allProductsData } = useGetItemsQuery(
+    {
+      page: 1,
+      limit: countData?.info.count ?? 1,
+    },
+    {
+      skip: !countData?.info.count,
+    },
+  );
+
+  const randomProducts = useMemo(() => {
+    if (!allProductsData?.items) return [];
+    return getRandomItems(allProductsData.items, 5);
+  }, [allProductsData?.items]);
 
   if (loading) {
     return <Loading />;
   }
 
-  if (!product) {
+  if (!Item) {
     return (
-      <div className={styles.productDetail}>
-        <div className={styles.notFound}>
-          <Heading as="h2" size="textmd" className={styles.notFoundTitle}>
-            Product not found
-          </Heading>
-          <p>Sorry, we couldn't find a product matching "{name}".</p>
-          {availableProducts.length > 0 && (
-            <div className={styles.availableProducts}>
-              <Heading
-                as="h3"
-                size="textlg"
-                className={styles.recommendationsTitle}
-              >
-                Recommended Products:
-              </Heading>
-              <ul>
-                {availableProducts.map((item) => (
-                  <li key={item._id}>
-                    <a
-                      href={`/item/${item.name.toLowerCase().replace(/\s+/g, "-")}`}
-                    >
-                      {item.name}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </div>
-      </div>
+      <ProductNotFound name={slug ?? ""} availableProducts={randomProducts} />
     );
   }
 
   return (
     <>
       <Breadcrumb />
-      <ProductInfo product={product} />
+      <ProductInfo product={Item} />
       <Related />
     </>
   );
