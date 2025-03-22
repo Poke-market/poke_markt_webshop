@@ -1,6 +1,6 @@
 import { useAppDispatch } from "../store";
 import { useRegisterMutation } from "../store/pokemartApi";
-import { UserData, RegisterResponse } from "../types/auth";
+import { UserData } from "../types/auth";
 import { setAuth } from "../store/authSlice";
 
 export const useRegister = () => {
@@ -9,7 +9,7 @@ export const useRegister = () => {
 
   const handleRegister = async (userData: UserData) => {
     try {
-      const response = (await register(userData).unwrap()) as RegisterResponse;
+      const response = await register(userData).unwrap();
       dispatch(setAuth({ user: response.user, token: response.token }));
       return { success: true, data: response };
     } catch (error: any) {
