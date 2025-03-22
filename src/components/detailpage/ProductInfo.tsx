@@ -4,6 +4,7 @@ import { Icons } from "../../utils";
 import { Button, Heading } from "../common";
 import ProductDisplay from "./ProductDisplay.tsx";
 import { Item } from "../../types/apiTypes/item";
+import { titleCase } from "../../utils/stringUtils";
 
 type ProductInfoProps = {
   product: Item;
@@ -32,12 +33,18 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
       ? product.price
       : undefined;
 
+  const formattedDescription =
+    product.description.charAt(0).toUpperCase() + product.description.slice(1);
+
   return (
     <div className={styles.productDetail}>
-      <ProductDisplay images={[product.photoUrl]} name={product.name} />
+      <ProductDisplay
+        images={[product.photoUrl]}
+        name={titleCase(product.name)}
+      />
       <div className={styles.productInfo}>
         <Heading as="h1" size="textmd" className={styles.productName}>
-          {product.name}
+          {titleCase(product.name)}
         </Heading>
         <div className={styles.priceContainer}>
           <span className={styles.currentPrice}>${displayPrice}</span>
@@ -60,7 +67,7 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
           </Heading>
         </div>
 
-        <p className={styles.description}>{product.description}</p>
+        <p className={styles.description}>{formattedDescription}</p>
         <div className={styles.actions}>
           <div className={styles.quantityContainer}>
             <Button

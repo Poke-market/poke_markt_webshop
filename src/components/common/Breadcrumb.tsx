@@ -2,6 +2,7 @@ import styles from "../../styles/components/common/Breadcrumb.module.scss";
 import { Link, useParams } from "react-router-dom";
 import { Icons } from "../../utils";
 import { useGetItemBySlugQuery } from "../../store/pokemartApi";
+import { titleCase } from "../../utils/stringUtils";
 
 const Breadcrumb = () => {
   const { slug } = useParams();
@@ -27,7 +28,9 @@ const Breadcrumb = () => {
         {slug && (
           <div className={styles.itemGroup}>
             <span className={styles.pipeSeparator}></span>
-            <span className={styles.breadcrumbItem}>{item?.name}</span>
+            <span className={styles.breadcrumbItem}>
+              {titleCase(item?.name)}
+            </span>
           </div>
         )}
       </div>
