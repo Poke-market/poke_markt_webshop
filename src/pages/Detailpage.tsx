@@ -2,16 +2,34 @@ import { Breadcrumb, Related, Loading, ProductInfo } from "../utils";
 import { useParams } from "react-router-dom";
 import { useGetItemsQuery, useGetItemBySlugQuery } from "../store/pokemartApi";
 import ProductNotFound from "../components/detailpage/ProductNotFound";
+import { useMemo } from "react";
+import { getRandomItems } from "../utils/arrayUtils";
 
 const DetailPage = () => {
   const { slug } = useParams();
   const { data: Item, isLoading: loading } = useGetItemBySlugQuery(slug ?? "", {
     skip: !slug,
   });
-  const { data: availableProductsData } = useGetItemsQuery({
+
+  const { data: countData } = useGetItemsQuery({
     page: 1,
-    limit: 5,
+    limit: 1,
   });
+
+  const { data: allProductsData } = useGetItemsQuery(
+    {
+      page: 1,
+      limit: countData?.info.count ?? 1,
+    },
+    {
+      skip: !countData?.info.count,
+    },
+  );
+
+  const randomProducts = useMemo(() => {
+    if (!allProductsData?.items) return [];
+    return getRandomItems(allProductsData.items, 5);
+  }, [allProductsData?.items]);
 
   if (loading) {
     return <Loading />;
@@ -19,10 +37,7 @@ const DetailPage = () => {
 
   if (!Item) {
     return (
-      <ProductNotFound
-        name={slug ?? ""}
-        availableProducts={availableProductsData?.items ?? []}
-      />
+      <ProductNotFound name={slug ?? ""} availableProducts={randomProducts} />
     );
   }
 
