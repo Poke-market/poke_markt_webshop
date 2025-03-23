@@ -4,7 +4,6 @@ import { ErrorResponse } from "../auth";
 export type ResponseStatus = "success" | "error" | "fail";
 
 export interface apiSuccessResponse<T> {
-  // Removed 'extends null | object'
   status: "success";
   data: T;
 }
@@ -24,5 +23,8 @@ export interface apiErrorResponse {
   };
 }
 
-export type apiResponse<T = unknown> = // Changed default to unknown
-  apiSuccessResponse<T> | apiFailResponse | apiErrorResponse | ErrorResponse;
+export type apiResponse<T = unknown> =
+  | apiSuccessResponse<T>
+  | apiFailResponse
+  | apiErrorResponse
+  | ErrorResponse;

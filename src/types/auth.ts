@@ -13,6 +13,7 @@ export type UserData = {
 };
 
 export const initialUserData: UserData = {
+  avatar: "",
   email: "",
   password: "",
   firstname: "",
@@ -45,18 +46,6 @@ export interface LoginCredentials {
   email: string;
   password: string;
 }
-
-// export interface ApiErrorData {
-//   data?: {
-//     endpoint?: string;
-//     method?: string;
-//     errors?: [string, string][];
-//     message?: string;
-//     item?: unknown;
-//   };
-//   status?: string;
-//   message?: string;
-// }
 
 export type ErrorResponse = {
   status: number;
