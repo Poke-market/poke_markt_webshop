@@ -15,7 +15,11 @@ import {
   useLocation,
 } from "react-router-dom";
 import { useAppDispatch } from "../../store";
-import { setCategorieCounts, setTotalCount } from "../../store/filterSlice";
+import {
+  setCategorieCounts,
+  setPriceRange,
+  setTotalCount,
+} from "../../store/filterSlice";
 
 const ProductGrid = () => {
   const { page = 1 } = useParams();
@@ -35,8 +39,8 @@ const ProductGrid = () => {
       .get("limit")
       .getAll("cat")
       .getAll("tag")
-      .get("minPrice")
-      .get("maxPrice")
+      .get("minPrice", { as: "minDiscountedPrice" })
+      .get("maxPrice", { as: "maxDiscountedPrice" })
       .getFoundParams(),
   });
   const info = data?.info;
@@ -53,6 +57,7 @@ const ProductGrid = () => {
     if (info) {
       dispatch(setCategorieCounts(info.categorieCount));
       dispatch(setTotalCount(info.count));
+      dispatch(setPriceRange(info.priceRange));
     }
   }, [info, dispatch]);
 

@@ -45,6 +45,11 @@ export const categories = [
 
 export type Category = (typeof categories)[number];
 
+export type PriceRange = {
+  min: number;
+  max: number;
+};
+
 /********************************
  *           RESPONSES          *
  ********************************/
@@ -52,12 +57,7 @@ export type GetItemsData = {
   info: paginationInfo & {
     count: number;
     categorieCount: Record<Category, number>;
-    page: number;
-    pages: number;
-    prev: string | null;
-    next: string | null;
-    first: string | null;
-    last: string | null;
+    priceRange: PriceRange;
   };
   items: Item[];
 };
@@ -67,8 +67,10 @@ export type GetItemsParams = {
   tag?: string[];
   minPrice?: number;
   maxPrice?: number;
+  minDiscountedPrice?: number;
+  maxDiscountedPrice?: number;
+  sort?: "price" | "name";
+  order?: "asc" | "desc";
   page?: number;
-  sort?: string;
-  order?: string;
   limit?: number;
 };
