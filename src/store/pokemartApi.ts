@@ -54,6 +54,7 @@ const pokemartApi = createApi({
   reducerPath: "pokemartApi",
   baseQuery: customBaseQuery,
   endpoints: (builder) => ({
+    // Items
     getItems: builder.query<GetItemsData, GetItemsParams>({
       query: (params) => ({
         url: "/items",
@@ -77,11 +78,35 @@ const pokemartApi = createApi({
       transformResponse: (response: { name: string }[]) =>
         response.map((tag) => tag.name),
     }),
+
+    // Auth
     register: builder.mutation<RegisterResponse, UserData>({
       query: (userData) => ({
         url: "auth/register",
         method: "POST",
         body: userData,
+      }),
+    }),
+
+    // Wishlist
+    getWishlist: builder.query<Item[], string>({
+      query: (id) => `/users/${id}/wishlist`,
+    }),
+    addToWishlist: builder.mutation<void, { userId: string; itemId: string }>({
+      query: ({ userId, itemId }) => ({
+        url: `/users/${userId}/wishlist`,
+        method: "POST",
+        body: { itemId },
+      }),
+    }),
+    removeFromWishlist: builder.mutation<
+      void,
+      { userId: string; itemId: string }
+    >({
+      query: ({ userId, itemId }) => ({
+        url: `/users/${userId}/wishlist`,
+        method: "DELETE",
+        body: { itemId },
       }),
     }),
   }),
@@ -93,5 +118,8 @@ export const {
   useRegisterMutation,
   useGetItemBySlugQuery,
   useGetTagsQuery,
+  useGetWishlistQuery,
+  useAddToWishlistMutation,
+  useRemoveFromWishlistMutation,
 } = pokemartApi;
 export default pokemartApi;
