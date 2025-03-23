@@ -22,6 +22,8 @@ function App() {
           <Route path="/item/:slug" element={<Detailpage />} />
           <Route path="/login" element={<Loginpage />} />
           <Route path="/register" element={<Registerpage />} />
+          <Route path="/home" element={<Homepage />} />
+          <Route path="/shop" element={<Homepage />} />
           <Route path="/" element={<Homepage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
