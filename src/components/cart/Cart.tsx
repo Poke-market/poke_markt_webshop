@@ -93,7 +93,7 @@ const CartPage = () => {
       columnHelper.accessor("rowPrice", {
         cell: (info) => (
           <div className={styles["price-cell"]}>
-            <Heading>{info.getValue()}</Heading>
+            <Heading>&euro; {info.getValue()}</Heading>
           </div>
         ),
         header: () => (
@@ -105,13 +105,17 @@ const CartPage = () => {
       columnHelper.accessor("rowQuantity", {
         cell: (info) => (
           <div className={styles["quantity-cell"]}>
-            <button onClick={info.getValue().onMinus}>-</button>
+            <button onClick={info.getValue().onMinus}>
+              <Icons.Minus />
+            </button>
             <Input
               type="number"
               value={info.getValue().value}
               onChange={info.getValue().onChange}
             />
-            <button onClick={info.getValue().onPlus}>+</button>
+            <button onClick={info.getValue().onPlus}>
+              <Icons.Plus />
+            </button>
           </div>
         ),
         header: () => (
@@ -125,7 +129,7 @@ const CartPage = () => {
       columnHelper.accessor("rowSubtotal", {
         cell: (info) => (
           <div className={styles["subtotal-cell"]}>
-            <Heading>{info.getValue()}</Heading>
+            <Heading>&euro; {info.getValue()}</Heading>
           </div>
         ),
         header: () => (

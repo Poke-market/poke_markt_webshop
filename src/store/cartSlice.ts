@@ -48,11 +48,7 @@ export const cartSlice = createSlice({
       const { id, quantity } = action.payload;
       if (!id) throw new Error("id is required");
       const item = state.items.find((item) => item.item._id === id);
-
-      if (item) {
-        item.quantity = quantity;
-        if (item.quantity < 1) removeItemHelper(state, id);
-      }
+      if (item) item.quantity = Math.max(1, quantity);
     },
     incrementQuantity: (state, action: PayloadAction<Item["_id"]>) => {
       const id = action.payload;
@@ -64,9 +60,7 @@ export const cartSlice = createSlice({
       const id = action.payload;
       if (!id) throw new Error("id is required");
       const item = state.items.find((item) => item.item._id === id);
-      if (!item) return;
-      item.quantity--;
-      if (item.quantity < 1) removeItemHelper(state, id);
+      if (item && item.quantity > 1) item.quantity--;
     },
     clearCart: (state) => {
       state.items = [];

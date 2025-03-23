@@ -4,6 +4,7 @@ import {
   selectCartItems,
   selectCartTotalPrice,
   clearCart,
+  removeItem,
 } from "../../store/cartSlice";
 import { Overlay } from "../common/Overlay";
 import CartItem from "./CartItem";
@@ -44,7 +45,11 @@ export const CartOverlay = ({ isOpen, onClose }: Props) => {
       content={cartItems}
       renderContent={(cartItem) => <CartItem {...cartItem} />}
       getContentKey={(cartItem) => cartItem.item._id}
-      onRemove={(cartItem) => dispatch(decrementQuantity(cartItem.item._id))}
+      onRemove={({ item, quantity }) =>
+        quantity > 1
+          ? dispatch(decrementQuantity(item._id))
+          : dispatch(removeItem(item._id))
+      }
     />
   );
 };
