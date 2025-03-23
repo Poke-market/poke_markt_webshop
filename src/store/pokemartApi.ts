@@ -2,50 +2,80 @@ import {
   createApi,
   fetchBaseQuery,
   FetchBaseQueryError,
+  BaseQueryFn,
+  FetchArgs,
+  FetchBaseQueryMeta,
 } from "@reduxjs/toolkit/query/react";
-import { getItemsData, Item, GetItemsParams } from "../types/apiTypes/item";
-import { ApiResponse } from "../types/apiTypes/response";
+import { Item, GetItemsParams, GetItemsData } from "../types/apiTypes/item";
 import { RootState } from "./index";
-import { UserData, RegisterResponse } from "../types/auth";
-import { ErrorResponse } from "../types/auth";
+import { UserData, RegisterResponse, ErrorResponse } from "../types/auth";
+
+const baseQueryWithAuth = fetchBaseQuery({
+  baseUrl: import.meta.env.VITE_API_URL + "/api",
+  responseHandler: async (response) => {
+    const data = await response.json();
+    return "data" in data ? data.data : data;
+  },
+  prepareHeaders: (headers, { getState }) => {
+    const token = (getState() as RootState).auth.token;
+    if (token) {
+      headers.set("Authorization", `Bearer ${token}`);
+    }
+    return headers;
+  },
+});
+
+const baseQueryWithoutAuth = fetchBaseQuery({
+  baseUrl: import.meta.env.VITE_API_URL + "/api",
+  responseHandler: async (response) => {
+    const data = await response.json();
+    return "data" in data ? data.data : data;
+  },
+});
+
+const customBaseQuery: BaseQueryFn<
+  string | FetchArgs,
+  unknown,
+  FetchBaseQueryError,
+  object,
+  FetchBaseQueryMeta
+> = async (args, api, extraOptions) => {
+  let result = await baseQueryWithAuth(args, api, extraOptions);
+  if (result.error) {
+    console.log("API Error:", result.error);
+  }
+  if (result.error && result.error.status === 401) {
+    result = await baseQueryWithoutAuth(args, api, extraOptions);
+  }
+  return result;
+};
 
 const pokemartApi = createApi({
   reducerPath: "pokemartApi",
-  baseQuery: fetchBaseQuery({
-    baseUrl: import.meta.env.VITE_API_URL + "/api",
-    prepareHeaders: (headers, { getState }) => {
-      const token = (getState() as RootState).auth.token;
-      if (token) {
-        headers.set("Authorization", `Bearer ${token}`);
-      }
-      return headers;
-    },
-  }),
+  baseQuery: customBaseQuery,
   endpoints: (builder) => ({
-    getItems: builder.query<getItemsData, GetItemsParams>({
-      query: ({ page }) => {
-        return `/items?page=${page}`;
-      },
-      transformResponse: (response: ApiResponse): getItemsData => {
-        return response.data as getItemsData;
-      },
-      transformErrorResponse: (response: FetchBaseQueryError | ErrorResponse) =>
-        response,
+    getItems: builder.query<GetItemsData, GetItemsParams>({
+      query: (params) => ({
+        url: "/items",
+        params: {
+          ...params,
+          tag: params.tag?.join(","),
+          cat: params.cat?.join(","),
+        },
+      }),
     }),
     getItemById: builder.query<Item, Item["_id"]>({
       query: (id) => `/items/${id}`,
-      transformResponse: (response: ApiResponse): Item => {
-        if (
-          response.data &&
-          typeof response.data === "object" &&
-          "item" in response.data
-        ) {
-          return response.data.item as Item;
-        }
-        throw new Error("Item not found in response");
-      },
-      transformErrorResponse: (response: FetchBaseQueryError | ErrorResponse) =>
-        response,
+      transformResponse: (response: { item: Item }) => response.item,
+    }),
+    getItemBySlug: builder.query<Item, string>({
+      query: (slug) => `/slug/${slug}`,
+      transformResponse: (response: { item: Item }) => response.item,
+    }),
+    getTags: builder.query<string[], void>({
+      query: () => "/tags",
+      transformResponse: (response: { name: string }[]) =>
+        response.map((tag) => tag.name),
     }),
     register: builder.mutation<RegisterResponse, UserData>({
       query: (userData) => ({
@@ -53,15 +83,24 @@ const pokemartApi = createApi({
         method: "POST",
         body: userData,
       }),
-      transformResponse: (response: ApiResponse): RegisterResponse => {
-        return response.data as RegisterResponse;
-      },
-      transformErrorResponse: (response: FetchBaseQueryError | ErrorResponse) =>
-        response,
+      transformErrorResponse: (
+        response: FetchBaseQueryError,
+      ): ErrorResponse => ({
+        status: response.status as number,
+        data: {
+          message: (response.data as any)?.message || "An error occurred",
+          data: (response.data as any)?.data || undefined,
+        },
+      }),
     }),
   }),
 });
 
-export const { useGetItemsQuery, useGetItemByIdQuery, useRegisterMutation } =
-  pokemartApi;
+export const {
+  useGetItemsQuery,
+  useGetItemByIdQuery,
+  useRegisterMutation,
+  useGetItemBySlugQuery,
+  useGetTagsQuery,
+} = pokemartApi;
 export default pokemartApi;
