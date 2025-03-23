@@ -22,6 +22,8 @@ import {
 const devToolsOptions: DevToolsEnhancerOptions = {
   actionCreators: {
     ...cartSlice.actions,
+    ...authSlice.actions,
+    ...filterSlice.actions,
   },
 };
 
