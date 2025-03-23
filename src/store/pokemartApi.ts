@@ -8,7 +8,7 @@ import {
 } from "@reduxjs/toolkit/query/react";
 import { Item, GetItemsParams, GetItemsData } from "../types/apiTypes/item";
 import { RootState } from "./index";
-import { UserData, RegisterResponse, ErrorResponse } from "../types/auth";
+import { UserData, RegisterResponse } from "../types/auth";
 
 const baseQueryWithAuth = fetchBaseQuery({
   baseUrl: import.meta.env.VITE_API_URL + "/api",
@@ -82,15 +82,6 @@ const pokemartApi = createApi({
         url: "auth/register",
         method: "POST",
         body: userData,
-      }),
-      transformErrorResponse: (
-        response: FetchBaseQueryError,
-      ): ErrorResponse => ({
-        status: response.status as number,
-        data: {
-          message: (response.data as any)?.message || "An error occurred",
-          data: (response.data as any)?.data || undefined,
-        },
       }),
     }),
   }),

@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { useRegister } from "./useRegister";
 import { UserData, ApiErrorData } from "../types/auth";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
-import { processErrorData } from "../utils/errorHandlers";
 import { toast } from "react-toastify";
 import { getToastResponse, TOAST_KEYS } from "../config/toastResponses";
+import { processErrorData } from "../utils/errorHandlers";
 
 export const useRegisterForm = (initialState: UserData) => {
   const [formData, setFormData] = useState<UserData>(initialState);
@@ -47,26 +47,21 @@ export const useRegisterForm = (initialState: UserData) => {
         return;
       }
 
-      const error = result.error;
-      const isFetchBaseQueryError = (
-        err: unknown,
-      ): err is FetchBaseQueryError =>
-        typeof err === "object" && err !== null && "status" in err;
+      if (result.error) {
+        const error = result.error as FetchBaseQueryError;
+        const errorData: ApiErrorData = {
+          endpoint: (error.data as any)?.endpoint || "/api/auth/register",
+          method: (error.data as any)?.method || "POST",
+          errors: (error.data as any)?.errors,
+        };
+        const { message, fieldErrors } = processErrorData(errorData);
 
-      if (!isFetchBaseQueryError(error) || !error.data) {
-        const { message, options } = getToastResponse(
-          TOAST_KEYS.REGISTER_ERROR,
+        setErrors(fieldErrors);
+        toast.error(
+          message || "Registration failed",
+          getToastResponse(TOAST_KEYS.REGISTER_FAIL).options,
         );
-        toast.error(message, options);
-        return;
       }
-
-      const { message, fieldErrors } = processErrorData(
-        error.data as ApiErrorData,
-      );
-      setErrors(fieldErrors);
-      const { options } = getToastResponse(TOAST_KEYS.REGISTER_FAIL);
-      toast.error(message, options);
     } catch (error) {
       console.error("Unexpected error:", error);
       const { message, options } = getToastResponse(TOAST_KEYS.REGISTER_ERROR);
