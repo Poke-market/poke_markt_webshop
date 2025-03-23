@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppSelector } from "../../store";
 import {
-  removeItem,
+  decrementQuantity,
   selectCartItems,
   selectCartTotalPrice,
   clearCart,
@@ -44,7 +44,7 @@ export const CartOverlay = ({ isOpen, onClose }: Props) => {
       content={cartItems}
       renderContent={(cartItem) => <CartItem {...cartItem} />}
       getContentKey={(cartItem) => cartItem.item._id}
-      onRemove={(cartItem) => dispatch(removeItem(cartItem.item._id))}
+      onRemove={(cartItem) => dispatch(decrementQuantity(cartItem.item._id))}
     />
   );
 };

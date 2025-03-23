@@ -5,12 +5,15 @@ import { Button, Heading } from "../common";
 import ProductDisplay from "./ProductDisplay.tsx";
 import { Item } from "../../types/apiTypes/item";
 import { titleCase } from "../../utils/stringUtils";
+import { useAppDispatch } from "../../store";
+import { addItem } from "../../store/cartSlice";
 
 type ProductInfoProps = {
   product: Item;
 };
 
 const ProductInfo = ({ product }: ProductInfoProps) => {
+  const dispatch = useAppDispatch();
   const [quantity, setQuantity] = useState(1);
 
   const handleIncrement = () => {
@@ -90,7 +93,12 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
               +
             </Button>
           </div>
-          <Button className={styles.addToCart}>Add To Cart</Button>
+          <Button
+            className={styles.addToCart}
+            onClick={() => dispatch(addItem({ item: product, quantity }))}
+          >
+            Add To Cart
+          </Button>
         </div>
         <div className={styles.productDetails}>
           <div className={styles.sku}>
