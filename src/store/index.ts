@@ -29,7 +29,7 @@ const rootReducer = combineReducers({
   [cartSlice.reducerPath]: cartSlice.reducer,
   [pokemartApi.reducerPath]: pokemartApi.reducer,
   [filterSlice.reducerPath]: filterSlice.reducer,
-  auth: authSlice,
+  [authSlice.reducerPath]: authSlice.reducer,
 });
 
 const persistConfig = {
