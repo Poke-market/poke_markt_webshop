@@ -14,13 +14,13 @@ const Breadcrumb = () => {
     <div className={styles.breadcrumb}>
       <div className={styles.breadcrumbContainer}>
         <span className={styles.breadcrumbItem}>
-          <Link to="/">Home</Link>
+          <Link to="/home">Home</Link>
         </span>
         <span className={styles.separator}>
           <Icons.Arrowrightsmall />
         </span>
         <span className={styles.breadcrumbItem}>
-          <Link to="/">Shop</Link>
+          <Link to="/shop">Shop</Link>
         </span>
         <span className={styles.separator}>
           <Icons.Arrowrightsmall />
