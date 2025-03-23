@@ -59,13 +59,7 @@ export type GetItemsData = {
     first: string | null;
     last: string | null;
   };
-  items: {
-    _id: string;
-    category: Category;
-    description: string;
-    name: string;
-    photoUrl: string;
-  }[];
+  items: Item[];
 };
 
 export type GetItemsParams = {
@@ -73,5 +67,8 @@ export type GetItemsParams = {
   tag?: string[];
   minPrice?: number;
   maxPrice?: number;
-  page?: number; // Add page for pagination
+  page?: number;
+  sort?: string;
+  order?: string;
+  limit?: number;
 };
