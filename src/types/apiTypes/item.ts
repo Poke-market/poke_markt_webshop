@@ -72,6 +72,8 @@ export type GetItemsParams = {
   tag?: string[];
   minPrice?: number;
   maxPrice?: number;
+  minDiscountedPrice?: number;
+  maxDiscountedPrice?: number;
   sort?: "price" | "name";
   order?: "asc" | "desc";
 };
