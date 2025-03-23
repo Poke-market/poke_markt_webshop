@@ -1,0 +1,28 @@
+@use "../../partials/variables" as *;
+@use "../../partials/mixins" as *;
+
+.container {
+    max-width: 1183px;
+    display: flex;
+    flex-direction: column;
+    gap: calc(1008px - 946px);
+    background-color: rebeccapurple;
+    margin: 0 auto;
+    .heading{
+        display: flex;
+        flex-direction: column;
+        gap: 1.6rem;
+        align-items: center;
+        justify-content: center;
+        h2{
+            font-size: 4.8rem;
+            font-weight: 600;
+            color: white
+        }
+        p{
+            font-size: 1.6rem;
+            font-weight: 400;
+            color: white;
+        }
+    }
+}
