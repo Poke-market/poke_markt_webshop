@@ -15,19 +15,16 @@ const ProductRelated = ({ currentProduct }: ProductRelatedProps) => {
 
   const { data: productsData } = useGetItemsQuery({
     page: 1,
-    limit: 50,
+    limit: 8,
+    cat: [currentProduct.category],
   });
 
   const relatedProducts = useMemo(() => {
     if (!productsData?.items) return [];
     return productsData.items
-      .filter(
-        (product) =>
-          product._id !== currentProduct._id &&
-          product.category === currentProduct.category,
-      )
+      .filter((product) => product._id !== currentProduct._id)
       .slice(0, 4);
-  }, [productsData?.items, currentProduct]);
+  }, [productsData?.items, currentProduct._id]);
 
   const handleShowMore = () => {
     void navigate(`/shop?cat=${encodeURIComponent(currentProduct.category)}`);
