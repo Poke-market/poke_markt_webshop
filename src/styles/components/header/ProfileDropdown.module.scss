@@ -22,8 +22,8 @@
   overflow: hidden;
   animation: slideInDefault 0.2s ease-out;
 
-  @include tablet-and-down {
-    left: 70%; // Adjust this value to prevent the jump
+  @include tablet-down {
+    left: 70%;
     transform: translateX(-30%);
     animation: slideInTablet 0.2s ease-out;
   }

@@ -30,13 +30,13 @@
   }
 }
 
-@mixin tablet-and-up {
+@mixin tablet-up {
   @media (min-width: #{$breakpoint-sm + 1px}) {
     @content;
   }
 }
 
-@mixin tablet-and-down {
+@mixin tablet-down {
   @media (max-width: $breakpoint) {
     @content;
   }
