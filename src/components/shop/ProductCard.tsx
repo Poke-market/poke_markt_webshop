@@ -1,6 +1,6 @@
 import { Img, Heading, Button, Text } from "../common";
 import { Icons } from "../../utils";
-import styles from "../../styles/components/home/ProductCard.module.scss";
+import styles from "../../styles/components/shop/ProductCard.module.scss";
 import { Link } from "react-router-dom";
 import { Item } from "../../types/apiTypes/item";
 import { titleCase } from "../../utils/stringUtils";
