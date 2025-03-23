@@ -27,6 +27,12 @@
 .cart-table {
   border-collapse: collapse;
   width: 100%;
+
+  tr:nth-of-type(1) {
+    td {
+      padding-top: 5.5rem;
+    }
+  }
 }
 
 .cart-th {
@@ -39,10 +45,10 @@
 
 .cart-td {
   vertical-align: middle;
-
+  padding-top: 3rem;
   p {
     font-size: 1.6rem;
-    color: var(--light-blue);
+    color: var(--grey-3);
     font-weight: normal;
 
     @media (max-width: 768px) {
@@ -54,20 +60,22 @@
 .product-cell {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
+  justify-content: start;
+  gap: 3.6rem;
   width: 25rem;
   max-width: 100%;
 
   .image-container {
     border-radius: 10px;
-    margin-top: 4rem;
+    aspect-ratio: 1/1;
+    height: 10.5rem;
 
     img {
       width: 100%;
-      height: 10.5rem;
+      height: 100%;
       object-fit: contain;
       border-radius: 10px;
+      background-color: var(--blue-grey);
 
       @media (max-width: 768px) {
         height: 8rem;
@@ -95,9 +103,28 @@
   padding: 0 3.6rem;
   width: 10.5rem;
   margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.6rem;
+    color: var(--grey-3);
+    color: var(--light-blue);
+    visibility: hidden;
+  }
+
+  &:hover {
+    button {
+      visibility: visible;
+    }
+  }
 
   input {
-    border: 1px solid var(--text-color);
+    border: 1px solid var(--grey-4);
     width: 3.2rem;
     height: 3.2rem;
     border-radius: 5px;
@@ -105,21 +132,26 @@
     text-align: center;
     color: var(--text-color);
     font-size: 1.6rem;
+    line-height: 3.2rem;
+    padding: 0;
+
+    /* Remove inner spin buttons */
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* For Firefox */
+    &[type="number"] {
+      -moz-appearance: textfield;
+    }
 
     @media (max-width: 768px) {
       width: 2.8rem;
       height: 2.8rem;
       font-size: 1.4rem;
-    }
-
-    &::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-    }
-
-    &:hover {
-      &::-webkit-inner-spin-button {
-        -webkit-appearance: auto;
-      }
+      line-height: 2.8rem;
     }
   }
 
@@ -174,7 +206,7 @@
   background-color: inherit;
 
   &.product-header {
-    padding: 1.4rem 4.4rem;
+    padding: 1.95rem 4.4rem;
     text-align: end;
 
     @media (max-width: 768px) {

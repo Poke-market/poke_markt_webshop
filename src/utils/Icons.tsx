@@ -43,6 +43,8 @@ const Icons = {
   Arrowrightsmall: createIcon("weui:arrow-filled"),
   Filtering: createIcon("system-uicons:filtering"),
   Unlike: createIcon("icon-park-outline:unlike"),
+  Plus: createIcon("bi:plus"),
+  Minus: createIcon("bi:dash"),
 };
 
 export default Icons;

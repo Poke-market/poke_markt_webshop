@@ -9,6 +9,11 @@ import { titleCase } from "../utils/stringUtils";
 
 const DetailPage = () => {
   const { slug } = useParams();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [slug]);
+
   const { data: Item, isLoading: loading } = useGetItemBySlugQuery(slug ?? "", {
     skip: !slug,
   });
@@ -87,7 +92,7 @@ const DetailPage = () => {
     <>
       <Breadcrumb />
       <ProductInfo product={Item} />
-      <Related />
+      <Related currentProduct={Item} />
     </>
   );
 };
