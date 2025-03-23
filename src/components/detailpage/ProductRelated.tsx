@@ -4,12 +4,15 @@ import { ProductCard } from "../home";
 import { Item } from "../../types/apiTypes/item";
 import { useGetItemsQuery } from "../../store/pokemartApi";
 import { useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface ProductRelatedProps {
   currentProduct: Item;
 }
 
 const ProductRelated = ({ currentProduct }: ProductRelatedProps) => {
+  const navigate = useNavigate();
+
   const { data: productsData } = useGetItemsQuery({
     page: 1,
     limit: 50,
@@ -25,6 +28,10 @@ const ProductRelated = ({ currentProduct }: ProductRelatedProps) => {
       )
       .slice(0, 4);
   }, [productsData?.items, currentProduct]);
+
+  const handleShowMore = () => {
+    void navigate(`/shop?cat=${encodeURIComponent(currentProduct.category)}`);
+  };
 
   if (!relatedProducts.length) {
     return null;
@@ -43,7 +50,9 @@ const ProductRelated = ({ currentProduct }: ProductRelatedProps) => {
             </li>
           ))}
         </ul>
-        <Button className={styles.showBtn}>Show More</Button>
+        <Button className={styles.showBtn} onClick={handleShowMore}>
+          Show More
+        </Button>
       </section>
     </div>
   );
