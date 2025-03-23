@@ -109,6 +109,12 @@ const pokemartApi = createApi({
         body: { itemId },
       }),
     }),
+    clearWishlist: builder.mutation<void, string>({
+      query: (userId) => ({
+        url: `/users/${userId}/wishlist/clear`,
+        method: "DELETE",
+      }),
+    }),
   }),
 });
 
@@ -121,5 +127,6 @@ export const {
   useGetWishlistQuery,
   useAddToWishlistMutation,
   useRemoveFromWishlistMutation,
+  useClearWishlistMutation,
 } = pokemartApi;
 export default pokemartApi;
