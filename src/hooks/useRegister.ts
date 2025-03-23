@@ -15,7 +15,7 @@ export const useRegister = () => {
     } catch (error) {
       return {
         success: false,
-        error, // No cast needed; inferred as FetchBaseQueryError
+        error,
       };
     }
   };
