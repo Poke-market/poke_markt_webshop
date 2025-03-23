@@ -2,11 +2,16 @@ import { Breadcrumb, Related, Loading, ProductInfo } from "../utils";
 import { useParams } from "react-router-dom";
 import { useGetItemsQuery, useGetItemBySlugQuery } from "../store/pokemartApi";
 import ProductNotFound from "../components/detailpage/ProductNotFound";
-import { useMemo } from "react";
+import { useMemo, useEffect } from "react";
 import { getRandomItems } from "../utils/arrayUtils";
 
 const DetailPage = () => {
   const { slug } = useParams();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [slug]);
+
   const { data: Item, isLoading: loading } = useGetItemBySlugQuery(slug ?? "", {
     skip: !slug,
   });
@@ -45,7 +50,7 @@ const DetailPage = () => {
     <>
       <Breadcrumb />
       <ProductInfo product={Item} />
-      <Related />
+      <Related currentProduct={Item} />
     </>
   );
 };

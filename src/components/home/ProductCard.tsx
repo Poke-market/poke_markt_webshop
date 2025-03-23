@@ -4,7 +4,8 @@ import styles from "../../styles/components/home/ProductCard.module.scss";
 import { Link } from "react-router-dom";
 import { Item } from "../../types/apiTypes/item";
 import { titleCase } from "../../utils/stringUtils";
-
+import { useAppDispatch } from "../../store";
+import { addItem } from "../../store/cartSlice";
 export type Props = {
   item: Item;
   className?: string;
@@ -32,6 +33,7 @@ export default function ProductCard({
   const { _id: id, name, description, photoUrl, price, discount, slug } = item;
   const truncatedDescription = truncateText(description, 25);
   const truncatedName = truncateText(name, 20);
+  const dispatch = useAppDispatch();
 
   return (
     <div
@@ -72,8 +74,8 @@ export default function ProductCard({
         </div>
       </div>
 
-      <Link to={`/item/${slug}`} className={styles.overlay}>
-        <Button>Add to cart</Button>
+      <div className={styles.overlay}>
+        <Button onClick={() => dispatch(addItem({ item }))}>Add to cart</Button>
         <div className={styles.overlayButtons}>
           <Button className={styles.overlayButton}>
             <span className={styles.icon}>
@@ -94,7 +96,7 @@ export default function ProductCard({
             Like
           </Button>
         </div>
-      </Link>
+      </div>
     </div>
   );
 }
