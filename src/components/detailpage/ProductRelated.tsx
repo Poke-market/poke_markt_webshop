@@ -1,24 +1,34 @@
 import { Heading, Button } from "../common";
 import styles from "../../styles/components/detailpage/RelatedProducts.module.scss";
-import poke from "/poke.png?url";
 import { ProductCard } from "../home";
 import { Item } from "../../types/apiTypes/item";
+import { useGetItemsQuery } from "../../store/pokemartApi";
+import { useMemo } from "react";
 
-const RelatedProduct = () => {
-  const dummy = {
-    _id: "1",
-    name: "Example Product",
-    description: "This is an example product description",
-    photoUrl: poke,
-    price: 29.99,
-    discount: {
-      hasDiscount: true,
-      amount: 10,
-      type: "percentage",
-      discountedPrice: 29.99,
-    },
-    slug: "example-product",
-  } as Item;
+interface ProductRelatedProps {
+  currentProduct: Item;
+}
+
+const ProductRelated = ({ currentProduct }: ProductRelatedProps) => {
+  const { data: productsData } = useGetItemsQuery({
+    page: 1,
+    limit: 50,
+  });
+
+  const relatedProducts = useMemo(() => {
+    if (!productsData?.items) return [];
+    return productsData.items
+      .filter(
+        (product) =>
+          product._id !== currentProduct._id &&
+          product.category === currentProduct.category,
+      )
+      .slice(0, 4);
+  }, [productsData?.items, currentProduct]);
+
+  if (!relatedProducts.length) {
+    return null;
+  }
 
   return (
     <div className={styles.container}>
@@ -27,18 +37,11 @@ const RelatedProduct = () => {
           Related Products
         </Heading>
         <ul className={styles.relatedProducts}>
-          <li>
-            <ProductCard item={dummy} />
-          </li>
-          <li>
-            <ProductCard item={dummy} />
-          </li>
-          <li>
-            <ProductCard item={dummy} />
-          </li>
-          <li>
-            <ProductCard item={dummy} />
-          </li>
+          {relatedProducts.map((product) => (
+            <li key={product._id}>
+              <ProductCard item={product} />
+            </li>
+          ))}
         </ul>
         <Button className={styles.showBtn}>Show More</Button>
       </section>
@@ -46,4 +49,4 @@ const RelatedProduct = () => {
   );
 };
 
-export default RelatedProduct;
+export default ProductRelated;
