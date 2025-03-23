@@ -1,4 +1,4 @@
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useEffect, useCallback } from "react";
 import clsx from "clsx";
 import styles from "../../styles/components/filters/PriceRangeSlider.module.scss";
 import { pd } from "../../utils";
@@ -14,21 +14,43 @@ type PriceRangeSliderProps = {
   onChangeComplete?: (values: Range) => void;
 };
 
+const enforceMinRange = (min: number, max: number) => {
+  if (max - min < 100) {
+    const mid = (min + max) / 2;
+    min = Math.max(min, mid - 50);
+    max = min + 100;
+  }
+  return [min, max];
+};
+
 const PriceRangeSlider = ({
-  min,
-  max,
-  initialMin,
-  initialMax,
+  min: _min,
+  max: _max,
+  initialMin: _initialMin,
+  initialMax: _initialMax,
   onChange,
   onChangeComplete,
 }: PriceRangeSliderProps) => {
+  const [min, max] = enforceMinRange(_min, _max);
+  const [initialMin, initialMax] = enforceMinRange(
+    _initialMin ?? min,
+    _initialMax ?? max,
+  );
+
+  const getInitialValues = useCallback(
+    () => ({ min: initialMin, max: initialMax }),
+    [initialMin, initialMax],
+  );
+
   // State for slider values (constrained)
-  const [range, setRange] = useState<Range>({
-    min: initialMin ?? min,
-    max: initialMax ?? max,
-  });
+  const [range, setRange] = useState<Range>(getInitialValues());
   // State for input values (unconstrained, allows temporary invalid values)
-  const [inputValues, setInputValues] = useState<Range>(range);
+  const [inputValues, setInputValues] = useState<Range>(getInitialValues());
+
+  useEffect(() => {
+    setRange(getInitialValues());
+    setInputValues(getInitialValues());
+  }, [getInitialValues]);
 
   const getPercent = (key: ThumbKey) =>
     Math.round(((range[key] - min) / (max - min)) * 100);
