@@ -1,4 +1,4 @@
-import styles from "../../styles/components/home/ShopGrid.module.scss";
+import styles from "../../styles/components/shop/ShopGrid.module.scss";
 import skeletonStyles from "../../styles/components/common/Loading.module.scss";
 
 const LoadingSkeleton = () => {
