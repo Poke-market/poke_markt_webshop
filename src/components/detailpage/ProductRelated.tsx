@@ -15,7 +15,7 @@ const RelatedProduct = () => {
       hasDiscount: true,
       amount: 10,
       type: "percentage",
-      discountedPrice: 26.99,
+      discountedPrice: 29.99,
     },
     slug: "example-product",
   } as Item;

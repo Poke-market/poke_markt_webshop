@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Category, PriceRange } from "../types/apiTypes/item";
+import { Category, PriceRange, categories } from "../types/apiTypes/item";
 
 interface FilterState {
   categorieCounts: Record<Category, number>;
@@ -8,8 +8,14 @@ interface FilterState {
 }
 
 const initialState: FilterState = {
-  categorieCounts: {} as Record<Category, number>,
-  priceRange: { min: 0, max: 1_000_000 } as PriceRange,
+  categorieCounts: categories.reduce(
+    (acc, category) => {
+      acc[category] = 0;
+      return acc;
+    },
+    priceRange: { min: 0, max: 1_000_000 } as PriceRange,
+    {} as Record<Category, number>,
+  ),
   totalCount: 0,
 };
 
@@ -21,10 +27,12 @@ export const filterSlice = createSlice({
       state,
       action: PayloadAction<Record<Category, number>>,
     ) => {
+      if (!action.payload) return;
+      if (Object.keys(action.payload).length === 0) return;
       state.categorieCounts = action.payload;
     },
     setTotalCount: (state, action: PayloadAction<number>) => {
-      state.totalCount = action.payload;
+      state.totalCount = action.payload || 0;
     },
     setPriceRange: (state, action: PayloadAction<PriceRange>) => {
       if (!action.payload) return;
