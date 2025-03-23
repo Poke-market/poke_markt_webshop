@@ -13,9 +13,9 @@ const initialState: FilterState = {
       acc[category] = 0;
       return acc;
     },
-    priceRange: { min: 0, max: 1_000_000 } as PriceRange,
     {} as Record<Category, number>,
   ),
+  priceRange: { min: 0, max: 1_000_000 },
   totalCount: 0,
 };
 
