@@ -30,17 +30,11 @@ export type RegisterResponse = {
   token: string;
 };
 
-export interface ApiErrorData {
-  data?: {
-    endpoint?: string;
-    method?: string;
-    errors?: [string, string][];
-    message?: string;
-    item?: unknown;
-  };
-  status?: string;
-  message?: string;
-}
+export type ApiErrorData = {
+  endpoint: string;
+  method: string;
+  errors?: [string, string][];
+};
 
 export type ErrorResponse = {
   status: number;

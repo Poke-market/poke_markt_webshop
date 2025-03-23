@@ -1,21 +1,21 @@
 import { ApiErrorData } from "../types/auth";
 
 export const processErrorData = (errorData: ApiErrorData) => {
-  if (!errorData.data?.errors || !Array.isArray(errorData.data.errors)) {
+  if (!errorData.errors || !Array.isArray(errorData.errors)) {
     return {
-      message: errorData.message,
+      message: "An error occurred",
       fieldErrors: {},
     };
   }
-  const validErrors = errorData.data.errors.filter(
+  const validErrors = errorData.errors.filter(
     (e): e is [string, string] => Array.isArray(e) && e.length === 2,
   );
   const fieldErrors = validErrors.reduce<Record<string, string>>(
     (acc, [field, message]) => {
       const normalizedField = field.toLowerCase();
-      if (!acc[normalizedField]) {
-        acc[normalizedField] = message;
-      }
+      acc[normalizedField] = acc[normalizedField]
+        ? `${acc[normalizedField]}, ${message}`
+        : message;
       return acc;
     },
     {},
