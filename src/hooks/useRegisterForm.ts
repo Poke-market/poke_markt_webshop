@@ -10,9 +10,10 @@ import { processErrorData } from "../utils/errorHandlers";
 export const useRegisterForm = (initialState: UserData) => {
   const [formData, setFormData] = useState<UserData>(initialState);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [registering, setRegistering] = useState(false);
   const navigate = useNavigate();
 
-  const { handleRegister, isLoading } = useRegister();
+  const { handleRegister, isLoading: isApiLoading } = useRegister();
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -31,19 +32,25 @@ export const useRegisterForm = (initialState: UserData) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast.info("Registering...");
     setErrors({});
+    setRegistering(true);
 
     try {
       const result = await handleRegister(formData);
 
       if (result.success) {
+        setFormData(initialState);
+
         const { message, options } = getToastResponse(
           TOAST_KEYS.REGISTER_SUCCESS,
         );
-        toast.success(message, options);
-        setFormData(initialState);
-        void navigate("/shop");
+
+        await navigate("/shop");
+
+        setTimeout(() => {
+          toast.success(message, options);
+        }, 100);
+
         return;
       }
 
@@ -66,8 +73,12 @@ export const useRegisterForm = (initialState: UserData) => {
       console.error("Unexpected error:", error);
       const { message, options } = getToastResponse(TOAST_KEYS.REGISTER_ERROR);
       toast.error(message, options);
+    } finally {
+      setRegistering(false);
     }
   };
+
+  const isLoading = isApiLoading || registering;
 
   return {
     formData,
