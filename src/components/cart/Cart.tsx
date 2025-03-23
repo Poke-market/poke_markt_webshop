@@ -53,7 +53,7 @@ const CartPage = () => {
           dispatch(
             updateQuantity({
               id: item._id,
-              quantity: parseInt(e.target.value),
+              quantity: parseInt(e.target.value) || 1,
             }),
           );
         },
