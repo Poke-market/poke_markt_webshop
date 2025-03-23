@@ -69,7 +69,7 @@ const pokemartApi = createApi({
       transformResponse: (response: { item: Item }) => response.item,
     }),
     getItemBySlug: builder.query<Item, string>({
-      query: (slug) => `/slugs/${slug}`,
+      query: (slug) => `/slug/${slug}`,
       transformResponse: (response: { item: Item }) => response.item,
     }),
     getTags: builder.query<string[], void>({
