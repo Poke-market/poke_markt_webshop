@@ -1,3 +1,4 @@
+// src/components/auth/Logout.tsx
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { clearAuth } from "../../store/authSlice";
@@ -8,7 +9,11 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import styles from "../../styles/components/Logout.module.scss";
 
-const Logout = () => {
+interface LogoutProps {
+  className?: string;
+}
+
+const Logout = ({ className }: LogoutProps) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isLoggingOut, setIsLoggingOut] = useState(false);
@@ -27,11 +32,11 @@ const Logout = () => {
     const { message, options } = getToastResponse(TOAST_KEYS.LOGOUT_SUCCESS);
     toast.success(message, { ...toastConfig, ...options });
 
-    void navigate("/login");
+    void navigate("/shop");
   };
 
   const handleLogin = () => {
-    void navigate("/login");
+    void navigate("/shop");
   };
 
   return (
@@ -45,7 +50,10 @@ const Logout = () => {
         className={styles.container}
         style={{ "--opacity": isLoggingOut ? 0.5 : 1 } as React.CSSProperties}
       >
-        <Button onClick={isAuthenticated ? handleLogout : handleLogin}>
+        <Button
+          className={className}
+          onClick={isAuthenticated ? handleLogout : handleLogin}
+        >
           {isAuthenticated ? "Logout" : "Login"}
         </Button>
       </div>

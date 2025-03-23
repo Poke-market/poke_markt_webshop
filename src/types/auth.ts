@@ -45,17 +45,17 @@ export interface LoginCredentials {
   password: string;
 }
 
-export interface ApiErrorData {
-  data?: {
-    endpoint?: string;
-    method?: string;
-    errors?: [string, string][];
-    message?: string;
-    item?: unknown;
-  };
-  status?: string;
-  message?: string;
-}
+// export interface ApiErrorData {
+//   data?: {
+//     endpoint?: string;
+//     method?: string;
+//     errors?: [string, string][];
+//     message?: string;
+//     item?: unknown;
+//   };
+//   status?: string;
+//   message?: string;
+// }
 
 export type ErrorResponse = {
   status: number;
