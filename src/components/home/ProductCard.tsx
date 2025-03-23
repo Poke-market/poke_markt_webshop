@@ -3,6 +3,7 @@ import { Icons } from "../../utils";
 import styles from "../../styles/components/home/ProductCard.module.scss";
 import { Link } from "react-router-dom";
 import { Item } from "../../types/apiTypes/item";
+import { titleCase } from "../../utils/stringUtils";
 
 export type Props = {
   item: Item;
@@ -37,11 +38,15 @@ export default function ProductCard({
       id={id}
       className={`${className} ${styles.productContainer}`}
       role="article"
-      aria-label={`Product: ${name}`}
+      aria-label={`Product: ${titleCase(name)}`}
       {...restProps}
     >
       <Link to={`/item/${slug}`} className={styles.imageWrapper}>
-        <Img src={photoUrl} alt={name} className={styles.productImage} />
+        <Img
+          src={photoUrl}
+          alt={titleCase(name)}
+          className={styles.productImage}
+        />
         {discount.hasDiscount && <DiscountBadge {...discount} />}
       </Link>
 
@@ -49,11 +54,11 @@ export default function ProductCard({
         <div className={styles.textContainer}>
           <Link to={`/item/${slug}`} className={styles.productLink}>
             <Text as="h4" size="text2xl" className={styles.productName}>
-              {truncatedName}
+              {titleCase(truncatedName)}
             </Text>
           </Link>
           <Text className={styles.productDescription}>
-            {truncatedDescription}
+            {titleCase(truncatedDescription)}
           </Text>
         </div>
 

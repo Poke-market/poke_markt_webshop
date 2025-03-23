@@ -6,6 +6,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import cartSlice from "./cartSlice";
 import pokemartApi from "./pokemartApi";
+import filterSlice from "./filterSlice";
 import authSlice from "./authSlice";
 import storage from "redux-persist/lib/storage";
 import {
@@ -18,14 +19,16 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
-
 const devToolsOptions: DevToolsEnhancerOptions = {
-  actionCreators: { ...cartSlice.actions },
+  actionCreators: {
+    ...cartSlice.actions,
+  },
 };
 
 const rootReducer = combineReducers({
   [cartSlice.reducerPath]: cartSlice.reducer,
   [pokemartApi.reducerPath]: pokemartApi.reducer,
+  [filterSlice.reducerPath]: filterSlice.reducer,
   auth: authSlice,
 });
 

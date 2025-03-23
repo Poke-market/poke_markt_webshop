@@ -4,7 +4,7 @@ import { paginationInfo } from "./info";
  *           TYPES              *
  ********************************/
 
-export interface Item {
+export type Item = {
   _id: string;
   category: Category;
   description: string;
@@ -12,13 +12,18 @@ export interface Item {
   photoUrl: string;
   price: number;
   tags: string[];
+  discount: {
+    amount: number;
+    type: string;
+    discountedPrice: number;
+    hasDiscount: boolean;
+  };
   isNewItem: boolean;
-  discount: Discount;
-  __v: number;
-  createdAt: Date;
-  updatedAt: Date;
   slug: string;
-}
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+};
 
 export interface Discount {
   amount: number;
@@ -36,33 +41,34 @@ export const categories = [
   "vitamins",
   "tm/hm",
   "mega stones",
-] as const; // as const so that we can generate types from it
+] as const;
 
-// Create a string union type from the categories array values
 export type Category = (typeof categories)[number];
 
 /********************************
  *           RESPONSES          *
  ********************************/
-
-export type getItemsData = {
+export type GetItemsData = {
   info: paginationInfo & {
+    count: number;
     categorieCount: Record<Category, number>;
+    page: number;
+    pages: number;
+    prev: string | null;
+    next: string | null;
+    first: string | null;
+    last: string | null;
   };
   items: Item[];
 };
 
-export type getItemData = {
-  item: Item;
-};
-
-// filter valid params
-
 export type GetItemsParams = {
-  page?: number;
-  limit?: number;
-  sort?: string;
-  order?: string;
   cat?: Category[];
   tag?: string[];
+  minPrice?: number;
+  maxPrice?: number;
+  page?: number;
+  sort?: string;
+  order?: string;
+  limit?: number;
 };

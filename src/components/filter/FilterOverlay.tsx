@@ -18,7 +18,7 @@ export const FilterOverlay = ({ isOpen, onClose }: FilterOverlayProps) => {
           onKeyDown={(e: React.KeyboardEvent<HTMLButtonElement>) =>
             e.key === "Escape" && onClose()
           }
-          aria-label="Close cart"
+          aria-label="Close Filter"
         />
         <div className={styles.overlay}>
           <FilterForm />

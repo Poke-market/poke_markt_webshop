@@ -30,6 +30,11 @@ export type RegisterResponse = {
   token: string;
 };
 
+export type ApiErrorData = {
+  endpoint: string;
+  method: string;
+  errors?: [string, string][];
+};
 export interface AuthResponse {
   user: UserData;
   token: string;

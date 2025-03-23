@@ -3,85 +3,101 @@ import LabelCheckbox from "./LabelCheckbox.tsx";
 import PillCheckbox from "./PillCheckbox.tsx";
 import PriceRangeSlider from "./PriceRangeSlider.tsx";
 import styles from "../../styles/components/filters/FilterForm.module.scss";
+import { useSearchParams, useLocation, useNavigate } from "react-router-dom";
+import { useGetTagsQuery } from "../../store/pokemartApi.ts";
+import { useAppSelector } from "../../store";
+import {
+  selectCategorieCounts,
+  selectTotalCount,
+} from "../../store/filterSlice.ts";
 
-// TODO: Get categories from backend
-const categories = {
-  medicine: 5,
-  berries: 10,
-  food: 15,
-  pokéballs: 20,
-  evolution: 25,
-  vitamins: 30,
-  "tm/hm": 35,
-  "mega stones": 40,
-};
-
-// TODO: Get tags from backend
-const tags = [
-  "new",
-  "sale",
-  "limited",
-  "popular",
-  "best seller",
-  "featured",
-  "bestseller",
-];
-let timerId: number | null = null;
-function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-  e.preventDefault();
-  const fd = new FormData(e.currentTarget);
-  console.log("categories", fd.getAll("categorie[]"));
-  console.log("tags", fd.getAll("tag[]"));
-  console.log("minPrice", fd.get("minPrice"));
-  console.log("maxPrice", fd.get("maxPrice"));
-}
-
-function handleChange(e: React.ChangeEvent<HTMLFormElement>) {
-  const form = e.currentTarget;
-  if (timerId) clearTimeout(timerId);
-  timerId = setTimeout(() => {
-    form.requestSubmit();
-  }, 300);
-}
 const FilterForm = () => {
+  // State for filter values
+  const [searchParams] = useSearchParams();
+  const { data: tags } = useGetTagsQuery();
+  const categorieCounts = useAppSelector(selectCategorieCounts);
+  const totalCount = useAppSelector(selectTotalCount);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const applyFiltersAndResetPage = () => {
+    const pathParts = location.pathname.split("/");
+
+    // if path ends with a page number, remove it
+    if (!Number.isNaN([...pathParts].pop())) pathParts.pop();
+
+    let link = pathParts.join("/");
+    if (searchParams.size > 0) link += `?${searchParams}`;
+
+    void navigate(link);
+  };
+
   return (
-    <form
-      onSubmit={handleSubmit}
-      onChange={handleChange}
-      className={styles.form}
-    >
+    <form className={styles.form}>
       <CollapsableFieldset
         className={styles.categories}
         legend="Categories"
-        subLegend="9"
+        subLegend={totalCount.toString()}
       >
         <ul>
-          {Object.entries(categories).map(([categorie, count]) => (
-            <li key={categorie}>
+          {Object.entries(categorieCounts).map(([category, count]) => (
+            <li key={category}>
               <LabelCheckbox
-                label={categorie}
-                name="categorie[]"
+                label={category}
+                name="category"
                 subLabel={count}
+                checked={searchParams.has("cat", category)}
+                onChange={() => {
+                  if (searchParams.has("cat", category))
+                    searchParams.delete("cat", category);
+                  else searchParams.append("cat", category);
+                  applyFiltersAndResetPage();
+                }}
               />
             </li>
           ))}
         </ul>
       </CollapsableFieldset>
+
       <CollapsableFieldset className={styles.tags} legend="Tags">
         <ul>
-          {tags.map((tag) => (
+          {tags?.map((tag) => (
             <li key={tag}>
-              <PillCheckbox label={tag} name="tag[]" />
+              <PillCheckbox
+                label={tag}
+                name="tag"
+                checked={searchParams.has("tag", tag)}
+                onChange={() => {
+                  if (searchParams.has("tag", tag))
+                    searchParams.delete("tag", tag);
+                  else searchParams.append("tag", tag);
+                  applyFiltersAndResetPage();
+                }}
+              />
             </li>
           ))}
         </ul>
       </CollapsableFieldset>
+
       <CollapsableFieldset legend="Price">
         <div className="price-filter">
-          <PriceRangeSlider min={100} max={999999} />
+          <PriceRangeSlider
+            min={100}
+            max={999999}
+            initialMin={Number(searchParams.get("minPrice")) || 100}
+            initialMax={Number(searchParams.get("maxPrice")) || 999999}
+            onChangeComplete={(range) => {
+              searchParams.set("minPrice", range.min.toString());
+              searchParams.set("maxPrice", range.max.toString());
+              if (range.min === 100) searchParams.delete("minPrice");
+              if (range.max === 999999) searchParams.delete("maxPrice");
+              applyFiltersAndResetPage();
+            }}
+          />
         </div>
       </CollapsableFieldset>
     </form>
   );
 };
+
 export default FilterForm;

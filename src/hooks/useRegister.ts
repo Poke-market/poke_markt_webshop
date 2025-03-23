@@ -9,13 +9,13 @@ export const useRegister = () => {
 
   const handleRegister = async (userData: UserData) => {
     try {
-      const response = (await register(userData).unwrap()) as RegisterResponse;
+      const response: RegisterResponse = await register(userData).unwrap();
       dispatch(setAuth({ user: response.user, token: response.token }));
       return { success: true, data: response };
-    } catch (error: any) {
+    } catch (error) {
       return {
         success: false,
-        error: error,
+        error,
       };
     }
   };
