@@ -30,15 +30,17 @@ export class SearchParamGetter<T = Record<string, any>> {
   private foundParams: Record<string, string | string[]> = {};
   constructor(private searchParams: URLSearchParams) {}
 
-  get(key: string) {
+  get(key: string, options?: { as?: string }) {
     if (!this.searchParams.has(key)) return this;
-    this.foundParams[key] = this.searchParams.get(key)!;
+    const foundKey = options?.as ?? key;
+    this.foundParams[foundKey] = this.searchParams.get(key)!;
     return this;
   }
 
-  getAll(key: string) {
+  getAll(key: string, options?: { as?: string }) {
     if (!this.searchParams.has(key)) return this;
-    this.foundParams[key] = this.searchParams.getAll(key);
+    const foundKey = options?.as ?? key;
+    this.foundParams[foundKey] = this.searchParams.getAll(key);
     return this;
   }
 
