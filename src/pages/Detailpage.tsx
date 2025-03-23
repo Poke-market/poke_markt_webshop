@@ -50,7 +50,7 @@ const DetailPage = () => {
     <>
       <Breadcrumb />
       <ProductInfo product={Item} />
-      <Related />
+      <Related currentProduct={Item} />
     </>
   );
 };
