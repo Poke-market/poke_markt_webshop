@@ -1,8 +1,10 @@
 import { requestInfo } from "./info";
+import { ErrorResponse } from "../auth";
 
-export type responseStatus = "success" | "error" | "fail";
+export type ResponseStatus = "success" | "error" | "fail";
 
-export interface apiSuccessResponse<T extends null | object> {
+export interface apiSuccessResponse<T> {
+  // Removed 'extends null | object'
   status: "success";
   data: T;
 }
@@ -22,7 +24,5 @@ export interface apiErrorResponse {
   };
 }
 
-export type apiResponse<T extends null | object = object | null> =
-  | apiSuccessResponse<T>
-  | apiFailResponse
-  | apiErrorResponse;
+export type apiResponse<T = unknown> = // Changed default to unknown
+  apiSuccessResponse<T> | apiFailResponse | apiErrorResponse | ErrorResponse;

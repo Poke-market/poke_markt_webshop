@@ -28,6 +28,7 @@ export const pd =
 
 export class SearchParamGetter<T = Record<string, any>> {
   private foundParams: Record<string, string | string[]> = {};
+
   constructor(private searchParams: URLSearchParams) {}
 
   get(key: string) {
