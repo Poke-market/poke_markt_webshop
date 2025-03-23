@@ -1,4 +1,5 @@
 export type UserData = {
+  avatar: string;
   email: string;
   password: string;
   firstname: string;

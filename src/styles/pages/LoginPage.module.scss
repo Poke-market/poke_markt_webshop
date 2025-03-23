@@ -2,11 +2,17 @@
 .loginContainer {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
   max-width: 30rem;
   margin: 0 auto;
   padding: 4rem 0;
   font-family: $font-family;
+
+  h2 {
+    font-size: 2.4rem;
+    color: var(--text-color);
+    margin-bottom: 2rem;
+    align-self: center;
+  }
 
   label {
     font-size: 1.4rem;
