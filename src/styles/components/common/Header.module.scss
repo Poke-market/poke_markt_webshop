@@ -59,6 +59,27 @@
     justify-content: space-between;
     gap: 1rem;
 
+    a[data-cart-item-count] {
+      position: relative;
+      --cart-item-count: attr(data-cart-item-count);
+
+      ::after {
+        content: var(--cart-item-count);
+        min-width: 2.5rem;
+        min-height: 2.5rem;
+        position: absolute;
+        top: -1.5rem;
+        right: -1.5rem;
+        background-color: var(--red);
+        color: var(--white);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        font-size: $font-size-xs;
+      }
+    }
+
     .icon {
       height: 1.75rem;
 

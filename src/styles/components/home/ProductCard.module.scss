@@ -131,6 +131,11 @@
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
     z-index: 2;
+    // prevent clicks on the overlay
+    pointer-events: none;
+    * {
+      pointer-events: auto;
+    }
 
     > button {
       background: var(--white);
