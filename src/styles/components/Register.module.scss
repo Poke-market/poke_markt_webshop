@@ -1,0 +1,29 @@
+@use "../partials/variables" as *;
+.register-form-container {
+  max-width: 40rem;
+  font-family: $font-family;
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: 2rem auto;
+
+  h2 {
+    font-size: 2rem;
+    color: var(--text-color);
+    text-align: center;
+    margin: 2rem 0;
+    padding: 2rem 0;
+  }
+
+  .success-message {
+    color: var(--success-color, green);
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .error-message {
+    color: var(--error-color, red);
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+}

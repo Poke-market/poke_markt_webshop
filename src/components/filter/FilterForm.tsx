@@ -33,7 +33,7 @@ const FilterForm = () => {
   };
 
   return (
-    <form>
+    <form className={styles.form}>
       <CollapsableFieldset
         className={styles.categories}
         legend="Categories"
