@@ -60,11 +60,23 @@ const DropdownContent = ({ onClose }: { onClose?: () => void }) => {
             </div>
           </div>
           <div className={styles.menuItemsContainer}>
-            <div className={styles.menuItem} onClick={handleNavigate("/shop")}>
+            <div
+              className={styles.menuItem}
+              onClick={handleNavigate("/profile")}
+            >
               <div className={styles.menuIcon}>
                 <Icons.Profile />
               </div>
               <span>Profile Settings</span>
+            </div>
+            <div
+              className={styles.menuItem}
+              onClick={handleNavigate("/orders")}
+            >
+              <div className={styles.menuIcon}>
+                <Icons.ShoppingCart />
+              </div>
+              <span>My Orders</span>
             </div>
             <div className={styles.menuItem} onClick={handleNavigate("/help")}>
               <div className={styles.menuIcon}>
