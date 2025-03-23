@@ -1,6 +1,6 @@
 import { Heading, Button } from "../common";
 import styles from "../../styles/components/detailpage/RelatedProducts.module.scss";
-import { ProductCard } from "../home";
+import { ProductCard } from "../shop";
 import { Item } from "../../types/apiTypes/item";
 import { useGetItemsQuery } from "../../store/pokemartApi";
 import { useMemo } from "react";
