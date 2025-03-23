@@ -1,20 +1,14 @@
 import styles from "../../styles/components/common/Breadcrumb.module.scss";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Icons } from "../../utils";
+import { useGetItemBySlugQuery } from "../../store/pokemartApi";
+import { titleCase } from "../../utils/stringUtils";
 
 const Breadcrumb = () => {
-  const location = useLocation();
-  const { name } = useParams();
-
-  const formatItemName = (name: string | undefined) => {
-    if (!name) return "";
-    return name
-      .split("-")
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(" ");
-  };
-
-  const isProductPage = location.pathname.includes("/item/");
+  const { slug } = useParams();
+  const { data: item } = useGetItemBySlugQuery(slug ?? "", {
+    skip: !slug,
+  });
 
   return (
     <div className={styles.breadcrumb}>
@@ -31,11 +25,11 @@ const Breadcrumb = () => {
         <span className={styles.separator}>
           <Icons.Arrowrightsmall />
         </span>
-        {isProductPage && name && (
+        {slug && (
           <div className={styles.itemGroup}>
             <span className={styles.pipeSeparator}></span>
             <span className={styles.breadcrumbItem}>
-              {formatItemName(name)}
+              {titleCase(item?.name)}
             </span>
           </div>
         )}

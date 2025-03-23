@@ -1,0 +1,102 @@
+@use "../../partials/variables" as *;
+
+.notFound {
+  text-align: center;
+  padding: 4rem 8rem;
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: $font-family;
+
+  @media (max-width: $breakpoint) {
+    padding: 3rem 2rem;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    padding: 2rem 1.5rem;
+  }
+
+  .notFoundTitle {
+    color: var(--red);
+    margin-bottom: 1rem;
+    font-size: $font-size-2xl;
+
+    @media (max-width: $breakpoint-sm) {
+      font-size: $font-size-xl;
+    }
+  }
+
+  p {
+    color: var(--text-color);
+    margin-bottom: 2rem;
+    font-size: $font-size-lg;
+
+    @media (max-width: $breakpoint-sm) {
+      font-size: $font-size-xs;
+    }
+  }
+}
+
+.availableProducts {
+  text-align: center;
+  background: var(--background-color);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 0 auto;
+
+  @media (max-width: $breakpoint-sm) {
+    padding: 1.5rem;
+  }
+
+  .recommendationsTitle {
+    color: var(--red);
+    margin-bottom: 1.5rem;
+    font-size: $font-size-xl;
+
+    @media (max-width: $breakpoint-sm) {
+      font-size: $font-size-lg;
+      margin-bottom: 1rem;
+    }
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+
+    @media (max-width: $breakpoint) {
+      gap: 1rem;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+      gap: 0.8rem;
+    }
+
+    li {
+      width: 100%;
+      text-align: center;
+
+      a {
+        color: var(--text-color);
+        text-decoration: none;
+        font-size: $font-size-lg;
+        transition: color 0.2s ease;
+        display: block;
+        padding: 0.5rem 0;
+
+        @media (max-width: $breakpoint-sm) {
+          font-size: $font-size-xs;
+        }
+
+        &:hover {
+          color: var(--red);
+        }
+      }
+    }
+  }
+}

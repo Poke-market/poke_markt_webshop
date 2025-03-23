@@ -1,3 +1,5 @@
+import { Item } from "./apiTypes/item";
+
 export interface ApiResponse {
   status: string;
   data: {
@@ -10,54 +12,7 @@ export interface ApiResponse {
       first: string;
       last: string;
     };
-    items: {
-      _id: string;
-      name: string;
-      description: string;
-      photoUrl: string;
-      price: number;
-      category: string;
-      tags: string[];
-      createdAt: string;
-      updatedAt: string;
-    }[];
-  };
-}
-
-export interface Product {
-  isNewItem: boolean;
-  _id: string;
-  name: string;
-  description: string;
-  photoUrl: string;
-  price: number;
-  category: string;
-  tags: string[];
-  __v: number;
-  createdAt: string;
-  updatedAt: string;
-  discount: {
-    amount: number;
-    type: string;
-    discountedPrice: number;
-    hasDiscount: boolean;
-  };
-}
-
-export interface ApiListResponse {
-  status: string;
-  data: {
-    items: Product[];
-    info: {
-      pages: number;
-    };
-  };
-}
-
-export interface ApiSingleResponse {
-  status: string;
-  data: {
-    item: Product;
+    items: Item[];
   };
 }
 
