@@ -115,7 +115,7 @@ const CartPage = () => {
     return prolongation
       .reduce((sum, item) => sum + parseFloat(item.rowSubtotal), 0)
       .toFixed(2);
-  }, [prolongation]);
+  }, []);
 
   return (
     <section className={styles.cart}>

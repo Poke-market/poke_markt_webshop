@@ -1,4 +1,4 @@
-import { forwardRef, ChangeEvent } from "react";
+import { forwardRef } from "react";
 import styles from "../../styles/components/common/Input.module.scss";
 
 type Props = {
@@ -7,11 +7,21 @@ type Props = {
   variant?: "underline" | "fill";
   size?: "sm" | "md" | "xs";
   shape?: "square" | "round";
-  type?: "text" | "email" | "password" | "number";
+  type:
+    | "text"
+    | "email"
+    | "password"
+    | "number"
+    | "checkbox"
+    | "tel"
+    | "select"
+    | "textarea";
   defaultValue?: string | number;
-  value?: string;
-  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  value?: string | number;
+  checked?: boolean;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   required?: boolean;
+  name?: string;
   id?: string;
 };
 

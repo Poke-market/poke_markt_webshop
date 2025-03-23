@@ -4,6 +4,7 @@ const Homepage = () => {
   return (
     <>
       <PageBanner title="Shop" />
+
       <FilterSortBar>
         <ProductGrid />
       </FilterSortBar>
