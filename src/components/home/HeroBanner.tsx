@@ -5,7 +5,7 @@ const HeroBanner = () => {
   return (
     <div className={styles.heroBanner}>
       <div className={styles.heroBanner__image}>
-        <img src="/hero-banner-pokemart.jpg" alt="Hero Banner" />
+        <img src="/hero-banner-pokemart.png" alt="Hero Banner" />
       </div>
       <div className={styles.heroBanner__content}>
         <Heading as="h1">Discover our new collection</Heading>
