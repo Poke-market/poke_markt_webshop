@@ -1,4 +1,12 @@
+import { useAppDispatch, useAppSelector } from "../../store";
+import {
+  removeItem,
+  selectCartItems,
+  selectCartTotalPrice,
+  clearCart,
+} from "../../store/cartSlice";
 import { Overlay } from "../common/Overlay";
+import CartItem from "./CartItem";
 
 type Props = {
   isOpen: boolean;
@@ -6,20 +14,19 @@ type Props = {
 };
 
 export const CartOverlay = ({ isOpen, onClose }: Props) => {
-  const clearCart = () => {
-    //TODO: add cart clearing functionality
-    console.log("Cart cleared");
-  };
+  const dispatch = useAppDispatch();
+  const cartItems = useAppSelector(selectCartItems);
+  const totalCartPrice = useAppSelector(selectCartTotalPrice);
 
   return (
     <Overlay
       isOpen={isOpen}
       onClose={onClose}
       title="Shopping Cart"
-      onClear={clearCart}
+      onClear={() => dispatch(clearCart())}
       clearIcon="Bagx"
       showSubtotal={true}
-      subtotalAmount={0}
+      subtotalAmount={totalCartPrice}
       actionButtons={[
         {
           text: "Cart",
@@ -34,6 +41,10 @@ export const CartOverlay = ({ isOpen, onClose }: Props) => {
           to: "/comparison",
         },
       ]}
+      content={cartItems}
+      renderContent={(cartItem) => <CartItem {...cartItem} />}
+      getContentKey={(cartItem) => cartItem.item._id}
+      onRemove={(cartItem) => dispatch(removeItem(cartItem.item._id))}
     />
   );
 };
