@@ -8,7 +8,13 @@ import {
 } from "@reduxjs/toolkit/query/react";
 import { Item, GetItemsParams, GetItemsData } from "../types/apiTypes/item";
 import { RootState } from "./index";
-import { UserData, RegisterResponse, AuthResponse, LoginCredentials } from "../types/auth";
+import {
+  UserData,
+  RegisterResponse,
+  AuthResponse,
+  LoginCredentials,
+  ErrorResponse,
+} from "../types/auth";
 import { ApiResponse } from "../types/types.ts";
 
 const baseQueryWithAuth = fetchBaseQuery({
@@ -96,9 +102,9 @@ const pokemartApi = createApi({
         method: "POST",
         body: credentials,
       }),
+    }),
   }),
-}),
-  });
+});
 export const {
   useGetItemsQuery,
   useGetItemByIdQuery,

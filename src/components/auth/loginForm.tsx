@@ -5,7 +5,12 @@ import { useNavigate, Link } from "react-router-dom";
 import { loginFields } from "../../config/formFields";
 import { Loading } from "../common";
 
-const LoginForm = () => {
+interface LoginFormProps {
+  onSuccess?: () => void;
+  hideRegisterLink?: boolean;
+}
+
+const LoginForm = ({ onSuccess, hideRegisterLink = false }: LoginFormProps) => {
   const navigate = useNavigate();
 
   const {
@@ -15,7 +20,13 @@ const LoginForm = () => {
     statusMessage,
     handleChange,
     handleSubmit,
-  } = useLoginForm(() => navigate("/"));
+  } = useLoginForm(() => {
+    if (onSuccess) {
+      onSuccess();
+    } else {
+      void navigate("/");
+    }
+  });
 
   if (isLoading) return <Loading />;
 
@@ -31,10 +42,12 @@ const LoginForm = () => {
         isLoading={isLoading}
         buttonClassName={styles.loginButton}
       />
-      <div className={styles.registerLink}>
-        <span>Don&apos;t have an account? </span>
-        <Link to="/register">Register now</Link>
-      </div>
+      {!hideRegisterLink && (
+        <div className={styles.registerLink}>
+          <span>Don&apos;t have an account? </span>
+          <Link to="/register">Register now</Link>
+        </div>
+      )}
     </div>
   );
 };

@@ -1,5 +1,5 @@
-import { Footer, Header } from "../../utils";
-import Logout from "../../components/auth/Logout";
+import { Footer } from "../../utils";
+import Header from "../../components/header/Header";
 
 type Props = {
   children: React.ReactNode;
@@ -8,17 +8,7 @@ type Props = {
 const Layout = ({ children }: Props) => {
   return (
     <>
-      <div>
-        <Header />
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
-          <Logout />
-        </div>
-      </div>
+      <Header />
       <main>{children}</main>
       <Footer />
     </>

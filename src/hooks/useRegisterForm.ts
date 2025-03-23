@@ -4,7 +4,7 @@ import { useRegister } from "./useRegister";
 import { UserData, ApiErrorData } from "../types/auth";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { toast } from "react-toastify";
-import { getToastResponse, TOAST_KEYS } from "../config/toastResponses";
+import { getToastResponse, TOAST_KEYS } from "../config";
 import { processErrorData } from "../utils/errorHandlers";
 
 export const useRegisterForm = (initialState: UserData) => {

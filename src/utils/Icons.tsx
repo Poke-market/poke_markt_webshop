@@ -43,6 +43,8 @@ const Icons = {
   Arrowrightsmall: createIcon("weui:arrow-filled"),
   Filtering: createIcon("system-uicons:filtering"),
   Unlike: createIcon("icon-park-outline:unlike"),
+  Help: createIcon("material-symbols-light:help-outline"),
+  Profile: createIcon("mingcute:user-4-fill"),
 };
 
 export default Icons;

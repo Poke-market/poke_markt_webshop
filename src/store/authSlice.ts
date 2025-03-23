@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RegisterResponse, UserData } from "../types/auth";
-import { RegisterResponse } from "../types/auth.ts";
+import { RegisterResponse } from "../types/auth";
 
 interface AuthState {
   user: RegisterResponse["user"] | null;
