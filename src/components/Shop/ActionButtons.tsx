@@ -1,6 +1,6 @@
 import { Button } from "../common";
 import { Icons } from "../../utils";
-import styles from "../../styles/components/Shop/ProductCard.module.scss";
+import styles from "../../styles/components/shop/productCard.module.scss";
 import { useAppDispatch } from "../../store";
 import { addItem } from "../../store/cartSlice";
 import { Item } from "../../types/apiTypes/item";

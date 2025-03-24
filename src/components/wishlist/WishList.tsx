@@ -1,4 +1,4 @@
-import styles from "../../styles/components/wishlist/Wishlist.module.scss";
+import styles from "../../styles/components/wishlist/wishList.module.scss";
 import { Button, Heading, Icons, Img } from "../../utils";
 import { Table } from "../common/Table.tsx";
 import { createColumnHelper } from "@tanstack/react-table";

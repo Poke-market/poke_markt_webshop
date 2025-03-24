@@ -1,5 +1,5 @@
 import { Heading } from "../common";
-import styles from "../../styles/components/Shop/ProductCard.module.scss";
+import styles from "../../styles/components/shop/productCard.module.scss";
 
 interface DiscountBadgeProps {
   amount?: number;

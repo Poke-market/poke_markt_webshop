@@ -1,5 +1,5 @@
 import { Img, Text } from "../common";
-import styles from "../../styles/components/shop/ProductCard.module.scss";
+import styles from "../../styles/components/shop/productCard.module.scss";
 import { Link } from "react-router-dom";
 import { Item } from "../../types/apiTypes/item";
 import { titleCase } from "../../utils/stringUtils";
