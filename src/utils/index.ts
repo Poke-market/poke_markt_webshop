@@ -23,6 +23,9 @@ export * from "./helperFunctions.ts";
 // detailpage
 export * from "../components/detailpage";
 
+// wishlist
+export * from "../components/wishlist";
+
 // Icons
 export { default as Icons } from "./Icons.tsx";
 
