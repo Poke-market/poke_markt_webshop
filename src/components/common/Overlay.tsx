@@ -44,12 +44,14 @@ export function Overlay<T>({
       {/* Overlay container with dynamic class for open/close state */}
       <div className={clsx({ [styles.open]: isOpen })}>
         {/* Backdrop to close the overlay when clicked or on Escape key press */}
-        <Button
+        <div
           className={styles.backdrop}
           onClick={onClose}
-          onKeyDown={(e: React.KeyboardEvent<HTMLButtonElement>) =>
+          onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) =>
             e.key === "Escape" && onClose()
           }
+          role="button"
+          tabIndex={0}
           aria-label="Close overlay"
         />
 
