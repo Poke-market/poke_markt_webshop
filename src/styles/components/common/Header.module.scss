@@ -7,7 +7,6 @@
   padding: 2rem 6rem;
   display: flex;
   background-color: #ffffff;
-  justify-content: space-between;
   align-items: center;
 
   position: sticky;
@@ -15,9 +14,21 @@
   z-index: 800;
   box-shadow: 0 0.1rem 0.5rem rgba(0, 0, 0, 0.1);
 
-  // @media (max-width: $breakpoint) {
-  //   padding: 2rem;
-  // }
+  [class*="box"] {
+    flex: 1;
+    display: flex;
+    align-items: center;
+
+    &.boxLeft {
+      margin-right: auto;
+      justify-content: flex-start;
+    }
+
+    &.boxRight {
+      margin-left: auto;
+      justify-content: flex-end;
+    }
+  }
 
   .logoLink {
     display: flex;

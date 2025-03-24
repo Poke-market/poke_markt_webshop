@@ -53,7 +53,9 @@ const Header = ({ className }: Props) => {
         })}
         aria-label="Main Navigation"
       >
-        <Logo />
+        <div className={styles.boxLeft}>
+          <Logo />
+        </div>
 
         <HamburgerButton isOpen={isMobileMenuOpen} onClick={toggleMobileMenu} />
 
@@ -72,12 +74,16 @@ const Header = ({ className }: Props) => {
         />
 
         <div className={styles.desktopNav}>
-          <NavLinks />
-          <IconLinks
-            onCartClick={handleCartClick}
-            onWishlistClick={handleWishlistClick}
-            onProfileClick={handleProfileClick}
-          />
+          <div className={styles.boxCenter}>
+            <NavLinks />
+          </div>
+          <div className={styles.boxRight}>
+            <IconLinks
+              onCartClick={handleCartClick}
+              onWishlistClick={handleWishlistClick}
+              onProfileClick={handleProfileClick}
+            />
+          </div>
         </div>
       </nav>
 
