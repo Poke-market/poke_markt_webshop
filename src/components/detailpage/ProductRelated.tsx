@@ -1,6 +1,6 @@
 import { Heading, Button } from "../common";
 import styles from "../../styles/components/detailpage/RelatedProducts.module.scss";
-import poke from "/poke.png?url";
+import poke from "/1x.png?url";
 import { ProductCard } from "../home";
 import { Item } from "../../types/apiTypes/item";
 

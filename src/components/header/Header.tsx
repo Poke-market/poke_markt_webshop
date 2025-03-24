@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from "../../styles/components/common/Header.module.scss";
+import styles from "../../styles/components/header/Header.module.scss";
 import { CartOverlay } from "../cart/CartOverlay";
 import { WishlistOverlay } from "../wishlist/WishlistOverlay";
 import { useNavigate } from "react-router-dom";

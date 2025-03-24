@@ -7,6 +7,7 @@ interface AuthState {
   isAuthenticated: boolean;
 }
 
+// Defining the initial state using that type
 const initialState: AuthState = {
   user: null,
   token: localStorage.getItem("token"),
@@ -16,7 +17,9 @@ const initialState: AuthState = {
 const authSlice = createSlice({
   name: "auth",
   initialState,
+
   reducers: {
+    // Setting the user and token in the state and local storage
     setAuth: (
       state,
       action: PayloadAction<{ user: RegisterResponse["user"]; token: string }>,
@@ -25,6 +28,7 @@ const authSlice = createSlice({
       state.token = action.payload.token;
       state.isAuthenticated = true;
     },
+    // Clearing the user and token from the state and local storage
     clearAuth: (state) => {
       state.user = null;
       state.token = null;

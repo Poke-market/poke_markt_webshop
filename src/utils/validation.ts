@@ -3,16 +3,22 @@ export const validateField = (
   value: string | boolean,
 ): string => {
   switch (name) {
-    case "email":
+    case "email": {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(value as string)) {
         return "Invalid email format";
       }
       break;
+    }
     case "password":
-      if ((value as string).length < 6) {
+      if ((value as string).length < 8) {
         return "Password must be at least 6 characters";
       }
+
+      if (!/[!@#$%^&*]/.test(value as string)) {
+        return "Password must contain at least one special character";
+      }
+
       if (!/\d/.test(value as string)) {
         return "Password must contain at least one number";
       }

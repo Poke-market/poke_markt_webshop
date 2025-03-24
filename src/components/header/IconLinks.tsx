@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import clsx from "clsx";
 import { headerLinks } from "../../config";
-import styles from "../../styles/components/common/Header.module.scss";
+import styles from "../../styles/components/header/Header.module.scss";
 import ProfileDropdown from "./ProfileDropdown";
 
 // handlers for the icon links
