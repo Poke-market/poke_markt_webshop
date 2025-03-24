@@ -12,7 +12,7 @@
     label {
       font-size: 1.2rem;
       color: var(--text-color);
-      margin: 1rem 0 0.5rem 0;
+      margin: 1.5rem 0 0.5rem 0;
     }
 
     input {
@@ -58,4 +58,28 @@
       cursor: not-allowed;
     }
   }
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.error-message {
+  color: red;
+  font-size: 1rem;
+  margin-top: 0.25rem;
+}
+
+.success-message {
+  color: green;
+  font-size: 1rem;
+  margin-top: 0.25rem;
 }

@@ -7,24 +7,20 @@ import {
 } from "@tanstack/react-table";
 import { CSSProperties } from "react";
 
-/**
- * @Note I added this table so it's reusable, same as the other components like Button, Heading ...
- * @exampleUsage <Table columns={ .... } data={ .... } className = "..." />
- */
-
 type Props<T> = {
-  columns: ColumnDef<T, any>[];
-  data: T[];
+  columns: ColumnDef<T, any>[]; // Column definitions
+  data: T[]; // Data to be displayed in the table
   className?: string;
-  style?: CSSProperties;
-  header?: { className?: string; style?: CSSProperties };
-  headerCell?: { className?: string; style?: CSSProperties };
-  body?: { className?: string; style?: CSSProperties };
-  rowData?: { className?: string; style?: CSSProperties };
-  cell?: { className?: string; style?: CSSProperties };
+  style?: CSSProperties; // Optional inline styles for the table element
+  headerProps?: { className?: string; style?: CSSProperties }; // table header
+  thProps?: { className?: string; style?: CSSProperties }; // table header cells
+  bodyProps?: { className?: string; style?: CSSProperties }; // table body
+  trProps?: { className?: string; style?: CSSProperties }; // table rows
+  tdProps?: { className?: string; style?: CSSProperties }; // table cells
   [key: string]: any;
 };
 
+// Table component definition
 export function Table<T>({
   columns,
   data = [],
@@ -37,26 +33,31 @@ export function Table<T>({
   tdProps = {},
   ...rest
 }: Props<T>) {
-  // Initialize table with TanStack
+  // Initialize the table using TanStack (React Table)
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel(),
+    getSortedRowModel: getSortedRowModel(), // Sorting functionality
     ...rest,
   });
 
   return (
+    // Table element with optional className and style
     <table className={className} style={style}>
+      {/* Table header */}
       <thead {...headerProps}>
         {table.getHeaderGroups().map((headerGroup) => (
+          // Render each header group
           <tr key={headerGroup.id}>
             {headerGroup.headers.map((header) => (
+              // Render each header cell
               <th
                 key={header.id}
-                {...thProps}
-                {...header.column.columnDef.meta}
+                {...thProps} // Spread thProps for custom styling
+                {...header.column.columnDef.meta} // Spread meta data from column definition
               >
+                {/* Render header content if not a placeholder */}
                 {header.isPlaceholder
                   ? null
                   : flexRender(
@@ -68,10 +69,14 @@ export function Table<T>({
           </tr>
         ))}
       </thead>
+
+      {/* Table body */}
       <tbody {...bodyProps}>
         {table.getRowModel().rows.map((row) => (
+          // Render each row
           <tr key={row.id} {...trProps}>
             {row.getVisibleCells().map((cell) => (
+              // Render each cell
               <td key={cell.id} {...tdProps}>
                 {flexRender(cell.column.columnDef.cell, cell.getContext())}
               </td>
