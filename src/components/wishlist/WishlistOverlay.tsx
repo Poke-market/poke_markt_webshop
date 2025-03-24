@@ -1,5 +1,6 @@
 import { useWishlist } from "../../hooks/useWishlist";
 import { Overlay } from "../common/Overlay";
+import OverlayItem from "../common/OverlayItem";
 
 type Props = {
   isOpen: boolean;
@@ -24,7 +25,7 @@ export const WishlistOverlay = ({ isOpen, onClose }: Props) => {
         },
       ]}
       content={wishlist ?? []}
-      renderContent={() => <></>}
+      renderContent={(item) => <OverlayItem item={item} />}
       getContentKey={(item) => item._id}
       onRemove={(item) => removeItemFromWishlist(item._id)}
     />
