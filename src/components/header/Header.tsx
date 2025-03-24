@@ -4,7 +4,13 @@ import { CartOverlay } from "../cart/CartOverlay";
 import { WishlistOverlay } from "../wishlist/WishlistOverlay";
 import { useNavigate } from "react-router-dom";
 import clsx from "clsx";
-import { Logo, NavLinks, IconLinks } from "./index";
+import {
+  Logo,
+  NavLinks,
+  IconLinks,
+  HamburgerButton,
+  MobileMenuOverlay,
+} from "./index";
 
 type Props = {
   className?: string;
@@ -49,45 +55,21 @@ const Header = ({ className }: Props) => {
       >
         <Logo />
 
-        <button
-          className={styles.hamburger}
-          onClick={toggleMobileMenu}
-          aria-label="Toggle menu"
-          aria-expanded={isMobileMenuOpen}
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
+        <HamburgerButton isOpen={isMobileMenuOpen} onClick={toggleMobileMenu} />
 
-        <div
-          className={clsx(styles.mobileOverlay, {
-            [styles.open]: isMobileMenuOpen,
-          })}
-        >
-          <div className={styles.mobileMenuContent}>
-            <Logo className={styles.mobileLogo} />
-            <NavLinks onNavigate={closeMobileMenu} />
+        <MobileMenuOverlay
+          isOpen={isMobileMenuOpen}
+          onClose={toggleMobileMenu}
+          logo={<Logo className={styles.mobileLogo} />}
+          navLinks={<NavLinks onNavigate={closeMobileMenu} />}
+          iconLinks={
             <IconLinks
               onCartClick={handleCartClick}
               onWishlistClick={handleWishlistClick}
               onProfileClick={handleProfileClick}
             />
-            <button
-              className={styles.closeButton}
-              onClick={toggleMobileMenu}
-              aria-label="Close menu"
-            >
-              Close
-            </button>
-          </div>
-          <div
-            className={styles.backdrop}
-            onClick={toggleMobileMenu}
-            role="button"
-            tabIndex={0}
-          ></div>
-        </div>
+          }
+        />
 
         <div className={styles.desktopNav}>
           <NavLinks />
