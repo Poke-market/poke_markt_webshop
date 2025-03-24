@@ -2,7 +2,7 @@
 export * from "../components/common";
 
 // Header
-export * from "../components/header";
+export * from "../components/header/Header.tsx";
 
 // Footer
 export * from "../components/footer";

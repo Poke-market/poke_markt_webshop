@@ -1,0 +1,11 @@
+.button {
+  padding: 1rem;
+  background-color: var(--basic-blue);
+  cursor: pointer;
+  position: relative;
+  border: none;
+
+  &:hover {
+    background-color: var(--light-blue);
+  }
+}

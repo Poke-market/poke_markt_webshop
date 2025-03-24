@@ -5,9 +5,9 @@ import { useEffect } from "react";
 const Homepage = () => {
   useEffect(() => {
     // Apply metadata for this page
-    document.title = "Shop | Poke Market";
+    document.title = "shop | Poke Market";
     const meta = generateMetadata({
-      title: "Shop | Poke Market",
+      title: "shop | Poke Market",
       description:
         "Browse and shop for the best Pokemon products at Poke Market",
       type: "website",

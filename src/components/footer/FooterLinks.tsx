@@ -1,17 +1,7 @@
 import { Heading } from "../common";
 import { Link } from "react-router-dom";
 import styles from "../../styles/components/common/Footer.module.scss";
-
-type FooterLink = {
-  path: string;
-  label: string;
-};
-
-type FooterLinksProps = {
-  title: string;
-  links: FooterLink[];
-  className?: string;
-};
+import { FooterLinksProps } from "./FooterTypes";
 
 const FooterLinks = ({ title, links, className }: FooterLinksProps) => (
   <div className={className}>
