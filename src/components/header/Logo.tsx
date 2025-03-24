@@ -15,7 +15,7 @@ const Logo = ({ className }: LogoProps) => (
       className={styles.headerLogo}
     />
     <Heading size="text2xl" className={styles.logoText}>
-      Poke-Mart
+      PokeMart
     </Heading>
   </NavLink>
 );

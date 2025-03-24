@@ -10,6 +10,7 @@ import { useGetItemsQuery } from "../store/pokemartApi";
 import { setCategorieCounts, setTotalCount } from "../store/filterSlice";
 import { SearchParamGetter } from "../utils";
 
+// fetch items from the server and handle pagination
 const useProductGrid = () => {
   const { page = 1 } = useParams();
   const navigate = useNavigate();
@@ -19,6 +20,7 @@ const useProductGrid = () => {
 
   const searchParamsGetter = new SearchParamGetter(searchParams);
 
+  // Fetch items
   const { data, isLoading } = useGetItemsQuery({
     page: +page,
     ...searchParamsGetter
@@ -35,6 +37,7 @@ const useProductGrid = () => {
   const info = data?.info;
   const items = data?.items;
 
+  // Set filter counts
   useEffect(() => {
     if (info) {
       dispatch(setCategorieCounts(info.categorieCount));

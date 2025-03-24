@@ -25,10 +25,11 @@
     text-decoration: none;
     width: 17%;
     margin-left: 2.88rem;
+    gap: 1rem;
   }
 
   .headerLogo {
-    height: 6rem;
+    height: 3rem;
     width: fit-content;
     object-fit: contain;
     object-position: center;
@@ -36,6 +37,9 @@
 
   .logoText {
     color: var(--red);
+    font-weight: bold;
+    text-shadow: 0 0.1rem 0.5rem rgba(0, 0, 0, 0.37);
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   }
 
   .navList {

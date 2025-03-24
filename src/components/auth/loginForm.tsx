@@ -1,8 +1,8 @@
 import styles from "../../styles/pages/LoginPage.module.scss";
-import { Loading, Form } from "../common";
 import { useLoginForm } from "../../hooks/useLoginForm";
 import { useNavigate } from "react-router-dom";
 import { loginFields } from "../../config/formFields";
+import { Loading, Form } from "../common";
 import RegisterLink from "./RegisterLink.tsx";
 
 interface LoginFormProps {

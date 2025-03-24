@@ -3,6 +3,18 @@ import { useAppDispatch } from "../store";
 import { setAuth } from "../store/authSlice";
 import { LoginCredentials } from "../types/auth";
 
+// validation
+const validateCredentials = (credentials: LoginCredentials): string | null => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(credentials.email?.trim())) {
+    return "Invalid email format";
+  }
+  if (credentials.password.length < 6) {
+    return "Password must be at least 6 characters";
+  }
+  return null;
+};
+
 export const useLogin = (
   onLoginSuccess: () => void,
   onLoginFailure: (message: string) => void,
@@ -10,21 +22,16 @@ export const useLogin = (
   const [login, { isLoading }] = useLoginMutation();
   const dispatch = useAppDispatch();
 
-  const handleLogin = async (credentials: LoginCredentials) => {
+  const handleLogin = async (
+    credentials: LoginCredentials,
+  ): Promise<boolean> => {
+    const validationError = validateCredentials(credentials);
+    if (validationError) {
+      onLoginFailure(validationError);
+      return false;
+    }
+
     try {
-      // email format validation
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(credentials.email?.trim())) {
-        onLoginFailure("Invalid email format");
-        return false;
-      }
-
-      // password length validation
-      if (credentials.password.length < 6) {
-        onLoginFailure("Password must be at least 6 characters");
-        return false;
-      }
-
       const timeoutPromise = new Promise<never>((_, reject) => {
         setTimeout(() => reject(new Error("Request timeout")), 10000);
       });
@@ -38,12 +45,12 @@ export const useLogin = (
       onLoginSuccess();
       return true;
     } catch (error) {
+      let errorMessage = "An unexpected error occurred";
       if (error instanceof TypeError && error.message === "Failed to fetch") {
-        onLoginFailure("Network error. Please check your connection.");
-        return false;
+        errorMessage = "Network error. Please check your connection.";
+      } else if (error instanceof Error) {
+        errorMessage = error.message;
       }
-      const errorMessage =
-        error instanceof Error ? error.message : "An unexpected error occurred";
       onLoginFailure(errorMessage);
       return false;
     }

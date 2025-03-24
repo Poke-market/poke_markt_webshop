@@ -21,8 +21,8 @@ export type FormField = {
     | "select"
     | "textarea"
     | "tel";
-  name: string; // Field identifier
-  required?: boolean; // Whether the field is mandatory
+  name: string;
+  required?: boolean;
   options?: { value: string; label: string }[]; // For select dropdowns
   render?: (props: {
     // Custom render function for flexibility
@@ -30,22 +30,22 @@ export type FormField = {
     value: any;
     onChange: (e: ChangeEvent<any>) => void;
   }) => ReactNode;
-  variant?: "underline" | "fill"; // Styling variant for Input
-  shape?: "square" | "round"; // Shape option for Input
-  className?: string; // Custom styles for the field wrapper
+  variant?: "underline" | "fill";
+  shape?: "square" | "round";
+  className?: string;
 };
 
 // Props for the Form component with generic type for form data
 type FormProps<T extends Record<string, string | number | boolean>> = {
-  fields: FormField[]; // Array of form fields to render
-  formData: T; // Current form values
-  onChange: (e: ChangeEvent<any>) => void; // Handler for input changes
-  onSubmit: (e: FormEvent) => void; // Handler for form submission
-  statusMessage?: string; // Optional feedback message
-  isLoading?: boolean; // Loading state for submission
-  submitButtonText?: string; // Custom text for submit button
-  buttonClassName?: string; // Styling for the submit button
-  className?: string; // Styling for the form container
+  fields: FormField[];
+  formData: T;
+  onChange: (e: ChangeEvent<any>) => void;
+  onSubmit: (e: FormEvent) => void;
+  statusMessage?: string;
+  isLoading?: boolean;
+  submitButtonText?: string;
+  buttonClassName?: string;
+  className?: string;
   toastResponse?: {
     // Optional toast notification config
     key: keyof typeof import("../../config/toastResponses.ts").toastResponses;
@@ -54,9 +54,6 @@ type FormProps<T extends Record<string, string | number | boolean>> = {
   errors?: Record<string, string>; // Optional field-specific errors
 };
 
-/**
- * A flexible Form component that handles various input types and toast notifications
- */
 export const Form = <T extends Record<string, string | number | boolean>>({
   fields,
   formData,
@@ -68,6 +65,7 @@ export const Form = <T extends Record<string, string | number | boolean>>({
   buttonClassName = "",
   className = "",
   toastResponse,
+  errors = {}, // Default to an empty object
 }: FormProps<T>) => {
   // Show toast notification when toastResponse changes
   useEffect(() => {
@@ -160,6 +158,12 @@ export const Form = <T extends Record<string, string | number | boolean>>({
           >
             <label htmlFor={field.name}>{field.label}:</label>
             {renderField(field)}
+            {/* Display error message if it exists for this field */}
+            {errors[field.name] && (
+              <span className={styles["error-message"]}>
+                {errors[field.name]}
+              </span>
+            )}
           </div>
         ))}
 
