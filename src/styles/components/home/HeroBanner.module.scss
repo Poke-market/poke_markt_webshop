@@ -1,5 +1,33 @@
 @use "../../partials/variables" as *;
 
+@keyframes pulseIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%) scale(0.95);
+  }
+  50% {
+    transform: translateY(-50%) scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+  }
+}
+
+@keyframes pulseInCenter {
+  0% {
+    opacity: 0;
+    transform: translate(50%, -50%) scale(0.95);
+  }
+  50% {
+    transform: translate(50%, -50%) scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(50%, -50%) scale(1);
+  }
+}
+
 .heroBanner {
   position: relative;
   width: 100%;
@@ -39,6 +67,9 @@
     text-align: left;
     color: var(--text-color);
     border-radius: 1rem; // 10px in rem
+    transition: all 0.3s ease;
+    animation: pulseIn 1s ease-out forwards;
+    opacity: 0;
 
     p:first-of-type {
       margin-bottom: 1.5rem;
@@ -81,6 +112,7 @@
     margin-top: auto;
     font-size: $font-size-lg;
     cursor: pointer;
+    transition: all 0.3s ease;
     padding: 0 4rem;
     display: flex;
     align-items: center;
@@ -110,6 +142,8 @@
       width: 45rem;
       height: fit-content;
       padding: 2.5rem;
+      animation: pulseInCenter 1s ease-out forwards;
+      opacity: 0;
 
       p:first-of-type span {
         font-size: $font-size-lg;
@@ -150,6 +184,8 @@
       width: 28rem;
       height: fit-content;
       padding: 2rem;
+      animation: pulseInCenter 1s ease-out forwards;
+      opacity: 0;
 
       p:first-of-type span {
         font-size: $font-size-xs;
