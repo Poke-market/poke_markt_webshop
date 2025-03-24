@@ -7,7 +7,7 @@ import { getToastResponse, TOAST_KEYS, toastConfig } from "../../config";
 import { RootState } from "../../store";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import styles from "../../styles/components/Logout.module.scss";
+import styles from "../../styles/components/auth/Logout.module.scss";
 
 interface LogoutProps {
   className?: string;

@@ -4,11 +4,11 @@ import { registerFields } from "../../config/formFields.ts";
 import { Heading } from "../common";
 import Loading from "../common/Loading.tsx";
 import useRegisterForm from "../../hooks/useRegisterForm.ts";
-import styles from "../../styles/components/Register.module.scss";
+import styles from "../../styles/components/auth/Register.module.scss";
 import "react-toastify/dist/ReactToastify.css";
 
 const RegisterForm = () => {
-  const { formData, isLoading, errors, handleChange, handleSubmit } =
+  const { formData, isLoading, handleChange, handleSubmit } =
     useRegisterForm(initialUserData);
 
   if (isLoading) return <Loading />;
@@ -22,7 +22,6 @@ const RegisterForm = () => {
         onChange={handleChange}
         onSubmit={handleSubmit}
         submitButtonText="Register"
-        errors={errors}
       />
     </div>
   );
