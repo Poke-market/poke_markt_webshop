@@ -78,6 +78,7 @@ const Header = ({ className }: Props) => {
               onCartClick={handleCartClick}
               onWishlistClick={handleWishlistClick}
               onProfileClick={handleProfileClick}
+              onSearchClick={handleSearchClick}
             />
           }
         />
