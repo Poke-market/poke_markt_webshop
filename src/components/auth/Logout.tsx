@@ -20,12 +20,14 @@ const Logout = ({ className }: LogoutProps) => {
     (state: RootState) => state.auth.isAuthenticated,
   );
 
+  // This function is called when the user clicks the "Logout" button.
   const handleLogout = async () => {
     setIsLoggingOut(true);
     dispatch(clearAuth());
     localStorage.removeItem("token");
 
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    // Simulate a 1.2-second delay to show the loading spinner.
+    await new Promise((resolve) => setTimeout(resolve, 1200));
     setIsLoggingOut(false);
 
     const { message, options } = getToastResponse(TOAST_KEYS.LOGOUT_SUCCESS);
@@ -34,6 +36,7 @@ const Logout = ({ className }: LogoutProps) => {
     void navigate("/shop");
   };
 
+  // This function is called when the user clicks the "Login" button.
   const handleLogin = () => {
     void navigate("/shop");
   };

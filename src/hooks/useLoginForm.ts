@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useLogin } from "./useLogin";
-import { TOAST_KEYS, getToastResponse } from "../config/toastResponses";
+import { TOAST_KEYS, getToastResponse } from "../config";
 import { toast } from "react-toastify";
 
 export const useLoginForm = (onSuccess: () => void) => {
@@ -11,20 +11,20 @@ export const useLoginForm = (onSuccess: () => void) => {
   const showToast = (key: keyof typeof TOAST_KEYS) => {
     const { message, options } = getToastResponse(TOAST_KEYS[key]);
     if (key.includes("SUCCESS")) {
-      toast.success(message, options);
+      toast.success(message, options); // Show success toast
     } else {
-      toast.error(message, options);
+      toast.error(message, options); // Show error toast
     }
   };
 
   const { handleLogin, isLoading } = useLogin(
     () => {
-      showToast("LOGIN_SUCCESS");
+      showToast("LOGIN_SUCCESS"); // Show success toast on login
       setEmail("");
       setPassword("");
       onSuccess();
     },
-    () => showToast("LOGIN_FAIL"),
+    () => showToast("LOGIN_FAIL"), // Show error toast on failure
   );
 
   const handleChange = (
@@ -44,7 +44,7 @@ export const useLoginForm = (onSuccess: () => void) => {
     try {
       await handleLogin({ email, password });
     } catch (error) {
-      showToast("LOGIN_ERROR");
+      showToast("LOGIN_ERROR"); // Show error toast on exception
       console.error("Error:", error);
     } finally {
       setStatusMessage("");

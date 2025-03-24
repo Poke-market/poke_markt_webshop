@@ -1,8 +1,6 @@
-import { Form } from "../common/Form.tsx";
+import { Heading, Loading, Form } from "../common";
 import { initialUserData } from "../../types/auth.ts";
 import { registerFields } from "../../config/formFields.ts";
-import { Heading } from "../common";
-import Loading from "../common/Loading.tsx";
 import useRegisterForm from "../../hooks/useRegisterForm.ts";
 import styles from "../../styles/components/auth/Register.module.scss";
 import "react-toastify/dist/ReactToastify.css";

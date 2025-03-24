@@ -1,62 +1,14 @@
-import { Suspense, useEffect, useRef } from "react";
+import { Suspense } from "react";
 import styles from "../../styles/components/home/ShopGrid.module.scss";
-import {
-  LoadingSkeleton,
-  ProductCard,
-  Pagination,
-  SearchParamGetter,
-  Heading,
-} from "../../utils";
-import { useGetItemsQuery } from "../../store/pokemartApi";
-import {
-  useParams,
-  useNavigate,
-  useSearchParams,
-  useLocation,
-} from "react-router-dom";
-import { useAppDispatch } from "../../store";
-import { setCategorieCounts, setTotalCount } from "../../store/filterSlice";
+import { LoadingSkeleton, ProductCard, Pagination, Heading } from "../../utils";
+import { useProductGrid, useScrollToGrid } from "../../hooks";
 
 const ProductGrid = () => {
-  const { page = 1 } = useParams();
-  const navigate = useNavigate();
-  const gridRef = useRef<HTMLDivElement>(null);
-  const [searchParams] = useSearchParams();
-  const { search } = useLocation();
-  const dispatch = useAppDispatch();
-
-  const searchParamsGetter = new SearchParamGetter(searchParams);
-
-  const { data, isLoading } = useGetItemsQuery({
-    page: +page,
-    ...searchParamsGetter
-      .get("sort")
-      .get("order")
-      .get("limit")
-      .getAll("cat")
-      .getAll("tag")
-      .get("minPrice")
-      .get("maxPrice")
-      .getFoundParams(),
-  });
-  const info = data?.info;
-  const items = data?.items;
-
-  useEffect(() => {
-    const isInView = (gridRef.current?.getBoundingClientRect().top ?? -1) >= 0;
-    if (gridRef.current && !isInView) {
-      gridRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [page]);
-
-  useEffect(() => {
-    if (info) {
-      dispatch(setCategorieCounts(info.categorieCount));
-      dispatch(setTotalCount(info.count));
-    }
-  }, [info, dispatch]);
+  const { page, items, isLoading, info, handlePageChange } = useProductGrid();
+  const gridRef = useScrollToGrid(page);
 
   if (isLoading) return <LoadingSkeleton />;
+
   return (
     <div className={styles.shopContainer} ref={gridRef}>
       <div className={styles.flexContainer}>
@@ -77,11 +29,9 @@ const ProductGrid = () => {
               </div>
             )}
             <Pagination
-              currentPage={+page}
+              currentPage={page}
               totalPages={info?.pages ?? 0}
-              onPageChange={(page) => {
-                void navigate(`/shop/${page}${search}`);
-              }}
+              onPageChange={handlePageChange}
             />
           </div>
         </div>
@@ -89,4 +39,5 @@ const ProductGrid = () => {
     </div>
   );
 };
+
 export default ProductGrid;
