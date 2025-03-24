@@ -1,5 +1,6 @@
 import styles from "../../styles/components/home/HeroBanner.module.scss";
-import { Button, Heading } from "../common";
+import { Heading } from "../common";
+import { Link } from "react-router-dom";
 
 const HeroBanner = () => {
   return (
@@ -8,12 +9,21 @@ const HeroBanner = () => {
         <img src="/hero-banner-pokemart.png" alt="Hero Banner" />
       </div>
       <div className={styles.heroBanner__content}>
-        <Heading as="h1">Discover our new collection</Heading>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-          quos.
+          <span>New Arrival</span>
         </p>
-        <Button>Buy Now</Button>
+        <Heading as="h1" size="heading5xl">
+          Discover Our
+          <br className={styles.desktopOnly} />
+          New Collection
+        </Heading>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
+          tellus, luctus nec ullamcorper mattis.
+        </p>
+        <Link to="/shop" className={styles.heroBanner__link}>
+          Buy Now
+        </Link>
       </div>
     </div>
   );
