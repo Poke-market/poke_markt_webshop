@@ -276,7 +276,6 @@
   }
 }
 
-
 // Prevent scroll when mobile menu is open
 :global(html):has(.menuOpen) {
   overflow: hidden;
