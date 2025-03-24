@@ -13,11 +13,12 @@ type props = {
   rowDelete: () => void;
 };
 
+// WishlistPage component
 const WishlistPage = () => {
   const columnHelper = createColumnHelper<props>();
 
   const data: props[] = useMemo(() => {
-    // Placeholder data
+    // Dummy data for te
     return [
       {
         rowProduct: {
@@ -32,6 +33,7 @@ const WishlistPage = () => {
     ];
   }, []);
 
+  // Columns for the table
   const columns = useMemo(
     () => [
       columnHelper.accessor("rowProduct", {
