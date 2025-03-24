@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { Heading } from "../common";
-import styles from "../../styles/components/common/Header.module.scss";
+import styles from "../../styles/components/header/Header.module.scss";
 import clsx from "clsx";
 
 type LogoProps = {
@@ -10,12 +10,12 @@ type LogoProps = {
 const Logo = ({ className }: LogoProps) => (
   <NavLink to="/" className={clsx(styles.logoLink, className)}>
     <img
-      src="/logo.png"
+      src="/poke-mart-logo.png"
       alt="Pokemon Mart Logo"
       className={styles.headerLogo}
     />
     <Heading size="text2xl" className={styles.logoText}>
-      Poke-Mart
+      PokeMart
     </Heading>
   </NavLink>
 );

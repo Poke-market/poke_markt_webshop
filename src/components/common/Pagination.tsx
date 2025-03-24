@@ -1,6 +1,7 @@
 import Button from "./Button.tsx";
 import styles from "../../styles/components/common/Pagination.module.scss";
 
+// Props
 type PaginationProps = {
   currentPage: number;
   totalPages: number;
@@ -14,17 +15,20 @@ const Pagination = ({
   onPageChange,
   maxDisplayedPages = 3,
 }: PaginationProps) => {
+  // Calculate the range of pages to display
   let pagesFrom = Math.max(
     1,
     currentPage - Math.floor((maxDisplayedPages - 1) / 2),
   );
   const pagesTo = Math.min(totalPages, pagesFrom + maxDisplayedPages - 1);
-  pagesFrom = Math.max(1, pagesTo - maxDisplayedPages + 1); // intentional re-adjustment
+  pagesFrom = Math.max(1, pagesTo - maxDisplayedPages + 1); // Adjust start based on end
 
+  // Generate array of page numbers
   const pages = Array(pagesTo - pagesFrom + 1)
     .fill(0)
     .map((_, index) => pagesFrom + index);
 
+  // Render the pagination controls
   return (
     <div className={styles.buttonContainer}>
       {currentPage > 1 && (

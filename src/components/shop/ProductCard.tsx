@@ -1,39 +1,27 @@
-import { Img, Heading, Button, Text } from "../common";
-import { Icons } from "../../utils";
+import { Img, Text } from "../common";
 import styles from "../../styles/components/shop/ProductCard.module.scss";
 import { Link } from "react-router-dom";
 import { Item } from "../../types/apiTypes/item";
 import { titleCase } from "../../utils/stringUtils";
-import { useAppDispatch } from "../../store";
-import { addItem } from "../../store/cartSlice";
-export type Props = {
+import { DiscountBadge } from "./DiscountBadge";
+import { truncateText } from "../../utils/textUtils";
+import { ProductActionButtons } from "./ActionButtons";
+
+interface ProductCardProps {
   item: Item;
   className?: string;
   onClick?: () => void;
-};
-
-function truncateText(text: string, maxLength: number): string {
-  return text.length <= maxLength ? text : `${text.substring(0, maxLength)}...`;
 }
 
-function DiscountBadge({ amount, type }: { amount?: number; type?: string }) {
-  const discountText = type === "percentage" ? `- ${amount}%` : `- $${amount}`;
-  return (
-    <div className={styles.absoluteCenter}>
-      <Heading className={styles.discountBadge}>{discountText}</Heading>
-    </div>
-  );
-}
-
-export default function ProductCard({
+export const ProductCard = ({
   item,
   className = "",
+  onClick,
   ...restProps
-}: Props) {
-  const { _id: id, name, description, photoUrl, price, discount, slug } = item;
+}: ProductCardProps) => {
+  const { _id: id, name, description, photoUrl, discount, slug } = item;
   const truncatedDescription = truncateText(description, 25);
   const truncatedName = truncateText(name, 20);
-  const dispatch = useAppDispatch();
 
   return (
     <div
@@ -64,39 +52,24 @@ export default function ProductCard({
           </Text>
         </div>
 
-        <div className={styles.priceContainer}>
-          <Text as="h5" size="textxl" className={styles.currentPrice}>
-            ${discount.discountedPrice}
-          </Text>
-          {discount.hasDiscount && (
-            <Text className={styles.originalPrice}>${price}</Text>
-          )}
-        </div>
+        <PriceDisplay item={item} />
       </div>
 
-      <div className={styles.overlay}>
-        <Button onClick={() => dispatch(addItem({ item }))}>Add to cart</Button>
-        <div className={styles.overlayButtons}>
-          <Button className={styles.overlayButton}>
-            <span className={styles.icon}>
-              <Icons.Share />
-            </span>
-            Share
-          </Button>
-          <Button className={styles.overlayButton}>
-            <span className={styles.icon}>
-              <Icons.ArrowRightLeft />
-            </span>
-            Compare
-          </Button>
-          <Button className={styles.overlayButton}>
-            <span className={styles.icon}>
-              <Icons.Likeheart />
-            </span>
-            Like
-          </Button>
-        </div>
-      </div>
+      <ProductActionButtons item={item} onAddToCart={onClick} />
     </div>
   );
-}
+};
+
+// Optional: You could also separate the price display
+const PriceDisplay = ({ item }: { item: Item }) => (
+  <div className={styles.priceContainer}>
+    <Text as="h5" size="textxl" className={styles.currentPrice}>
+      ${item.discount.discountedPrice}
+    </Text>
+    {item.discount.hasDiscount && (
+      <Text className={styles.originalPrice}>${item.price}</Text>
+    )}
+  </div>
+);
+
+export default ProductCard;

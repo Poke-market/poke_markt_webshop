@@ -25,10 +25,11 @@
     text-decoration: none;
     width: 17%;
     margin-left: 2.88rem;
+    gap: 1rem;
   }
 
   .headerLogo {
-    height: 6rem;
+    height: 3rem;
     width: fit-content;
     object-fit: contain;
     object-position: center;
@@ -36,6 +37,9 @@
 
   .logoText {
     color: var(--red);
+    font-weight: bold;
+    text-shadow: 0 0.1rem 0.5rem rgba(0, 0, 0, 0.37);
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   }
 
   .navList {
@@ -57,7 +61,8 @@
     width: 15%;
     display: flex;
     justify-content: space-between;
-    gap: 1rem;
+    gap: 2rem;
+    position: relative;
 
     a[data-cart-item-count] {
       position: relative;
@@ -106,5 +111,74 @@
 
   @include responsive(sm) {
     padding: 2rem;
+  }
+}
+
+.profileDropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  min-width: 200px;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease-out;
+  pointer-events: auto;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -1rem;
+    left: 0;
+    right: 0;
+    height: 1rem;
+    background: transparent;
+  }
+
+  @media (max-width: $breakpoint) {
+    right: 0;
+  }
+
+  @include responsive(md) {
+    right: 50%;
+    transform: translateX(50%);
+  }
+}
+
+.dropdownItem {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  text-align: center;
+  background: var(--basic-blue);
+  border: none;
+  color: var(--white);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 0.5rem;
+  font-weight: $font-weight-medium;
+
+  &:hover {
+    background-color: var(--light-blue);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    background-color: var(--bluegrey);
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
