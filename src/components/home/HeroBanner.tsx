@@ -12,11 +12,18 @@ const HeroBanner = () => {
         <p>
           <span>New Arrival</span>
         </p>
-        <Heading as="h1" size="heading5xl">
-          Discover Our
-          <br className={styles.desktopOnly} />
-          New Collection
-        </Heading>
+        <div className={styles.heroBanner__heading}>
+          <Heading as="h1" size="heading5xl">
+            Discover Our
+          </Heading>
+          <Heading
+            as="h1"
+            size="heading5xl"
+            className={styles.heroBanner__headingSecond}
+          >
+            New Collection
+          </Heading>
+        </div>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
           tellus, luctus nec ullamcorper mattis.
