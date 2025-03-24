@@ -4,7 +4,7 @@ import { Icons } from "../utils/Icons.tsx";
 const headerLinks = {
   navLinks: [
     { path: "/", label: "Home" },
-    { path: "/Shop", label: "Shop" },
+    { path: "/shop", label: "shop" },
     { path: "/about", label: "About" },
     { path: "/contact", label: "Contact" },
   ],
@@ -20,7 +20,7 @@ const headerLinks = {
 const footerLinks = {
   mainLinks: [
     { path: "/", label: "Home" },
-    { path: "/Shop", label: "Shop" },
+    { path: "/shop", label: "shop" },
     { path: "/about", label: "About" },
     { path: "/contact", label: "Contact" },
   ],

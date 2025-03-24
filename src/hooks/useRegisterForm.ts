@@ -42,7 +42,7 @@ export const useRegisterForm = (initialState: UserData) => {
         setFormData(initialState);
         showToast("REGISTER_SUCCESS");
 
-        // Navigate to the Shop page after a short delay
+        // Navigate to the shop page after a short delay
         setTimeout(() => navigate("/shop"), 100);
         return;
       }

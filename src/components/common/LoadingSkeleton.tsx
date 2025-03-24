@@ -1,9 +1,9 @@
-import styles from "../../styles/components/shop/shopGrid.module.scss";
+import styles from "../../styles/components/shop/ShopGrid.module.scss";
 import skeletonStyles from "../../styles/components/common/Loading.module.scss";
 
 /**
- * A loading skeleton component for the Shop grid
- * used ShopGrid styling to align the skeleton with the Shop grid
+ * A loading skeleton component for the shop grid
+ * used ShopGrid styling to align the skeleton with the shop grid
  * @author Amine Abbouti
  */
 

@@ -8,7 +8,7 @@ type Props = {
   className?: string;
 };
 
-export default function PageBanner({ title = "Shop" }: Props) {
+export default function PageBanner({ title = "shop" }: Props) {
   return (
     <div className={styles.bannerShop}>
       <div className={styles.backgroundImage} />
