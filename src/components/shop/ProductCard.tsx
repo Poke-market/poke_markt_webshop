@@ -92,7 +92,7 @@ export default function ProductCard({
           </Button>
           <Button
             className={styles.overlayButton}
-            onClick={() => toggleItemInWishlist(id)}
+            onClick={() => toggleItemInWishlist(item)}
             disabled={isUpdatingWishlist}
           >
             {isItemInWishlist(id) ? (

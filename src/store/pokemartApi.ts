@@ -54,6 +54,7 @@ const customBaseQuery: BaseQueryFn<
 const pokemartApi = createApi({
   reducerPath: "pokemartApi",
   baseQuery: customBaseQuery,
+  tagTypes: ["wishlist"],
   endpoints: (builder) => ({
     // Items
     getItems: builder.query<GetItemsData, GetItemsParams>({
@@ -92,13 +93,23 @@ const pokemartApi = createApi({
     // Wishlist
     getWishlist: builder.query<Item[], string>({
       query: (id) => `/users/${id}/wishlist`,
+      providesTags: ["wishlist"],
     }),
-    addToWishlist: builder.mutation<void, { userId: string; itemId: string }>({
-      query: ({ userId, itemId }) => ({
+    addToWishlist: builder.mutation<void, { userId: string; item: Item }>({
+      query: ({ userId, item }) => ({
         url: `/users/${userId}/wishlist`,
         method: "POST",
-        body: { itemId },
+        body: { itemId: item._id },
       }),
+      invalidatesTags: ["wishlist"],
+      onQueryStarted({ userId, item }, { dispatch, queryFulfilled }) {
+        const optimisticUpdate = dispatch(
+          pokemartApi.util.updateQueryData("getWishlist", userId, (draft) => {
+            draft.push(item);
+          }),
+        );
+        queryFulfilled.catch(optimisticUpdate.undo);
+      },
     }),
     removeFromWishlist: builder.mutation<
       void,
@@ -109,12 +120,30 @@ const pokemartApi = createApi({
         method: "DELETE",
         body: { itemId },
       }),
+      invalidatesTags: ["wishlist"],
+      onQueryStarted({ userId, itemId }, { dispatch, queryFulfilled }) {
+        const optimisticUpdate = dispatch(
+          pokemartApi.util.updateQueryData("getWishlist", userId, (draft) => {
+            return draft.filter((item) => item._id !== itemId);
+          }),
+        );
+        queryFulfilled.catch(optimisticUpdate.undo);
+      },
     }),
     clearWishlist: builder.mutation<void, string>({
       query: (userId) => ({
         url: `/users/${userId}/wishlist/clear`,
         method: "DELETE",
       }),
+      invalidatesTags: ["wishlist"],
+      onQueryStarted(userId, { dispatch, queryFulfilled }) {
+        const optimisticUpdate = dispatch(
+          pokemartApi.util.updateQueryData("getWishlist", userId, () => {
+            return [];
+          }),
+        );
+        queryFulfilled.catch(optimisticUpdate.undo);
+      },
     }),
   }),
 });
