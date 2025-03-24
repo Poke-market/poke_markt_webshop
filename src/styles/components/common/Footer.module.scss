@@ -6,6 +6,7 @@
   font-weight: $font-weight-medium;
   background-color: var(--background-color);
   border-top: 1px solid rgba(0, 0, 0, 0.17);
+  margin-top: 5rem;
 
   @media (max-width: $breakpoint-sm) {
     padding: 2rem 0;
