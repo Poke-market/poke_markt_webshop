@@ -40,13 +40,13 @@ const Header = ({ className }: Props) => {
     void navigate("/login");
   };
 
-
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
+  };
 
   // handle for the search icon click
   const handleSearchClick = (e: React.MouseEvent) => {
@@ -62,7 +62,6 @@ const Header = ({ className }: Props) => {
         })}
         aria-label="Main Navigation"
       >
-      
         <div className={styles.boxLeft}>
           <Logo />
         </div>
@@ -97,7 +96,7 @@ const Header = ({ className }: Props) => {
           </div>
         </div>
       </nav>
-      
+
       <CartOverlay isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
       <WishlistOverlay
         isOpen={isWishlistOpen}

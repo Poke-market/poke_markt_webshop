@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../styles/components/common/Header.module.scss";
+import styles from "../../styles/components/header/Header.module.scss";
 import clsx from "clsx";
 
 type HamburgerButtonProps = {
