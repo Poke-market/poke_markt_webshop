@@ -27,6 +27,9 @@
       font-size: $font-size-xl;
       font-weight: 400;
       color: var(--brows-range-sm-text);
+      width: 100%;
+      text-align: center;
+      max-width: 40rem;
     }
   }
   .cardsContainer {
