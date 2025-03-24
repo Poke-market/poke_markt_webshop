@@ -10,7 +10,7 @@ type LogoProps = {
 const Logo = ({ className }: LogoProps) => (
   <NavLink to="/" className={clsx(styles.logoLink, className)}>
     <img
-      src="/logo.png"
+      src="/poke-mart-logo.png"
       alt="Pokemon Mart Logo"
       className={styles.headerLogo}
     />

@@ -5,6 +5,7 @@ type Props = {
   loading?: "lazy";
 };
 
+// a reusable image component with customizable src, alt, and loading state
 const Image = ({
   className = "",
   src = "",

@@ -7,6 +7,7 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   cursor?: "pointer" | "not-allowed";
 };
 
+// button component with custom styles: we can pass className, children and cursor props
 const Button = ({
   children,
   className = "",

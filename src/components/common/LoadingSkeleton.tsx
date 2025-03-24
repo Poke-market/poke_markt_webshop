@@ -1,6 +1,12 @@
 import styles from "../../styles/components/home/ShopGrid.module.scss";
 import skeletonStyles from "../../styles/components/common/Loading.module.scss";
 
+/**
+ * A loading skeleton component for the shop grid
+ * used ShopGrid styling to align the skeleton with the shop grid
+ * @author Amine Abbouti
+ */
+
 const LoadingSkeleton = () => {
   return (
     <div className={styles.shopContainer}>

@@ -1,4 +1,3 @@
-// src/components/auth/Logout.tsx
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { clearAuth } from "../../store/authSlice";

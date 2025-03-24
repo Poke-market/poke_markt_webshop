@@ -1,14 +1,15 @@
 import { forwardRef } from "react";
 import styles from "../../styles/components/common/Input.module.scss";
 
+// Props for the customizable input component
 type Props = {
   className?: string;
   placeholder?: string;
   variant?: "underline" | "fill";
   size?: "sm" | "md" | "xs";
   shape?: "square" | "round";
-  type:
-    | "text"
+  type: // Supported input types
+  | "text"
     | "email"
     | "password"
     | "number"
@@ -19,11 +20,13 @@ type Props = {
   defaultValue?: string | number;
   value?: string | number;
   checked?: boolean;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void; // Change handler
   required?: boolean;
   name?: string;
   id?: string;
 };
+
+// Customizable input component with variant, size, and shape props
 
 const Input = forwardRef<HTMLInputElement, Props>(
   (
@@ -31,11 +34,12 @@ const Input = forwardRef<HTMLInputElement, Props>(
       className = "",
       variant = "fill",
       size = "xs",
-      shape = "square",
+      shape = "square", // Default shape
       ...props
     },
     ref,
   ) => {
+    // map the variant, size, and shape to their respective classes
     const variantClass = styles[variant];
     const sizeClass = styles[size];
     const shapeClass = styles[shape];
