@@ -91,6 +91,12 @@
   background-color: #3a7bd5;
 }
 
+@media (max-width: 1200px) {
+  .container {
+    padding: 0 2rem;
+  }
+}
+
 @media (max-width: 975px) {
   .container {
     height: auto;
