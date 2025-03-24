@@ -1,5 +1,5 @@
 import { Suspense, useEffect, useRef } from "react";
-import styles from "../../styles/components/Shop/ShopGrid.module.scss";
+import styles from "../../styles/components/shop/ShopGrid.module.scss";
 import {
   LoadingSkeleton,
   ProductCard,
