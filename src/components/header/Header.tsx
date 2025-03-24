@@ -13,6 +13,7 @@ type Props = {
 const Header = ({ className }: Props) => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isWishlistOpen, setIsWishlistOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
 
   const handleCartClick = (e: React.MouseEvent) => {
@@ -30,19 +31,72 @@ const Header = ({ className }: Props) => {
     void navigate("/login");
   };
 
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <>
       <nav
-        className={clsx(styles.header, className)}
+        className={clsx(styles.header, className, {
+          [styles.menuOpen]: isMobileMenuOpen,
+        })}
         aria-label="Main Navigation"
       >
         <Logo />
-        <NavLinks />
-        <IconLinks
-          onCartClick={handleCartClick}
-          onWishlistClick={handleWishlistClick}
-          onProfileClick={handleProfileClick}
-        />
+
+        <button
+          className={styles.hamburger}
+          onClick={toggleMobileMenu}
+          aria-label="Toggle menu"
+          aria-expanded={isMobileMenuOpen}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <div
+          className={clsx(styles.mobileOverlay, {
+            [styles.open]: isMobileMenuOpen,
+          })}
+        >
+          <div className={styles.mobileMenuContent}>
+            <Logo className={styles.mobileLogo} />
+            <NavLinks onNavigate={closeMobileMenu} />
+            <IconLinks
+              onCartClick={handleCartClick}
+              onWishlistClick={handleWishlistClick}
+              onProfileClick={handleProfileClick}
+            />
+            <button
+              className={styles.closeButton}
+              onClick={toggleMobileMenu}
+              aria-label="Close menu"
+            >
+              Close
+            </button>
+          </div>
+          <div
+            className={styles.backdrop}
+            onClick={toggleMobileMenu}
+            role="button"
+            tabIndex={0}
+          ></div>
+        </div>
+
+        <div className={styles.desktopNav}>
+          <NavLinks />
+          <IconLinks
+            onCartClick={handleCartClick}
+            onWishlistClick={handleWishlistClick}
+            onProfileClick={handleProfileClick}
+          />
+        </div>
       </nav>
 
       <CartOverlay isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />

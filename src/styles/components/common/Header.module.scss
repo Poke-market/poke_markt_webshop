@@ -9,15 +9,15 @@
   background-color: #ffffff;
   justify-content: space-between;
   align-items: center;
-  gap: 2rem;
+
   position: sticky;
   top: 0;
   z-index: 800;
   box-shadow: 0 0.1rem 0.5rem rgba(0, 0, 0, 0.1);
 
-  @media (max-width: $breakpoint) {
-    padding: 2rem;
-  }
+  // @media (max-width: $breakpoint) {
+  //   padding: 2rem;
+  // }
 
   .logoLink {
     display: flex;
@@ -25,39 +25,42 @@
     text-decoration: none;
     width: 17%;
     margin-left: 2.88rem;
-  }
 
-  .headerLogo {
-    height: 6rem;
-    width: fit-content;
-    object-fit: contain;
-    object-position: center;
-  }
+    .headerLogo {
+      height: 6rem;
+      width: fit-content;
+      object-fit: contain;
+      object-position: center;
+    }
 
-  .logoText {
-    color: var(--red);
+    .logoText {
+      color: var(--red);
+      white-space: nowrap;
+    }
   }
 
   .navList {
     display: flex;
-    flex-wrap: wrap;
-    gap: 7.4rem;
+    justify-content: center;
+    gap: 6.9rem;
     list-style: none;
+    transition: gap 0.3s ease-out;
 
-    @media (max-width: $breakpoint) {
-      gap: 2.5rem;
+    // @media (max-width: $breakpoint) {
+    //   gap: 2.5rem;
+    // }
+
+    .active {
+      font-weight: bold !important;
     }
-  }
-  .active {
-    font-weight: bold !important;
   }
 
   .iconContainer {
     margin-right: 2.88rem;
-    width: 15%;
     display: flex;
-    justify-content: space-between;
-    gap: 1rem;
+    gap: 4rem;
+    justify-content: flex-end;
+    transition: gap 0.3s ease-out;
 
     a[data-cart-item-count] {
       position: relative;
@@ -89,22 +92,176 @@
     }
   }
 
-  @include responsive(md) {
-    flex-direction: column;
-    padding: 2rem;
+  // Hamburger menu button (hidden on desktop)
+  .hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
 
+    span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      margin-bottom: 5px;
+      background-color: var(--text-color);
+      transition: transform 0.3s ease-out;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  // Desktop navigation (hidden on mobile)
+  .desktopNav {
+    display: contents;
+  }
+
+  // Mobile menu overlay
+  .mobileOverlay {
+    display: none;
+  }
+
+  @include responsive(lg) {
     .navList {
       gap: 2rem;
     }
-
     .iconContainer {
-      margin-right: 0;
-      width: 100%;
-      justify-content: space-around;
+      gap: 1.5rem;
     }
   }
 
-  @include responsive(sm) {
-    padding: 2rem;
+  @include responsive(md) {
+    padding: 1.5rem;
+    justify-content: space-between;
+
+    // Show hamburger button on mobile
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    // Hide desktop navigation on mobile
+    .desktopNav {
+      display: none;
+    }
+
+    // Mobile menu open animation for hamburger icon
+    &.menuOpen .hamburger {
+      span {
+        &:first-child {
+          transform: translateY(8px) rotate(45deg);
+        }
+        &:nth-child(2) {
+          opacity: 0;
+        }
+        &:last-child {
+          transform: translateY(-8px) rotate(-45deg);
+        }
+      }
+    }
+
+    // Mobile menu overlay
+    .mobileOverlay {
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 999;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease-out;
+
+      // Mobile menu content
+      .mobileMenuContent {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--white);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 6rem;
+        padding: 2rem;
+        z-index: 1000;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-out;
+
+        .mobileLogo {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          margin-left: 0;
+          width: auto;
+
+          .headerLogo {
+            height: 8rem;
+            margin-bottom: 1rem;
+          }
+
+          .logoText {
+            font-weight: 700;
+            font-size: 2.4rem;
+          }
+        }
+
+        .navList {
+          flex-direction: column;
+          text-align: center;
+          gap: 2rem;
+        }
+
+        .iconContainer {
+          width: 100%;
+          max-width: 250px;
+          margin: 0;
+          justify-content: space-between;
+        }
+
+        .closeButton {
+          margin-top: 2rem;
+          background: none;
+          border: none;
+          padding: 1rem 2rem;
+          color: var(--grey-4);
+          cursor: pointer;
+          font-size: $font-size-lg;
+        }
+      }
+
+      // Backdrop
+      .backdrop {
+        position: fixed;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+      }
+    }
+
+    // Open state for mobile menu
+    .mobileOverlay.open {
+      opacity: 1;
+      pointer-events: auto;
+
+      .mobileMenuContent {
+        transform: translateX(0);
+      }
+    }
   }
+}
+
+// Prevent scroll when mobile menu is open
+:global(html):has(.menuOpen) {
+  overflow: hidden;
 }
