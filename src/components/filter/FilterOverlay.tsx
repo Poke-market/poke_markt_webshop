@@ -12,12 +12,14 @@ export const FilterOverlay = ({ isOpen, onClose }: FilterOverlayProps) => {
   return (
     <>
       <div className={clsx({ [styles.open]: isOpen })}>
-        <Button
+        <div
           className={styles.backdrop}
           onClick={onClose}
-          onKeyDown={(e: React.KeyboardEvent<HTMLButtonElement>) =>
+          onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) =>
             e.key === "Escape" && onClose()
           }
+          role="button"
+          tabIndex={0}
           aria-label="Close Filter"
         />
         <div className={styles.overlay}>
