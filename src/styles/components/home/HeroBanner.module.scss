@@ -1,5 +1,19 @@
 @use "../../partials/variables" as *;
 
+@keyframes pulseIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%) scale(0.95);
+  }
+  50% {
+    transform: translateY(-50%) scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+  }
+}
+
 .heroBanner {
   position: relative;
   width: 100%;
@@ -39,6 +53,9 @@
     text-align: left;
     color: var(--text-color);
     border-radius: 1rem; // 10px in rem
+    transition: all 0.3s ease;
+    animation: pulseIn 1s ease-out forwards;
+    opacity: 0;
 
     p:first-of-type {
       margin-bottom: 1.5rem;
