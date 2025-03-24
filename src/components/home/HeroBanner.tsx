@@ -25,8 +25,9 @@ const HeroBanner = () => {
           </Heading>
         </div>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
-          tellus, luctus nec ullamcorper mattis.
+          Fresh from Celadon City! Stock up on the latest Poké Balls, rare
+          Berries, and trainer-approved potions. Your next big catch starts
+          here!
         </p>
         <Link to="/shop" className={styles.heroBanner__link}>
           Buy Now
