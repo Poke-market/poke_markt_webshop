@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from "../../styles/components/home/BrowseRange.module.scss";
+import { clsx } from "clsx";
 
 const browseRange = () => {
   return (
@@ -8,10 +9,10 @@ const browseRange = () => {
         <h2>Browse The Range</h2>
         <p>Check our Best Selection of Products</p>
       </div>
-      <section className={styles.cardsContainer}>
-        <div className={styles.card}>
+      <section className={clsx(styles.cardsContainer)}>
+        <div className={clsx(styles.card)}>
           <Link to="/shop?cat=pokéballs">
-            <div className={styles.imageContainer}>
+            <div className={clsx(styles.imageContainer, styles.pokeballs)}>
               <img src="/Pokeballs.webp" alt="Pokéball" />
             </div>
           </Link>
@@ -19,9 +20,9 @@ const browseRange = () => {
             <h3>Gotta catch 'em all</h3>
           </Link>
         </div>
-        <div className={styles.card}>
+        <div className={clsx(styles.card)}>
           <Link to="/shop?cat=medicine&cat=food&cat=berries&cat=vitamins">
-            <div className={styles.imageContainer}>
+            <div className={clsx(styles.imageContainer, styles.care)}>
               <img src="/chansey.png" alt="Pokéball" />
             </div>
           </Link>
@@ -29,9 +30,9 @@ const browseRange = () => {
             <h3>Care</h3>
           </Link>
         </div>
-        <div className={styles.card}>
+        <div className={clsx(styles.card)}>
           <Link to="/shop?cat=evolution&cat=tm%2Fhm&cat=mega+stones">
-            <div className={styles.imageContainer}>
+            <div className={clsx(styles.imageContainer, styles.enhance)}>
               <img src="/machamp.png" alt="Pokéball" />
             </div>
           </Link>
