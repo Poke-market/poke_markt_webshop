@@ -1,5 +1,5 @@
 import styles from "../../styles/components/detailpage/ProductNotFound.module.scss";
-import { Heading } from "../../utils";
+import { Heading } from "../common";
 import { Item } from "../../types/apiTypes/item";
 import { Link } from "react-router-dom";
 

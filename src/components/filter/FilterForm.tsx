@@ -18,7 +18,7 @@ const FilterForm = () => {
   const { data: tags } = useGetTagsQuery();
   const categorieCounts = useAppSelector(selectCategorieCounts);
   const totalCount = useAppSelector(selectTotalCount);
-  const priceRange = useAppSelector(selectPriceRange);
+  const priceRange = useAppSelector(selectPriceRange) || { min: 0, max: 1000 };
   const location = useLocation();
   const navigate = useNavigate();
 

@@ -1,4 +1,5 @@
 export type UserData = {
+  avatar: string;
   email: string;
   password: string;
   firstname: string;
@@ -12,6 +13,7 @@ export type UserData = {
 };
 
 export const initialUserData: UserData = {
+  avatar: "",
   email: "",
   password: "",
   firstname: "",
@@ -35,6 +37,15 @@ export type ApiErrorData = {
   method: string;
   errors?: [string, string][];
 };
+export interface AuthResponse {
+  user: UserData;
+  token: string;
+}
+
+export interface LoginCredentials {
+  email: string;
+  password: string;
+}
 
 export type ErrorResponse = {
   status: number;

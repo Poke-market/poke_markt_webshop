@@ -1,4 +1,12 @@
+import BrowseRange from "../components/home/browseRange";
+import OurProducts from "../components/home/OurProducts";
+
 const Homepage = () => {
-  return <div>Homepage</div>;
+  return (
+    <>
+      <BrowseRange />
+      <OurProducts />
+    </>
+  );
 };
 export default Homepage;

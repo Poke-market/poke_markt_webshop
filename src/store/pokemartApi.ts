@@ -8,14 +8,17 @@ import {
 } from "@reduxjs/toolkit/query/react";
 import { Item, GetItemsParams, GetItemsData } from "../types/apiTypes/item";
 import { RootState } from "./index";
-import { UserData, RegisterResponse } from "../types/auth";
+import {
+  UserData,
+  RegisterResponse,
+  AuthResponse,
+  LoginCredentials,
+} from "../types/auth";
+import { ApiResponse } from "../types/types.ts";
 
+// Base query with authentication
 const baseQueryWithAuth = fetchBaseQuery({
   baseUrl: import.meta.env.VITE_API_URL + "/api",
-  responseHandler: async (response) => {
-    const data = await response.json();
-    return "data" in data ? data.data : data;
-  },
   prepareHeaders: (headers, { getState }) => {
     const token = (getState() as RootState).auth.token;
     if (token) {
@@ -23,8 +26,13 @@ const baseQueryWithAuth = fetchBaseQuery({
     }
     return headers;
   },
+  responseHandler: async (response) => {
+    const data = await response.json();
+    return "data" in data ? data.data : data;
+  },
 });
 
+// Base query without authentication
 const baseQueryWithoutAuth = fetchBaseQuery({
   baseUrl: import.meta.env.VITE_API_URL + "/api",
   responseHandler: async (response) => {
@@ -33,6 +41,7 @@ const baseQueryWithoutAuth = fetchBaseQuery({
   },
 });
 
+// Custom base query
 const customBaseQuery: BaseQueryFn<
   string | FetchArgs,
   unknown,
@@ -41,15 +50,13 @@ const customBaseQuery: BaseQueryFn<
   FetchBaseQueryMeta
 > = async (args, api, extraOptions) => {
   let result = await baseQueryWithAuth(args, api, extraOptions);
-  if (result.error) {
-    console.log("API Error:", result.error);
-  }
   if (result.error && result.error.status === 401) {
     result = await baseQueryWithoutAuth(args, api, extraOptions);
   }
   return result;
 };
 
+// Define the API
 const pokemartApi = createApi({
   reducerPath: "pokemartApi",
   baseQuery: customBaseQuery,
@@ -83,6 +90,17 @@ const pokemartApi = createApi({
         method: "POST",
         body: userData,
       }),
+      transformResponse: (response: ApiResponse): RegisterResponse => {
+        return response.data as unknown as RegisterResponse;
+      },
+      transformErrorResponse: (response: FetchBaseQueryError) => response,
+    }),
+    login: builder.mutation<AuthResponse, LoginCredentials>({
+      query: (credentials) => ({
+        url: "/auth/login",
+        method: "POST",
+        body: credentials,
+      }),
     }),
   }),
 });
@@ -93,5 +111,7 @@ export const {
   useRegisterMutation,
   useGetItemBySlugQuery,
   useGetTagsQuery,
+  useLoginMutation,
 } = pokemartApi;
+
 export default pokemartApi;
