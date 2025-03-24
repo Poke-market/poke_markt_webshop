@@ -285,6 +285,7 @@ div {
   cursor: pointer;
   transition: all 0.2s ease;
   margin: 0 4rem 2rem 4rem;
+  margin-bottom: calc(lvh - svh);
 
   span {
     color: var(--product-description-color);
