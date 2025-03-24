@@ -169,8 +169,17 @@
     justify-content: center;
     padding: 1.5rem 2rem;
     min-height: auto;
+    color: var(--text-color);
 
-    .filter,
+    .filter {
+      display: flex;
+      color: var(--text-color);
+
+      svg {
+        color: var(--text-color);
+      }
+    }
+
     .filter span,
     .filter p,
     span:last-of-type,
@@ -186,12 +195,18 @@
       gap: 4rem;
       width: auto;
       margin: 0;
+      color: var(--text-color);
+
+      p {
+        color: var(--text-color);
+      }
     }
 
     .gridView,
     .listView {
       font-size: 2rem;
       margin: 0;
+      color: var(--text-color);
     }
 
     .separator {
