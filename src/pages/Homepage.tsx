@@ -1,4 +1,10 @@
+import BrowseRange from "../components/home/browseRange";
+
 const Homepage = () => {
-  return <div>Homepage</div>;
+  return (
+    <>
+      <BrowseRange />
+    </>
+  );
 };
 export default Homepage;
