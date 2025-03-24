@@ -25,6 +25,11 @@ export const WishlistOverlay = ({ isOpen, onClose }: Props) => {
           to: "/wishlist",
         },
       ]}
+      // palace holders till it gets properly implemented
+      content={[]}
+      renderContent={() => <></>}
+      getContentKey={() => "wishlist"}
+      onRemove={() => {}}
     />
   );
 };

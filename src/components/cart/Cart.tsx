@@ -2,49 +2,84 @@ import styles from "../../styles/components/cart/Cart.module.scss";
 import { Button, Heading, Icons, Img, Input } from "../../utils";
 import { Table } from "../common/Table.tsx";
 import { createColumnHelper } from "@tanstack/react-table";
-import { useMemo } from "react";
+import { ChangeEvent, useMemo } from "react";
+import { useAppSelector, useAppDispatch } from "../../store";
+import {
+  selectCartItems,
+  selectCartItemCount,
+  selectCartTotalPrice,
+  updateQuantity,
+  decrementQuantity,
+  incrementQuantity,
+  removeItem,
+} from "../../store/cartSlice";
 
 type props = {
-  rowProduct: string;
+  rowProduct: {
+    name: string;
+    image: string;
+  };
   rowPrice: string;
-  rowQuantity: string;
+  rowQuantity: {
+    value: string;
+    onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+    onMinus: () => void;
+    onPlus: () => void;
+  };
   rowSubtotal: string;
+  rowDelete: () => void;
 };
-
-const prolongation: props[] = [];
 
 const CartPage = () => {
   const columnHelper = createColumnHelper<props>();
+  const cartItems = useAppSelector(selectCartItems);
+  const cartTotalPrice = useAppSelector(selectCartTotalPrice);
+  const cartItemCount = useAppSelector(selectCartItemCount);
+  const dispatch = useAppDispatch();
 
-  const data = useMemo(() => {
-    if (prolongation.length === 0) {
-      return [
-        {
-          rowProduct: "Your Cart is empty",
-          rowPrice: "0.00",
-          rowQuantity: "0",
-          rowSubtotal: "0.00",
+  const cartSubtotal = cartTotalPrice.toFixed(2);
+  const isCartEmpty = cartItemCount === 0;
+
+  const data: props[] = useMemo(() => {
+    return cartItems.map(({ item, quantity }) => ({
+      rowProduct: {
+        name: item.name,
+        image: item.photoUrl,
+      },
+      rowPrice: item.discount.discountedPrice.toFixed(2),
+      rowQuantity: {
+        value: quantity.toString(),
+        onChange: (e: ChangeEvent<HTMLInputElement>) => {
+          dispatch(
+            updateQuantity({
+              id: item._id,
+              quantity: parseInt(e.target.value) || 1,
+            }),
+          );
         },
-      ];
-    }
-    return prolongation;
-  }, []);
+        onMinus: () => {
+          dispatch(decrementQuantity(item._id));
+        },
+        onPlus: () => {
+          dispatch(incrementQuantity(item._id));
+        },
+      },
+      rowSubtotal: (item.discount.discountedPrice * quantity).toFixed(2),
+      rowDelete: () => {
+        dispatch(removeItem(item._id));
+      },
+    }));
+  }, [cartItems, dispatch]);
 
   const columns = useMemo(
     () => [
       columnHelper.accessor("rowProduct", {
         cell: (info) => (
           <div className={styles["product-cell"]}>
-            {prolongation.length === 0 ? (
-              <Heading>{info.getValue()}</Heading>
-            ) : (
-              <>
-                <div className={styles["image-container"]}>
-                  <Img src="https://picsum.photos/200/200" alt="Product" />
-                </div>
-                <Heading>{info.getValue()}</Heading>
-              </>
-            )}
+            <div className={styles["image-container"]}>
+              <Img src={info.getValue().image} alt="Product" />
+            </div>
+            <Heading>{info.getValue().name}</Heading>
           </div>
         ),
         header: () => (
@@ -58,7 +93,7 @@ const CartPage = () => {
       columnHelper.accessor("rowPrice", {
         cell: (info) => (
           <div className={styles["price-cell"]}>
-            <Heading>{info.getValue()}</Heading>
+            <Heading>&euro; {info.getValue()}</Heading>
           </div>
         ),
         header: () => (
@@ -70,7 +105,17 @@ const CartPage = () => {
       columnHelper.accessor("rowQuantity", {
         cell: (info) => (
           <div className={styles["quantity-cell"]}>
-            <Input type="number" defaultValue={parseFloat(info.getValue())} />
+            <button onClick={info.getValue().onMinus}>
+              <Icons.Minus />
+            </button>
+            <Input
+              type="number"
+              value={info.getValue().value}
+              onChange={info.getValue().onChange}
+            />
+            <button onClick={info.getValue().onPlus}>
+              <Icons.Plus />
+            </button>
           </div>
         ),
         header: () => (
@@ -84,7 +129,7 @@ const CartPage = () => {
       columnHelper.accessor("rowSubtotal", {
         cell: (info) => (
           <div className={styles["subtotal-cell"]}>
-            <Heading>{info.getValue()}</Heading>
+            <Heading>&euro; {info.getValue()}</Heading>
           </div>
         ),
         header: () => (
@@ -95,27 +140,18 @@ const CartPage = () => {
           </div>
         ),
       }),
-      columnHelper.display({
+      columnHelper.accessor("rowDelete", {
         id: "delete",
-        cell: () =>
-          prolongation.length > 0 && (
-            <Button className={styles["delete-cell"]}>
-              <Icons.Delete />
-            </Button>
-          ),
+        cell: (info) => (
+          <Button className={styles["delete-cell"]} onClick={info.getValue()}>
+            <Icons.Delete />
+          </Button>
+        ),
         header: () => null,
       }),
     ],
     [columnHelper],
   );
-
-  const isCartEmpty = prolongation.length === 0;
-
-  const cartSubtotal = useMemo(() => {
-    return prolongation
-      .reduce((sum, item) => sum + parseFloat(item.rowSubtotal), 0)
-      .toFixed(2);
-  }, []);
 
   return (
     <section className={styles.cart}>

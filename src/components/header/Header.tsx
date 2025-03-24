@@ -36,7 +36,7 @@ const Header = ({ className }: Props) => {
   // handle for the search icon click
   const handleSearchClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    void navigate("/shop"); // navigate to the shop page for now
+    void navigate("/shop"); // navigate to the Shop page for now
   };
 
   return (

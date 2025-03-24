@@ -15,7 +15,28 @@ const DetailPage = () => {
     <>
       <Breadcrumb />
       <ProductInfo product={Item} />
-      <Related />
+      <Related
+        currentProduct={{
+          _id: "",
+          category: "medicine",
+          description: "",
+          name: "",
+          photoUrl: "",
+          price: 0,
+          tags: [],
+          discount: {
+            amount: 0,
+            type: "",
+            discountedPrice: 0,
+            hasDiscount: false,
+          },
+          isNewItem: false,
+          slug: "",
+          createdAt: "",
+          updatedAt: "",
+          __v: 0,
+        }}
+      />
     </>
   );
 };

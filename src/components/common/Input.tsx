@@ -8,8 +8,8 @@ type Props = {
   variant?: "underline" | "fill";
   size?: "sm" | "md" | "xs";
   shape?: "square" | "round";
-  type: // Supported input types
-  | "text"
+  type:
+    | "text"
     | "email"
     | "password"
     | "number"
@@ -20,7 +20,9 @@ type Props = {
   defaultValue?: string | number;
   value?: string | number;
   checked?: boolean;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void; // Change handler
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   required?: boolean;
   name?: string;
   id?: string;

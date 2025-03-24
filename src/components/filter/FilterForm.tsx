@@ -8,6 +8,7 @@ import { useGetTagsQuery } from "../../store/pokemartApi.ts";
 import { useAppSelector } from "../../store";
 import {
   selectCategorieCounts,
+  selectPriceRange,
   selectTotalCount,
 } from "../../store/filterSlice.ts";
 
@@ -17,6 +18,7 @@ const FilterForm = () => {
   const { data: tags } = useGetTagsQuery();
   const categorieCounts = useAppSelector(selectCategorieCounts);
   const totalCount = useAppSelector(selectTotalCount);
+  const priceRange = useAppSelector(selectPriceRange);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -82,15 +84,21 @@ const FilterForm = () => {
       <CollapsableFieldset legend="Price">
         <div className="price-filter">
           <PriceRangeSlider
-            min={100}
-            max={999999}
-            initialMin={Number(searchParams.get("minPrice")) || 100}
-            initialMax={Number(searchParams.get("maxPrice")) || 999999}
+            min={priceRange.min}
+            max={priceRange.max}
+            initialMin={Math.max(
+              Number(searchParams.get("minPrice")) || priceRange.min,
+              priceRange.min,
+            )}
+            initialMax={Math.min(
+              Number(searchParams.get("maxPrice")) || priceRange.max,
+              priceRange.max,
+            )}
             onChangeComplete={(range) => {
               searchParams.set("minPrice", range.min.toString());
               searchParams.set("maxPrice", range.max.toString());
-              if (range.min === 100) searchParams.delete("minPrice");
-              if (range.max === 999999) searchParams.delete("maxPrice");
+              if (range.min === priceRange.min) searchParams.delete("minPrice");
+              if (range.max === priceRange.max) searchParams.delete("maxPrice");
               applyFiltersAndResetPage();
             }}
           />

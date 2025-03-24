@@ -14,7 +14,7 @@ export * from "../pages";
 export * from "../components/cart";
 
 // Home
-export * from "../components/home";
+export * from "../components/Shop/index.ts";
 
 // filter
 export * from "../components/filter";

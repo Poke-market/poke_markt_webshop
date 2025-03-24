@@ -6,9 +6,17 @@ export interface CartItem {
   quantity: number;
 }
 
-const initialState = {
+interface CartState {
+  items: CartItem[];
+}
+
+const initialState: CartState = {
   items: <CartItem[]>[],
 };
+
+function removeItemHelper(state: CartState, id: Item["_id"]) {
+  state.items = state.items.filter((item) => item.item._id !== id);
+}
 
 export const cartSlice = createSlice({
   name: "cart",
@@ -31,9 +39,7 @@ export const cartSlice = createSlice({
       }
     },
     removeItem: (state, action: PayloadAction<Item["_id"]>) => {
-      state.items = state.items.filter(
-        (cartItem) => cartItem.item._id !== action.payload,
-      );
+      removeItemHelper(state, action.payload);
     },
     updateQuantity: (
       state,
@@ -42,10 +48,7 @@ export const cartSlice = createSlice({
       const { id, quantity } = action.payload;
       if (!id) throw new Error("id is required");
       const item = state.items.find((item) => item.item._id === id);
-
-      if (item) {
-        item.quantity = Math.max(1, quantity); // Ensure quantity is at least 1
-      }
+      if (item) item.quantity = Math.max(1, quantity);
     },
     incrementQuantity: (state, action: PayloadAction<Item["_id"]>) => {
       const id = action.payload;
@@ -57,7 +60,7 @@ export const cartSlice = createSlice({
       const id = action.payload;
       if (!id) throw new Error("id is required");
       const item = state.items.find((item) => item.item._id === id);
-      if (item) item.quantity--;
+      if (item && item.quantity > 1) item.quantity--;
     },
     clearCart: (state) => {
       state.items = [];
@@ -73,10 +76,21 @@ export const cartSlice = createSlice({
   },
 });
 
-export const { addItem, removeItem, updateQuantity, clearCart } =
-  cartSlice.actions;
+export const {
+  addItem,
+  removeItem,
+  updateQuantity,
+  clearCart,
+  decrementQuantity,
+  incrementQuantity,
+} = cartSlice.actions;
 
-export const { selectCartItemCount, selectCartItems } = cartSlice.selectors;
+export const selectCartItems = (state: CartState) => state.items || [];
+export const selectCartItemCount = (state: CartState) =>
+  state.items.reduce(
+    (total: number, item: CartItem) => total + item.quantity,
+    0,
+  );
 
 export const selectCartTotalPrice = createSelector(selectCartItems, (items) =>
   items.reduce(

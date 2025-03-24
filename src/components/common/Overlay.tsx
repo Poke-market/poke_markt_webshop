@@ -4,7 +4,7 @@ import styles from "../../styles/components/common/Overlay.module.scss";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
 
-type Props = {
+type Props<T> = {
   isOpen: boolean;
   onClose: () => void;
   title: string;
@@ -16,21 +16,28 @@ type Props = {
     text: string;
     to: string;
   }[];
+  content: T[];
+  renderContent: (item: T) => React.ReactNode;
+  getContentKey: (item: T) => string | number;
+  onRemove: (item: T) => void;
 };
 
-// Overlay component definition
-export const Overlay = ({
+export function Overlay<T>({
   isOpen,
   onClose,
   title,
   onClear,
   clearIcon = "Bagx",
+  onRemove,
   showSubtotal = true,
   subtotalAmount = 0,
   actionButtons,
-}: Props) => {
-  // Get the appropriate icon component based on the clearIcon prop
+  content,
+  renderContent,
+  getContentKey,
+}: Props<T>) {
   const ClearIcon = Icons[clearIcon];
+  const hasContent = content && content.length > 0;
 
   return (
     <>
@@ -71,9 +78,25 @@ export const Overlay = ({
 
             {/* Placeholder for items (currently shows an empty message) */}
             <div className={styles.itemsContainer}>
-              <Heading as="p" size="textxl" className={styles.emptyCart}>
-                Your {title.toLowerCase()} is empty
-              </Heading>
+              {hasContent ? (
+                <ul className={styles.itemsList}>
+                  {content.map((item) => (
+                    <li key={getContentKey(item)}>
+                      {renderContent(item)}
+                      <Button
+                        className={styles.removeButton}
+                        onClick={() => onRemove(item)}
+                      >
+                        <Icons.XFill />
+                      </Button>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <Heading as="p" size="textxl" className={styles.emptyCart}>
+                  Your {title.toLowerCase()} is empty
+                </Heading>
+              )}
             </div>
           </div>
 
@@ -126,4 +149,4 @@ export const Overlay = ({
       </div>
     </>
   );
-};
+}

@@ -6,6 +6,8 @@ import {
   Detailpage,
   Loginpage,
   Registerpage,
+  NotFound,
+  Shoppage,
 } from "./utils";
 import { ToastContainer } from "react-toastify";
 import { toastConfig } from "./config";
@@ -33,10 +35,13 @@ function App() {
               </ProtectedAuthRoute>
             }
           />
+          <Route path="/shop/:page?" element={<Shoppage />} />
           <Route path="/cart" element={<Cartpage />} />
-          <Route path="/item/:name" element={<Detailpage />} />
-          <Route path="/shop/:page?" element={<Homepage />} />
+          <Route path="/item/:slug" element={<Detailpage />} />
           <Route path="/:page?" element={<Homepage />} />
+          <Route path="/item/:slug" element={<Detailpage />} />
+          <Route path="/" element={<Homepage />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <ToastContainer {...toastConfig} />
       </Layout>
