@@ -12,6 +12,7 @@ import { UserData, RegisterResponse } from "../types/auth";
 
 const baseQueryWithAuth = fetchBaseQuery({
   baseUrl: import.meta.env.VITE_API_URL + "/api",
+  credentials: "include",
   responseHandler: async (response) => {
     const data = await response.json();
     return "data" in data ? data.data : data;
