@@ -21,16 +21,6 @@
   @media (max-width: $breakpoint-md) {
     padding-left: 2rem;
     padding-right: 2rem;
-
-    h2 {
-      font-size: 2.5rem;
-    }
-  }
-
-  @media (max-width: $breakpoint-sm) {
-    h2 {
-      font-size: 2rem;
-    }
   }
 
   .productsGrid {
