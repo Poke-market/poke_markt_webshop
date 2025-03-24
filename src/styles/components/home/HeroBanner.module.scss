@@ -46,10 +46,10 @@
     color: var(--white);
     border: none;
     text-transform: uppercase;
+    margin-top: auto;
     font-size: $font-size-lg;
     cursor: pointer;
     transition: all 0.3s ease;
-    margin-top: auto;
     padding: 0 4rem;
     display: flex;
     align-items: center;
@@ -96,17 +96,13 @@
     border-radius: 1rem; // 10px in rem
 
     p:first-of-type {
+      margin-bottom: 1.5rem;
       span {
         font-size: $font-size-lg; // 1.6rem
         color: var(--text-color);
         font-weight: $font-weight-semi-bold;
         letter-spacing: 0.3rem;
       }
-    }
-
-    &__heading {
-      margin: 1rem 0;
-      margin-bottom: 0.8rem; // 8px in rem
     }
 
     h1 {
@@ -120,8 +116,8 @@
       font-size: $font-size-lg;
       line-height: 1.5;
       color: var(--text-color);
-      margin-bottom: 5.1rem; // 51px in rem (583px - 532px)
       max-width: 45rem;
+      margin-top: 1.5rem;
     }
 
     @media (max-width: $breakpoint-md) {
