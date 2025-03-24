@@ -27,6 +27,9 @@
       font-size: $font-size-xl;
       font-weight: 400;
       color: var(--brows-range-sm-text);
+      width: 100%;
+      text-align: center;
+      max-width: 40rem;
     }
   }
   .cardsContainer {
@@ -41,6 +44,7 @@
       align-items: center;
       justify-content: center;
       gap: 3.7rem;
+      cursor: pointer;
 
       .imageContainer {
         max-width: 38.1rem;
@@ -48,6 +52,7 @@
         object-fit: cover;
         object-position: center;
         border-radius: 0.9rem;
+        transition: transform 0.3s ease;
         img {
           width: 100%;
           height: 100%;
@@ -55,6 +60,9 @@
           object-position: center;
           border-radius: 0.9rem;
         }
+      }
+      &:hover .imageContainer {
+        transform: scale(1.05);
       }
       h3 {
         font-size: 2rem;
@@ -83,9 +91,16 @@
   background-color: #3a7bd5;
 }
 
+@media (max-width: 1200px) {
+  .container {
+    padding: 0 2rem;
+  }
+}
+
 @media (max-width: 975px) {
   .container {
     height: auto;
+    padding: 0 2rem;
     .cardsContainer {
       display: grid;
       grid-template-columns: 1fr;
