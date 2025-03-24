@@ -141,17 +141,48 @@
     flex-direction: column;
     align-items: center;
     gap: 2rem;
+    color: var(--text-color);
 
     > span {
       width: 100%;
       justify-content: center;
       margin-bottom: 0;
       flex-wrap: nowrap;
+      color: var(--text-color);
     }
 
     span:first-of-type {
       justify-content: flex-start;
       gap: 3rem;
+      color: var(--text-color);
+    }
+
+    .filter {
+      color: var(--text-color);
+
+      svg {
+        color: var(--text-color);
+      }
+
+      span {
+        color: var(--text-color);
+      }
+    }
+
+    .gridView {
+      color: var(--text-color);
+
+      svg {
+        color: var(--text-color);
+      }
+    }
+
+    .listView {
+      color: var(--text-color);
+
+      svg {
+        color: var(--text-color);
+      }
     }
 
     span:nth-of-type(2) {
@@ -160,6 +191,36 @@
 
     .separator {
       margin: 0 1rem;
+    }
+  }
+
+  @media screen and (min-width: 768px) and (orientation: landscape) {
+    .filter {
+      color: var(--text-color);
+
+      svg {
+        color: var(--text-color);
+      }
+
+      span {
+        color: var(--text-color);
+      }
+    }
+
+    .gridView {
+      color: var(--text-color);
+
+      svg {
+        color: var(--text-color);
+      }
+    }
+
+    .listView {
+      color: var(--text-color);
+
+      svg {
+        color: var(--text-color);
+      }
     }
   }
 
