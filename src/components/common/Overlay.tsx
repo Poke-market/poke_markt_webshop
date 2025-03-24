@@ -1,5 +1,5 @@
 import { Icons } from "../../utils/Icons.tsx";
-import { Heading, Button } from "../../utils";
+import { Heading, Button } from "./";
 import styles from "../../styles/components/common/Overlay.module.scss";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
@@ -41,21 +41,29 @@ export function Overlay<T>({
 
   return (
     <>
+      {/* Overlay container with dynamic class for open/close state */}
       <div className={clsx({ [styles.open]: isOpen })}>
-        <Button
+        {/* Backdrop to close the overlay when clicked or on Escape key press */}
+        <div
           className={styles.backdrop}
           onClick={onClose}
-          onKeyDown={(e: React.KeyboardEvent<HTMLButtonElement>) =>
+          onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) =>
             e.key === "Escape" && onClose()
           }
+          role="button"
+          tabIndex={0}
           aria-label="Close overlay"
         />
+
+        {/* Overlay content */}
         <div className={styles.overlay}>
           <div className={styles.content}>
+            {/* Header section with title and clear button */}
             <div className={styles.header}>
               <Heading as="h2" size="text2xl">
                 {title}
               </Heading>
+              {/* Render clear button if onClear is provided */}
               {onClear && (
                 <Button
                   className={styles.closeButton}
@@ -66,7 +74,11 @@ export function Overlay<T>({
                 </Button>
               )}
             </div>
+
+            {/* Divider below the header */}
             <div className={styles.headerDivider} />
+
+            {/* Placeholder for items (currently shows an empty message) */}
             <div className={styles.itemsContainer}>
               {hasContent ? (
                 <ul className={styles.itemsList}>
@@ -89,7 +101,10 @@ export function Overlay<T>({
               )}
             </div>
           </div>
+
+          {/* Bottom section with subtotal, action buttons, and close button */}
           <div className={styles.bottomSection}>
+            {/* Render subtotal section if showSubtotal is true */}
             {showSubtotal && (
               <>
                 <div className={styles.footer}>
@@ -105,7 +120,11 @@ export function Overlay<T>({
                 <div className={styles.divider} />
               </>
             )}
+
+            {/* Render divider if subtotal is not shown */}
             {!showSubtotal && <div className={styles.divider} />}
+
+            {/* Action buttons mapped from the actionButtons prop */}
             <div className={styles.actionButtons}>
               {actionButtons.map((button, index) => (
                 <Link
@@ -120,6 +139,8 @@ export function Overlay<T>({
                 </Link>
               ))}
             </div>
+
+            {/* Mobile close button */}
             <Button className={styles.closeButtonMobile} onClick={onClose}>
               <Heading as="span" size="textxs">
                 Close

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from "../../styles/components/common/Header.module.scss";
+import styles from "../../styles/components/header/Header.module.scss";
 import { CartOverlay } from "../cart/CartOverlay";
 import { WishlistOverlay } from "../wishlist/WishlistOverlay";
 import { useNavigate } from "react-router-dom";
@@ -22,20 +22,24 @@ const Header = ({ className }: Props) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
 
+  // handle for the cart icon click
   const handleCartClick = (e: React.MouseEvent) => {
     e.preventDefault();
     setIsCartOpen(true);
   };
 
+  // handle for the wishlist icon click
   const handleWishlistClick = (e: React.MouseEvent) => {
     e.preventDefault();
     setIsWishlistOpen(true);
   };
 
+  // handle for the profile icon click
   const handleProfileClick = (e: React.MouseEvent) => {
     e.preventDefault();
     void navigate("/login");
   };
+
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -43,6 +47,11 @@ const Header = ({ className }: Props) => {
 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
+
+  // handle for the search icon click
+  const handleSearchClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    void navigate("/shop"); // navigate to the shop page for now
   };
 
   return (
@@ -53,6 +62,7 @@ const Header = ({ className }: Props) => {
         })}
         aria-label="Main Navigation"
       >
+      
         <div className={styles.boxLeft}>
           <Logo />
         </div>
@@ -82,11 +92,12 @@ const Header = ({ className }: Props) => {
               onCartClick={handleCartClick}
               onWishlistClick={handleWishlistClick}
               onProfileClick={handleProfileClick}
+              onSearchClick={handleSearchClick}
             />
           </div>
         </div>
       </nav>
-
+      
       <CartOverlay isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
       <WishlistOverlay
         isOpen={isWishlistOpen}

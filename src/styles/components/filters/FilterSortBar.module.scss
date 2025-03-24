@@ -9,6 +9,7 @@
   padding: 2rem 6rem;
   min-height: 10rem;
   font-family: $font-family;
+  color: var(--text-color);
 
   span:first-of-type {
     display: flex;
@@ -140,17 +141,48 @@
     flex-direction: column;
     align-items: center;
     gap: 2rem;
+    color: var(--text-color);
 
     > span {
       width: 100%;
       justify-content: center;
       margin-bottom: 0;
       flex-wrap: nowrap;
+      color: var(--text-color);
     }
 
     span:first-of-type {
       justify-content: flex-start;
       gap: 3rem;
+      color: var(--text-color);
+    }
+
+    .filter {
+      color: var(--text-color);
+
+      svg {
+        color: var(--text-color);
+      }
+
+      span {
+        color: var(--text-color);
+      }
+    }
+
+    .gridView {
+      color: var(--text-color);
+
+      svg {
+        color: var(--text-color);
+      }
+    }
+
+    .listView {
+      color: var(--text-color);
+
+      svg {
+        color: var(--text-color);
+      }
     }
 
     span:nth-of-type(2) {
@@ -162,14 +194,53 @@
     }
   }
 
+  @media screen and (min-width: 768px) and (orientation: landscape) {
+    .filter {
+      color: var(--text-color);
+
+      svg {
+        color: var(--text-color);
+      }
+
+      span {
+        color: var(--text-color);
+      }
+    }
+
+    .gridView {
+      color: var(--text-color);
+
+      svg {
+        color: var(--text-color);
+      }
+    }
+
+    .listView {
+      color: var(--text-color);
+
+      svg {
+        color: var(--text-color);
+      }
+    }
+  }
+
   @include responsive(sm) {
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 1.5rem 2rem;
     min-height: auto;
+    color: var(--text-color);
 
-    .filter,
+    .filter {
+      display: flex;
+      color: var(--text-color);
+
+      svg {
+        color: var(--text-color);
+      }
+    }
+
     .filter span,
     .filter p,
     span:last-of-type,
@@ -185,12 +256,18 @@
       gap: 4rem;
       width: auto;
       margin: 0;
+      color: var(--text-color);
+
+      p {
+        color: var(--text-color);
+      }
     }
 
     .gridView,
     .listView {
       font-size: 2rem;
       margin: 0;
+      color: var(--text-color);
     }
 
     .separator {

@@ -48,3 +48,7 @@ pnpmfile.cson
 
 **/*.css
 **/*.css.map
+
+.css
+.css.map
+ /css
