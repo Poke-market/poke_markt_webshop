@@ -5,12 +5,15 @@ import { headerLinks } from "../../config";
 import styles from "../../styles/components/common/Header.module.scss";
 import ProfileDropdown from "./ProfileDropdown";
 
+// handlers for the icon links
 type IconLinksProps = {
   onCartClick: (e: React.MouseEvent) => void;
   onProfileClick: (e: React.MouseEvent) => void;
   onWishlistClick: (e: React.MouseEvent) => void;
+  onSearchClick: (e: React.MouseEvent) => void;
 };
 
+// IconLinks component that renders the icon links in the header
 const IconLinks = ({
   onCartClick,
   onProfileClick,
@@ -18,7 +21,9 @@ const IconLinks = ({
 }: IconLinksProps) => {
   return (
     <div className={styles.iconContainer}>
+      {/* Map through the icon links from the config */}
       {headerLinks.iconLinks.map((link) =>
+        // Render ProfileDropdown for the "Profile" link
         link.label === "Profile" ? (
           <ProfileDropdown
             key={link.path}

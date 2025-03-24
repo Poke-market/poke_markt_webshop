@@ -15,19 +15,28 @@ const Header = ({ className }: Props) => {
   const [isWishlistOpen, setIsWishlistOpen] = useState(false);
   const navigate = useNavigate();
 
+  // handle for the cart icon click
   const handleCartClick = (e: React.MouseEvent) => {
     e.preventDefault();
     setIsCartOpen(true);
   };
 
+  // handle for the wishlist icon click
   const handleWishlistClick = (e: React.MouseEvent) => {
     e.preventDefault();
     setIsWishlistOpen(true);
   };
 
+  // handle for the profile icon click
   const handleProfileClick = (e: React.MouseEvent) => {
     e.preventDefault();
     void navigate("/login");
+  };
+
+  // handle for the search icon click
+  const handleSearchClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    void navigate("/shop"); // navigate to the shop page for now
   };
 
   return (
@@ -42,6 +51,7 @@ const Header = ({ className }: Props) => {
           onCartClick={handleCartClick}
           onWishlistClick={handleWishlistClick}
           onProfileClick={handleProfileClick}
+          onSearchClick={handleSearchClick}
         />
       </nav>
       2
