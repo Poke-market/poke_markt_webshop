@@ -6,6 +6,9 @@ import { Item } from "../../types/apiTypes/item";
 import { titleCase } from "../../utils/stringUtils";
 import { useAppDispatch } from "../../store";
 import { addItem } from "../../store/cartSlice";
+import { useWishlist } from "../../hooks/useWishlist";
+import clsx from "clsx";
+
 export type Props = {
   item: Item;
   className?: string;
@@ -34,6 +37,8 @@ export default function ProductCard({
   const truncatedDescription = truncateText(description, 25);
   const truncatedName = truncateText(name, 20);
   const dispatch = useAppDispatch();
+  const { toggleItemInWishlist, isUpdatingWishlist, isItemInWishlist } =
+    useWishlist();
 
   return (
     <div
@@ -78,21 +83,33 @@ export default function ProductCard({
         <Button onClick={() => dispatch(addItem({ item }))}>Add to cart</Button>
         <div className={styles.overlayButtons}>
           <Button className={styles.overlayButton}>
-            <span className={styles.icon}>
-              <Icons.Share />
-            </span>
+            <Icons.Share style={{ fontSize: "1.6rem" }} />
             Share
           </Button>
           <Button className={styles.overlayButton}>
-            <span className={styles.icon}>
-              <Icons.ArrowRightLeft />
-            </span>
+            <Icons.ArrowRightLeft style={{ fontSize: "2rem" }} />
             Compare
           </Button>
-          <Button className={styles.overlayButton}>
-            <span className={styles.icon}>
-              <Icons.Likeheart />
-            </span>
+          <Button
+            className={styles.overlayButton}
+            onClick={() => toggleItemInWishlist(id)}
+            disabled={isUpdatingWishlist}
+          >
+            {isItemInWishlist(id) ? (
+              <Icons.LikeheartFilled
+                className={clsx({
+                  [styles.isItemInWishlist]: isItemInWishlist(id),
+                })}
+                style={{ fontSize: "1.8rem" }}
+              />
+            ) : (
+              <Icons.Likeheart
+                className={clsx({
+                  [styles.isItemInWishlist]: isItemInWishlist(id),
+                })}
+                style={{ fontSize: "1.8rem" }}
+              />
+            )}
             Like
           </Button>
         </div>

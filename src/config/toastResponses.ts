@@ -20,6 +20,10 @@ export const toastResponses = {
     message: "An error occurred during registration.",
     options: { toastId: "register-error" },
   },
+  wishlistNotLoggedIn: {
+    message: "You must be logged in to use the wishlist.",
+    options: { toastId: "wishlist-not-logged-in" },
+  },
 } as const;
 
 export const getToastResponse = (
@@ -33,4 +37,5 @@ export const TOAST_KEYS = {
   REGISTER_SUCCESS: "registerSuccess",
   REGISTER_FAIL: "registerFail",
   REGISTER_ERROR: "registerError",
+  WISHLIST_NOT_LOGGED_IN: "wishlistNotLoggedIn",
 } as const;
