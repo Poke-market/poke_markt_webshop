@@ -1,0 +1,65 @@
+.teamMemberCard {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border: 1px solid #eee;
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  }
+}
+
+.memberImage {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  object-position: top;
+  border-bottom: 1px solid #eee;
+}
+
+.memberInfo {
+  padding: 2rem;
+  text-align: center;
+}
+
+.memberRole {
+  color: #6c757d;
+  font-weight: 500;
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+}
+
+.memberBio {
+  margin: 1rem 0 1.5rem;
+  color: #555;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.socialLinks {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+
+  a {
+    color: #495057;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    padding: 0.5rem;
+    border-radius: 50%;
+    background: #f8f9fa;
+
+    &:hover {
+      color: white;
+      transform: scale(1.1);
+    }
+
+    svg {
+      font-size: 1.2rem;
+    }
+  }
+}
