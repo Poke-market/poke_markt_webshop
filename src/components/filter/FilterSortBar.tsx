@@ -3,8 +3,10 @@ import { Icons } from "../../utils/Icons.tsx";
 import { Button, Heading } from "../common";
 import { FilterOverlay } from "./FilterOverlay.tsx";
 import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useParams } from "react-router-dom";
 import CustomSelect from "../common/CustomSelect";
+import { useAppSelector } from "../../store";
+import { selectTotalCount } from "../../store/filterSlice";
 
 type Props = {
   children: React.ReactNode;
@@ -13,6 +15,8 @@ type Props = {
 const FilterSortBar = ({ children }: Props) => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
+  const { page = 1 } = useParams();
+  const totalCount = useAppSelector(selectTotalCount);
   const _sort = searchParams.get("sort");
   const _order = searchParams.get("order");
   const [sort, setSort] = useState(
@@ -21,6 +25,10 @@ const FilterSortBar = ({ children }: Props) => {
   const [itemsPerPage, setItemsPerPage] = useState(
     Number(searchParams.get("limit") ?? 16),
   );
+
+  // Calculate the current range of items being displayed
+  const startItem = (Number(page) - 1) * itemsPerPage + 1;
+  const endItem = Math.min(Number(page) * itemsPerPage, totalCount);
 
   useEffect(() => {
     if (sort === "default") {
@@ -83,7 +91,7 @@ const FilterSortBar = ({ children }: Props) => {
           <span className={styles.separator}></span>
           <span>
             <Heading as="p" size="textlg">
-              Showing 1-16 of 32 results
+              Showing {startItem}-{endItem} of {totalCount} results
             </Heading>
           </span>
         </span>

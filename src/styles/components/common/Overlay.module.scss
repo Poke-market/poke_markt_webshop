@@ -2,7 +2,7 @@
 @use "../../partials/mixins" as *;
 
 // fullscreen on mobile
-@include responsive(sm) {
+@include responsive(md) {
   :global(html):has(.open) {
     overflow: hidden;
   }
@@ -301,7 +301,7 @@ div {
     }
   }
 
-  @media (max-width: $breakpoint-sm) {
+  @media (max-width: $breakpoint-md) {
     display: block;
   }
 }

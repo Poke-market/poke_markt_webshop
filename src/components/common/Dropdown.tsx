@@ -29,7 +29,7 @@ const Dropdown = ({
   const timeoutRef = useRef<number | null>(null);
 
   // Mobile breakpoint (576px) for responsive behavior
-  const isMobile = () => window.innerWidth <= 576;
+  const isMobile = () => window.innerWidth <= 975;
 
   // Clean up any existing timeout to prevent memory leaks
   const clearTimeoutRef = () => {

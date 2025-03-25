@@ -1,7 +1,11 @@
 @use "variables" as *;
 
 @mixin responsive($breakpoint) {
-  @if $breakpoint == md {
+  @if $breakpoint == lg {
+    @media (max-width: $breakpoint-lg) {
+      @content;
+    }
+  } @else if $breakpoint == md {
     @media (max-width: $breakpoint-md) {
       @content;
     }

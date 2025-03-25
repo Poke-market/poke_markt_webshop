@@ -42,7 +42,12 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
   return (
     <div className={styles.productDetail}>
       <ProductDisplay
-        images={[product.photoUrl]}
+        images={[
+          product.photoUrl,
+          ...(Array.isArray(product.extraPhotoUrls)
+            ? product.extraPhotoUrls
+            : []),
+        ]}
         name={titleCase(product.name)}
       />
       <div className={styles.productInfo}>
