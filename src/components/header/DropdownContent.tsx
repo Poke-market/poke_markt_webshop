@@ -71,7 +71,10 @@ const DropdownContent = ({ onClose }: DropdownContentProps) => {
               </div>
               <span>My Orders</span>
             </div>
-            <div className={styles.menuItem} onClick={handleNavigate("/help")}>
+            <div
+              className={styles.menuItem}
+              onClick={handleNavigate("/contact")}
+            >
               <div className={styles.menuIcon}>
                 <Icons.Help />
               </div>
