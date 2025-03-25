@@ -66,5 +66,3 @@ export const selectPriceRange = (state: RootState) =>
   state.filter?.priceRange || { min: 0, max: 1_000_000 };
 
 export default filterSlice;
-
-
