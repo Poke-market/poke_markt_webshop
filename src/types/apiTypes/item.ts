@@ -10,6 +10,7 @@ export type Item = {
   description: string;
   name: string;
   photoUrl: string;
+  extraPhotoUrls: string[];
   price: number;
   tags: string[];
   discount: {
