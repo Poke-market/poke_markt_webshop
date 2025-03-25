@@ -9,6 +9,7 @@ import {
   NotFound,
   Shoppage,
   Wishlist,
+  Aboutpage,
 } from "./utils";
 import { ToastContainer } from "react-toastify";
 import { toastConfig } from "./config";
@@ -44,6 +45,7 @@ function App() {
           <Route path="/" element={<Homepage />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/wishlist" element={<Wishlist />} />
+          <Route path="/about" element={<Aboutpage />} />
         </Routes>
         <ToastContainer {...toastConfig} />
       </Layout>
