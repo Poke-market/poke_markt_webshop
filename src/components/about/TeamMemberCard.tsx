@@ -1,7 +1,6 @@
 import { Heading, Text } from "../common";
 import styles from "../../styles/pages/TeamMemberCard.module.scss";
 import { Icons } from "../../utils/Icons.tsx";
-import { companyValues } from "../../config/aboutData.ts";
 
 interface TeamMember {
   id: string;
