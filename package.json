@@ -27,6 +27,7 @@
     "ci": "^2.3.0",
     "clsx": "^2.1.1",
     "eslint-config-prettier": "^10.0.2",
+    "js-cookie": "^3.0.5",
     "nanoid": "^5.1.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -37,6 +38,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
+    "@types/js-cookie": "^3.0.6",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "@types/redux-persist": "^4.0.0",

@@ -7,24 +7,15 @@ import {
   FetchBaseQueryMeta,
 } from "@reduxjs/toolkit/query/react";
 import { Item, GetItemsParams, GetItemsData } from "../types/apiTypes/item";
-import { RootState } from "./index";
-import {
-  UserData,
-  RegisterResponse,
-  AuthResponse,
-  LoginCredentials,
-} from "../types/auth";
-import { ApiResponse } from "../types/types.ts";
+import { UserData, LoginCredentials } from "../types/auth";
+import { User } from "../types/apiTypes/auth.ts";
 
 // Base query with authentication
 const baseQueryWithAuth = fetchBaseQuery({
   baseUrl: import.meta.env.VITE_API_URL + "/api",
   credentials: "include",
-  prepareHeaders: (headers, { getState }) => {
-    const token = (getState() as RootState).auth.token;
-    if (token) {
-      headers.set("Authorization", `Bearer ${token}`);
-    }
+  prepareHeaders: (headers) => {
+    headers.set("Content-Type", "application/json");
     return headers;
   },
   responseHandler: async (response) => {
@@ -89,22 +80,26 @@ const pokemartApi = createApi({
     }),
 
     // Auth
-    register: builder.mutation<RegisterResponse, UserData>({
+    register: builder.mutation<User, UserData>({
       query: (userData) => ({
         url: "auth/register",
         method: "POST",
         body: userData,
       }),
-      transformResponse: (response: ApiResponse): RegisterResponse => {
-        return response.data as unknown as RegisterResponse;
-      },
-      transformErrorResponse: (response: FetchBaseQueryError) => response,
+      transformResponse: (response: { user: User }) => response.user,
     }),
-    login: builder.mutation<AuthResponse, LoginCredentials>({
+    login: builder.mutation<User, LoginCredentials>({
       query: (credentials) => ({
         url: "/auth/login",
         method: "POST",
         body: credentials,
+      }),
+      transformResponse: (response: { user: User }) => response.user,
+    }),
+    logout: builder.mutation<void, void>({
+      query: () => ({
+        url: "/auth/logout",
+        method: "POST",
       }),
     }),
 
@@ -177,6 +172,7 @@ export const {
   useRemoveFromWishlistMutation,
   useClearWishlistMutation,
   useLoginMutation,
+  useLogoutMutation,
 } = pokemartApi;
 
 export default pokemartApi;

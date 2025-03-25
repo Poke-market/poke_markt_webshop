@@ -4,10 +4,11 @@ import {
   DevToolsEnhancerOptions,
 } from "@reduxjs/toolkit";
 import { useDispatch, useSelector, TypedUseSelectorHook } from "react-redux";
-import cartReducer, { cartSlice } from "./cartSlice";
+import cartSlice from "./cartSlice";
 import pokemartApi from "./pokemartApi";
-import filterReducer from "./filterSlice";
-import authReducer from "./authSlice";
+import filterSlice from "./filterSlice";
+import authSlice from "./authSlice";
+import apiErrorLogger from "./authMiddleware";
 import storage from "redux-persist/lib/storage";
 import {
   persistStore,
@@ -19,7 +20,6 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
-
 const devToolsOptions: DevToolsEnhancerOptions = {
   actionCreators: {
     ...cartSlice.actions,
@@ -29,7 +29,7 @@ const devToolsOptions: DevToolsEnhancerOptions = {
 };
 
 const rootReducer = combineReducers({
-  cart: cartReducer,
+  [cartSlice.reducerPath]: cartSlice.reducer,
   [pokemartApi.reducerPath]: pokemartApi.reducer,
   [filterSlice.reducerPath]: filterSlice.reducer,
   [authSlice.reducerPath]: authSlice.reducer,
@@ -52,7 +52,7 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(pokemartApi.middleware),
+    }).concat(pokemartApi.middleware, apiErrorLogger),
 });
 
 export const persistor = persistStore(store);

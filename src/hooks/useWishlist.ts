@@ -4,19 +4,19 @@ import {
   useRemoveFromWishlistMutation,
   useClearWishlistMutation,
 } from "../store/pokemartApi";
-// import { useAppSelector } from "../store";
+import { useAppSelector } from "../store";
 import { getToastResponse } from "../config/toastResponses";
 import { toast } from "react-toastify";
 import { Item } from "../types/apiTypes/item";
+import { selectUser, selectIsAuthenticated } from "../store/authSlice";
 export const useWishlist = () => {
-  //   const { user } = useAppSelector((state) => state.auth) as unknown as {
-  //     user: { _id: string };
-  //   };
-  const user = { _id: "67e0a8652ae66f43bf98acdf" };
+  const user = useAppSelector(selectUser);
+  const isAuthenticated = useAppSelector(selectIsAuthenticated);
+  // const user = { _id: "67e0a8652ae66f43bf98acdf" };
   const { data: wishlist, isLoading: isWishlistLoading } = useGetWishlistQuery(
-    user?._id,
+    user?._id ?? "",
     {
-      skip: !user,
+      skip: !isAuthenticated,
     },
   );
   const [_addItemToWishlist, { isLoading: isAddingToWishlist }] =
@@ -40,17 +40,17 @@ export const useWishlist = () => {
 
   const addItemToWishlist = (item: Item) => {
     if (!validateWishListUserAuth()) return;
-    void _addItemToWishlist({ userId: user?._id, item });
+    void _addItemToWishlist({ userId: user!._id, item });
   };
 
   const removeItemFromWishlist = (id: string) => {
     if (!validateWishListUserAuth()) return;
-    void _removeItemFromWishlist({ userId: user?._id, itemId: id });
+    void _removeItemFromWishlist({ userId: user!._id, itemId: id });
   };
 
   const clearWishlist = () => {
     if (!validateWishListUserAuth()) return;
-    void _clearWishlist(user?._id);
+    void _clearWishlist(user!._id);
   };
 
   const toggleItemInWishlist = (item: Item) => {

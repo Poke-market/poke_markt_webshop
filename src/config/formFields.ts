@@ -26,7 +26,7 @@ export const registerFields: FormField[] = [
   { label: "House Number", type: "text", name: "housenumber", required: true },
   { label: "Zip Code", type: "text", name: "zipcode", required: true },
   { label: "Telephone", type: "tel", name: "telephone", required: true },
-  { label: "Register as Admin", type: "checkbox", name: "isAdmin" },
+  // { label: "Register as Admin", type: "checkbox", name: "isAdmin" },
 ];
 
 // Login fields

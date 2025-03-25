@@ -1,11 +1,11 @@
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { RootState } from "../../store";
+import { useAppSelector } from "../../store";
 import Logout from "../auth/Logout";
 import Button from "../common/Button";
 import LoginForm from "../auth/loginForm.tsx";
 import { Icons } from "../../utils/Icons";
 import styles from "../../styles/components/header/ProfileDropdown.module.scss";
+import { selectIsAuthenticated, selectUser } from "../../store/authSlice.ts";
 
 interface DropdownContentProps {
   onClose?: () => void;
@@ -13,10 +13,8 @@ interface DropdownContentProps {
 
 const DropdownContent = ({ onClose }: DropdownContentProps) => {
   const navigate = useNavigate();
-  const isAuthenticated = useSelector(
-    (state: RootState) => state.auth.isAuthenticated,
-  );
-  const user = useSelector((state: RootState) => state.auth.user)!;
+  const isAuthenticated = useAppSelector(selectIsAuthenticated);
+  const user = useAppSelector(selectUser);
 
   const handleNavigate = (path: string) => () => {
     void navigate(path);

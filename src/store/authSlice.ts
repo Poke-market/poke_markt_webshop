@@ -1,17 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RegisterResponse } from "../types/auth";
+import { User } from "../types/apiTypes/auth";
+import Cookies from "js-cookie";
 
 interface AuthState {
-  user: RegisterResponse["user"] | null;
-  token: string | null;
-  isAuthenticated: boolean;
+  user: User | null;
 }
 
 // Defining the initial state using that type
 const initialState: AuthState = {
   user: null,
-  token: localStorage.getItem("token"),
-  isAuthenticated: Boolean(localStorage.getItem("token")),
 };
 
 const authSlice = createSlice({
@@ -20,23 +17,22 @@ const authSlice = createSlice({
 
   reducers: {
     // Setting the user and token in the state and local storage
-    setAuth: (
-      state,
-      action: PayloadAction<{ user: RegisterResponse["user"]; token: string }>,
-    ) => {
-      state.user = action.payload.user;
-      state.token = action.payload.token;
-      state.isAuthenticated = true;
+    setAuth: (state, action: PayloadAction<User>) => {
+      state.user = action.payload;
+      const token = Cookies.get("token");
+      console.log(token);
     },
     // Clearing the user and token from the state and local storage
     clearAuth: (state) => {
       state.user = null;
-      state.token = null;
-      state.isAuthenticated = false;
-      localStorage.removeItem("token");
     },
+  },
+  selectors: {
+    selectUser: (state) => state.user,
+    selectIsAuthenticated: (state) => Boolean(state.user),
   },
 });
 
 export const { setAuth, clearAuth } = authSlice.actions;
+export const { selectUser, selectIsAuthenticated } = authSlice.selectors;
 export default authSlice;

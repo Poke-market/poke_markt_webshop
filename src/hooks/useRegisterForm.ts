@@ -7,6 +7,7 @@ import { processErrorData } from "../utils/errorHandlers";
 import { useFormState } from "./useFormState.ts";
 import { validateField } from "../utils/validation.ts";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 export const useRegisterForm = (initialState: UserData) => {
   const navigate = useNavigate();
@@ -57,7 +58,7 @@ export const useRegisterForm = (initialState: UserData) => {
         const { message, fieldErrors } = processErrorData(errorData);
 
         setErrors(fieldErrors);
-        showToast(message ? "REGISTER_FAIL" : "REGISTER_ERROR");
+        toast.error(message);
       }
     } catch (error) {
       console.error("Unexpected error:", error);
