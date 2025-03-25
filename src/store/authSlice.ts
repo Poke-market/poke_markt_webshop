@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { User } from "../types/apiTypes/auth";
-import Cookies from "js-cookie";
 
 interface AuthState {
   user: User | null;
@@ -19,8 +18,6 @@ const authSlice = createSlice({
     // Setting the user and token in the state and local storage
     setAuth: (state, action: PayloadAction<User>) => {
       state.user = action.payload;
-      const token = Cookies.get("token");
-      console.log(token);
     },
     // Clearing the user and token from the state and local storage
     clearAuth: (state) => {
