@@ -21,6 +21,7 @@ export const companyValues = [
   },
 ];
 
+// Path: src/config/aboutData.ts
 export const teamMembers = [
   {
     id: "1",
