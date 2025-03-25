@@ -4,7 +4,8 @@ import styles from "../../styles/components/shop/ProductCard.module.scss";
 import { useAppDispatch } from "../../store";
 import { addItem } from "../../store/cartSlice";
 import { Item } from "../../types/apiTypes/item";
-
+import { useWishlist } from "../../hooks/useWishlist";
+import clsx from "clsx";
 interface ProductActionButtonsProps {
   item: Item;
   onAddToCart?: () => void;
@@ -15,6 +16,8 @@ export const ProductActionButtons = ({
   onAddToCart,
 }: ProductActionButtonsProps) => {
   const dispatch = useAppDispatch();
+  const { isItemInWishlist, toggleItemInWishlist, isUpdatingWishlist } =
+    useWishlist();
 
   const handleAddToCart = () => {
     dispatch(addItem({ item }));
@@ -37,9 +40,27 @@ export const ProductActionButtons = ({
           </span>
           Compare
         </Button>
-        <Button className={styles.overlayButton}>
+        <Button
+          className={styles.overlayButton}
+          onClick={() => toggleItemInWishlist(item)}
+          disabled={isUpdatingWishlist}
+        >
           <span className={styles.icon}>
-            <Icons.Likeheart />
+            {isItemInWishlist(item._id) ? (
+              <Icons.LikeheartFilled
+                className={clsx({
+                  [styles.isItemInWishlist]: isItemInWishlist(item._id),
+                })}
+                style={{ fontSize: "1.8rem" }}
+              />
+            ) : (
+              <Icons.Likeheart
+                className={clsx({
+                  [styles.isItemInWishlist]: isItemInWishlist(item._id),
+                })}
+                style={{ fontSize: "1.8rem" }}
+              />
+            )}
           </span>
           Like
         </Button>
