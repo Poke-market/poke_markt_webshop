@@ -1,0 +1,61 @@
+name: Firebase PR Preview with Auto-Comment
+on:
+  pull_request:
+    branches:
+      - feature/___firebase_deploy
+      - testing/firebase
+
+jobs:
+  build_and_preview:
+    runs-on: ubuntu-latest
+    environment: preview
+    permissions:
+      contents: read
+      pull-requests: write
+      deployments: write
+
+    steps:
+      - uses: actions/checkout@v4
+      - run: npm ci && npm run build
+
+      # Deploy and capture URL
+      - name: Deploy to Firebase
+        id: firebase-deploy
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          projectId: your-project-id
+          channelId: pr-${{ github.event.pull_request.number }}
+
+      # Debug: Print URL to logs
+      - name: Debug - Show URL
+        run:
+          echo "Deployment URL: ${{ steps.firecel-deploy.outputs.hosting_url }}"
+
+      # Vercel-style PR comment
+      - name: Post Preview URL
+        if: success()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const url = "${{ steps.firebase-deploy.outputs.hosting_url }}";
+            const prNumber = context.issue.number;
+            
+            if (!url) {
+              core.setFailed('Missing deployment URL');
+              return;
+            }
+
+            try {
+              await github.rest.issues.createComment({
+                issue_number: prNumber,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: `🚀 **Firebase Preview Ready!**\n\n▸ [Open Preview](${url})\n▸ PR #${prNumber}\n\n_Automatically deployed_`
+              });
+              console.log(`Comment added to PR #${prNumber}`);
+            } catch (error) {
+              core.error(`Failed to comment: ${error}`);
+              core.setFailed(error.message);
+            }
