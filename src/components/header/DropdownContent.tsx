@@ -27,11 +27,6 @@ const DropdownContent = ({ onClose }: DropdownContentProps) => {
 
   return (
     <div className={styles.dropdownContainer}>
-      <div className={styles.closeButton}>
-        <Button onClick={onClose}>
-          <Icons.XFill />
-        </Button>
-      </div>
       {isAuthenticated ? (
         <>
           <div className={styles.profileHeader}>
@@ -95,6 +90,9 @@ const DropdownContent = ({ onClose }: DropdownContentProps) => {
           <LoginForm onSuccess={onClose} />
         </div>
       )}
+      <Button className={styles.closeButton} onClick={onClose}>
+        close
+      </Button>
     </div>
   );
 };
