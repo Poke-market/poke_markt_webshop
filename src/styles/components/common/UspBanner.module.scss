@@ -162,19 +162,22 @@
     height: auto;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    align-items: flex-start;
-    padding-left: 30%;
-
+    align-items: center;
+    padding: 2rem;
+    width: 100%;
+    
     .usp {
-      max-width: fit-content;
-      flex-direction: row;
-      text-align: left;
+      width: 28rem;
+      max-width: 90%;
+      margin-left: 35%;
+      margin-right: auto;
+      margin-bottom: 1.5rem;
+      
       display: flex;
+      flex-direction: row;
       gap: 1rem;
-      width: 100%;
       justify-content: flex-start;
-
+      
       .iconBig {
         font-size: 3.5rem !important;
         min-width: 3.5rem;
@@ -187,7 +190,7 @@
 
       &:nth-child(1),
       &:nth-child(2) {
-        margin-bottom: 0;
+        margin-bottom: 1.5rem;
       }
 
       div:nth-child(2) {
@@ -209,6 +212,20 @@
           text-align: left;
         }
       }
+    }
+  }
+}
+@media (max-width:450px) {
+  .uspBanner {
+    .usp {
+      margin-left: 25%;
+    }
+  }
+}
+@media (max-width:350px) {
+  .uspBanner {
+    .usp {
+      margin-left: 20%;
     }
   }
 }
