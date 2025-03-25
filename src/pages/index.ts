@@ -6,3 +6,4 @@ export { default as Registerpage } from "./Registrationpage.tsx";
 export { default as NotFound } from "./NotFound.tsx";
 export { default as Homepage } from "./Homepage.tsx";
 export { default as Wishlist } from "./WishListPage.tsx";
+export { default as Aboutpage } from "./AboutPage.tsx";

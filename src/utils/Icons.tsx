@@ -47,6 +47,7 @@ const Icons = {
   Minus: createIcon("bi:dash"),
   Help: createIcon("material-symbols-light:help-outline"),
   Profile: createIcon("mingcute:user-4-fill"),
+  Innovation: createIcon("lets-icons:atom-light"),
 };
 
 export default Icons;
