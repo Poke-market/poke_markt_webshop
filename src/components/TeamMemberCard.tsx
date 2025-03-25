@@ -38,6 +38,22 @@ export const TeamMemberCard = ({ member }: { member: TeamMember }) => {
               <Icons.XTwitter style={{ fontSize: "24px" }} />
             </a>
           )}
+          {member.socialLinks.linkedin && (
+            <a
+              href={member.socialLinks.linkedin}
+              aria-label={`${member.name}'s LinkedIn`}
+            >
+              <Icons.Linkedin style={{ fontSize: "24px" }} />
+            </a>
+          )}
+          {member.socialLinks.facebook && (
+            <a
+              href={member.socialLinks.facebook}
+              aria-label={`${member.name}'s Facebook`}
+            >
+              <Icons.Facebook style={{ fontSize: "24px" }} />
+            </a>
+          )}
         </div>
       </div>
     </div>
