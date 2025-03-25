@@ -33,6 +33,30 @@ const AboutPage = () => {
         <Heading as="h2" size="text3xl" className={styles.sectionTitle}>
           Our Values
         </Heading>
+        <div className={styles.valuesGrid}>
+          {companyValues.map((value) => (
+            <div key={value.title} className={styles.valueCard}>
+              <div className={styles.valueIcon}>
+                {value.icon === "quality" && (
+                  <Icons.Warranty style={{ fontSize: "48px" }} />
+                )}
+                {value.icon === "innovation" && (
+                  <Icons.Settings style={{ fontSize: "48px" }} />
+                )}
+                {value.icon === "sustainability" && (
+                  <Icons.Delivery style={{ fontSize: "48px" }} />
+                )}
+                {value.icon === "Support" && (
+                  <Icons.Help style={{ fontSize: "48px" }} />
+                )}
+              </div>
+              <Heading as="h3" size="textxl">
+                {value.title}
+              </Heading>
+              <Text>{value.description}</Text>
+            </div>
+          ))}
+        </div>
       </section>
     </div>
   );
