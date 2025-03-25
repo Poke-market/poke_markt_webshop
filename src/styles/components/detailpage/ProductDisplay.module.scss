@@ -57,8 +57,26 @@
       width: 100%;
       max-width: 60rem;
       gap: 1rem;
-      justify-content: center;
+      justify-content: flex-start;
       margin: 0 auto;
+      overflow-x: auto;
+      padding: 0 1rem 0.5rem 1rem;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin; /* Firefox */
+      scrollbar-color: var(--basic-blue) transparent; /* Firefox */
+
+      &::-webkit-scrollbar {
+        height: 4px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: var(--basic-blue);
+        border-radius: 2px;
+      }
 
       .thumbnail {
         width: 8rem;
@@ -75,17 +93,9 @@
 
     .thumbnailSlider {
       max-width: 100%;
-      overflow-x: auto;
-      padding-bottom: 0.5rem;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none; /* Firefox */
-      -ms-overflow-style: none; /* IE and Edge */
-      &::-webkit-scrollbar {
-        display: none; /* Chrome, Safari and Opera */
-      }
-
+      padding: 0 1rem 0.5rem 1rem;
       .thumbnail {
-        width: 5rem;
+        width: 8rem;
       }
     }
   }
@@ -110,8 +120,13 @@
     gap: 1rem;
     width: 8rem;
 
-    .thumbnail {
+    @media (max-width: $breakpoint) {
+      flex-direction: row;
       width: 100%;
+    }
+
+    .thumbnail {
+      width: 8rem;
       aspect-ratio: 1;
       border-radius: 0.5rem;
       overflow: hidden;
@@ -119,6 +134,7 @@
       border: 2px solid transparent;
       transition: border-color 0.2s ease;
       background: var(--bluegrey);
+      flex-shrink: 0;
 
       &.active {
         border-color: var(--basic-blue);

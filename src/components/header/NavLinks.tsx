@@ -4,7 +4,11 @@ import { Heading } from "../common";
 import { headerLinks } from "../../config";
 import styles from "../../styles/components/header/Header.module.scss";
 
-const NavLinks = () => (
+type NavLinksProps = {
+  onNavigate?: () => void;
+};
+
+const NavLinks = ({ onNavigate }: NavLinksProps) => (
   <ul className={styles.navList}>
     {/* Map through the nav links from the config */}
     {headerLinks.navLinks.map((item) => (
@@ -13,6 +17,7 @@ const NavLinks = () => (
         <NavLink
           to={item.path}
           className={({ isActive }) => clsx(isActive && styles.active)}
+          onClick={onNavigate}
         >
           <Heading>{item.label}</Heading>
         </NavLink>
