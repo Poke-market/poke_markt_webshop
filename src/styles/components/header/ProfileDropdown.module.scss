@@ -28,15 +28,14 @@
     animation: slideInTablet 0.2s ease-out;
   }
 
-  @include mobile {
+  @include responsive(md) {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
+    height: 100svh;
     transform: none;
     width: 100%;
-    height: 100vh;
     max-width: 100vw;
     border-radius: 0;
     box-shadow: none;
@@ -45,6 +44,9 @@
     display: flex;
     flex-direction: column;
     padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 
@@ -105,32 +107,18 @@
 .closeButton {
   display: none;
 
-  @include mobile {
-    display: flex;
-    justify-content: flex-end;
-    padding: 1.6rem;
-    position: sticky;
-    top: 0;
-    z-index: 20;
-    background: var(--white);
-    max-width: 100%;
+  @include responsive(md) {
+    display: block;
+    background: transparent;
+    margin-top: 2rem;
+    border: none;
+    padding: 1rem 2rem;
+    color: var(--grey-4);
+    cursor: pointer;
+    font-size: $font-size-lg;
 
-    button {
-      width: 4rem;
-      height: 4rem;
-      border-radius: 50%;
-      background: var(--color-gray-lighter);
-      color: var(--color-gray-medium);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: none;
-      transition: background 0.2s ease;
-      cursor: pointer;
-
-      &:hover {
-        background: var(--color-gray-light);
-      }
+    &:hover {
+      background: var(--color-gray-light);
     }
   }
 }
@@ -301,10 +289,6 @@
 
     &:hover {
       background: var(--color-blue-dark);
-    }
-
-    @include mobile {
-      padding: 14px;
     }
   }
 }

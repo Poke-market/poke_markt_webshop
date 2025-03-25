@@ -2,7 +2,7 @@
 @use "../../partials/mixins" as *;
 
 // fullscreen on mobile
-@include responsive(sm) {
+@include responsive(md) {
   :global(html):has(.open) {
     overflow: hidden;
   }
@@ -67,7 +67,7 @@ div {
     display: none;
     margin-top: auto;
     text-align: center;
-    @include responsive(sm) {
+    @include responsive(md) {
       display: block;
     }
     hr {
