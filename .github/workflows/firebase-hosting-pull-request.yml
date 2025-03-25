@@ -1,0 +1,37 @@
+name: Deploy to Firebase Hosting on PR
+on:
+  pull_request:
+    branches: [ feature/__firebase_deploy, staging ]
+    types: [ opened, reopened, synchronize ]
+
+permissions:
+  checks: write
+  contents: read
+  pull-requests: write
+
+jobs:
+  build_and_preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: npm ci && npm run build
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        id: firebase-deploy
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_STRONG_WARD_453503_F1 }}
+          projectId: strong-ward-453503-f1
+          channelId: pr-${{ github.event.pull_request.number }}
+
+      - name: Comment PR with preview link
+        if: success()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const url = "${{ steps.firebase-deploy.outputs.hosting_url }}";
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `🌐 Firebase Preview\n🔗 [View Live](${url})\n*Auto-deployed for PR #${{ github.event.pull_request.number }}*`
+            });

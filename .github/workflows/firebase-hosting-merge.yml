@@ -1,0 +1,23 @@
+name: Deploy to Firebase Hosting on merge
+on:
+  push:
+    branches:
+      - feature/__firebase_deploy
+
+jobs:
+  build_and_deploy:
+    environment: production
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: npm ci && npm run build
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_STRONG_WARD_453503_F1 }}
+          channelId: live
+          projectId: strong-ward-453503-f1
+
+      - name: Verify deployment
+        run: |
+          echo "Production deployed to: https://${{ secrets.FIREBASE_PROJECT_URL }}"
