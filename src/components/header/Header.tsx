@@ -54,7 +54,6 @@ const Header = ({ className }: Props) => {
           onSearchClick={handleSearchClick}
         />
       </nav>
-      2
       <CartOverlay isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
       <WishlistOverlay
         isOpen={isWishlistOpen}
