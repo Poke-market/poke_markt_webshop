@@ -41,7 +41,7 @@ export const teamMembers = [
     imageUrl: "vinnie.png",
     socialLinks: {
       twitter: "https://twitter.com/samlee",
-      github: "https://github.com/samlee",
+      facebook: "https://github.com/samlee",
     },
   },
   {
@@ -52,7 +52,7 @@ export const teamMembers = [
     imageUrl: "public/hannah.png",
     socialLinks: {
       twitter: "https://twitter.com/samlee",
-      github: "https://github.com/samlee",
+      facebook: "https://github.com/samlee",
     },
   },
   {
@@ -63,7 +63,7 @@ export const teamMembers = [
     imageUrl: "joppe.jpg",
     socialLinks: {
       twitter: "https://twitter.com/samlee",
-      github: "https://github.com/samlee",
+      facebook: "https://github.com/samlee",
     },
   },
 ];
