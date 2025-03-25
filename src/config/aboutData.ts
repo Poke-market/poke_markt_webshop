@@ -27,7 +27,7 @@ export const teamMembers = [
     name: "Amine Abbouti",
     role: "Founder & CEO",
     bio: "Believes good design should be accessible to everyone.",
-    imageUrl: "public/amine.jpg",
+    imageUrl: "amine.jpg",
     socialLinks: {
       twitter: "https://twitter.com/alexj",
       linkedin: "https://linkedin.com/in/alexj",
@@ -49,7 +49,7 @@ export const teamMembers = [
     name: "Hannah Casier",
     role: "Founder & CEO",
     bio: "Believes good design should be accessible to everyone.",
-    imageUrl: "public/hannah.png",
+    imageUrl: "hannah.jpg",
     socialLinks: {
       twitter: "https://twitter.com/samlee",
       facebook: "https://github.com/samlee",
