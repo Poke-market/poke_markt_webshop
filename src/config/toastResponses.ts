@@ -49,6 +49,10 @@ export const toastResponses = {
     message: "You have been successfully logged out.",
     options: { ...defaultToastOptions, toastId: "logout-success" },
   },
+  wishlistNotLoggedIn: {
+    message: "You must be logged in to use the wishlist.",
+    options: { toastId: "wishlist-not-logged-in" },
+  },
 } as const;
 
 export const getToastResponse = (
@@ -66,6 +70,7 @@ export const TOAST_KEYS = {
   REGISTER_SUCCESS: "registerSuccess",
   REGISTER_FAIL: "registerFail",
   REGISTER_ERROR: "registerError",
+  WISHLIST_NOT_LOGGED_IN: "wishlistNotLoggedIn",
   LOGIN_SUCCESS: "loginSuccess",
   LOGIN_FAIL: "loginFail",
   LOGIN_ERROR: "loginError",

@@ -1,12 +1,16 @@
 import { ApiErrorData } from "../types/auth";
 
 export const processErrorData = (errorData: ApiErrorData) => {
-  if (!errorData.errors || !Array.isArray(errorData.errors)) {
+  console.log("errorData", errorData);
+  if (!Array.isArray(errorData.errors)) {
     return {
       message: "An error occurred",
       fieldErrors: {},
     };
   }
+  const singleError = Array.isArray(errorData.errors[0])
+    ? null
+    : errorData.errors[0];
   const validErrors = errorData.errors.filter(
     (e): e is [string, string] => Array.isArray(e) && e.length === 2,
   );
@@ -20,7 +24,8 @@ export const processErrorData = (errorData: ApiErrorData) => {
     },
     {},
   );
-  const message = Object.values(fieldErrors).join(", ");
+  const message = [singleError, ...Object.values(fieldErrors)].join(", ");
+  console.log("message", message);
   return {
     message: message || "Validation failed",
     fieldErrors,

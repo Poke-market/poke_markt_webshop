@@ -1,4 +1,6 @@
+import { useWishlist } from "../../hooks/useWishlist";
 import { Overlay } from "../common/Overlay";
+import OverlayItem from "../common/OverlayItem";
 
 type Props = {
   isOpen: boolean;
@@ -6,10 +8,7 @@ type Props = {
 };
 
 export const WishlistOverlay = ({ isOpen, onClose }: Props) => {
-  const clearWishlist = () => {
-    //TODO: add wishlist clearing functionality
-    console.log("Wishlist cleared");
-  };
+  const { wishlist, removeItemFromWishlist, clearWishlist } = useWishlist();
 
   return (
     <Overlay
@@ -25,11 +24,10 @@ export const WishlistOverlay = ({ isOpen, onClose }: Props) => {
           to: "/wishlist",
         },
       ]}
-      // palace holders till it gets properly implemented
-      content={[]}
-      renderContent={() => <></>}
-      getContentKey={() => "wishlist"}
-      onRemove={() => {}}
+      content={wishlist ?? []}
+      renderContent={(item) => <OverlayItem item={item} />}
+      getContentKey={(item) => item._id}
+      onRemove={(item) => removeItemFromWishlist(item._id)}
     />
   );
 };

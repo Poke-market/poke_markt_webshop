@@ -20,7 +20,7 @@ const initialState: FilterState = {
   totalCount: 0,
 };
 
-export const filterSlice = createSlice({
+const filterSlice = createSlice({
   name: "filter",
   initialState,
   reducers: {
@@ -57,4 +57,4 @@ export const selectCategorieCounts = (state: RootState) =>
 export const selectTotalCount = (state: RootState) => state.filter.totalCount;
 export const selectPriceRange = (state: RootState) => state.filter.priceRange;
 
-export default filterSlice.reducer;
+export default filterSlice;

@@ -17,5 +17,6 @@ export const toastConfig: ToastContainerProps = {
     padding: "2rem",
     lineHeight: "2rem",
     fontFamily: "arial, sans-serif",
+    marginTop: "8rem",
   },
 };
