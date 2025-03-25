@@ -14,17 +14,18 @@ const AboutPage = () => {
           Our Story
         </Heading>
         <Text size="textlg" className={styles.heroText}>
-          We're the tech-obsessed students who turned a school project into
-          something special. Founded in 2025, PokeMart began when a simple
-          assignment revealed a big opportunity: e-commerce could be smarter,
-          smoother, and more human. What started as classroom code is now a
-          mission to reshape online shopping, we build intuitive experiences
-          where technology does the heavy lifting, so you can focus on what
-          matters, every feature is designed to feel effortless, because we
-          believe great tech should work for you, not the other way around.
-          Still powered by that same student curiosity (just with better snacks
-          now), we're creating the future of digital commerce - one innovative
-          solution at a time.
+          We are tech enthusiasts who transformed a school project into
+          something extraordinary Founded in 2025, PokeMart emerged from a
+          simple assignment that unveiled a significant opportunity: e-commerce
+          could be smarter, smoother, and more human. What began as classroom
+          code has evolved into a mission to revolutionize online shopping. We
+          create intuitive experiences where technology handles the heavy
+          lifting, allowing you to focus on what truly matters. Every feature is
+          designed to be effortless because we believe great tech should work
+          for you, not the other way around. Still driven by the same student
+          curiosity (now with better snacks), we are shaping the future of
+          digital commerce with innovative solutions. We are here to assist
+          everyone, except our competitors.
         </Text>
       </section>
 
@@ -57,6 +58,29 @@ const AboutPage = () => {
             </div>
           ))}
         </div>
+      </section>
+
+      {/* Team Section */}
+      <section className={styles.teamSection}>
+        <Heading as="h2" size="text3xl" className={styles.sectionTitle}>
+          Meet the Team
+        </Heading>
+        <div className={styles.teamGrid}>
+          {teamMembers.map((member) => (
+            <TeamMemberCard key={member.id} member={member} />
+          ))}
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className={styles.ctaSection}>
+        <Icons.CustomerService style={{ fontSize: "48px", color: "#4a6bff" }} />
+        <Heading as="h2" size="text3xl">
+          Want to join our journey?
+        </Heading>
+        <Button>
+          Contact Us <Icons.ArrowRight style={{ marginLeft: "8px" }} />
+        </Button>
       </section>
     </div>
   );
