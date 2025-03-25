@@ -4,6 +4,7 @@ import { CartOverlay } from "../cart/CartOverlay";
 import { WishlistOverlay } from "../wishlist/WishlistOverlay";
 import { useNavigate } from "react-router-dom";
 import clsx from "clsx";
+import { useWishlist } from "../../hooks/useWishlist";
 import {
   Logo,
   NavLinks,
@@ -21,6 +22,7 @@ const Header = ({ className }: Props) => {
   const [isWishlistOpen, setIsWishlistOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const { validateWishListUserAuth } = useWishlist();
 
   // handle for the cart icon click
   const handleCartClick = (e: React.MouseEvent) => {
@@ -31,6 +33,8 @@ const Header = ({ className }: Props) => {
   // handle for the wishlist icon click
   const handleWishlistClick = (e: React.MouseEvent) => {
     e.preventDefault();
+
+    if (!validateWishListUserAuth()) return;
     setIsWishlistOpen(true);
   };
 

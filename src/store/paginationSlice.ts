@@ -13,7 +13,7 @@ const initialState: PaginationState = {
   itemsPerPage: 16,
 };
 
-export const paginationSlice = createSlice({
+const paginationSlice = createSlice({
   name: "pagination",
   initialState,
   reducers: {

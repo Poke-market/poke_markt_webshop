@@ -19,7 +19,7 @@ function removeItemHelper(state: CartState, id: Item["_id"]) {
   state.items = state.items.filter((item) => item.item._id !== id);
 }
 
-export const cartSlice = createSlice({
+const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
@@ -92,4 +92,4 @@ export const selectCartTotalPrice = createSelector(selectCartItems, (items) =>
   ),
 );
 
-export default cartSlice.reducer;
+export default cartSlice;

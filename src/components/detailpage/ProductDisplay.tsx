@@ -36,7 +36,7 @@ const ProductDisplay = ({ images, name }: ProductDisplayProps) => {
               alt={`${name} ${index + 1}`}
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
-                target.src = "/placeholder-image.jpg";
+                target.src = "/placeholder-amine.jpg";
               }}
             />
           </Button>
@@ -48,7 +48,7 @@ const ProductDisplay = ({ images, name }: ProductDisplayProps) => {
           alt={name}
           onError={(e) => {
             const target = e.target as HTMLImageElement;
-            target.src = "/placeholder-image.jpg";
+            target.src = "/placeholder-amine.jpg";
           }}
         />
       </div>

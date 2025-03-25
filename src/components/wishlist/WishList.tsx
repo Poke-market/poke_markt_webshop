@@ -3,7 +3,7 @@ import { Button, Heading, Icons, Img } from "../../utils";
 import { Table } from "../common/Table.tsx";
 import { createColumnHelper } from "@tanstack/react-table";
 import { useMemo } from "react";
-
+import { useWishlist } from "../../hooks/useWishlist";
 type props = {
   rowProduct: {
     name: string;
@@ -16,22 +16,35 @@ type props = {
 // WishlistPage component
 const WishlistPage = () => {
   const columnHelper = createColumnHelper<props>();
+  const { removeItemFromWishlist, wishlist } = useWishlist();
 
-  const data: props[] = useMemo(() => {
-    // Dummy data for te
-    return [
-      {
-        rowProduct: {
-          name: "Sample Product",
-          image: "/path/to/image.jpg",
-        },
-        rowPrice: "99.99",
-        rowDelete: () => {
-          console.log("Item removed");
-        },
+  const data: props[] =
+    wishlist?.map((item) => ({
+      rowProduct: {
+        name: item.name,
+        image: item.photoUrl,
       },
-    ];
-  }, []);
+      rowPrice: item.discount.discountedPrice.toString(),
+      rowDelete: () => {
+        removeItemFromWishlist(item._id);
+      },
+    })) ?? ([] as props[]);
+  // useMemo(
+  //   () => {
+  //   // Dummy data for te
+  //   return [
+  //     {
+  //       rowProduct: {
+  //         name: "Sample Product",
+  //         image: "/path/to/amine.jpg",
+  //       },
+  //       rowPrice: "99.99",
+  //       rowDelete: () => {
+  //         removeItemFromWishlist(item);
+  //       },
+  //     },
+  //   ];
+  // }, []);
 
   // Columns for the table
   const columns = useMemo(

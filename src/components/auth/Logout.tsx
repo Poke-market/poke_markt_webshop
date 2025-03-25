@@ -1,38 +1,45 @@
-import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { clearAuth } from "../../store/authSlice";
+import { clearAuth, selectIsAuthenticated } from "../../store/authSlice";
 import { Button, Loading } from "../common";
-import { getToastResponse, TOAST_KEYS, toastConfig } from "../../config";
-import { RootState } from "../../store";
+import { getToastResponse, TOAST_KEYS } from "../../config";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import styles from "../../styles/components/auth/Logout.module.scss";
-
+import { useAppDispatch, useAppSelector } from "../../store";
+import { useLogoutMutation } from "../../store/pokemartApi";
 interface LogoutProps {
   className?: string;
 }
 
 const Logout = ({ className }: LogoutProps) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [isLoggingOut, setIsLoggingOut] = useState(false);
-  const isAuthenticated = useSelector(
-    (state: RootState) => state.auth.isAuthenticated,
-  );
+  const isAuthenticated = useAppSelector(selectIsAuthenticated);
+  const [logout] = useLogoutMutation();
 
   // This function is called when the user clicks the "Logout" button.
   const handleLogout = async () => {
     setIsLoggingOut(true);
-    dispatch(clearAuth());
-    localStorage.removeItem("token");
+    // dispatch(clearAuth());
 
-    // Simulate a 1.2-second delay to show the loading spinner.
-    await new Promise((resolve) => setTimeout(resolve, 1200));
+    // // Simulate a 1.2-second delay to show the loading spinner.
+    // await new Promise((resolve) => setTimeout(resolve, 1200));
+    // setIsLoggingOut(false);
+
+    // const { message, options } = getToastResponse(TOAST_KEYS.LOGOUT_SUCCESS);
+    // toast.success(message, { ...toastConfig, ...options });
+
+    // void navigate("/shop");
+    const { error: logoutError } = await logout();
     setIsLoggingOut(false);
-
+    if (logoutError) {
+      console.log("logoutError", logoutError);
+      return;
+    }
+    dispatch(clearAuth());
     const { message, options } = getToastResponse(TOAST_KEYS.LOGOUT_SUCCESS);
-    toast.success(message, { ...toastConfig, ...options });
-
+    toast.success(message, options);
     void navigate("/shop");
   };
 

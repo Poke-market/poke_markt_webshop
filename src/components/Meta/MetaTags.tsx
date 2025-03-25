@@ -33,7 +33,7 @@ export interface MetaTagsProps {
 export function generateMetadata({
   title = "Poke Market",
   description = "shop the best Pokemon products",
-  image = "/og-image.jpg",
+  image = "/og-amine.jpg",
   url = window.location.href,
   type = "website",
 }: MetaTagsProps = {}): Metadata {

@@ -7,7 +7,7 @@ import {
   removeItem,
 } from "../../store/cartSlice";
 import { Overlay } from "../common/Overlay";
-import CartItem from "./CartItem";
+import OverlayItem from "../common/OverlayItem";
 
 type Props = {
   isOpen: boolean;
@@ -43,7 +43,7 @@ export const CartOverlay = ({ isOpen, onClose }: Props) => {
         },
       ]}
       content={cartItems}
-      renderContent={(cartItem) => <CartItem {...cartItem} />}
+      renderContent={(cartItem) => <OverlayItem {...cartItem} />}
       getContentKey={(cartItem) => cartItem.item._id}
       onRemove={({ item, quantity }) =>
         quantity > 1

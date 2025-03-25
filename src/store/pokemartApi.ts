@@ -7,23 +7,15 @@ import {
   FetchBaseQueryMeta,
 } from "@reduxjs/toolkit/query/react";
 import { Item, GetItemsParams, GetItemsData } from "../types/apiTypes/item";
-import { RootState } from "./index";
-import {
-  UserData,
-  RegisterResponse,
-  AuthResponse,
-  LoginCredentials,
-} from "../types/auth";
-import { ApiResponse } from "../types/types.ts";
+import { UserData, LoginCredentials } from "../types/auth";
+import { User } from "../types/apiTypes/auth.ts";
 
 // Base query with authentication
 const baseQueryWithAuth = fetchBaseQuery({
   baseUrl: import.meta.env.VITE_API_URL + "/api",
-  prepareHeaders: (headers, { getState }) => {
-    const token = (getState() as RootState).auth.token;
-    if (token) {
-      headers.set("Authorization", `Bearer ${token}`);
-    }
+  credentials: "include",
+  prepareHeaders: (headers) => {
+    headers.set("Content-Type", "application/json");
     return headers;
   },
   responseHandler: async (response) => {
@@ -60,7 +52,9 @@ const customBaseQuery: BaseQueryFn<
 const pokemartApi = createApi({
   reducerPath: "pokemartApi",
   baseQuery: customBaseQuery,
+  tagTypes: ["wishlist"],
   endpoints: (builder) => ({
+    // Items
     getItems: builder.query<GetItemsData, GetItemsParams>({
       query: (params) => ({
         url: "/items",
@@ -84,23 +78,85 @@ const pokemartApi = createApi({
       transformResponse: (response: { name: string }[]) =>
         response.map((tag) => tag.name),
     }),
-    register: builder.mutation<RegisterResponse, UserData>({
+
+    // Auth
+    register: builder.mutation<User, UserData>({
       query: (userData) => ({
         url: "auth/register",
         method: "POST",
         body: userData,
       }),
-      transformResponse: (response: ApiResponse): RegisterResponse => {
-        return response.data as unknown as RegisterResponse;
-      },
-      transformErrorResponse: (response: FetchBaseQueryError) => response,
+      transformResponse: (response: { user: User }) => response.user,
     }),
-    login: builder.mutation<AuthResponse, LoginCredentials>({
+    login: builder.mutation<User, LoginCredentials>({
       query: (credentials) => ({
         url: "/auth/login",
         method: "POST",
         body: credentials,
       }),
+      transformResponse: (response: { user: User }) => response.user,
+    }),
+    logout: builder.mutation<void, void>({
+      query: () => ({
+        url: "/auth/logout",
+        method: "POST",
+      }),
+    }),
+
+    // Wishlist
+    getWishlist: builder.query<Item[], string>({
+      query: (id) => `/users/${id}/wishlist`,
+      providesTags: ["wishlist"],
+    }),
+    addToWishlist: builder.mutation<void, { userId: string; item: Item }>({
+      query: ({ userId, item }) => ({
+        url: `/users/${userId}/wishlist`,
+        method: "POST",
+        body: { itemId: item._id },
+      }),
+      invalidatesTags: ["wishlist"],
+      onQueryStarted({ userId, item }, { dispatch, queryFulfilled }) {
+        const optimisticUpdate = dispatch(
+          pokemartApi.util.updateQueryData("getWishlist", userId, (draft) => {
+            draft.push(item);
+          }),
+        );
+        queryFulfilled.catch(optimisticUpdate.undo);
+      },
+    }),
+    removeFromWishlist: builder.mutation<
+      void,
+      { userId: string; itemId: string }
+    >({
+      query: ({ userId, itemId }) => ({
+        url: `/users/${userId}/wishlist`,
+        method: "DELETE",
+        body: { itemId },
+      }),
+      invalidatesTags: ["wishlist"],
+      onQueryStarted({ userId, itemId }, { dispatch, queryFulfilled }) {
+        const optimisticUpdate = dispatch(
+          pokemartApi.util.updateQueryData("getWishlist", userId, (draft) => {
+            return draft.filter((item) => item._id !== itemId);
+          }),
+        );
+        queryFulfilled.catch(optimisticUpdate.undo);
+      },
+    }),
+    clearWishlist: builder.mutation<void, string>({
+      query: (userId) => ({
+        url: `/users/${userId}/wishlist/clear`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["wishlist"],
+      onQueryStarted(userId, { dispatch, queryFulfilled }) {
+        const optimisticUpdate = dispatch(
+          pokemartApi.util.updateQueryData("getWishlist", userId, () => {
+            return [];
+          }),
+        );
+        queryFulfilled.catch(optimisticUpdate.undo);
+      },
     }),
   }),
 });
@@ -111,7 +167,12 @@ export const {
   useRegisterMutation,
   useGetItemBySlugQuery,
   useGetTagsQuery,
+  useGetWishlistQuery,
+  useAddToWishlistMutation,
+  useRemoveFromWishlistMutation,
+  useClearWishlistMutation,
   useLoginMutation,
+  useLogoutMutation,
 } = pokemartApi;
 
 export default pokemartApi;

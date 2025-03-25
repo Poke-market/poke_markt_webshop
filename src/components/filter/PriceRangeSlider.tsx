@@ -94,7 +94,7 @@ const PriceRangeSlider = ({
     onChangeComplete?.(applyConstraints(inputValues));
 
   const [minInput, maxInput] = (["min", "max"] as const).map((key) => (
-    <div className={styles.inputWrapper}>
+    <div key={`input-${key}`} className={styles.inputWrapper}>
       <span className={styles.currencySymbol}>$</span>
       <input
         className={styles.priceInput}
@@ -109,6 +109,7 @@ const PriceRangeSlider = ({
 
   const [minThumb, maxThumb] = (["min", "max"] as const).map((key) => (
     <input
+      key={`thumb-${key}`}
       type="range"
       min={min}
       max={max}
