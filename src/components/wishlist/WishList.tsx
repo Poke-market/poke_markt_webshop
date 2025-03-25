@@ -36,7 +36,7 @@ const WishlistPage = () => {
   //     {
   //       rowProduct: {
   //         name: "Sample Product",
-  //         image: "/path/to/image.jpg",
+  //         image: "/path/to/amine.jpg",
   //       },
   //       rowPrice: "99.99",
   //       rowDelete: () => {
