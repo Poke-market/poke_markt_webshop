@@ -31,3 +31,5 @@ export const WishlistOverlay = ({ isOpen, onClose }: Props) => {
     />
   );
 };
+
+export default WishlistOverlay;

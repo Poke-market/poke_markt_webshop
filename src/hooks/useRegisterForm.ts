@@ -1,56 +1,49 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRegister } from "./useRegister";
 import { UserData, ApiErrorData } from "../types/auth";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
-import { toast } from "react-toastify";
-import { getToastResponse, TOAST_KEYS } from "../config/toastResponses";
+import { showToast } from "../utils/toastUtils";
 import { processErrorData } from "../utils/errorHandlers";
+import { useFormState } from "./useFormState.ts";
+import { validateField } from "../utils/validation.ts";
+import { useState } from "react";
 
 export const useRegisterForm = (initialState: UserData) => {
-  const [formData, setFormData] = useState<UserData>(initialState);
-  const [errors, setErrors] = useState<Record<string, string>>({});
-  const [registering, setRegistering] = useState(false);
   const navigate = useNavigate();
-
+  const { formData, errors, handleChange, setFormData, setErrors } =
+    useFormState<UserData>(initialState);
+  const [isRegistering, setIsRegistering] = useState(false);
   const { handleRegister, isLoading: isApiLoading } = useRegister();
-
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >,
-  ) => {
-    const { name, value, type } = e.target;
-    const inputValue =
-      type === "checkbox" && "checked" in e.target
-        ? (e.target as HTMLInputElement).checked
-        : value;
-
-    setFormData((prev) => ({ ...prev, [name]: inputValue }));
-    setErrors((prev) => ({ ...prev, [name]: "" }));
-  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Validate all fields before submitting
+    const newErrors: Record<string, string> = {};
+    Object.entries(formData).forEach(([name, value]) => {
+      const errorMessage = validateField(name, value);
+      if (errorMessage) {
+        newErrors[name] = errorMessage;
+      }
+    });
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
     setErrors({});
-    setRegistering(true);
+    setIsRegistering(true);
 
     try {
       const result = await handleRegister(formData);
 
       if (result.success) {
         setFormData(initialState);
+        showToast("REGISTER_SUCCESS");
 
-        const { message, options } = getToastResponse(
-          TOAST_KEYS.REGISTER_SUCCESS,
-        );
-
-        await navigate("/shop");
-
-        setTimeout(() => {
-          toast.success(message, options);
-        }, 100);
-
+        // Navigate to the shop page after a short delay
+        setTimeout(() => navigate("/shop"), 100);
         return;
       }
 
@@ -64,21 +57,17 @@ export const useRegisterForm = (initialState: UserData) => {
         const { message, fieldErrors } = processErrorData(errorData);
 
         setErrors(fieldErrors);
-        toast.error(
-          message || "Registration failed",
-          getToastResponse(TOAST_KEYS.REGISTER_FAIL).options,
-        );
+        showToast(message ? "REGISTER_FAIL" : "REGISTER_ERROR");
       }
     } catch (error) {
       console.error("Unexpected error:", error);
-      const { message, options } = getToastResponse(TOAST_KEYS.REGISTER_ERROR);
-      toast.error(message, options);
+      showToast("REGISTER_ERROR");
     } finally {
-      setRegistering(false);
+      setIsRegistering(false);
     }
   };
 
-  const isLoading = isApiLoading || registering;
+  const isLoading = isApiLoading || isRegistering;
 
   return {
     formData,

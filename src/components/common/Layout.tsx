@@ -1,8 +1,10 @@
-import { Footer, Header } from "../../utils";
+import { Footer } from "../../utils";
+import Header from "../../components/header/Header";
 
 type Props = {
   children: React.ReactNode;
 };
+
 const Layout = ({ children }: Props) => {
   return (
     <>

@@ -46,6 +46,8 @@ const Icons = {
   Unlike: createIcon("icon-park-outline:unlike"),
   Plus: createIcon("bi:plus"),
   Minus: createIcon("bi:dash"),
+  Help: createIcon("material-symbols-light:help-outline"),
+  Profile: createIcon("mingcute:user-4-fill"),
 };
 
 export default Icons;

@@ -1,0 +1,1 @@
+form{padding:20px 34px}form .categories ul{display:grid;grid-template-columns:repeat(auto-fill, minmax(190px, 1fr));column-gap:50px}form .tags ul{display:flex;flex-wrap:wrap;gap:5px}form .tags ul li{background-color:#fff}
