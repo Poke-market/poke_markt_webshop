@@ -1,3 +1,5 @@
+import { Item } from "./apiTypes/item";
+
 export interface ApiResponse {
   status: string;
   data: {
@@ -10,16 +12,17 @@ export interface ApiResponse {
       first: string;
       last: string;
     };
-    items: {
-      _id: string;
-      name: string;
-      description: string;
-      photoUrl: string;
-      price: number;
-      category: string;
-      tags: string[];
-      createdAt: string;
-      updatedAt: string;
-    }[];
+    items: Item[];
   };
+}
+
+export interface ProductInfoProps {
+  name: string;
+  description: string;
+  price: number;
+  originalPrice?: number;
+  id: string;
+  category: string;
+  tags: string[];
+  images: string[];
 }

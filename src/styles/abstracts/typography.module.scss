@@ -1,0 +1,46 @@
+@use "../partials/mixins" as *;
+@use "../partials/variables" as *;
+
+.text,
+.heading {
+  font-family: $font-family;
+  &[class*="heading"] {
+    font-weight: bold;
+  }
+
+  &-xxs {
+    font-size: $font-size-xxs;
+  }
+
+  &-xs {
+    font-size: $font-size-xs;
+  }
+
+  &-lg {
+    font-size: $font-size-lg;
+  }
+
+  &-md {
+    font-size: $font-size-md;
+  }
+
+  &-xl {
+    font-size: $font-size-xl;
+  }
+
+  &-2xl {
+    font-size: $font-size-2xl;
+  }
+
+  &-3xl {
+    font-size: $font-size-3xl;
+  }
+
+  &-4xl {
+    font-size: $font-size-4xl;
+  }
+
+  &-5xl {
+    font-size: $font-size-5xl;
+  }
+}

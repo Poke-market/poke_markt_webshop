@@ -1,0 +1,138 @@
+@use "../../partials/variables" as *;
+@use "../../partials/mixins" as *;
+@use "../../abstracts/typography.module" as *;
+
+.customSelect {
+  position: relative;
+  font-family: $font-family;
+  user-select: none;
+}
+
+// The main trigger button
+.selectTrigger {
+  background-color: var(--bluegrey);
+  color: var(--light-blue);
+  height: 5.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 1rem;
+  font-size: $font-size-xl;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+
+  &:focus {
+    outline: none;
+  }
+
+  // Dropdown arrow
+  &::after {
+    content: "";
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid var(--light-blue);
+  }
+}
+
+// Dropdown container
+.optionsContainer {
+  position: absolute;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  background-color: var(--bluegrey);
+  overflow-y: auto;
+  // No scroll-snap to allow free scrolling
+  -ms-overflow-style: none; // Hide scrollbar IE and Edge
+  scrollbar-width: none; // Hide scrollbar Firefox
+
+  // Add transition for smooth animation
+  transition:
+    opacity 0.1s ease-out,
+    height 0.25s ease-out,
+    top 0.25s ease-out;
+
+  // Hide scrollbar for Chrome, Safari and Opera
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  // Center-aligned to the trigger button
+  top: calc(50% - 2.75rem); // Center of trigger (5.5/2)
+
+  // Fade effect using mask
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 15%,
+    black 85%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 15%,
+    black 85%,
+    transparent
+  );
+
+  // Initial collapsed state (same height as trigger)
+  &.collapsed {
+    height: 5.5rem;
+  }
+
+  // Expanded state
+  &.expanded {
+    height: 7.5rem;
+    top: calc(50% - 3.75rem); // Recenter based on new height (7.5/2)
+  }
+
+  &.hidden {
+    opacity: 0;
+  }
+
+  &.visible {
+    opacity: 1;
+  }
+}
+
+// Wrapper for options with padding
+.optionsWrapper {
+  padding: 0;
+  min-height: 100%;
+}
+
+// Individual option
+.option {
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  color: var(--light-blue);
+  font-size: $font-size-xl;
+  cursor: pointer;
+}
+
+// Placeholder elements to enable scrolling to first/last items
+.placeholder {
+  height: 2.5rem;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+// Hidden native select for form submission
+.hiddenSelect {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
+}

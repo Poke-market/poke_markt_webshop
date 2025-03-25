@@ -1,0 +1,19 @@
+@use "../partials/variables" as *;
+
+.productDetail {
+  display: flex;
+  gap: 4rem;
+  padding: 4rem 8rem;
+  max-width: 120rem;
+  margin: 0 auto;
+
+  @media (max-width: $breakpoint) {
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    padding: 1.5rem;
+  }
+}

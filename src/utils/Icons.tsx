@@ -11,16 +11,16 @@ const createIcon = (iconName: string) => {
   );
 };
 
-export const Icons = {
+const Icons = {
   User: createIcon("tdesign:user"),
   Search: createIcon("iconamoon:search"),
   Wishlist: createIcon("ant-design:heart-outlined"),
   ShoppingCart: createIcon("hugeicons:shopping-cart-01"),
   GridIcon: createIcon("ci:grid-big-round"),
   Warranty: createIcon("ph:seal-check-light"),
-  Trophy: createIcon("fluent:trophy-32-regular"),
-  Delivery: createIcon("icon-park-twotone:delivery"),
-  CustomerService: createIcon("bx:support"),
+  Trophy: createIcon("mdi-light:trophy"),
+  Delivery: createIcon("material-symbols-light:delivery-truck-speed-outline"),
+  CustomerService: createIcon("ph:headset-light"),
   Share: createIcon("material-symbols:share"),
   ViewList: createIcon("bi:view-list"),
   XFill: createIcon("flowbite:close-circle-solid"),
@@ -41,4 +41,14 @@ export const Icons = {
   Arrowupsmall: createIcon("ri:arrow-up-s-line"),
   Arrowdownsmall: createIcon("ri:arrow-down-s-line"),
   Arrowrightsmall: createIcon("weui:arrow-filled"),
+  Filtering: createIcon("system-uicons:filtering"),
+  Unlike: createIcon("icon-park-outline:unlike"),
+  Plus: createIcon("bi:plus"),
+  Minus: createIcon("bi:dash"),
+  Help: createIcon("material-symbols-light:help-outline"),
+  Profile: createIcon("mingcute:user-4-fill"),
+  Innovation: createIcon("lets-icons:atom-light"),
 };
+
+export default Icons;
+export { Icons };

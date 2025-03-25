@@ -1,0 +1,162 @@
+@use "../../partials/variables" as *;
+
+.wishlist {
+  padding: 5rem 15rem;
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  width: 100%;
+
+  @media (max-width: 1050px) {
+    padding: 2rem;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.table-container {
+  width: 80%;
+  @media (max-width: 768px) {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    width: 100%;
+  }
+}
+
+.wishlist-table {
+  border-collapse: collapse;
+  width: 100%;
+
+  tr:nth-of-type(1) {
+    td {
+      padding-top: 5.5rem;
+
+      @media (max-width: 768px) {
+        padding-top: 1rem;
+      }
+    }
+  }
+}
+
+.wishlist-th {
+  vertical-align: middle;
+  text-align: left;
+  padding: 0;
+  border: none;
+  background-color: var(--blue-grey);
+}
+
+.wishlist-td {
+  vertical-align: middle;
+  padding-top: 3rem;
+
+  p {
+    font-size: 1.6rem;
+    color: var(--grey-3);
+    font-weight: normal;
+
+    @media (max-width: 768px) {
+      font-size: 1.4rem;
+    }
+  }
+}
+
+.product-cell {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 3.6rem;
+  max-width: 100%;
+
+  .image-container {
+    border-radius: 10px;
+    aspect-ratio: 1/1;
+    height: 10.5rem;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 10px;
+      background-color: var(--blue-grey);
+
+      @media (max-width: 768px) {
+        height: 3rem;
+        width: 3rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      height: unset;
+    }
+  }
+
+  @media (max-width: 768px) {
+    width: auto;
+    gap: 1rem;
+  }
+}
+
+.price-cell {
+  margin-left: 6.8rem;
+  width: 15.8rem;
+
+  @media (max-width: 768px) {
+    margin-left: 0;
+    width: auto;
+  }
+}
+
+.delete-cell {
+  margin-left: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  width: 4rem;
+  color: var(--basic-blue);
+  transition: 0.3s;
+
+  &:hover {
+    color: var(--red);
+  }
+
+  @media (max-width: 768px) {
+    width: 3rem;
+  }
+}
+
+.header-cell {
+  display: flex;
+  align-items: center;
+  padding: 1.4rem 0;
+  background-color: inherit;
+
+  &.product-header {
+    padding: 1.95rem 4.4rem;
+    text-align: center;
+
+    @media (max-width: 768px) {
+      padding: 1rem 2rem;
+    }
+  }
+
+  &.price-header {
+    margin-left: 6.8rem;
+
+    @media (max-width: 768px) {
+      margin-left: 2rem;
+    }
+  }
+
+  p {
+    font-size: 1.6rem;
+    font-weight: $font-weight-medium;
+
+    @media (max-width: 768px) {
+      font-size: 1.4rem;
+    }
+  }
+}

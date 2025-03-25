@@ -1,0 +1,79 @@
+@use "../partials/variables" as *;
+.loginContainer {
+  display: flex;
+  flex-direction: column;
+  max-width: 30rem;
+  margin: 0 auto;
+  padding: 4rem 0;
+  font-family: $font-family;
+
+  h2 {
+    font-size: 2.4rem;
+    color: var(--text-color);
+    margin-bottom: 2rem;
+    align-self: center;
+  }
+
+  label {
+    font-size: 1.4rem;
+    color: var(--text-color);
+  }
+
+  input {
+    border: 1px solid var(-original-price-color);
+    border-radius: 0.5rem;
+    background-color: var(--white);
+    padding: 2rem;
+    margin-top: 1rem;
+    &::placeholder {
+      color: var(--original-price-color);
+    }
+  }
+
+  button {
+    width: 50%;
+    align-self: center;
+    padding: 1rem 0;
+    background-color: var(--basic-blue);
+    color: var(--white);
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    margin-top: 2rem;
+    &:hover {
+      background-color: var(--white);
+      color: var(--basic-blue);
+      &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border: 1px solid var(--basic-blue);
+        border-radius: 0.5rem;
+        pointer-events: none;
+      }
+    }
+  }
+
+  .registerLink {
+    text-align: center;
+    margin-top: -1rem;
+
+    span {
+      color: var(--text-color);
+      font-size: 1.2rem;
+      margin-right: 0.5rem;
+    }
+
+    a {
+      color: var(--basic-blue);
+      text-decoration: none;
+      font-size: 1.4rem;
+      font-weight: 500;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

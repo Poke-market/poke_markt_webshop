@@ -1,0 +1,363 @@
+@use "../../partials/variables" as *;
+
+.cart {
+  padding: 5rem 15rem;
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  width: 100%;
+
+  @media (max-width: 1050px) {
+    padding: 2rem;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.table-container {
+  width: 100%;
+  @media (max-width: 768px) {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    max-width: 100%;
+  }
+
+  // scroll overlay none
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.cart-table {
+  border-collapse: collapse;
+  width: 100%;
+
+  tr:nth-of-type(1) {
+    td {
+      padding-top: 5.5rem;
+
+      @media (max-width: 768px) {
+        padding-top: 1rem;
+      }
+    }
+  }
+}
+
+.cart-th {
+  vertical-align: middle;
+  text-align: left;
+  padding: 0;
+  border: none;
+  background-color: var(--blue-grey);
+
+  @media (max-width: 768px) {
+    text-align: center;
+  }
+}
+
+.cart-td {
+  vertical-align: middle;
+  padding-top: 3rem;
+  p {
+    font-size: 1.6rem;
+    color: var(--grey-3);
+    font-weight: normal;
+
+    @media (max-width: 768px) {
+      font-size: 1rem;
+    }
+  }
+}
+
+.product-cell {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 3.6rem;
+  width: 25rem;
+  max-width: 100%;
+
+  .image-container {
+    border-radius: 10px;
+    aspect-ratio: 1/1;
+    height: 10.5rem;
+
+    @media (max-width: 768px) {
+      height: 4rem;
+      width: 4rem;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 10px;
+      background-color: var(--blue-grey);
+
+      @media (max-width: 768px) {
+        height: 4rem;
+        width: 4rem;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    width: auto;
+    gap: 1rem;
+    flex-direction: column;
+    height: 5rem;
+  }
+}
+
+.price-cell {
+  margin-left: 6.8rem;
+  width: 15.8rem;
+
+  @media (max-width: 768px) {
+    margin-left: 2rem;
+    width: auto;
+  }
+}
+
+.quantity-cell {
+  padding: 0 3.6rem;
+  width: 10.5rem;
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.6rem;
+    color: var(--grey-3);
+    color: var(--light-blue);
+    visibility: hidden;
+  }
+
+  &:hover {
+    button {
+      visibility: visible;
+    }
+  }
+
+  input {
+    border: 1px solid var(--grey-4);
+    width: 3.2rem;
+    height: 3.2rem;
+    border-radius: 5px;
+    background-color: transparent;
+    text-align: center;
+    color: var(--text-color);
+    font-size: 1.6rem;
+    line-height: 3.2rem;
+    padding: 0;
+
+    /* Remove inner spin buttons */
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* For Firefox */
+    &[type="number"] {
+      -moz-appearance: textfield;
+    }
+
+    @media (max-width: 768px) {
+      width: 2.8rem;
+      height: 2.8rem;
+      font-size: 1.4rem;
+      line-height: 2.8rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 0;
+    width: auto;
+  }
+}
+
+.subtotal-cell {
+  margin-left: 1.808rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  width: 15rem;
+
+  p {
+    color: black;
+  }
+
+  @media (max-width: 768px) {
+    margin-left: 1rem;
+    width: auto;
+  }
+}
+
+.delete-cell {
+  margin-left: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  width: 4rem;
+  color: var(--basic-blue);
+  transition: 0.3s;
+
+  &:hover {
+    color: var(--red);
+  }
+
+  @media (max-width: 768px) {
+    width: 2rem;
+  }
+}
+
+.header-cell {
+  padding: 1.4rem 0;
+  background-color: inherit;
+
+  &.product-header {
+    padding: 1.95rem 4.4rem;
+    text-align: end;
+
+    @media (max-width: 768px) {
+      padding: 1rem 1rem;
+    }
+  }
+
+  &.price-header {
+    margin-left: 6.8rem;
+
+    @media (max-width: 768px) {
+      margin-left: 0;
+    }
+  }
+
+  &.quantity-header {
+    padding: 1.4rem 1.8rem;
+
+    @media (max-width: 768px) {
+      padding: 1rem;
+    }
+  }
+
+  &.subtotal-header {
+    margin-left: 1.8rem;
+
+    @media (max-width: 768px) {
+      margin-left: 1rem;
+    }
+  }
+
+  p {
+    font-size: 1.6rem;
+    font-weight: $font-weight-medium;
+
+    @media (max-width: 768px) {
+      font-size: 1.4rem;
+    }
+  }
+}
+
+.totals-container {
+  background-color: var(--blue-grey);
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  width: 28%;
+
+  @media (max-width: 1050px) {
+    width: 50%;
+  }
+
+  @media (max-width: 640px) {
+    width: 100%;
+  }
+
+  .totals-content {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 6rem;
+
+    @media (max-width: 768px) {
+      width: 100%;
+      margin-bottom: 0;
+    }
+
+    h1 {
+      font-weight: $font-weight-medium;
+      text-wrap: nowrap;
+
+      @media (max-width: 768px) {
+        margin-left: 0;
+        font-size: 3rem;
+      }
+      @media (max-width: 630px) {
+        font-size: 2.8rem;
+      }
+    }
+
+    .subtotal,
+    .total {
+      display: flex;
+      justify-content: space-between;
+      gap: 2rem;
+      width: 100%;
+      margin-top: 3rem;
+
+      &.subtotal {
+        margin-top: 6rem;
+      }
+
+      p:first-child {
+        font-weight: $font-weight-semi-bold;
+      }
+      p:last-child {
+        color: var(--product-name-color);
+        font-weight: normal;
+
+        &.total-amount {
+          font-size: 2rem;
+          color: var(--basic-blue);
+          font-weight: 600;
+        }
+      }
+    }
+
+    button {
+      margin: 4rem 1rem 0;
+      border: 1px solid var(--basic-blue);
+      background-color: var(--blue-grey);
+      color: var(--basic-blue);
+      border-radius: 1.4rem;
+      transition: 0.3s;
+      font-size: 2rem;
+      width: 20rem;
+      height: 5.8rem;
+
+      &:hover {
+        background-color: var(--basic-blue);
+        color: var(--white);
+      }
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        background-color: var(--blue-grey);
+        color: var(--basic-blue);
+      }
+
+      @media (max-width: 630px) {
+        margin: 4.2rem 0;
+      }
+    }
+  }
+}

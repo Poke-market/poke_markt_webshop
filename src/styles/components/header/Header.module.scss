@@ -1,0 +1,351 @@
+@use "../../partials/variables" as *;
+@use "../../partials/mixins" as *;
+@use "../../abstracts/typography.module" as *;
+
+.header {
+  font-weight: $font-weight-medium;
+  padding: 2rem 6rem;
+  display: flex;
+  background-color: #ffffff;
+  align-items: center;
+
+  position: sticky;
+  top: 0;
+  z-index: 800;
+  box-shadow: 0 0.1rem 0.5rem rgba(0, 0, 0, 0.1);
+
+  [class*="box"] {
+    flex: 1;
+    display: flex;
+    align-items: center;
+
+    &.boxLeft {
+      margin-right: auto;
+      justify-content: flex-start;
+    }
+
+    &.boxRight {
+      margin-left: auto;
+      justify-content: flex-end;
+    }
+  }
+
+  .logoLink {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    width: 17%;
+    margin-left: 2.88rem;
+
+    .headerLogo {
+      height: 3rem;
+      width: fit-content;
+      object-fit: contain;
+      object-position: center;
+    }
+
+    .logoText {
+      color: var(--red);
+      font-weight: bold;
+      text-shadow: 0 0.1rem 0.5rem rgba(0, 0, 0, 0.37);
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      white-space: nowrap;
+    }
+  }
+
+  .navList {
+    display: flex;
+    justify-content: center;
+    gap: 6.9rem;
+    list-style: none;
+    transition: gap 0.3s ease-out;
+
+    // @media (max-width: $breakpoint) {
+    //   gap: 2.5rem;
+    // }
+
+    .active {
+      font-weight: bold !important;
+    }
+  }
+
+  .iconContainer {
+    margin-right: 2.88rem;
+    display: flex;
+    gap: 4rem;
+    justify-content: flex-end;
+    transition: gap 0.3s ease-out;
+    position: relative;
+
+    a[data-cart-item-count] {
+      position: relative;
+      --cart-item-count: attr(data-cart-item-count);
+
+      ::after {
+        content: var(--cart-item-count);
+        min-width: 2.5rem;
+        min-height: 2.5rem;
+        position: absolute;
+        top: -1.5rem;
+        right: -1.5rem;
+        background-color: var(--red);
+        color: var(--white);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        font-size: $font-size-xs;
+      }
+    }
+
+    .icon {
+      height: 1.75rem;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  // Hamburger menu button (hidden on desktop)
+  .hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+
+    span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      margin-bottom: 5px;
+      background-color: var(--text-color);
+      transition: transform 0.3s ease-out;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  // Desktop navigation (hidden on mobile)
+  .desktopNav {
+    display: contents;
+  }
+
+  // Mobile menu overlay
+  .mobileOverlay {
+    display: none;
+  }
+
+  @include responsive(lg) {
+    .navList {
+      gap: 2rem;
+    }
+    .iconContainer {
+      gap: 1.5rem;
+    }
+  }
+
+  @include responsive(md) {
+    padding: 1.5rem;
+    justify-content: space-between;
+
+    // Show hamburger button on mobile
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    // Hide desktop navigation on mobile
+    .desktopNav {
+      display: none;
+    }
+
+    // Mobile menu open animation for hamburger icon
+    &.menuOpen .hamburger {
+      span {
+        &:first-child {
+          transform: translateY(8px) rotate(45deg);
+        }
+        &:nth-child(2) {
+          opacity: 0;
+        }
+        &:last-child {
+          transform: translateY(-8px) rotate(-45deg);
+        }
+      }
+    }
+
+    // Mobile menu overlay
+    .mobileOverlay {
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 100svh;
+      z-index: 999;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease-out;
+
+      // Mobile menu content
+      .mobileMenuContent {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--white);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 6rem;
+        padding: 2rem;
+        z-index: 1000;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-out;
+
+        .mobileLogo {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          margin-left: 0;
+          width: auto;
+
+          .headerLogo {
+            height: 8rem;
+            margin-bottom: 1rem;
+          }
+
+          .logoText {
+            font-weight: 700;
+            font-size: 2.4rem;
+          }
+        }
+
+        .navList {
+          flex-direction: column;
+          text-align: center;
+          gap: 2rem;
+        }
+
+        .iconContainer {
+          width: 100%;
+          max-width: 250px;
+          margin: 0;
+          justify-content: space-between;
+        }
+
+        .closeButton {
+          margin-top: 2rem;
+          background: none;
+          border: none;
+          padding: 1rem 2rem;
+          color: var(--grey-4);
+          cursor: pointer;
+          font-size: $font-size-lg;
+        }
+      }
+
+      // Backdrop
+      .backdrop {
+        position: fixed;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+      }
+    }
+
+    // Open state for mobile menu
+    .mobileOverlay.open {
+      opacity: 1;
+      pointer-events: auto;
+
+      .mobileMenuContent {
+        transform: translateX(0);
+      }
+    }
+  }
+}
+
+// Prevent scroll when mobile menu is open
+:global(html):has(.menuOpen) {
+  overflow: hidden;
+}
+
+.profileDropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  min-width: 200px;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease-out;
+  pointer-events: auto;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -1rem;
+    left: 0;
+    right: 0;
+    height: 1rem;
+    background: transparent;
+  }
+
+  @media (max-width: $breakpoint) {
+    right: 0;
+  }
+
+  @include responsive(md) {
+    right: 50%;
+    transform: translateX(50%);
+  }
+}
+
+.dropdownItem {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  text-align: center;
+  background: var(--basic-blue);
+  border: none;
+  color: var(--white);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 0.5rem;
+  font-weight: $font-weight-medium;
+
+  &:hover {
+    background-color: var(--light-blue);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    background-color: var(--bluegrey);
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

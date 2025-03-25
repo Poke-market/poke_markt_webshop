@@ -1,0 +1,16 @@
+.form {
+  padding: 20px 34px;
+  .categories ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    column-gap: 50px;
+  }
+  .tags ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    li {
+      background-color: white;
+    }
+  }
+}
