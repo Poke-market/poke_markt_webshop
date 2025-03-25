@@ -107,6 +107,22 @@
       gap: 4rem;
       .card {
         width: 100%;
+        height: auto;
+        gap: 2rem;
+        margin-bottom: 2rem;
+
+        .imageContainer {
+          height: 30rem;
+          width: 100%;
+        }
+
+        h3 {
+          position: relative;
+          margin-top: 1rem;
+          display: block;
+          width: 100%;
+          text-align: center;
+        }
       }
     }
   }
