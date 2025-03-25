@@ -6,7 +6,7 @@ import styles from "../../styles/components/header/Header.module.scss";
 import ProfileDropdown from "./ProfileDropdown";
 import { useAppSelector } from "../../store";
 import { selectCartItemCount } from "../../store/cartSlice";
-import { selectWishlistItemCount } from "../../store/wishlistSlice";
+import { useWishlist } from "../../hooks/useWishlist";
 // handlers for the icon links
 type IconLinksProps = {
   onCartClick: (e: React.MouseEvent) => void;
@@ -22,7 +22,8 @@ const IconLinks = ({
   onWishlistClick,
 }: IconLinksProps) => {
   const cartItemCount = useAppSelector(selectCartItemCount);
-  const wishlistItemCount = useAppSelector(selectWishlistItemCount);
+  const { wishlist } = useWishlist();
+  const wishlistItemCount = wishlist?.length ?? 0;
 
   return (
     <div className={styles.iconContainer}>

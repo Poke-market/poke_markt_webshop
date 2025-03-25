@@ -30,13 +30,13 @@ export const ProductActionButtons = ({
       <div className={styles.overlayButtons}>
         <Button className={styles.overlayButton}>
           <span className={styles.icon}>
-            <Icons.Share />
+            <Icons.Share style={{ fontSize: "1.6rem" }} />
           </span>
           Share
         </Button>
         <Button className={styles.overlayButton}>
           <span className={styles.icon}>
-            <Icons.ArrowRightLeft />
+            <Icons.ArrowRightLeft style={{ fontSize: "2rem" }} />
           </span>
           Compare
         </Button>
